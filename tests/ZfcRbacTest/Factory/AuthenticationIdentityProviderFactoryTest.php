@@ -19,10 +19,10 @@
 namespace ZfcRbacTest\Factory;
 
 use Zend\ServiceManager\ServiceManager;
-use ZfcRbac\Factory\AuthenticationIdentityProviderFactory;
+use LaminasRbac\Factory\AuthenticationIdentityProviderFactory;
 
 /**
- * @covers \ZfcRbac\Factory\AuthenticationIdentityProviderFactory
+ * @covers \LaminasRbac\Factory\AuthenticationIdentityProviderFactory
  */
 class AuthenticationIdentityProviderFactoryTest extends \PHPUnit_Framework_TestCase
 {

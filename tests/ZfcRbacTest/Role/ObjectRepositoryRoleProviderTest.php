@@ -21,13 +21,13 @@ namespace ZfcRbacTest\Role;
 use Doctrine\ORM\Tools\SchemaTool;
 use Rbac\Traversal\RecursiveRoleIterator;
 use Zend\ServiceManager\ServiceManager;
-use ZfcRbac\Role\ObjectRepositoryRoleProvider;
+use LaminasRbac\Role\ObjectRepositoryRoleProvider;
 use ZfcRbacTest\Asset\FlatRole;
 use ZfcRbacTest\Asset\HierarchicalRole;
 use ZfcRbacTest\Util\ServiceManagerFactory;
 
 /**
- * @covers \ZfcRbac\Role\ObjectRepositoryRoleProvider
+ * @covers \LaminasRbac\Role\ObjectRepositoryRoleProvider
  */
 class ObjectRepositoryRoleProviderTest extends \PHPUnit_Framework_TestCase
 {

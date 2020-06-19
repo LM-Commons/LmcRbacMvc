@@ -20,11 +20,11 @@ namespace ZfcRbacTest\Factory;
 
 use Zend\ServiceManager\Exception\ServiceNotCreatedException;
 use Zend\ServiceManager\ServiceManager;
-use ZfcRbac\Exception\RuntimeException;
-use ZfcRbac\Role\RoleProviderPluginManager;
+use LaminasRbac\Exception\RuntimeException;
+use LaminasRbac\Role\RoleProviderPluginManager;
 
 /**
- * @covers \ZfcRbac\Factory\ObjectRepositoryRoleProviderFactory
+ * @covers \LaminasRbac\Factory\ObjectRepositoryRoleProviderFactory
  */
 class ObjectRepositoryRoleProviderFactoryTest extends \PHPUnit_Framework_TestCase
 {

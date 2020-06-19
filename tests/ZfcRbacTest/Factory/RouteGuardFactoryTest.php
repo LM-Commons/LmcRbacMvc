@@ -19,13 +19,13 @@
 namespace ZfcRbacTest\Factory;
 
 use Zend\ServiceManager\ServiceManager;
-use ZfcRbac\Factory\RouteGuardFactory;
-use ZfcRbac\Guard\GuardInterface;
-use ZfcRbac\Guard\GuardPluginManager;
-use ZfcRbac\Options\ModuleOptions;
+use LaminasRbac\Factory\RouteGuardFactory;
+use LaminasRbac\Guard\GuardInterface;
+use LaminasRbac\Guard\GuardPluginManager;
+use LaminasRbac\Options\ModuleOptions;
 
 /**
- * @covers \ZfcRbac\Factory\RouteGuardFactory
+ * @covers \LaminasRbac\Factory\RouteGuardFactory
  */
 class RouteGuardFactoryTest extends \PHPUnit_Framework_TestCase
 {

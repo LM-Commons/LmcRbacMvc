@@ -18,10 +18,10 @@
 
 namespace ZfcRbacTest\Role;
 
-use ZfcRbac\Role\InMemoryRoleProvider;
+use LaminasRbac\Role\InMemoryRoleProvider;
 
 /**
- * @covers \ZfcRbac\Role\InMemoryRoleProvider
+ * @covers \LaminasRbac\Role\InMemoryRoleProvider
  */
 class InMemoryRoleProviderTest extends \PHPUnit_Framework_TestCase
 {

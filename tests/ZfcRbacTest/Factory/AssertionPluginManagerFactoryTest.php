@@ -19,10 +19,10 @@
 namespace ZfcRbacTest\Factory;
 
 use Zend\ServiceManager\ServiceManager;
-use ZfcRbac\Factory\AssertionPluginManagerFactory;
+use LaminasRbac\Factory\AssertionPluginManagerFactory;
 
 /**
- * @covers \ZfcRbac\Factory\AssertionPluginManagerFactory
+ * @covers \LaminasRbac\Factory\AssertionPluginManagerFactory
  */
 class AssertionPluginManagerFactoryTest extends \PHPUnit_Framework_TestCase
 {

@@ -19,12 +19,12 @@ namespace ZfcRbacTest\Factory;
 
 use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
-use ZfcRbac\Factory\AuthorizationServiceDelegatorFactory;
+use LaminasRbac\Factory\AuthorizationServiceDelegatorFactory;
 use ZfcRbacTest\Initializer\AuthorizationAwareFake;
 use ZfcRbacTest\Util\ServiceManagerFactory;
 
 /**
- * @covers  \ZfcRbac\Factory\AuthorizationServiceDelegatorFactory
+ * @covers  \LaminasRbac\Factory\AuthorizationServiceDelegatorFactory
  * @author  Jean-Marie Leroux <jmleroux.pro@gmail.com>
  * @license MIT License
  */

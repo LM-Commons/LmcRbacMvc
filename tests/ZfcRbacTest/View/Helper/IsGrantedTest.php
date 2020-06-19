@@ -18,11 +18,11 @@
 
 namespace ZfcRbacTest\View\Helper;
 
-use ZfcRbac\View\Helper\IsGranted;
+use LaminasRbac\View\Helper\IsGranted;
 use ZfcRbacTest\Util\ServiceManagerFactory;
 
 /**
- * @covers \ZfcRbac\View\Helper\IsGranted
+ * @covers \LaminasRbac\View\Helper\IsGranted
  */
 class IsGrantedTest extends \PHPUnit_Framework_TestCase
 {

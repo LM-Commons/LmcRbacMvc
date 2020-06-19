@@ -19,12 +19,12 @@
 namespace ZfcRbacTest\Factory;
 
 use Zend\ServiceManager\ServiceManager;
-use ZfcRbac\Factory\GuardsFactory;
-use ZfcRbac\Guard\GuardPluginManager;
-use ZfcRbac\Options\ModuleOptions;
+use LaminasRbac\Factory\GuardsFactory;
+use LaminasRbac\Guard\GuardPluginManager;
+use LaminasRbac\Options\ModuleOptions;
 
 /**
- * @covers \ZfcRbac\Factory\GuardsFactory
+ * @covers \LaminasRbac\Factory\GuardsFactory
  */
 class GuardsFactoryTest extends \PHPUnit_Framework_TestCase
 {

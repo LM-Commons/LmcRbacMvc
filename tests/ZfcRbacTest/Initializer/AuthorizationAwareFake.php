@@ -17,7 +17,7 @@
  */
 namespace ZfcRbacTest\Initializer;
 
-use ZfcRbac\Service\AuthorizationServiceAwareInterface;
+use LaminasRbac\Service\AuthorizationServiceAwareInterface;
 
 /**
  * A fake implementation for AuthorizationServiceAwareInterface
@@ -28,5 +28,5 @@ use ZfcRbac\Service\AuthorizationServiceAwareInterface;
 class AuthorizationAwareFake implements AuthorizationServiceAwareInterface
 {
 
-    use \ZfcRbac\Service\AuthorizationServiceAwareTrait;
+    use \LaminasRbac\Service\AuthorizationServiceAwareTrait;
 }

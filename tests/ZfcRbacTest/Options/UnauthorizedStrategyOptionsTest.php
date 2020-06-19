@@ -18,10 +18,10 @@
 
 namespace ZfcRbacTest;
 
-use ZfcRbac\Options\UnauthorizedStrategyOptions;
+use LaminasRbac\Options\UnauthorizedStrategyOptions;
 
 /**
- * @covers \ZfcRbac\Options\UnauthorizedStrategyOptions
+ * @covers \LaminasRbac\Options\UnauthorizedStrategyOptions
  */
 class UnauthorizedStrategyOptionsTest extends \PHPUnit_Framework_TestCase
 {

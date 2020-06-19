@@ -19,10 +19,10 @@
 namespace ZfcRbacTest\Role;
 
 use Zend\ServiceManager\ServiceManager;
-use ZfcRbac\Role\RoleProviderPluginManager;
+use LaminasRbac\Role\RoleProviderPluginManager;
 
 /**
- * @covers \ZfcRbac\Role\RoleProviderPluginManager
+ * @covers \LaminasRbac\Role\RoleProviderPluginManager
  */
 class RoleProviderPluginManagerTest extends \PHPUnit_Framework_TestCase
 {

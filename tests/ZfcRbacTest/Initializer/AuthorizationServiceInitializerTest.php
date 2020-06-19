@@ -19,10 +19,10 @@ namespace ZfcRbacTest\Initializer;
 
 use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
-use ZfcRbac\Initializer\AuthorizationServiceInitializer;
+use LaminasRbac\Initializer\AuthorizationServiceInitializer;
 
 /**
- * @covers  \ZfcRbac\Initializer\AuthorizationServiceInitializer
+ * @covers  \LaminasRbac\Initializer\AuthorizationServiceInitializer
  * @author  Aeneas Rekkas
  * @license MIT License
  */

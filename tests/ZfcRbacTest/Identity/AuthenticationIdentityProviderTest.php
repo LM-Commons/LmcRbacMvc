@@ -18,10 +18,10 @@
 
 namespace ZfcRbacTest\Identity;
 
-use ZfcRbac\Identity\AuthenticationIdentityProvider;
+use LaminasRbac\Identity\AuthenticationIdentityProvider;
 
 /**
- * @covers \ZfcRbac\Identity\AuthenticationIdentityProvider
+ * @covers \LaminasRbac\Identity\AuthenticationIdentityProvider
  */
 class AuthenticationIdentityProviderTest extends \PHPUnit_Framework_TestCase
 {

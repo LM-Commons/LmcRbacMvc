@@ -18,10 +18,10 @@
 
 namespace ZfcRbacTest;
 
-use ZfcRbac\Module;
+use LaminasRbac\Module;
 
 /**
- * @covers \ZfcRbac\Module
+ * @covers \LaminasRbac\Module
  */
 class ModuleTest extends \PHPUnit_Framework_TestCase
 {

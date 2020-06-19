@@ -20,10 +20,10 @@ namespace ZfcRbacTest\Factory;
 
 use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
-use ZfcRbac\Factory\RedirectStrategyFactory;
+use LaminasRbac\Factory\RedirectStrategyFactory;
 
 /**
- * @covers \ZfcRbac\Factory\RedirectStrategyFactory
+ * @covers \LaminasRbac\Factory\RedirectStrategyFactory
  */
 class RedirectStrategyFactoryTest extends \PHPUnit_Framework_TestCase
 {

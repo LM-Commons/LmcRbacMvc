@@ -24,8 +24,8 @@ use Zend\Mvc\MvcEvent;
 use ZfcRbacTest\Asset\DummyGuard;
 
 /**
- * @covers \ZfcRbac\Guard\AbstractGuard
- * @covers \ZfcRbac\Guard\ControllerGuard
+ * @covers \LaminasRbac\Guard\AbstractGuard
+ * @covers \LaminasRbac\Guard\ControllerGuard
  */
 class AbstractGuardTest extends \PHPUnit_Framework_TestCase
 {

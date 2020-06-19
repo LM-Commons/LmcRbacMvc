@@ -19,13 +19,13 @@
 namespace ZfcRbacTest\Factory;
 
 use Zend\ServiceManager\ServiceManager;
-use ZfcRbac\Factory\ControllerPermissionsGuardFactory;
-use ZfcRbac\Guard\GuardInterface;
-use ZfcRbac\Guard\GuardPluginManager;
-use ZfcRbac\Options\ModuleOptions;
+use LaminasRbac\Factory\ControllerPermissionsGuardFactory;
+use LaminasRbac\Guard\GuardInterface;
+use LaminasRbac\Guard\GuardPluginManager;
+use LaminasRbac\Options\ModuleOptions;
 
 /**
- * @covers \ZfcRbac\Factory\ControllerPermissionsGuardFactory
+ * @covers \LaminasRbac\Factory\ControllerPermissionsGuardFactory
  */
 class ControllerPermissionsGuardFactoryTest extends \PHPUnit_Framework_TestCase
 {

@@ -19,10 +19,10 @@
 namespace ZfcRbacTest\Factory;
 
 use Zend\ServiceManager\ServiceManager;
-use ZfcRbac\Factory\ModuleOptionsFactory;
+use LaminasRbac\Factory\ModuleOptionsFactory;
 
 /**
- * @covers \ZfcRbac\Factory\ModuleOptionsFactory
+ * @covers \LaminasRbac\Factory\ModuleOptionsFactory
  */
 class ModuleOptionsFactoryTest extends \PHPUnit_Framework_TestCase
 {

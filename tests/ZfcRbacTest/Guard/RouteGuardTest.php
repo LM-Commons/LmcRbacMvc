@@ -21,17 +21,17 @@ namespace ZfcRbacTest\Guard;
 use Zend\Mvc\MvcEvent;
 use Zend\Mvc\Router\RouteMatch as V2RouteMatch;
 use Zend\Router\RouteMatch;
-use ZfcRbac\Guard\ControllerGuard;
-use ZfcRbac\Guard\GuardInterface;
-use ZfcRbac\Guard\RouteGuard;
-use ZfcRbac\Guard\RoutePermissionsGuard;
-use ZfcRbac\Role\InMemoryRoleProvider;
-use ZfcRbac\Service\RoleService;
+use LaminasRbac\Guard\ControllerGuard;
+use LaminasRbac\Guard\GuardInterface;
+use LaminasRbac\Guard\RouteGuard;
+use LaminasRbac\Guard\RoutePermissionsGuard;
+use LaminasRbac\Role\InMemoryRoleProvider;
+use LaminasRbac\Service\RoleService;
 use Rbac\Traversal\Strategy\RecursiveRoleIteratorStrategy;
 
 /**
- * @covers \ZfcRbac\Guard\AbstractGuard
- * @covers \ZfcRbac\Guard\RouteGuard
+ * @covers \LaminasRbac\Guard\AbstractGuard
+ * @covers \LaminasRbac\Guard\RouteGuard
  */
 class RouteGuardTest extends \PHPUnit_Framework_TestCase
 {

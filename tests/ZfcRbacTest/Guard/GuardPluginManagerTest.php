@@ -19,11 +19,11 @@
 namespace ZfcRbacTest\Guard;
 
 use Zend\ServiceManager\ServiceManager;
-use ZfcRbac\Guard\GuardPluginManager;
-use ZfcRbac\Options\ModuleOptions;
+use LaminasRbac\Guard\GuardPluginManager;
+use LaminasRbac\Options\ModuleOptions;
 
 /**
- * @covers \ZfcRbac\Guard\GuardPluginManager
+ * @covers \LaminasRbac\Guard\GuardPluginManager
  */
 class GuardPluginManagerTest extends \PHPUnit_Framework_TestCase
 {

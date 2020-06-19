@@ -20,10 +20,10 @@ namespace ZfcRbacTest\Factory;
 
 use Zend\Mvc\Controller\PluginManager;
 use Zend\ServiceManager\ServiceManager;
-use ZfcRbac\Factory\IsGrantedPluginFactory;
+use LaminasRbac\Factory\IsGrantedPluginFactory;
 
 /**
- * @covers \ZfcRbac\Factory\IsGrantedPluginFactory
+ * @covers \LaminasRbac\Factory\IsGrantedPluginFactory
  */
 class IsGrantedPluginFactoryTest extends \PHPUnit_Framework_TestCase
 {

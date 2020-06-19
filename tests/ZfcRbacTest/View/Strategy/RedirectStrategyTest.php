@@ -24,13 +24,13 @@ use Zend\Http\Response as HttpResponse;
 use Zend\Mvc\MvcEvent;
 use Zend\Mvc\Router\Http\TreeRouteStack as V2TreeRouteStack;
 use Zend\Router\Http\TreeRouteStack;
-use ZfcRbac\Exception\UnauthorizedException;
-use ZfcRbac\Options\RedirectStrategyOptions;
-use ZfcRbac\View\Strategy\RedirectStrategy;
+use LaminasRbac\Exception\UnauthorizedException;
+use LaminasRbac\Options\RedirectStrategyOptions;
+use LaminasRbac\View\Strategy\RedirectStrategy;
 
 /**
- * @covers \ZfcRbac\View\Strategy\RedirectStrategy
- * @covers \ZfcRbac\View\Strategy\AbstractStrategy
+ * @covers \LaminasRbac\View\Strategy\RedirectStrategy
+ * @covers \LaminasRbac\View\Strategy\AbstractStrategy
  */
 class RedirectStrategyTest extends \PHPUnit_Framework_TestCase
 {

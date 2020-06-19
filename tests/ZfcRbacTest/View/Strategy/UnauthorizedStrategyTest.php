@@ -20,13 +20,13 @@ namespace ZfcRbacTest\View\Strategy;
 
 use Zend\Http\Response as HttpResponse;
 use Zend\Mvc\MvcEvent;
-use ZfcRbac\Exception\UnauthorizedException;
-use ZfcRbac\Options\UnauthorizedStrategyOptions;
-use ZfcRbac\View\Strategy\UnauthorizedStrategy;
+use LaminasRbac\Exception\UnauthorizedException;
+use LaminasRbac\Options\UnauthorizedStrategyOptions;
+use LaminasRbac\View\Strategy\UnauthorizedStrategy;
 
 /**
- * @covers \ZfcRbac\View\Strategy\UnauthorizedStrategy
- * @covers \ZfcRbac\View\Strategy\AbstractStrategy
+ * @covers \LaminasRbac\View\Strategy\UnauthorizedStrategy
+ * @covers \LaminasRbac\View\Strategy\AbstractStrategy
  */
 class UnauthorizedStrategyTest extends \PHPUnit_Framework_TestCase
 {
