@@ -18,10 +18,10 @@
 
 namespace ZfcRbacTest\Guard;
 
-use ZfcRbac\Guard\GuardInterface;
+use LaminasRbac\Guard\GuardInterface;
 
 /**
- * @covers \ZfcRbac\Guard\ProtectionPolicyTrait
+ * @covers \LaminasRbac\Guard\ProtectionPolicyTrait
  */
 class ProtectionPolicyTraitTest extends \PHPUnit_Framework_TestCase
 {

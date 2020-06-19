@@ -20,14 +20,14 @@ namespace ZfcRbacTest\Guard;
 use Zend\Mvc\MvcEvent;
 use Zend\Mvc\Router\RouteMatch as V2RouteMatch;
 use Zend\Router\RouteMatch;
-use ZfcRbac\Guard\ControllerGuard;
-use ZfcRbac\Guard\GuardInterface;
-use ZfcRbac\Guard\RouteGuard;
-use ZfcRbac\Guard\RoutePermissionsGuard;
+use LaminasRbac\Guard\ControllerGuard;
+use LaminasRbac\Guard\GuardInterface;
+use LaminasRbac\Guard\RouteGuard;
+use LaminasRbac\Guard\RoutePermissionsGuard;
 
 /**
- * @covers \ZfcRbac\Guard\AbstractGuard
- * @covers \ZfcRbac\Guard\RoutePermissionsGuard
+ * @covers \LaminasRbac\Guard\AbstractGuard
+ * @covers \LaminasRbac\Guard\RoutePermissionsGuard
  */
 class RoutePermissionsGuardTest extends \PHPUnit_Framework_TestCase
 {

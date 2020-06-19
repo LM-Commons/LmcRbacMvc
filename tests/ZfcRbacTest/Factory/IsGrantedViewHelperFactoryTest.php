@@ -20,10 +20,10 @@ namespace ZfcRbacTest\Factory;
 
 use Zend\ServiceManager\ServiceManager;
 use Zend\View\HelperPluginManager;
-use ZfcRbac\Factory\IsGrantedViewHelperFactory;
+use LaminasRbac\Factory\IsGrantedViewHelperFactory;
 
 /**
- * @covers \ZfcRbac\Factory\IsGrantedViewHelperFactory
+ * @covers \LaminasRbac\Factory\IsGrantedViewHelperFactory
  */
 class IsGrantedViewHelperFactoryTest extends \PHPUnit_Framework_TestCase
 {

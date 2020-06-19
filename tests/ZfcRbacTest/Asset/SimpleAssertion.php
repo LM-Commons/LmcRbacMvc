@@ -18,8 +18,8 @@
 
 namespace ZfcRbacTest\Asset;
 
-use ZfcRbac\Assertion\AssertionInterface;
-use ZfcRbac\Service\AuthorizationService;
+use LaminasRbac\Assertion\AssertionInterface;
+use LaminasRbac\Service\AuthorizationService;
 
 class SimpleAssertion implements AssertionInterface
 {

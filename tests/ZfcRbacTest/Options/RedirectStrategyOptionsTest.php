@@ -18,10 +18,10 @@
 
 namespace ZfcRbacTest;
 
-use ZfcRbac\Options\RedirectStrategyOptions;
+use LaminasRbac\Options\RedirectStrategyOptions;
 
 /**
- * @covers \ZfcRbac\Options\RedirectStrategyOptions
+ * @covers \LaminasRbac\Options\RedirectStrategyOptions
  */
 class RedirectStrategyOptionsTest extends \PHPUnit_Framework_TestCase
 {

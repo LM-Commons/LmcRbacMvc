@@ -20,10 +20,10 @@ namespace ZfcRbacTest\Factory;
 
 use Zend\ServiceManager\ServiceManager;
 use Zend\View\HelperPluginManager;
-use ZfcRbac\Factory\HasRoleViewHelperFactory;
+use LaminasRbac\Factory\HasRoleViewHelperFactory;
 
 /**
- * @covers \ZfcRbac\Factory\HasRoleViewHelperFactory
+ * @covers \LaminasRbac\Factory\HasRoleViewHelperFactory
  */
 class HasRoleViewHelperFactoryTest extends \PHPUnit_Framework_TestCase
 {

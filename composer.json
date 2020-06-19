@@ -5,7 +5,7 @@
   "license": "MIT",
   "keywords": [
     "module",
-    "zf2",
+    "laminas",
     "rbac",
     "permissions"
   ],
@@ -55,7 +55,7 @@
   },
   "autoload": {
     "psr-0": {
-      "ZfcRbac\\": "src/"
+      "LaminasRbac\\": "src/"
     }
   },
   "extra": {

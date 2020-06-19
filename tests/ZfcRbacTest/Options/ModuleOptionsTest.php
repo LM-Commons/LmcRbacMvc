@@ -18,17 +18,17 @@
 
 namespace ZfcRbacTest;
 
-use ZfcRbac\Options\ModuleOptions;
+use LaminasRbac\Options\ModuleOptions;
 use ZfcRbacTest\Util\ServiceManagerFactory;
 
 /**
- * @covers \ZfcRbac\Options\ModuleOptions
+ * @covers \LaminasRbac\Options\ModuleOptions
  */
 class ModuleOptionsTest extends \PHPUnit_Framework_TestCase
 {
     public function testAssertModuleDefaultOptions()
     {
-        /** @var \ZfcRbac\Options\ModuleOptions $moduleOptions */
+        /** @var \LaminasRbac\Options\ModuleOptions $moduleOptions */
         $moduleOptions = ServiceManagerFactory::getServiceManager()->get('ZfcRbac\Options\ModuleOptions');
 
         $this->assertEquals('ZfcRbac\Identity\AuthenticationIdentityProvider', $moduleOptions->getIdentityProvider());

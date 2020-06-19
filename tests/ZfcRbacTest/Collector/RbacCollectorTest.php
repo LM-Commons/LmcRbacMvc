@@ -21,17 +21,17 @@ namespace ZfcRbacTest\Collector;
 use Rbac\Role\RoleInterface;
 use Zend\Mvc\MvcEvent;
 use Zend\Permissions\Rbac\Role;
-use ZfcRbac\Collector\RbacCollector;
-use ZfcRbac\Guard\GuardInterface;
-use ZfcRbac\Options\ModuleOptions;
-use ZfcRbac\Role\InMemoryRoleProvider;
-use ZfcRbac\Service\RoleService;
+use LaminasRbac\Collector\RbacCollector;
+use LaminasRbac\Guard\GuardInterface;
+use LaminasRbac\Options\ModuleOptions;
+use LaminasRbac\Role\InMemoryRoleProvider;
+use LaminasRbac\Service\RoleService;
 use Rbac\Traversal\Strategy\RecursiveRoleIteratorStrategy;
 use ZfcRbacTest\Asset\MockRoleWithPermissionMethod;
 use ZfcRbacTest\Asset\MockRoleWithPermissionProperty;
 
 /**
- * @covers \ZfcRbac\Collector\RbacCollector
+ * @covers \LaminasRbac\Collector\RbacCollector
  */
 class RbacCollectorTest extends \PHPUnit_Framework_TestCase
 {

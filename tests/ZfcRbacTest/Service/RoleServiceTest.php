@@ -18,12 +18,12 @@
 
 namespace ZfcRbacTest\Service;
 
-use ZfcRbac\Role\InMemoryRoleProvider;
-use ZfcRbac\Service\RoleService;
+use LaminasRbac\Role\InMemoryRoleProvider;
+use LaminasRbac\Service\RoleService;
 use Rbac\Traversal\Strategy\RecursiveRoleIteratorStrategy;
 
 /**
- * @covers \ZfcRbac\Service\RoleService
+ * @covers \LaminasRbac\Service\RoleService
  */
 class RoleServiceTest extends \PHPUnit_Framework_TestCase
 {

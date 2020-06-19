@@ -21,14 +21,14 @@ namespace ZfcRbacTest\Service;
 use Rbac\Rbac;
 use Rbac\Traversal\Strategy\RecursiveRoleIteratorStrategy;
 use Zend\ServiceManager\ServiceManager;
-use ZfcRbac\Role\InMemoryRoleProvider;
-use ZfcRbac\Service\AuthorizationService;
-use ZfcRbac\Service\RoleService;
+use LaminasRbac\Role\InMemoryRoleProvider;
+use LaminasRbac\Service\AuthorizationService;
+use LaminasRbac\Service\RoleService;
 use ZfcRbacTest\Asset\SimpleAssertion;
-use ZfcRbac\Assertion\AssertionPluginManager;
+use LaminasRbac\Assertion\AssertionPluginManager;
 
 /**
- * @covers \ZfcRbac\Service\AuthorizationService
+ * @covers \LaminasRbac\Service\AuthorizationService
  */
 class AuthorizationServiceTest extends \PHPUnit_Framework_TestCase
 {

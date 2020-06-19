@@ -18,7 +18,7 @@
 namespace ZfcRbacTest\Service;
 
 /**
- * @covers  \ZfcRbac\Service\AuthorizationServiceAwareTrait
+ * @covers  \LaminasRbac\Service\AuthorizationServiceAwareTrait
  * @author  Aeneas Rekkas
  * @license MIT License
  */

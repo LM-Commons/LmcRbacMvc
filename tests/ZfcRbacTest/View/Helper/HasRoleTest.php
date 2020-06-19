@@ -18,11 +18,11 @@
 
 namespace ZfcRbacTest\View\Helper;
 
-use ZfcRbac\View\Helper\HasRole;
+use LaminasRbac\View\Helper\HasRole;
 use ZfcRbacTest\Util\ServiceManagerFactory;
 
 /**
- * @covers \ZfcRbac\View\Helper\HasRole
+ * @covers \LaminasRbac\View\Helper\HasRole
  */
 class HasRoleTest extends \PHPUnit_Framework_TestCase
 {

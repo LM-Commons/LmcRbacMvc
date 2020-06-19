@@ -19,10 +19,10 @@
 namespace ZfcRbacTest\Factory;
 
 use Interop\Container\ContainerInterface;
-use ZfcRbac\Factory\UnauthorizedStrategyFactory;
+use LaminasRbac\Factory\UnauthorizedStrategyFactory;
 
 /**
- * @covers \ZfcRbac\Factory\UnauthorizedStrategyFactory
+ * @covers \LaminasRbac\Factory\UnauthorizedStrategyFactory
  */
 class UnauthorizedStrategyFactoryTest extends \PHPUnit_Framework_TestCase
 {

@@ -19,11 +19,11 @@
 namespace ZfcRbacTest\Factory;
 
 use Zend\ServiceManager\ServiceManager;
-use ZfcRbac\Factory\AuthorizationServiceFactory;
-use ZfcRbac\Options\ModuleOptions;
+use LaminasRbac\Factory\AuthorizationServiceFactory;
+use LaminasRbac\Options\ModuleOptions;
 
 /**
- * @covers \ZfcRbac\Factory\AuthorizationServiceFactory
+ * @covers \LaminasRbac\Factory\AuthorizationServiceFactory
  */
 class AuthorizationServiceFactoryTest extends \PHPUnit_Framework_TestCase
 {

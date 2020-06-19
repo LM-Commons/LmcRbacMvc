@@ -18,10 +18,10 @@
 
 namespace ZfcRbacTest\Mvc\Controller\Plugin;
 
-use ZfcRbac\Mvc\Controller\Plugin\IsGranted;
+use LaminasRbac\Mvc\Controller\Plugin\IsGranted;
 
 /**
- * @covers \ZfcRbac\Mvc\Controller\Plugin\IsGranted
+ * @covers \LaminasRbac\Mvc\Controller\Plugin\IsGranted
  */
 class IsGrantedTest extends \PHPUnit_Framework_TestCase
 {
