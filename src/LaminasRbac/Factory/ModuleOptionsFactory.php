@@ -19,8 +19,8 @@
 namespace LaminasRbac\Factory;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 use LaminasRbac\Options\ModuleOptions;
 
 /**
@@ -39,7 +39,7 @@ class ModuleOptionsFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        return new ModuleOptions($container->get('Config')['zfc_rbac']);
+        return new ModuleOptions($container->get('Config')['laminas_rbac']);
     }
 
     /**

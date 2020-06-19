@@ -23,10 +23,11 @@ use Rbac\Role\RoleInterface;
 use Rbac\Traversal\RecursiveRoleIterator;
 use RecursiveIteratorIterator;
 use ReflectionProperty;
+use ReflectionException;
 use Serializable;
 use Traversable;
-use Zend\Mvc\MvcEvent;
-use ZendDeveloperTools\Collector\CollectorInterface;
+use Laminas\Mvc\MvcEvent;
+use Laminas\DeveloperTools\Collector\CollectorInterface;
 use LaminasRbac\Options\ModuleOptions;
 use LaminasRbac\Service\RoleService;
 use LaminasRbac\Exception\InvalidArgumentException;
@@ -71,7 +72,7 @@ class RbacCollector implements CollectorInterface, Serializable
      */
     public function getName()
     {
-        return 'zfc_rbac';
+        return 'laminas_rbac';
     }
 
     /**
@@ -88,6 +89,7 @@ class RbacCollector implements CollectorInterface, Serializable
      * Collects data.
      *
      * @param MvcEvent $mvcEvent
+     * @throws ReflectionException
      */
     public function collect(MvcEvent $mvcEvent)
     {
@@ -97,10 +99,10 @@ class RbacCollector implements CollectorInterface, Serializable
 
         $serviceManager = $application->getServiceManager();
 
-        /* @var \LaminasRbac\Service\RoleService $roleService */
+        /* @var RoleService $roleService */
         $roleService = $serviceManager->get('ZfcRbac\Service\RoleService');
 
-        /* @var \LaminasRbac\Options\ModuleOptions $options */
+        /* @var ModuleOptions $options */
         $options = $serviceManager->get('ZfcRbac\Options\ModuleOptions');
 
         // Start collect all the data we need!
@@ -141,8 +143,9 @@ class RbacCollector implements CollectorInterface, Serializable
     /**
      * Collect roles and permissions
      *
-     * @param  RoleService $roleService
+     * @param RoleService $roleService
      * @return void
+     * @throws ReflectionException
      */
     private function collectIdentityRolesAndPermissions(RoleService $roleService)
     {
@@ -172,8 +175,9 @@ class RbacCollector implements CollectorInterface, Serializable
     /**
      * Collect permissions for the given role
      *
-     * @param  RoleInterface $role
+     * @param RoleInterface $role
      * @return void
+     * @throws ReflectionException
      */
     private function collectPermissions(RoleInterface $role)
     {

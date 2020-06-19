@@ -18,8 +18,8 @@
 
 namespace ZfcRbacTest\Factory;
 
-use Zend\ServiceManager\Exception\ServiceNotCreatedException;
-use Zend\ServiceManager\ServiceManager;
+use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
+use Laminas\ServiceManager\ServiceManager;
 use LaminasRbac\Exception\RuntimeException;
 use LaminasRbac\Role\RoleProviderPluginManager;
 

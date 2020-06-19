@@ -18,9 +18,9 @@
 
 namespace LaminasRbac\View\Strategy;
 
-use Zend\Http\Response as HttpResponse;
-use Zend\Mvc\MvcEvent;
-use Zend\View\Model\ViewModel;
+use Laminas\Http\Response as HttpResponse;
+use Laminas\Mvc\MvcEvent;
+use Laminas\View\Model\ViewModel;
 use LaminasRbac\Exception\UnauthorizedExceptionInterface;
 use LaminasRbac\Guard\GuardInterface;
 use LaminasRbac\Options\UnauthorizedStrategyOptions;

@@ -18,13 +18,13 @@
 
 namespace LaminasRbac\Guard;
 
-use Zend\EventManager\ListenerAggregateInterface;
-use Zend\Mvc\MvcEvent;
+use Laminas\EventManager\ListenerAggregateInterface;
+use Laminas\Mvc\MvcEvent;
 
 /**
  * Interface that each guard must implement
  *
- * A guard is a lightweight security layer that occurs typically after the route has been matched. ZfcRbac
+ * A guard is a lightweight security layer that occurs typically after the route has been matched. LaminasRbac
  * provides built-in implementations that can guard your routes and/or controllers.
  *
  * A guard can be used to block, for instance, a whole route hierarchy (all admin routes). However, only

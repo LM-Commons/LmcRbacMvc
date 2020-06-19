@@ -18,8 +18,8 @@
 
 namespace ZfcRbacTest\Factory;
 
-use Zend\ServiceManager\ServiceManager;
-use Zend\View\HelperPluginManager;
+use Laminas\ServiceManager\ServiceManager;
+use Laminas\View\HelperPluginManager;
 use LaminasRbac\Factory\HasRoleViewHelperFactory;
 
 /**

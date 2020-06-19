@@ -136,7 +136,7 @@ class RoleService
 
         if (!$identity instanceof IdentityInterface) {
             throw new Exception\RuntimeException(sprintf(
-                'ZfcRbac expects your identity to implement ZfcRbac\Identity\IdentityInterface, "%s" given',
+                'LaminasRbac expects your identity to implement LaminasRbac\Identity\IdentityInterface, "%s" given',
                 is_object($identity) ? get_class($identity) : gettype($identity)
             ));
         }

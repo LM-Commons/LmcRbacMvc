@@ -18,7 +18,7 @@
 
 namespace ZfcRbacTest\Factory;
 
-use Zend\ServiceManager\ServiceManager;
+use Laminas\ServiceManager\ServiceManager;
 use LaminasRbac\Factory\GuardsFactory;
 use LaminasRbac\Guard\GuardPluginManager;
 use LaminasRbac\Options\ModuleOptions;

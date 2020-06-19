@@ -18,9 +18,11 @@
 
 namespace LaminasRbac\Factory;
 
+use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\Persistence\ObjectRepository;
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 use LaminasRbac\Exception;
 use LaminasRbac\Role\ObjectRepositoryRoleProvider;
 
@@ -68,14 +70,14 @@ class ObjectRepositoryRoleProviderFactory implements FactoryInterface
         }
 
         if (isset($options['object_repository'])) {
-            /* @var \Doctrine\Common\Persistence\ObjectRepository $objectRepository */
+            /* @var ObjectRepository $objectRepository */
             $objectRepository = $container->get($options['object_repository']);
 
             return new ObjectRepositoryRoleProvider($objectRepository, $options['role_name_property']);
         }
 
         if (isset($options['object_manager']) && isset($options['class_name'])) {
-            /* @var \Doctrine\Common\Persistence\ObjectManager $objectManager */
+            /* @var ObjectManager $objectManager */
             $objectManager    = $container->get($options['object_manager']);
             $objectRepository = $objectManager->getRepository($options['class_name']);
 
@@ -83,7 +85,7 @@ class ObjectRepositoryRoleProviderFactory implements FactoryInterface
         }
 
         throw new Exception\RuntimeException(
-            'No object repository was found while creating the ZfcRbac object repository role provider. Are
+            'No object repository was found while creating the LaminasRbac object repository role provider. Are
              you sure you specified either the "object_repository" option or "object_manager"/"class_name" options?'
         );
     }

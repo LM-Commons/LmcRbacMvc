@@ -18,12 +18,14 @@
 
 namespace LaminasRbac;
 
-use Zend\EventManager\EventInterface;
-use Zend\ModuleManager\Feature\BootstrapListenerInterface;
-use Zend\ModuleManager\Feature\ConfigProviderInterface;
+use Laminas\EventManager\EventInterface;
+use Laminas\ModuleManager\Feature\BootstrapListenerInterface;
+use Laminas\ModuleManager\Feature\ConfigProviderInterface;
+use Laminas\Mvc\Application;
+use LaminasRbac\Guard\GuardInterface;
 
 /**
- * Module class for ZfcRbac
+ * Module class for LaminasRbac
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @license MIT
@@ -35,13 +37,13 @@ class Module implements BootstrapListenerInterface, ConfigProviderInterface
      */
     public function onBootstrap(EventInterface $event)
     {
-        /* @var \Zend\Mvc\Application $application */
+        /* @var Application $application */
         $application    = $event->getTarget();
         $serviceManager = $application->getServiceManager();
         $eventManager   = $application->getEventManager();
 
-        /* @var \LaminasRbac\Guard\GuardInterface[]|array $guards */
-        $guards = $serviceManager->get('ZfcRbac\Guards');
+        /* @var GuardInterface[]|array $guards */
+        $guards = $serviceManager->get('LaminasRbac\Guards');
 
         // Register listeners, if any
         foreach ($guards as $guard) {

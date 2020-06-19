@@ -19,8 +19,8 @@
 namespace LaminasRbac\Factory;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 use LaminasRbac\Service\RoleService;
 use LaminasRbac\View\Helper\HasRole;
 
@@ -41,7 +41,7 @@ class HasRoleViewHelperFactory implements FactoryInterface
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         /* @var RoleService $roleService */
-        $roleService = $container->get('ZfcRbac\Service\RoleService');
+        $roleService = $container->get(RoleService::class);
 
         return new HasRole($roleService);
     }

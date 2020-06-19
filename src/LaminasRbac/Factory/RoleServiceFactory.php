@@ -19,10 +19,15 @@
 namespace LaminasRbac\Factory;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 use LaminasRbac\Exception\RuntimeException;
+use LaminasRbac\Identity\IdentityProviderInterface;
+use LaminasRbac\Options\ModuleOptions;
+use LaminasRbac\Role\RoleProviderInterface;
+use LaminasRbac\Role\RoleProviderPluginManager;
 use LaminasRbac\Service\RoleService;
+use Rbac\Traversal\Strategy\TraversalStrategyInterface;
 
 /**
  * Factory to create the role service
@@ -40,27 +45,27 @@ class RoleServiceFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        /* @var \LaminasRbac\Options\ModuleOptions $moduleOptions */
-        $moduleOptions = $container->get('ZfcRbac\Options\ModuleOptions');
+        /* @var ModuleOptions $moduleOptions */
+        $moduleOptions = $container->get(ModuleOptions::class);
 
-        /* @var \LaminasRbac\Identity\IdentityProviderInterface $identityProvider */
+        /* @var IdentityProviderInterface $identityProvider */
         $identityProvider = $container->get($moduleOptions->getIdentityProvider());
 
         $roleProviderConfig = $moduleOptions->getRoleProvider();
 
         if (empty($roleProviderConfig)) {
-            throw new RuntimeException('No role provider has been set for ZfcRbac');
+            throw new RuntimeException('No role provider has been set for LaminasRbac');
         }
 
-        /* @var \LaminasRbac\Role\RoleProviderPluginManager $pluginManager */
-        $pluginManager = $container->get('ZfcRbac\Role\RoleProviderPluginManager');
+        /* @var RoleProviderPluginManager $pluginManager */
+        $pluginManager = $container->get(RoleProviderPluginManager::class);
 
-        /* @var \LaminasRbac\Role\RoleProviderInterface $roleProvider */
+        /* @var RoleProviderInterface $roleProvider */
         reset($roleProviderConfig);
         $roleProvider = $pluginManager->get(key($roleProviderConfig), current($roleProviderConfig));
 
-        /* @var \Rbac\Traversal\Strategy\TraversalStrategyInterface $traversalStrategy */
-        $traversalStrategy = $container->get('Rbac\Rbac')->getTraversalStrategy();
+        /* @var TraversalStrategyInterface $traversalStrategy */
+        $traversalStrategy = $container->get(Rbac::class)->getTraversalStrategy();
 
         $roleService = new RoleService($identityProvider, $roleProvider, $traversalStrategy);
         $roleService->setGuestRole($moduleOptions->getGuestRole());

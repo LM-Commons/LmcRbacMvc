@@ -19,7 +19,7 @@
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Rbac\Role\RoleInterface;
-use ZfcRbac\Permission\PermissionInterface;
+use LaminasRbac\Permission\PermissionInterface;
 
 /**
  * @ORM\Entity

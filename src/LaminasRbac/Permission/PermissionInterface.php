@@ -28,6 +28,7 @@ use Rbac\Permission\PermissionInterface as BasePermissionInterface;
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @license MIT
+ * TODO Remove deprecated interface
  */
 interface PermissionInterface extends BasePermissionInterface
 {

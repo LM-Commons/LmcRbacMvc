@@ -19,9 +19,11 @@
 namespace LaminasRbac\Factory;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 use LaminasRbac\Guard\GuardInterface;
+use LaminasRbac\Guard\GuardPluginManager;
+use LaminasRbac\Options\ModuleOptions;
 
 /**
  * Create a list of guards
@@ -39,16 +41,16 @@ class GuardsFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        /* @var \LaminasRbac\Options\ModuleOptions $options */
-        $options       = $container->get('ZfcRbac\Options\ModuleOptions');
+        /* @var ModuleOptions $options */
+        $options       = $container->get(ModuleOptions::class);
         $guardsOptions = $options->getGuards();
 
         if (empty($guardsOptions)) {
             return [];
         }
 
-        /* @var \LaminasRbac\Guard\GuardPluginManager $pluginManager */
-        $pluginManager = $container->get('ZfcRbac\Guard\GuardPluginManager');
+        /* @var GuardPluginManager $pluginManager */
+        $pluginManager = $container->get(GuardPluginManager::class);
         $guards        = [];
 
         foreach ($guardsOptions as $type => $options) {
@@ -60,7 +62,7 @@ class GuardsFactory implements FactoryInterface
 
     /**
      * {@inheritDoc}
-     * @return \LaminasRbac\Guard\GuardInterface[]|array
+     * @return GuardInterface[]|array
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {

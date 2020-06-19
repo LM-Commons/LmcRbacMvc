@@ -19,10 +19,12 @@
 namespace LaminasRbac\Factory;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 use LaminasRbac\Guard\RouteGuard;
 use LaminasRbac\Guard\RoutePermissionsGuard;
+use LaminasRbac\Options\ModuleOptions;
+use LaminasRbac\Service\AuthorizationService;
 
 /**
  * Create a route guard for checking permissions
@@ -66,11 +68,11 @@ class RoutePermissionsGuardFactory implements FactoryInterface
             $options = [];
         }
 
-        /* @var \LaminasRbac\Options\ModuleOptions $moduleOptions */
-        $moduleOptions = $container->get('ZfcRbac\Options\ModuleOptions');
+        /* @var ModuleOptions $moduleOptions */
+        $moduleOptions = $container->get(ModuleOptions::class);
 
-        /* @var \LaminasRbac\Service\AuthorizationService $authorizationService */
-        $authorizationService = $container->get('ZfcRbac\Service\AuthorizationService');
+        /* @var AuthorizationService $authorizationService */
+        $authorizationService = $container->get(AuthorizationService::class);
 
         $routeGuard = new RoutePermissionsGuard($authorizationService, $options);
         $routeGuard->setProtectionPolicy($moduleOptions->getProtectionPolicy());
@@ -79,7 +81,7 @@ class RoutePermissionsGuardFactory implements FactoryInterface
     }
 
     /**
-     * @param \Zend\ServiceManager\AbstractPluginManager|ServiceLocatorInterface $serviceLocator
+     * @param \Laminas\ServiceManager\AbstractPluginManager|ServiceLocatorInterface $serviceLocator
      * @return RouteGuard
      */
     public function createService(ServiceLocatorInterface $serviceLocator)

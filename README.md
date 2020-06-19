@@ -33,7 +33,7 @@ LaminasRbac is an access control module for Laminas Framework, based on the RBAC
 ## Optional
 
 - [DoctrineModule](https://github.com/doctrine/DoctrineModule): if you want to use some built-in role and permission providers.
-- [ZendDeveloperTools](https://github.com/zendframework/ZendDeveloperTools): if you want to have useful stats added to
+- [Laminas\DeveloperTools](https://github.com/zendframework/Laminas\DeveloperTools): if you want to have useful stats added to
 the Zend Developer toolbar.
 
 ## Upgrade

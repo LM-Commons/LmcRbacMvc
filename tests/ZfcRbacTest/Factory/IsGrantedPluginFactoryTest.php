@@ -18,8 +18,8 @@
 
 namespace ZfcRbacTest\Factory;
 
-use Zend\Mvc\Controller\PluginManager;
-use Zend\ServiceManager\ServiceManager;
+use Laminas\Mvc\Controller\PluginManager;
+use Laminas\ServiceManager\ServiceManager;
 use LaminasRbac\Factory\IsGrantedPluginFactory;
 
 /**

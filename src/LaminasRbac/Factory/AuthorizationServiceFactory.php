@@ -19,9 +19,13 @@
 namespace LaminasRbac\Factory;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
+use LaminasRbac\Assertion\AssertionPluginManager;
+use LaminasRbac\Options\ModuleOptions;
 use LaminasRbac\Service\AuthorizationService;
+use LaminasRbac\Service\RoleService;
+use Rbac\Rbac;
 
 /**
  * Factory to create the authorization service
@@ -39,17 +43,17 @@ class AuthorizationServiceFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        /* @var \Rbac\Rbac $rbac */
-        $rbac = $container->get('Rbac\Rbac');
+        /* @var Rbac $rbac */
+        $rbac = $container->get(Rbac::class);
 
-        /* @var \LaminasRbac\Service\RoleService $roleService */
-        $roleService = $container->get('ZfcRbac\Service\RoleService');
+        /* @var RoleService $roleService */
+        $roleService = $container->get(RoleService::class);
 
-        /* @var \LaminasRbac\Assertion\AssertionPluginManager $assertionPluginManager */
-        $assertionPluginManager = $container->get('ZfcRbac\Assertion\AssertionPluginManager');
+        /* @var AssertionPluginManager $assertionPluginManager */
+        $assertionPluginManager = $container->get(AssertionPluginManager::class);
 
-        /* @var \LaminasRbac\Options\ModuleOptions $moduleOptions */
-        $moduleOptions = $container->get('ZfcRbac\Options\ModuleOptions');
+        /* @var ModuleOptions $moduleOptions */
+        $moduleOptions = $container->get(ModuleOptions::class);
 
         $authorizationService = new AuthorizationService($rbac, $roleService, $assertionPluginManager);
         $authorizationService->setAssertions($moduleOptions->getAssertionMap());

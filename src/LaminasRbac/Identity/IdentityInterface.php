@@ -18,6 +18,8 @@
 
 namespace LaminasRbac\Identity;
 
+use Rbac\Role\RoleInterface;
+
 /**
  * Interface for an identity
  *
@@ -29,7 +31,7 @@ interface IdentityInterface
     /**
      * Get the list of roles of this identity
      *
-     * @return string[]|\Rbac\Role\RoleInterface[]
+     * @return string[]|RoleInterface[]
      */
     public function getRoles();
 }

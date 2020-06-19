@@ -19,8 +19,10 @@
 namespace LaminasRbac\Factory;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\Authentication\AuthenticationService;
+use Laminas\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
+use LaminasRbac\Options\ModuleOptions;
 use LaminasRbac\View\Strategy\RedirectStrategy;
 
 /**
@@ -39,10 +41,10 @@ class RedirectStrategyFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        /* @var \LaminasRbac\Options\ModuleOptions $moduleOptions */
-        $moduleOptions = $container->get('ZfcRbac\Options\ModuleOptions');
-        /** @var \Zend\Authentication\AuthenticationService $authenticationService */
-        $authenticationService = $container->get('Zend\Authentication\AuthenticationService');
+        /* @var ModuleOptions $moduleOptions */
+        $moduleOptions = $container->get(ModuleOptions::class);
+        /** @var AuthenticationService $authenticationService */
+        $authenticationService = $container->get(AuthenticationService::class);
 
         return new RedirectStrategy($moduleOptions->getRedirectStrategy(), $authenticationService);
     }

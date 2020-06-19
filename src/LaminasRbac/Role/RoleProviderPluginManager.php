@@ -18,8 +18,9 @@
 
 namespace LaminasRbac\Role;
 
-use Zend\ServiceManager\AbstractPluginManager;
+use Laminas\ServiceManager\AbstractPluginManager;
 use LaminasRbac\Exception;
+use LaminasRbac\Factory\ObjectRepositoryRoleProviderFactory;
 
 /**
  * Plugin manager to create role providers
@@ -35,14 +36,14 @@ class RoleProviderPluginManager extends AbstractPluginManager
      * @var array
      */
     protected $invokableClasses = [
-        'ZfcRbac\Role\InMemoryRoleProvider' => 'ZfcRbac\Role\InMemoryRoleProvider'
+        'LaminasRbac\Role\InMemoryRoleProvider' => InMemoryRoleProvider::class,
     ];
 
     /**
      * @var array
      */
     protected $factories = [
-        'ZfcRbac\Role\ObjectRepositoryRoleProvider' => 'ZfcRbac\Factory\ObjectRepositoryRoleProviderFactory'
+        ObjectRepositoryRoleProvider::class => ObjectRepositoryRoleProviderFactory::class,
     ];
 
     /**
@@ -55,13 +56,14 @@ class RoleProviderPluginManager extends AbstractPluginManager
         }
 
         throw new Exception\RuntimeException(sprintf(
-            'Role provider must implement "ZfcRbac\Role\RoleProviderInterface", but "%s" was given',
+            'Role provider must implement "LaminasRbac\Role\RoleProviderInterface", but "%s" was given',
             is_object($plugin) ? get_class($plugin) : gettype($plugin)
         ));
     }
 
     /**
      * {@inheritDoc}
+     * @throws \Interop\Container\Exception\ContainerException
      */
     public function validatePlugin($plugin)
     {

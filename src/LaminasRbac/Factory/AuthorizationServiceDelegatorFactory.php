@@ -19,10 +19,11 @@
 namespace LaminasRbac\Factory;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\AbstractPluginManager;
-use Zend\ServiceManager\DelegatorFactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+//use Laminas\ServiceManager\AbstractPluginManager;
+use Laminas\ServiceManager\Factory\DelegatorFactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 use LaminasRbac\Exception\RuntimeException;
+use LaminasRbac\Service\AuthorizationService;
 use LaminasRbac\Service\AuthorizationServiceAwareInterface;
 
 /**
@@ -47,12 +48,12 @@ class AuthorizationServiceDelegatorFactory implements DelegatorFactoryInterface
         if (!$instanceToDecorate instanceof AuthorizationServiceAwareInterface) {
             throw new RuntimeException("The service $name must implement AuthorizationServiceAwareInterface.");
         }
-
+/*
         if ($container instanceof AbstractPluginManager) {
             $container = $container->getServiceLocator();
         }
-
-        $authorizationService = $container->get('ZfcRbac\Service\AuthorizationService');
+*/
+        $authorizationService = $container->get(AuthorizationService::class);
         $instanceToDecorate->setAuthorizationService($authorizationService);
 
         return $instanceToDecorate;

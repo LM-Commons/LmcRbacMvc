@@ -19,9 +19,11 @@
 namespace LaminasRbac\Factory;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 use LaminasRbac\Guard\ControllerGuard;
+use LaminasRbac\Options\ModuleOptions;
+use LaminasRbac\Service\RoleService;
 
 /**
  * Create a controller guard
@@ -64,10 +66,10 @@ class ControllerGuardFactory implements FactoryInterface
             $options = [];
         }
 
-        /* @var \LaminasRbac\Options\ModuleOptions $moduleOptions */
+        /* @var ModuleOptions $moduleOptions */
         $moduleOptions = $container->get('ZfcRbac\Options\ModuleOptions');
 
-        /* @var \LaminasRbac\Service\RoleService $roleService */
+        /* @var RoleService $roleService */
         $roleService = $container->get('ZfcRbac\Service\RoleService');
 
         $controllerGuard = new ControllerGuard($roleService, $options);

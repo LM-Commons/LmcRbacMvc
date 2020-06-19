@@ -19,9 +19,11 @@
 namespace LaminasRbac\Factory;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 use LaminasRbac\Guard\RouteGuard;
+use LaminasRbac\Options\ModuleOptions;
+use LaminasRbac\Service\RoleService;
 
 /**
  * Create a route guard
@@ -64,11 +66,11 @@ class RouteGuardFactory implements FactoryInterface
             $options = [];
         }
 
-        /* @var \LaminasRbac\Options\ModuleOptions $moduleOptions */
-        $moduleOptions = $container->get('ZfcRbac\Options\ModuleOptions');
+        /* @var ModuleOptions $moduleOptions */
+        $moduleOptions = $container->get(ModuleOptions::class);
 
-        /* @var \LaminasRbac\Service\RoleService $roleService */
-        $roleService = $container->get('ZfcRbac\Service\RoleService');
+        /* @var RoleService $roleService */
+        $roleService = $container->get(RoleService::class);
 
         $routeGuard = new RouteGuard($roleService, $options);
         $routeGuard->setProtectionPolicy($moduleOptions->getProtectionPolicy());

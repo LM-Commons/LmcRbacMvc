@@ -18,7 +18,7 @@
 
 namespace LaminasRbac\Options;
 
-use Zend\Stdlib\AbstractOptions;
+use Laminas\Stdlib\AbstractOptions;
 use LaminasRbac\Exception;
 use LaminasRbac\Guard\GuardInterface;
 
@@ -35,7 +35,7 @@ class ModuleOptions extends AbstractOptions
      *
      * @var string
      */
-    protected $identityProvider = 'ZfcRbac\Identity\AuthenticationIdentityProvider';
+    protected $identityProvider = 'LaminasRbac\Identity\AuthenticationIdentityProvider';
 
     /**
      * Guest role (used when no identity is found)

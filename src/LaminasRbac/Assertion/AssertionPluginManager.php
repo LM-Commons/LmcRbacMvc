@@ -18,7 +18,7 @@
 
 namespace LaminasRbac\Assertion;
 
-use Zend\ServiceManager\AbstractPluginManager;
+use Laminas\ServiceManager\AbstractPluginManager;
 use LaminasRbac\Exception;
 
 /**
@@ -41,7 +41,7 @@ class AssertionPluginManager extends AbstractPluginManager
         }
 
         throw new Exception\RuntimeException(sprintf(
-            'Assertions must implement "ZfcRbac\Assertion\AssertionInterface", but "%s" was given',
+            'Assertions must implement "LaminasRbac\Assertion\AssertionInterface", but "%s" was given',
             is_object($plugin) ? get_class($plugin) : gettype($plugin)
         ));
     }

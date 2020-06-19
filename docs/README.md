@@ -1,3 +1,5 @@
+**Note: this documentation needs to be updated to reflect the port to Laminas**
+
 _Up-to-date with version 2.3.* of ZfcRbac_
 
 Welcome to the official ZfcRbac documentation. This documentation will help you quickly understand how to use

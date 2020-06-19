@@ -19,9 +19,10 @@
 namespace LaminasRbac\Factory;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 use LaminasRbac\Mvc\Controller\Plugin\IsGranted;
+use LaminasRbac\Service\AuthorizationService;
 
 /**
  * Create the IsGranted controller plugin
@@ -39,8 +40,8 @@ class IsGrantedPluginFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        /* @var \LaminasRbac\Service\AuthorizationService $authorizationService */
-        $authorizationService = $container->get('ZfcRbac\Service\AuthorizationService');
+        /* @var AuthorizationService $authorizationService */
+        $authorizationService = $container->get(AuthorizationService::class);
 
         return new IsGranted($authorizationService);
     }

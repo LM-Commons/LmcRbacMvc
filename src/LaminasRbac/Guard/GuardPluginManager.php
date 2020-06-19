@@ -18,8 +18,13 @@
 
 namespace LaminasRbac\Guard;
 
-use Zend\ServiceManager\AbstractPluginManager;
+use Interop\Container\Exception\ContainerException;
+use Laminas\ServiceManager\AbstractPluginManager;
 use LaminasRbac\Exception;
+use LaminasRbac\Factory\ControllerGuardFactory;
+use LaminasRbac\Factory\ControllerPermissionsGuardFactory;
+use LaminasRbac\Factory\RouteGuardFactory;
+use LaminasRbac\Factory\RoutePermissionsGuardFactory;
 
 /**
  * Plugin manager to create guards
@@ -36,10 +41,10 @@ class GuardPluginManager extends AbstractPluginManager
      * @var array
      */
     protected $factories = [
-        'ZfcRbac\Guard\ControllerGuard'            => 'ZfcRbac\Factory\ControllerGuardFactory',
-        'ZfcRbac\Guard\ControllerPermissionsGuard' => 'ZfcRbac\Factory\ControllerPermissionsGuardFactory',
-        'ZfcRbac\Guard\RouteGuard'                 => 'ZfcRbac\Factory\RouteGuardFactory',
-        'ZfcRbac\Guard\RoutePermissionsGuard'      => 'ZfcRbac\Factory\RoutePermissionsGuardFactory',
+        ControllerGuard::class            => ControllerGuardFactory::class,
+        ControllerPermissionsGuard::class => ControllerPermissionsGuardFactory::class,
+        RouteGuard::class                 => RouteGuardFactory::class,
+        RoutePermissionsGuard::class      => RoutePermissionsGuardFactory::class,
     ];
 
     /**
@@ -52,13 +57,14 @@ class GuardPluginManager extends AbstractPluginManager
         }
 
         throw new Exception\RuntimeException(sprintf(
-            'Guards must implement "ZfcRbac\Guard\GuardInterface", but "%s" was given',
+            'Guards must implement "LaminasRbac\Guard\GuardInterface", but "%s" was given',
             is_object($plugin) ? get_class($plugin) : gettype($plugin)
         ));
     }
 
     /**
      * {@inheritDoc}
+     * @throws ContainerException
      */
     public function validatePlugin($plugin)
     {

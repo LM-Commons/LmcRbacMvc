@@ -19,8 +19,9 @@
 namespace LaminasRbac\Factory;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\Authentication\AuthenticationService;
+use Laminas\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 use LaminasRbac\Identity\AuthenticationIdentityProvider;
 
 /**
@@ -39,8 +40,8 @@ class AuthenticationIdentityProviderFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        /* @var \Zend\Authentication\AuthenticationService $authenticationProvider */
-        $authenticationProvider = $container->get('Zend\Authentication\AuthenticationService');
+        /* @var AuthenticationService $authenticationProvider */
+        $authenticationProvider = $container->get(AuthenticationService::class);
 
         return new AuthenticationIdentityProvider($authenticationProvider);
     }
