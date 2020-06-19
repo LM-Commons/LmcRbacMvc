@@ -1,15 +1,15 @@
 {
-  "name": "zf-commons/zfc-rbac",
-  "description": "Zend Framework 2 Module that provides a layer of features of Zend\\Permissions\\Rbac",
+  "name": "laminas-commons/laminas-rbac",
+  "description": "Laminas Framework Module that provides a layer of features of Laminas\\Permissions\\Rbac",
   "type": "library",
   "license": "MIT",
   "keywords": [
     "module",
-    "zf2",
+    "laminas",
     "rbac",
     "permissions"
   ],
-  "homepage": "http://www.github.com/ZF-Commons/zfc-rbac",
+  "homepage": "http://www.github.com/Laminas-Commons/laminas-rbac",
   "authors": [
     {
       "name": "Kyle Spraggs",
@@ -55,7 +55,7 @@
   },
   "autoload": {
     "psr-0": {
-      "ZfcRbac\\": "src/"
+      "LaminasRbac\\": "src/"
     }
   },
   "extra": {
