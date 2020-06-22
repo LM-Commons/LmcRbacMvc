@@ -9,7 +9,7 @@
         "rbac",
         "permissions"
     ],
-    "homepage": "http://www.github.com/Laminas-Commons/laminas-rbac",
+    "homepage": "http://www.github.com/Laminas-Commons/LmcRbac",
     "authors": [
         {
             "name": "Kyle Spraggs",
@@ -57,12 +57,6 @@
     "autoload": {
         "psr-0": {
             "LmcRbac\\": "src/"
-        }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "2.4-dev",
-            "dev-develop": "3.0-dev"
         }
     }
 }
