@@ -75,7 +75,7 @@ class AuthorizationServiceDelegatorTest extends \PHPUnit_Framework_TestCase
         $serviceManager = ServiceManagerFactory::getServiceManager();
 
         if (method_exists($serviceManager, 'build')) {
-            $this->markTestSkipped('this test is only vor zend-servicemanager v2');
+            $this->markTestSkipped('this test is only for zend-servicemanager v2');
         }
 
         $serviceManager->setAllowOverride(true);
