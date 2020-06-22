@@ -1,4 +1,4 @@
-# LaminasRbac
+# LmcRbac
 
 Based on zfc-rbac from the Zf-Commons team.
 
@@ -15,9 +15,9 @@ Based on zfc-rbac from the Zf-Commons team.
 [![Gitter](https://badges.gitter.im/LaminasCommons/community.svg)](https://gitter.im/LaminasCommons/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 
-LaminasRbac is an access control module for Laminas Framework, based on the RBAC permission model.
+LmcRbac is an access control module for Laminas Framework, based on the RBAC permission model.
 
-### Important Note:  Port to Laminas in progress
+### Important Note:  Port to Laminas is in progress. 
 
 
 
@@ -25,7 +25,7 @@ LaminasRbac is an access control module for Laminas Framework, based on the RBAC
 
 - PHP 5.6, PHP 7.0 or higher
 - [Rbac component](https://github.com/zf-fr/rbac): this is actually a prototype for the ZF3 Rbac component.
-- [Zend Framework 2.2 or higher](http://www.github.com/zendframework/zf2)
+- [Laminas Components 2.2 or higher](http://www.github.com/zendframework/zf2)
 
 > If you are looking for older version of ZfcRbac, please refer to the 0.2.x branch.
 > If you are using ZfcRbac 1.0, please upgrade to 2.0.
@@ -33,8 +33,8 @@ LaminasRbac is an access control module for Laminas Framework, based on the RBAC
 ## Optional
 
 - [DoctrineModule](https://github.com/doctrine/DoctrineModule): if you want to use some built-in role and permission providers.
-- [Laminas\DeveloperTools](https://github.com/zendframework/Laminas\DeveloperTools): if you want to have useful stats added to
-the Zend Developer toolbar.
+- [Laminas\DeveloperTools](https://github.com/laminas/Laminas\DeveloperTools): if you want to have useful stats added to
+the Laminas Developer toolbar.
 
 ## Upgrade
 
@@ -42,26 +42,26 @@ You can find an [upgrade guide](UPGRADE.md) to quickly upgrade your application 
 
 ## Installation
 
-ZfcRbac only officially supports installation through Composer. For Composer documentation, please refer to
+LmcRbac only officially supports installation through Composer. For Composer documentation, please refer to
 [getcomposer.org](http://getcomposer.org/).
 
 Install the module:
 
 ```sh
-$ php composer.phar require zf-commons/zfc-rbac:~2.4
+$ php composer.phar require laminas-commons/lmc-rbac:~2.4
 ```
 
-Enable the module by adding `ZfcRbac` key to your `application.config.php` file. Customize the module by copy-pasting
-the `zfc_rbac.global.php.dist` file to your `config/autoload` folder.
+Enable the module by adding `lmcRbac` key to your `application.config.php` file. Customize the module by copy-pasting
+the `lmc_rbac.global.php.dist` file to your `config/autoload` folder.
 
 ## Documentation
 
 The official documentation is available in the [/docs](/docs) folder.
 
 You can also find some Doctrine entities in the [/data](/data) folder that will help you to more quickly take advantage
-of ZfcRbac.
+of LmcRbac.
 
 ## Support
 
-- File issues at https://github.com/ZF-Commons/zfc-rbac/issues.
-- Ask questions in the [zf-common gitter](https://gitter.im/ZFCommons/zfc-rbac) chat.
+- File issues at https://github.com/Laminas-Commons/LmcRbac/issues.
+- Ask questions in the [LaminasCommons gitter](https://gitter.im/LaminasCommons) chat.
