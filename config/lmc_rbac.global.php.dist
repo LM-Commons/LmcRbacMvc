@@ -25,10 +25,10 @@ return [
         /**
          * Key that is used to fetch the identity provider
          *
-         * Please note that when an identity is found, it MUST implements the LaminasRbac\Identity\IdentityProviderInterface
+         * Please note that when an identity is found, it MUST implements the LmcRbac\Identity\IdentityProviderInterface
          * interface, otherwise it will throw an exception.
          */
-        // 'identity_provider' => 'LaminasRbac\Identity\AuthenticationIdentityProvider',
+        // 'identity_provider' => 'LmcRbac\Identity\AuthenticationIdentityProvider',
 
         /**
          * Set the guest role
@@ -43,7 +43,7 @@ return [
          * You must comply with the various options of guards. The format must be of the following format:
          *
          *      'guards' => [
-         *          'LaminasRbac\Guard\RouteGuard' => [
+         *          'LmcRbac\Guard\RouteGuard' => [
          *              // options
          *          ]
          *      ]
@@ -60,7 +60,7 @@ return [
          *
          * DENY is the most secure way, but it is more work for the developer
          */
-        // 'protection_policy' => \LaminasRbac\Guard\GuardInterface::POLICY_ALLOW,
+        // 'protection_policy' => \LmcRbac\Guard\GuardInterface::POLICY_ALLOW,
 
         /**
          * Configuration for role provider
@@ -68,7 +68,7 @@ return [
          * It must be an array that contains configuration for the role provider. The provider config
          * must follow the following format:
          *
-         *      'LaminasRbac\Role\InMemoryRoleProvider' => [
+         *      'LmcRbac\Role\InMemoryRoleProvider' => [
          *          'role1' => [
          *              'children'    => ['children1', 'children2'], // OPTIONAL
          *              'permissions' => ['edit', 'read'] // OPTIONAL

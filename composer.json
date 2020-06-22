@@ -1,5 +1,5 @@
 {
-    "name": "laminas-commons/laminas-rbac",
+    "name": "laminas-commons/lmc-rbac",
     "description": "Laminas Framework Module that provides a layer of features of Laminas\\Permissions\\Rbac",
     "type": "library",
     "license": "MIT",
@@ -56,7 +56,7 @@
     },
     "autoload": {
         "psr-0": {
-            "LaminasRbac\\": "src/"
+            "LmcRbac\\": "src/"
         }
     },
     "extra": {

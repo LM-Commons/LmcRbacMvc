@@ -24,11 +24,11 @@ return [
             'application_driver' => [
                 'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
                 'cache' => 'array',
-                'paths' => [__DIR__ . '/LaminasRbacTest/Asset']
+                'paths' => [__DIR__ . '/LmcRbacTest/Asset']
             ],
             'orm_default' => [
                 'drivers' => [
-                    'LaminasRbacTest\Asset' => 'application_driver'
+                    'LmcRbacTest\Asset' => 'application_driver'
                 ]
             ]
         ],

@@ -20,64 +20,64 @@ return [
     'service_manager' => [
         'factories' => [
             /* Factories that do not map to a class */
-            'LaminasRbac\Guards' => \LaminasRbac\Factory\GuardsFactory::class,
+            'LmcRbac\Guards' => \LmcRbac\Factory\GuardsFactory::class,
 
             /* Factories that map to a class */
-            \Rbac\Rbac::class                                           => \LaminasRbac\Factory\RbacFactory::class,
-            \LaminasRbac\Assertion\AssertionPluginManager::class        => \LaminasRbac\Factory\AssertionPluginManagerFactory::class,
-            \LaminasRbac\Collector\RbacCollector::class                 => \Laminas\ServiceManager\Factory\InvokableFactory::class,
-            \LaminasRbac\Guard\GuardPluginManager::class                => \LaminasRbac\Factory\GuardPluginManagerFactory::class,
-            \LaminasRbac\Identity\AuthenticationIdentityProvider::class => \LaminasRbac\Factory\AuthenticationIdentityProviderFactory::class,
-            \LaminasRbac\Options\ModuleOptions::class                   => \LaminasRbac\Factory\ModuleOptionsFactory::class,
-            \LaminasRbac\Role\RoleProviderPluginManager::class          => \LaminasRbac\Factory\RoleProviderPluginManagerFactory::class,
-            \LaminasRbac\Service\AuthorizationService::class            => \LaminasRbac\Factory\AuthorizationServiceFactory::class,
-            \LaminasRbac\Service\RoleService::class                     => \LaminasRbac\Factory\RoleServiceFactory::class,
-            \LaminasRbac\View\Strategy\RedirectStrategy::class          => \LaminasRbac\Factory\RedirectStrategyFactory::class,
-            \LaminasRbac\View\Strategy\UnauthorizedStrategy::class      => \LaminasRbac\Factory\UnauthorizedStrategyFactory::class,
+            \Rbac\Rbac::class                                           => \LmcRbac\Factory\RbacFactory::class,
+            \LmcRbac\Assertion\AssertionPluginManager::class        => \LmcRbac\Factory\AssertionPluginManagerFactory::class,
+            \LmcRbac\Collector\RbacCollector::class                 => \Laminas\ServiceManager\Factory\InvokableFactory::class,
+            \LmcRbac\Guard\GuardPluginManager::class                => \LmcRbac\Factory\GuardPluginManagerFactory::class,
+            \LmcRbac\Identity\AuthenticationIdentityProvider::class => \LmcRbac\Factory\AuthenticationIdentityProviderFactory::class,
+            \LmcRbac\Options\ModuleOptions::class                   => \LmcRbac\Factory\ModuleOptionsFactory::class,
+            \LmcRbac\Role\RoleProviderPluginManager::class          => \LmcRbac\Factory\RoleProviderPluginManagerFactory::class,
+            \LmcRbac\Service\AuthorizationService::class            => \LmcRbac\Factory\AuthorizationServiceFactory::class,
+            \LmcRbac\Service\RoleService::class                     => \LmcRbac\Factory\RoleServiceFactory::class,
+            \LmcRbac\View\Strategy\RedirectStrategy::class          => \LmcRbac\Factory\RedirectStrategyFactory::class,
+            \LmcRbac\View\Strategy\UnauthorizedStrategy::class      => \LmcRbac\Factory\UnauthorizedStrategyFactory::class,
         ],
     ],
 
     'view_helpers' => [
         'factories' => [
-            \LaminasRbac\View\Helper\IsGranted::class => \LaminasRbac\Factory\IsGrantedViewHelperFactory::class,
-            \LaminasRbac\View\Helper\HasRole::class   => \LaminasRbac\Factory\HasRoleViewHelperFactory::class,
+            \LmcRbac\View\Helper\IsGranted::class => \LmcRbac\Factory\IsGrantedViewHelperFactory::class,
+            \LmcRbac\View\Helper\HasRole::class   => \LmcRbac\Factory\HasRoleViewHelperFactory::class,
         ],
         'aliases' => [
-            'isGranted' => \LaminasRbac\View\Helper\IsGranted::class,
-            'hasRole'   => \LaminasRbac\View\Helper\HasRole::class,
+            'isGranted' => \LmcRbac\View\Helper\IsGranted::class,
+            'hasRole'   => \LmcRbac\View\Helper\HasRole::class,
         ]
     ],
 
     'controller_plugins' => [
         'factories' => [
-            \LaminasRbac\Mvc\Controller\Plugin\IsGranted::class => \LaminasRbac\Factory\IsGrantedPluginFactory::class,
+            \LmcRbac\Mvc\Controller\Plugin\IsGranted::class => \LmcRbac\Factory\IsGrantedPluginFactory::class,
         ],
         'aliases' => [
-            'isGranted' => \LaminasRbac\Mvc\Controller\Plugin\IsGranted::class,
+            'isGranted' => \LmcRbac\Mvc\Controller\Plugin\IsGranted::class,
         ]
     ],
 
     'view_manager' => [
         'template_map' => [
             'error/403'                             => __DIR__ . '/../view/error/403.phtml',
-            'laminas-developer-tools/toolbar/laminas-rbac' => __DIR__ . '/../view/laminas-developer-tools/toolbar/laminas-rbac.phtml'
+            'laminas-developer-tools/toolbar/lmc-rbac' => __DIR__ . '/../view/laminas-developer-tools/toolbar/lmc-rbac.phtml'
         ]
     ],
 
     'laminas-developer-tools' => [
         'profiler' => [
             'collectors' => [
-                'laminas_rbac' => \LaminasRbac\Collector\RbacCollector::class,
+                'lmc_rbac' => \LmcRbac\Collector\RbacCollector::class,
             ],
         ],
         'toolbar' => [
             'entries' => [
-                'laminas_rbac' => 'laminas-developer-tools/toolbar/zfc-rbac',
+                'lmc_rbac' => 'laminas-developer-tools/toolbar/lmc-rbac',
             ],
         ],
     ],
 
-    'laminas_rbac' => [
+    'lmc_rbac' => [
         // Guard plugin manager
         'guard_manager' => [],
 

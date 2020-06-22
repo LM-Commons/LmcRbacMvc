@@ -19,7 +19,7 @@
 return [
     'modules' => [
         'Laminas\Router',
-        'LaminasRbac',
+        'LmcRbac',
         'DoctrineModule',
         'DoctrineORMModule',
     ],
