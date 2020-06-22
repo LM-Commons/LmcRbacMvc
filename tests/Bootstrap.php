@@ -17,7 +17,7 @@
  */
 
 use Laminas\Mvc\Application;
-use ZfcRbacTest\Util\ServiceManagerFactory;
+use LaminasRbacTest\Util\ServiceManagerFactory;
 
 ini_set('error_reporting', E_ALL);
 
@@ -38,7 +38,7 @@ if (! isset($loader)) {
     throw new RuntimeException('vendor/autoload.php could not be found. Did you install via composer?');
 }
 
-$loader->add('ZfcRbacTest\\', __DIR__);
+$loader->add('LaminasRbacTest\\', __DIR__);
 
 $r = new \ReflectionClass(Application::class);
 $requiredParams = $r->getConstructor()->getNumberOfRequiredParameters();

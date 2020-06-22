@@ -39,7 +39,7 @@ class RoleProviderPluginManagerFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        $config = $container->get('Config')['laminas_rbac']['role_provider_manager'];
+        $config = $container->get('Config')['lmc_rbac']['role_provider_manager'];
 
         return new RoleProviderPluginManager($container, $config);
     }

@@ -39,7 +39,7 @@ class ModuleOptionsFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        return new ModuleOptions($container->get('Config')['laminas_rbac']);
+        return new ModuleOptions($container->get('Config')['lmc_rbac']);
     }
 
     /**

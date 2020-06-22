@@ -27,6 +27,7 @@ use LaminasRbac\Options\ModuleOptions;
 use LaminasRbac\Role\RoleProviderInterface;
 use LaminasRbac\Role\RoleProviderPluginManager;
 use LaminasRbac\Service\RoleService;
+use Rbac\Rbac;
 use Rbac\Traversal\Strategy\TraversalStrategyInterface;
 
 /**

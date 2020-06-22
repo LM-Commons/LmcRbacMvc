@@ -67,10 +67,10 @@ class ControllerGuardFactory implements FactoryInterface
         }
 
         /* @var ModuleOptions $moduleOptions */
-        $moduleOptions = $container->get('ZfcRbac\Options\ModuleOptions');
+        $moduleOptions = $container->get('LaminasRbac\Options\ModuleOptions');
 
         /* @var RoleService $roleService */
-        $roleService = $container->get('ZfcRbac\Service\RoleService');
+        $roleService = $container->get('LaminasRbac\Service\RoleService');
 
         $controllerGuard = new ControllerGuard($roleService, $options);
         $controllerGuard->setProtectionPolicy($moduleOptions->getProtectionPolicy());

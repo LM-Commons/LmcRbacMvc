@@ -72,7 +72,7 @@ class RbacCollector implements CollectorInterface, Serializable
      */
     public function getName()
     {
-        return 'laminas_rbac';
+        return 'lmc_rbac';
     }
 
     /**
@@ -100,10 +100,10 @@ class RbacCollector implements CollectorInterface, Serializable
         $serviceManager = $application->getServiceManager();
 
         /* @var RoleService $roleService */
-        $roleService = $serviceManager->get('ZfcRbac\Service\RoleService');
+        $roleService = $serviceManager->get('LaminasRbac\Service\RoleService');
 
         /* @var ModuleOptions $options */
-        $options = $serviceManager->get('ZfcRbac\Options\ModuleOptions');
+        $options = $serviceManager->get('LaminasRbac\Options\ModuleOptions');
 
         // Start collect all the data we need!
         $this->collectOptions($options);

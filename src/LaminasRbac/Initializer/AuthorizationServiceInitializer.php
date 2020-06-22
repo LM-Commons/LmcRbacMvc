@@ -39,7 +39,7 @@ class AuthorizationServiceInitializer implements InitializerInterface
     public function __invoke(ContainerInterface $container, $instance)
     {
         if ($instance instanceof AuthorizationServiceAwareInterface) {
-            $authorizationService = $container->get('ZfcRbac\Service\AuthorizationService');
+            $authorizationService = $container->get('LaminasRbac\Service\AuthorizationService');
             $instance->setAuthorizationService($authorizationService);
         }
     }

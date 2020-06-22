@@ -68,10 +68,10 @@ class ControllerPermissionsGuardFactory implements FactoryInterface
         }
 
         /* @var ModuleOptions $moduleOptions */
-        $moduleOptions = $container->get('ZfcRbac\Options\ModuleOptions');
+        $moduleOptions = $container->get('LaminasRbac\Options\ModuleOptions');
 
         /* @var AuthorizationService $authorizationService */
-        $authorizationService = $container->get('ZfcRbac\Service\AuthorizationService');
+        $authorizationService = $container->get('LaminasRbac\Service\AuthorizationService');
 
         $guard = new ControllerPermissionsGuard($authorizationService, $options);
         $guard->setProtectionPolicy($moduleOptions->getProtectionPolicy());

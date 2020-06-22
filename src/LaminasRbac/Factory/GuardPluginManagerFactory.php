@@ -40,7 +40,7 @@ class GuardPluginManagerFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        $config = $container->get('Config')['laminas_rbac']['guard_manager'];
+        $config = $container->get('Config')['lmc_rbac']['guard_manager'];
 
         $pluginManager = new GuardPluginManager($container, $config);
 

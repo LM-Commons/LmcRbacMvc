@@ -17,18 +17,18 @@
  */
 
 return [
-    'zfc_rbac' => [],
+    'lmc_rbac' => [],
 
     'doctrine' => [
         'driver' => [
             'application_driver' => [
                 'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
                 'cache' => 'array',
-                'paths' => [__DIR__ . '/ZfcRbacTest/Asset']
+                'paths' => [__DIR__ . '/LaminasRbacTest/Asset']
             ],
             'orm_default' => [
                 'drivers' => [
-                    'ZfcRbacTest\Asset' => 'application_driver'
+                    'LaminasRbacTest\Asset' => 'application_driver'
                 ]
             ]
         ],
