@@ -1,4 +1,4 @@
-These files are only provided as-in, and are not part of ZfcRbac. They provide you some basic Doctrine ORM
+These files are only provided as-in, and are not part of LmcRbac. They provide you some basic Doctrine ORM
 entities that you can use as a starting point.
 
 ## Flat role or hierarchical role?

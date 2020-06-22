@@ -20,64 +20,64 @@ return [
     'service_manager' => [
         'factories' => [
             /* Factories that do not map to a class */
-            'ZfcRbac\Guards' => 'ZfcRbac\Factory\GuardsFactory',
+            'LmcRbac\Guards' => \LmcRbac\Factory\GuardsFactory::class,
 
             /* Factories that map to a class */
-            'Rbac\Rbac'                                       => 'ZfcRbac\Factory\RbacFactory',
-            'ZfcRbac\Assertion\AssertionPluginManager'        => 'ZfcRbac\Factory\AssertionPluginManagerFactory',
-            'ZfcRbac\Collector\RbacCollector'                 => \Zend\ServiceManager\Factory\InvokableFactory::class,
-            'ZfcRbac\Guard\GuardPluginManager'                => 'ZfcRbac\Factory\GuardPluginManagerFactory',
-            'ZfcRbac\Identity\AuthenticationIdentityProvider' => 'ZfcRbac\Factory\AuthenticationIdentityProviderFactory',
-            'ZfcRbac\Options\ModuleOptions'                   => 'ZfcRbac\Factory\ModuleOptionsFactory',
-            'ZfcRbac\Role\RoleProviderPluginManager'          => 'ZfcRbac\Factory\RoleProviderPluginManagerFactory',
-            'ZfcRbac\Service\AuthorizationService'            => 'ZfcRbac\Factory\AuthorizationServiceFactory',
-            'ZfcRbac\Service\RoleService'                     => 'ZfcRbac\Factory\RoleServiceFactory',
-            'ZfcRbac\View\Strategy\RedirectStrategy'          => 'ZfcRbac\Factory\RedirectStrategyFactory',
-            'ZfcRbac\View\Strategy\UnauthorizedStrategy'      => 'ZfcRbac\Factory\UnauthorizedStrategyFactory',
+            \Rbac\Rbac::class                                           => \LmcRbac\Factory\RbacFactory::class,
+            \LmcRbac\Assertion\AssertionPluginManager::class        => \LmcRbac\Factory\AssertionPluginManagerFactory::class,
+            \LmcRbac\Collector\RbacCollector::class                 => \Laminas\ServiceManager\Factory\InvokableFactory::class,
+            \LmcRbac\Guard\GuardPluginManager::class                => \LmcRbac\Factory\GuardPluginManagerFactory::class,
+            \LmcRbac\Identity\AuthenticationIdentityProvider::class => \LmcRbac\Factory\AuthenticationIdentityProviderFactory::class,
+            \LmcRbac\Options\ModuleOptions::class                   => \LmcRbac\Factory\ModuleOptionsFactory::class,
+            \LmcRbac\Role\RoleProviderPluginManager::class          => \LmcRbac\Factory\RoleProviderPluginManagerFactory::class,
+            \LmcRbac\Service\AuthorizationService::class            => \LmcRbac\Factory\AuthorizationServiceFactory::class,
+            \LmcRbac\Service\RoleService::class                     => \LmcRbac\Factory\RoleServiceFactory::class,
+            \LmcRbac\View\Strategy\RedirectStrategy::class          => \LmcRbac\Factory\RedirectStrategyFactory::class,
+            \LmcRbac\View\Strategy\UnauthorizedStrategy::class      => \LmcRbac\Factory\UnauthorizedStrategyFactory::class,
         ],
     ],
 
     'view_helpers' => [
         'factories' => [
-            'ZfcRbac\View\Helper\IsGranted' => 'ZfcRbac\Factory\IsGrantedViewHelperFactory',
-            'ZfcRbac\View\Helper\HasRole'   => 'ZfcRbac\Factory\HasRoleViewHelperFactory'
+            \LmcRbac\View\Helper\IsGranted::class => \LmcRbac\Factory\IsGrantedViewHelperFactory::class,
+            \LmcRbac\View\Helper\HasRole::class   => \LmcRbac\Factory\HasRoleViewHelperFactory::class,
         ],
         'aliases' => [
-            'isGranted' => 'ZfcRbac\View\Helper\IsGranted',
-            'hasRole'   => 'ZfcRbac\View\Helper\HasRole'
+            'isGranted' => \LmcRbac\View\Helper\IsGranted::class,
+            'hasRole'   => \LmcRbac\View\Helper\HasRole::class,
         ]
     ],
 
     'controller_plugins' => [
         'factories' => [
-            'ZfcRbac\Mvc\Controller\Plugin\IsGranted' => 'ZfcRbac\Factory\IsGrantedPluginFactory'
+            \LmcRbac\Mvc\Controller\Plugin\IsGranted::class => \LmcRbac\Factory\IsGrantedPluginFactory::class,
         ],
         'aliases' => [
-            'isGranted' => 'ZfcRbac\Mvc\Controller\Plugin\IsGranted'
+            'isGranted' => \LmcRbac\Mvc\Controller\Plugin\IsGranted::class,
         ]
     ],
 
     'view_manager' => [
         'template_map' => [
             'error/403'                             => __DIR__ . '/../view/error/403.phtml',
-            'zend-developer-tools/toolbar/zfc-rbac' => __DIR__ . '/../view/zend-developer-tools/toolbar/zfc-rbac.phtml'
+            'laminas-developer-tools/toolbar/lmc-rbac' => __DIR__ . '/../view/laminas-developer-tools/toolbar/lmc-rbac.phtml'
         ]
     ],
 
-    'zenddevelopertools' => [
+    'laminas-developer-tools' => [
         'profiler' => [
             'collectors' => [
-                'zfc_rbac' => 'ZfcRbac\Collector\RbacCollector',
+                'lmc_rbac' => \LmcRbac\Collector\RbacCollector::class,
             ],
         ],
         'toolbar' => [
             'entries' => [
-                'zfc_rbac' => 'zend-developer-tools/toolbar/zfc-rbac',
+                'lmc_rbac' => 'laminas-developer-tools/toolbar/lmc-rbac',
             ],
         ],
     ],
 
-    'zfc_rbac' => [
+    'lmc_rbac' => [
         // Guard plugin manager
         'guard_manager' => [],
 

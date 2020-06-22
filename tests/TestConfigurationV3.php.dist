@@ -18,8 +18,8 @@
 
 return [
     'modules' => [
-        'Zend\Router',
-        'ZfcRbac',
+        'Laminas\Router',
+        'LmcRbac',
         'DoctrineModule',
         'DoctrineORMModule',
     ],

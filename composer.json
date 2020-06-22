@@ -1,67 +1,68 @@
 {
-  "name": "laminas-commons/laminas-rbac",
-  "description": "Laminas Framework Module that provides a layer of features of Laminas\\Permissions\\Rbac",
-  "type": "library",
-  "license": "MIT",
-  "keywords": [
-    "module",
-    "laminas",
-    "rbac",
-    "permissions"
-  ],
-  "homepage": "http://www.github.com/Laminas-Commons/laminas-rbac",
-  "authors": [
-    {
-      "name": "Kyle Spraggs",
-      "email": "theman@spiffyjr.me",
-      "homepage": "http://www.spiffyjr.me/"
+    "name": "laminas-commons/lmc-rbac",
+    "description": "Laminas Framework Module that provides a layer of features of Laminas\\Permissions\\Rbac",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "module",
+        "laminas",
+        "rbac",
+        "permissions"
+    ],
+    "homepage": "http://www.github.com/Laminas-Commons/laminas-rbac",
+    "authors": [
+        {
+            "name": "Kyle Spraggs",
+            "email": "theman@spiffyjr.me",
+            "homepage": "http://www.spiffyjr.me/"
+        },
+        {
+            "name": "Micha\u00ebl Gallego",
+            "email": "mic.gallego@gmail.com",
+            "homepage": "http://www.michaelgallego.fr"
+        },
+        {
+            "name": "Jean-Marie Leroux",
+            "email": "jmleroux.pro@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "~5.6 || ~7.0",
+        "laminas/laminas-config": "~2.2 || ^3.1",
+        "laminas/laminas-eventmanager": "^2.6.3 || ^3.0",
+        "laminas/laminas-mvc": "~2.7 || ^3.0",
+        "laminas/laminas-servicemanager": "^2.7.5 || ^3.0.3",
+        "zfr/rbac": "~1.2",
+        "laminas/laminas-dependency-plugin": "^1.0"
     },
-    {
-      "name": "Michaël Gallego",
-      "email": "mic.gallego@gmail.com",
-      "homepage": "http://www.michaelgallego.fr"
+    "require-dev": {
+        "laminas/laminas-authentication": "~2.2",
+        "laminas/laminas-developer-tools": "~1.1",
+        "laminas/laminas-log": "~2.2",
+        "laminas/laminas-http": "~2.2",
+        "laminas/laminas-i18n": "~2.7.3",
+        "laminas/laminas-serializer": "~2.2",
+        "laminas/laminas-view": "~2.2",
+        "phpunit/phpunit": "~4.8.26",
+        "squizlabs/php_codesniffer": "2.6.*",
+        "satooshi/php-coveralls": "~0.6",
+        "doctrine/common": "~2.4",
+        "doctrine/doctrine-module": "~1.1",
+        "doctrine/doctrine-orm-module": "^1.0"
     },
-    {
-      "name": "Jean-Marie Leroux",
-      "email": "jmleroux.pro@gmail.com"
+    "suggest": {
+        "laminas/laminas-developer-tools": "if you want to show information about the roles",
+        "doctrine/doctrine-module": "if you want to use Doctrine role provider"
+    },
+    "autoload": {
+        "psr-0": {
+            "LmcRbac\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.4-dev",
+            "dev-develop": "3.0-dev"
+        }
     }
-  ],
-  "require": {
-    "php": "~5.6 || ~7.0",
-    "zendframework/zend-config": "~2.2 || ^3.1",
-    "zendframework/zend-eventmanager": "^2.6.3 || ^3.0",
-    "zendframework/zend-mvc": "~2.7 || ^3.0",
-    "zendframework/zend-servicemanager": "^2.7.5 || ^3.0.3",
-    "zfr/rbac": "~1.2"
-  },
-  "require-dev": {
-    "zendframework/zend-authentication": "~2.2",
-    "zendframework/zend-developer-tools": "~1.1",
-    "zendframework/zend-log": "~2.2",
-    "zendframework/zend-http": "~2.2",
-    "zendframework/zend-i18n": "~2.7.3",
-    "zendframework/zend-serializer": "~2.2",
-    "zendframework/zend-view": "~2.2",
-    "phpunit/phpunit": "~4.8.26",
-    "squizlabs/php_codesniffer": "2.6.*",
-    "satooshi/php-coveralls": "~0.6",
-    "doctrine/common": "~2.4",
-    "doctrine/doctrine-module": "~1.1",
-    "doctrine/doctrine-orm-module": "^1.0"
-  },
-  "suggest": {
-    "zendframework/zend-developer-tools": "if you want to show information about the roles",
-    "doctrine/doctrine-module": "if you want to use Doctrine role provider"
-  },
-  "autoload": {
-    "psr-0": {
-      "LaminasRbac\\": "src/"
-    }
-  },
-  "extra": {
-    "branch-alias": {
-      "dev-master": "2.4-dev",
-      "dev-develop": "3.0-dev"
-    }
-  }
 }
