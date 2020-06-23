@@ -54,6 +54,7 @@ Install the module:
 ```sh
 $ php composer.phar require laminas-commons/lmc-rbac:dev-master
 ```
+This will install the equivalent of ZfcRbac 2.6.3.
 
 Enable the module by adding `LmcRbac` key to your `application.config.php` or `modules.config.php` file. Customize the module by copy-pasting
 the `lmc_rbac.global.php.dist` file to your `config/autoload` folder.
