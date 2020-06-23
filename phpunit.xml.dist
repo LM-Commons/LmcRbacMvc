@@ -11,7 +11,7 @@
         backupGlobals="false"
         syntaxCheck="true"
         >
-    <testsuite name="ZfcRbac tests">
+    <testsuite name="LmcRbac tests">
         <directory>./tests</directory>
     </testsuite>
     <filter>

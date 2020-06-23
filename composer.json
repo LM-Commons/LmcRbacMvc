@@ -55,8 +55,13 @@
         "doctrine/doctrine-module": "if you want to use Doctrine role provider"
     },
     "autoload": {
-        "psr-0": {
-            "LmcRbac\\": "src/"
+        "psr-4": {
+            "LmcRbac\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "LmcRbacTest\\": "tests"
         }
     }
 }

@@ -24,7 +24,7 @@ return [
             'application_driver' => [
                 'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
                 'cache' => 'array',
-                'paths' => [__DIR__ . '/LmcRbacTest/Asset']
+                'paths' => [__DIR__ . '/Asset']
             ],
             'orm_default' => [
                 'drivers' => [
