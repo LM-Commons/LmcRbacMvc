@@ -5,11 +5,11 @@
 <h2>Details</h2>
 
 <?php
-    use LaminasRbac\Guard\GuardInterface;
+    use LmcRbac\Guard\GuardInterface;
 
     switch ($this->error) {
         case GuardInterface::GUARD_UNAUTHORIZED:
-            echo '<p>Request was blocked by a LaminasRbac guard</p>';
+            echo '<p>Request was blocked by a LmcRbac guard</p>';
             break;
     }
 ?>
