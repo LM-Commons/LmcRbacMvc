@@ -20,40 +20,40 @@ return [
     'service_manager' => [
         'factories' => [
             /* Factories that do not map to a class */
-            'LmcRbac\Guards' => \LmcRbac\Factory\GuardsFactory::class,
+            'LmcRbacMvc\Guards' => \LmcRbacMvc\Factory\GuardsFactory::class,
 
             /* Factories that map to a class */
-            \Rbac\Rbac::class                                           => \LmcRbac\Factory\RbacFactory::class,
-            \LmcRbac\Assertion\AssertionPluginManager::class        => \LmcRbac\Factory\AssertionPluginManagerFactory::class,
-            \LmcRbac\Collector\RbacCollector::class                 => \Laminas\ServiceManager\Factory\InvokableFactory::class,
-            \LmcRbac\Guard\GuardPluginManager::class                => \LmcRbac\Factory\GuardPluginManagerFactory::class,
-            \LmcRbac\Identity\AuthenticationIdentityProvider::class => \LmcRbac\Factory\AuthenticationIdentityProviderFactory::class,
-            \LmcRbac\Options\ModuleOptions::class                   => \LmcRbac\Factory\ModuleOptionsFactory::class,
-            \LmcRbac\Role\RoleProviderPluginManager::class          => \LmcRbac\Factory\RoleProviderPluginManagerFactory::class,
-            \LmcRbac\Service\AuthorizationService::class            => \LmcRbac\Factory\AuthorizationServiceFactory::class,
-            \LmcRbac\Service\RoleService::class                     => \LmcRbac\Factory\RoleServiceFactory::class,
-            \LmcRbac\View\Strategy\RedirectStrategy::class          => \LmcRbac\Factory\RedirectStrategyFactory::class,
-            \LmcRbac\View\Strategy\UnauthorizedStrategy::class      => \LmcRbac\Factory\UnauthorizedStrategyFactory::class,
+            \Rbac\Rbac::class                                           => \LmcRbacMvc\Factory\RbacFactory::class,
+            \LmcRbacMvc\Assertion\AssertionPluginManager::class        => \LmcRbacMvc\Factory\AssertionPluginManagerFactory::class,
+            \LmcRbacMvc\Collector\RbacCollector::class                 => \Laminas\ServiceManager\Factory\InvokableFactory::class,
+            \LmcRbacMvc\Guard\GuardPluginManager::class                => \LmcRbacMvc\Factory\GuardPluginManagerFactory::class,
+            \LmcRbacMvc\Identity\AuthenticationIdentityProvider::class => \LmcRbacMvc\Factory\AuthenticationIdentityProviderFactory::class,
+            \LmcRbacMvc\Options\ModuleOptions::class                   => \LmcRbacMvc\Factory\ModuleOptionsFactory::class,
+            \LmcRbacMvc\Role\RoleProviderPluginManager::class          => \LmcRbacMvc\Factory\RoleProviderPluginManagerFactory::class,
+            \LmcRbacMvc\Service\AuthorizationService::class            => \LmcRbacMvc\Factory\AuthorizationServiceFactory::class,
+            \LmcRbacMvc\Service\RoleService::class                     => \LmcRbacMvc\Factory\RoleServiceFactory::class,
+            \LmcRbacMvc\View\Strategy\RedirectStrategy::class          => \LmcRbacMvc\Factory\RedirectStrategyFactory::class,
+            \LmcRbacMvc\View\Strategy\UnauthorizedStrategy::class      => \LmcRbacMvc\Factory\UnauthorizedStrategyFactory::class,
         ],
     ],
 
     'view_helpers' => [
         'factories' => [
-            \LmcRbac\View\Helper\IsGranted::class => \LmcRbac\Factory\IsGrantedViewHelperFactory::class,
-            \LmcRbac\View\Helper\HasRole::class   => \LmcRbac\Factory\HasRoleViewHelperFactory::class,
+            \LmcRbacMvc\View\Helper\IsGranted::class => \LmcRbacMvc\Factory\IsGrantedViewHelperFactory::class,
+            \LmcRbacMvc\View\Helper\HasRole::class   => \LmcRbacMvc\Factory\HasRoleViewHelperFactory::class,
         ],
         'aliases' => [
-            'isGranted' => \LmcRbac\View\Helper\IsGranted::class,
-            'hasRole'   => \LmcRbac\View\Helper\HasRole::class,
+            'isGranted' => \LmcRbacMvc\View\Helper\IsGranted::class,
+            'hasRole'   => \LmcRbacMvc\View\Helper\HasRole::class,
         ]
     ],
 
     'controller_plugins' => [
         'factories' => [
-            \LmcRbac\Mvc\Controller\Plugin\IsGranted::class => \LmcRbac\Factory\IsGrantedPluginFactory::class,
+            \LmcRbacMvc\Mvc\Controller\Plugin\IsGranted::class => \LmcRbacMvc\Factory\IsGrantedPluginFactory::class,
         ],
         'aliases' => [
-            'isGranted' => \LmcRbac\Mvc\Controller\Plugin\IsGranted::class,
+            'isGranted' => \LmcRbacMvc\Mvc\Controller\Plugin\IsGranted::class,
         ]
     ],
 
@@ -67,7 +67,7 @@ return [
     'laminas-developer-tools' => [
         'profiler' => [
             'collectors' => [
-                'lmc_rbac' => \LmcRbac\Collector\RbacCollector::class,
+                'lmc_rbac' => \LmcRbacMvc\Collector\RbacCollector::class,
             ],
         ],
         'toolbar' => [

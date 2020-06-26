@@ -1,10 +1,21 @@
 # Upgrade guide
 
-## From v2.2 to v2.3
+## From zfc-rbac v2.x to LmcRbacMvc v3.0
+
+- [BC] The namespace has been changed to `LmcRbcaMvc`
+- [BC] The `zfc-rbac` configuration key has been changed to `lmc-rbac`
+- Requires PHP 7.2 or later
+- Requires Laminas MVC components 3.x or later
+- Uses PSR-4 autoload
+
+
+## Previous zfc-rbac versions
+
+### From v2.2 to v2.3
 
 - No BC
 
-## From v2.1 to v2.2
+### From v2.1 to v2.2
 
 - [Potential BC] To simplify unit tests, we have introduced a new `AuthorizationServiceInterface` that the
 `AuthorizationService` now implements. We didn't touch any interface (such as `AssertionInterface`) that rely explicitly
@@ -12,7 +23,7 @@ on typehinting the `AuthorizationService` to avoid big BC. However, we have upda
 plugins to use the interface instead. This can lead to a BC if you created subclasses of those plugins (which is
 not a typical use case). If this is the case, just change `AuthorizationService` to `AuthorizationServiceInterface`.
 
-## From v2.0 to v2.1
+### From v2.0 to v2.1
 
 - [Potential BC] A potential BC have been introduced in v2.1 to respect interfaces of RBAC component more strictly.
 However there is great chance that you have nothing to do. Now, ZfcRbac no longer cast permissions to string before
@@ -20,7 +31,7 @@ passing it to your "hasPermission" method in the Role entity. If you used to cal
 like this: `isGranted('myPermission')`, then you have nothing to do. However, if you are passing a `PermissionInterface`
 object, you will now receive this object instead of a string. It's up to you to getting the name from your permission.
 
-## From v1 to v2
+### From v1 to v2
 
 Here are the major breaking changes from ZfcRbac 1 to ZfcRbac 2:
 
