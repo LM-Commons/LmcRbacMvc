@@ -29,6 +29,10 @@ use LmcRbac\Options\ModuleOptions;
  */
 class ControllerGuardFactoryTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * Dependency on zend-servicemanager v2 removed
+     */
+    /*
     public function testFactory()
     {
         $serviceManager = new ServiceManager();
@@ -63,7 +67,7 @@ class ControllerGuardFactoryTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('LmcRbac\Guard\ControllerGuard', $controllerGuard);
         $this->assertEquals(GuardInterface::POLICY_ALLOW, $controllerGuard->getProtectionPolicy());
     }
-
+*/
     public function testFactoryV3()
     {
         $serviceManager = new ServiceManager();

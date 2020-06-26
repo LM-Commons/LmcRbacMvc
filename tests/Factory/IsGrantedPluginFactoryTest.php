@@ -27,6 +27,10 @@ use LmcRbac\Factory\IsGrantedPluginFactory;
  */
 class IsGrantedPluginFactoryTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * Dependency on zend-servicemanager v2 removed
+     */
+    /*
     public function testFactory()
     {
         $serviceManager = new ServiceManager();
@@ -47,7 +51,7 @@ class IsGrantedPluginFactoryTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf('LmcRbac\Mvc\Controller\Plugin\IsGranted', $isGranted);
     }
-
+    */
     public function testFactoryV3()
     {
         $serviceManager = new ServiceManager();

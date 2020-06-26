@@ -70,6 +70,11 @@ class AuthorizationServiceDelegatorTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($decoratedInstance->getAuthorizationService());
     }
 
+    /**
+     * dependency on zend-servivemanager v2 removed
+     *
+     */
+/*
     public function testAuthorizationServiceIsInjectedWithDelegator()
     {
         $serviceManager = ServiceManagerFactory::getServiceManager();
@@ -99,7 +104,7 @@ class AuthorizationServiceDelegatorTest extends \PHPUnit_Framework_TestCase
         $decoratedInstance = $serviceManager->get('LmcRbacTest\AuthorizationAware');
         $this->assertEquals($authorizationService, $decoratedInstance->getAuthorizationService());
     }
-
+*/
     public function testAuthorizationServiceIsInjectedWithDelegatorV3()
     {
         $serviceManager = ServiceManagerFactory::getServiceManager();

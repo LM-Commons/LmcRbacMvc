@@ -27,6 +27,10 @@ use LmcRbac\Factory\HasRoleViewHelperFactory;
  */
 class HasRoleViewHelperFactoryTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * Dependency on zend-servicemanager v2 removed
+     */
+    /*
     public function testFactory()
     {
         $serviceManager = new ServiceManager();
@@ -47,6 +51,7 @@ class HasRoleViewHelperFactoryTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf('LmcRbac\View\Helper\HasRole', $viewHelper);
     }
+    */
 
     public function testFactoryV3()
     {

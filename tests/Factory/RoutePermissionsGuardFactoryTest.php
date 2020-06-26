@@ -29,6 +29,10 @@ use LmcRbac\Options\ModuleOptions;
  */
 class RoutePermissionsGuardFactoryTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * Dependency on zend-servicemanager v2 removed
+     */
+    /*
     public function testFactory()
     {
         $serviceManager = new ServiceManager();
@@ -63,6 +67,7 @@ class RoutePermissionsGuardFactoryTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('LmcRbac\Guard\RoutePermissionsGuard', $routeGuard);
         $this->assertEquals(GuardInterface::POLICY_ALLOW, $routeGuard->getProtectionPolicy());
     }
+    */
 
     public function testFactoryV3()
     {
