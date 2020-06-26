@@ -1,7 +1,7 @@
 language: php
 
 php:
-  - 7
+  - 7.2
   - hhvm
 
 env:
@@ -28,5 +28,5 @@ notifications:
 matrix:
   allow_failures:
     - php: hhvm
-    - php: 7
+    - php: 7.2
       env: DEPENDENCIES="--prefer-lowest --prefer-stable"
