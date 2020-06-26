@@ -16,14 +16,14 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbac\Factory;
+namespace LmcRbacMvc\Factory;
 
 use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
-use LmcRbac\Guard\RouteGuard;
-use LmcRbac\Options\ModuleOptions;
-use LmcRbac\Service\RoleService;
+use LmcRbacMvc\Guard\RouteGuard;
+use LmcRbacMvc\Options\ModuleOptions;
+use LmcRbacMvc\Service\RoleService;
 
 /**
  * Create a route guard

@@ -16,13 +16,13 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbac\Factory;
+namespace LmcRbacMvc\Factory;
 
 use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\Config;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
-use LmcRbac\Assertion\AssertionPluginManager;
+use LmcRbacMvc\Assertion\AssertionPluginManager;
 
 /**
  * Factory to create a assertion plugin manager

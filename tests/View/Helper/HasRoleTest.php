@@ -16,13 +16,13 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacTest\View\Helper;
+namespace LmcRbacMvcTest\View\Helper;
 
-use LmcRbac\View\Helper\HasRole;
-use LmcRbacTest\Util\ServiceManagerFactory;
+use LmcRbacMvc\View\Helper\HasRole;
+use LmcRbacMvcTest\Util\ServiceManagerFactory;
 
 /**
- * @covers \LmcRbac\View\Helper\HasRole
+ * @covers \LmcRbacMvc\View\Helper\HasRole
  */
 class HasRoleTest extends \PHPUnit_Framework_TestCase
 {
@@ -32,10 +32,10 @@ class HasRoleTest extends \PHPUnit_Framework_TestCase
         $config = $serviceManager->get('Config');
         $this->assertArrayHasKey('view_helpers', $config);
         $viewHelpersConfig = $config['view_helpers'];
-        $this->assertEquals('LmcRbac\View\Helper\HasRole', $viewHelpersConfig['aliases']['hasRole']);
+        $this->assertEquals('LmcRbacMvc\View\Helper\HasRole', $viewHelpersConfig['aliases']['hasRole']);
         $this->assertEquals(
-            'LmcRbac\Factory\HasRoleViewHelperFactory',
-            $viewHelpersConfig['factories']['LmcRbac\View\Helper\HasRole']
+            'LmcRbacMvc\Factory\HasRoleViewHelperFactory',
+            $viewHelpersConfig['factories']['LmcRbacMvc\View\Helper\HasRole']
         );
     }
 
@@ -46,7 +46,7 @@ class HasRoleTest extends \PHPUnit_Framework_TestCase
             [['member'], true],
         ];
 
-        $authorizationService = $this->getMock('LmcRbac\Service\RoleService', [], [], '', false);
+        $authorizationService = $this->getMock('LmcRbacMvc\Service\RoleService', [], [], '', false);
         $authorizationService->expects($this->any())
             ->method('matchIdentityRoles')
             ->will($this->returnValueMap($rolesConfig));

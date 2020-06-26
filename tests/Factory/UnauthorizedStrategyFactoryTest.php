@@ -16,32 +16,32 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacTest\Factory;
+namespace LmcRbacMvcTest\Factory;
 
 use Interop\Container\ContainerInterface;
-use LmcRbac\Factory\UnauthorizedStrategyFactory;
+use LmcRbacMvc\Factory\UnauthorizedStrategyFactory;
 
 /**
- * @covers \LmcRbac\Factory\UnauthorizedStrategyFactory
+ * @covers \LmcRbacMvc\Factory\UnauthorizedStrategyFactory
  */
 class UnauthorizedStrategyFactoryTest extends \PHPUnit_Framework_TestCase
 {
     public function testFactory()
     {
-        $unauthorizedStrategyOptions = $this->getMock('LmcRbac\Options\UnauthorizedStrategyOptions');
+        $unauthorizedStrategyOptions = $this->getMock('LmcRbacMvc\Options\UnauthorizedStrategyOptions');
 
-        $moduleOptionsMock = $this->getMock('LmcRbac\Options\ModuleOptions');
+        $moduleOptionsMock = $this->getMock('LmcRbacMvc\Options\ModuleOptions');
         $moduleOptionsMock->expects($this->once())
                           ->method('getUnauthorizedStrategy')
                           ->will($this->returnValue($unauthorizedStrategyOptions));
 
         $serviceLocatorMock = $this->prophesize('Laminas\ServiceManager\ServiceLocatorInterface');
         $serviceLocatorMock->willImplement(ContainerInterface::class);
-        $serviceLocatorMock->get('LmcRbac\Options\ModuleOptions')->willReturn($moduleOptionsMock)->shouldBeCalled();
+        $serviceLocatorMock->get('LmcRbacMvc\Options\ModuleOptions')->willReturn($moduleOptionsMock)->shouldBeCalled();
 
         $factory              = new UnauthorizedStrategyFactory();
         $unauthorizedStrategy = $factory->createService($serviceLocatorMock->reveal());
 
-        $this->assertInstanceOf('LmcRbac\View\Strategy\UnauthorizedStrategy', $unauthorizedStrategy);
+        $this->assertInstanceOf('LmcRbacMvc\View\Strategy\UnauthorizedStrategy', $unauthorizedStrategy);
     }
 }

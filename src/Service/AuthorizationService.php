@@ -16,14 +16,14 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbac\Service;
+namespace LmcRbacMvc\Service;
 
 use Rbac\Rbac;
 use Rbac\Permission\PermissionInterface;
-use LmcRbac\Assertion\AssertionPluginManager;
-use LmcRbac\Assertion\AssertionInterface;
-use LmcRbac\Exception;
-use LmcRbac\Identity\IdentityInterface;
+use LmcRbacMvc\Assertion\AssertionPluginManager;
+use LmcRbacMvc\Assertion\AssertionInterface;
+use LmcRbacMvc\Exception;
+use LmcRbacMvc\Identity\IdentityInterface;
 
 /**
  * Authorization service is a simple service that internally uses Rbac to check if identity is

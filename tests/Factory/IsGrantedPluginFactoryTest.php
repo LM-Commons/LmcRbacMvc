@@ -16,14 +16,14 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacTest\Factory;
+namespace LmcRbacMvcTest\Factory;
 
 use Laminas\Mvc\Controller\PluginManager;
 use Laminas\ServiceManager\ServiceManager;
-use LmcRbac\Factory\IsGrantedPluginFactory;
+use LmcRbacMvc\Factory\IsGrantedPluginFactory;
 
 /**
- * @covers \LmcRbac\Factory\IsGrantedPluginFactory
+ * @covers \LmcRbacMvc\Factory\IsGrantedPluginFactory
  */
 class IsGrantedPluginFactoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -42,14 +42,14 @@ class IsGrantedPluginFactoryTest extends \PHPUnit_Framework_TestCase
         $pluginManager  = new PluginManager($serviceManager);
 
         $serviceManager->setService(
-            'LmcRbac\Service\AuthorizationService',
-            $this->getMock('LmcRbac\Service\AuthorizationServiceInterface')
+            'LmcRbacMvc\Service\AuthorizationService',
+            $this->getMock('LmcRbacMvc\Service\AuthorizationServiceInterface')
         );
 
         $factory   = new IsGrantedPluginFactory();
         $isGranted = $factory->createService($pluginManager);
 
-        $this->assertInstanceOf('LmcRbac\Mvc\Controller\Plugin\IsGranted', $isGranted);
+        $this->assertInstanceOf('LmcRbacMvc\Mvc\Controller\Plugin\IsGranted', $isGranted);
     }
     */
     public function testFactoryV3()
@@ -60,13 +60,13 @@ class IsGrantedPluginFactoryTest extends \PHPUnit_Framework_TestCase
             $this->markTestSkipped('this test is only vor zend-servicemanager v3');
         }
         $serviceManager->setService(
-            'LmcRbac\Service\AuthorizationService',
-            $this->getMock('LmcRbac\Service\AuthorizationServiceInterface')
+            'LmcRbacMvc\Service\AuthorizationService',
+            $this->getMock('LmcRbacMvc\Service\AuthorizationServiceInterface')
         );
 
         $factory   = new IsGrantedPluginFactory();
-        $isGranted = $factory($serviceManager, 'LmcRbac\Mvc\Controller\Plugin\IsGranted');
+        $isGranted = $factory($serviceManager, 'LmcRbacMvc\Mvc\Controller\Plugin\IsGranted');
 
-        $this->assertInstanceOf('LmcRbac\Mvc\Controller\Plugin\IsGranted', $isGranted);
+        $this->assertInstanceOf('LmcRbacMvc\Mvc\Controller\Plugin\IsGranted', $isGranted);
     }
 }

@@ -19,12 +19,12 @@
 namespace LmcRbacTest\Factory;
 
 use Laminas\ServiceManager\ServiceManager;
-use LmcRbac\Factory\GuardsFactory;
-use LmcRbac\Guard\GuardPluginManager;
-use LmcRbac\Options\ModuleOptions;
+use LmcRbacMvc\Factory\GuardsFactory;
+use LmcRbacMvc\Guard\GuardPluginManager;
+use LmcRbacMvc\Options\ModuleOptions;
 
 /**
- * @covers \LmcRbac\Factory\GuardsFactory
+ * @covers \LmcRbacMvc\Factory\GuardsFactory
  */
 class GuardsFactoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -32,18 +32,18 @@ class GuardsFactoryTest extends \PHPUnit_Framework_TestCase
     {
         $moduleOptions = new ModuleOptions([
             'guards' => [
-                'LmcRbac\Guard\RouteGuard' => [
+                'LmcRbacMvc\Guard\RouteGuard' => [
                     'admin/*' => 'role1'
                 ],
-                'LmcRbac\Guard\RoutePermissionsGuard' => [
+                'LmcRbacMvc\Guard\RoutePermissionsGuard' => [
                     'admin/post' => 'post.manage'
                 ],
-                'LmcRbac\Guard\ControllerGuard' => [[
+                'LmcRbacMvc\Guard\ControllerGuard' => [[
                     'controller' => 'MyController',
                     'actions'    => ['index', 'edit'],
                     'roles'      => ['role']
                 ]],
-                'LmcRbac\Guard\ControllerPermissionsGuard' => [[
+                'LmcRbacMvc\Guard\ControllerPermissionsGuard' => [[
                     'controller'  => 'PostController',
                     'actions'     => ['index', 'edit'],
                     'permissions' => ['post.read']
@@ -54,15 +54,15 @@ class GuardsFactoryTest extends \PHPUnit_Framework_TestCase
         $serviceManager = new ServiceManager();
         $pluginManager = new GuardPluginManager($serviceManager);
 
-        $serviceManager->setService('LmcRbac\Options\ModuleOptions', $moduleOptions);
-        $serviceManager->setService('LmcRbac\Guard\GuardPluginManager', $pluginManager);
+        $serviceManager->setService('LmcRbacMvc\Options\ModuleOptions', $moduleOptions);
+        $serviceManager->setService('LmcRbacMvc\Guard\GuardPluginManager', $pluginManager);
         $serviceManager->setService(
-            'LmcRbac\Service\RoleService',
-            $this->getMock('LmcRbac\Service\RoleService', [], [], '', false)
+            'LmcRbacMvc\Service\RoleService',
+            $this->getMock('LmcRbacMvc\Service\RoleService', [], [], '', false)
         );
         $serviceManager->setService(
-            'LmcRbac\Service\AuthorizationService',
-            $this->getMock('LmcRbac\Service\AuthorizationServiceInterface', [], [], '', false)
+            'LmcRbacMvc\Service\AuthorizationService',
+            $this->getMock('LmcRbacMvc\Service\AuthorizationServiceInterface', [], [], '', false)
         );
 
         $factory = new GuardsFactory();
@@ -71,10 +71,10 @@ class GuardsFactoryTest extends \PHPUnit_Framework_TestCase
         $this->assertInternalType('array', $guards);
 
         $this->assertCount(4, $guards);
-        $this->assertInstanceOf('LmcRbac\Guard\RouteGuard', $guards[0]);
-        $this->assertInstanceOf('LmcRbac\Guard\RoutePermissionsGuard', $guards[1]);
-        $this->assertInstanceOf('LmcRbac\Guard\ControllerGuard', $guards[2]);
-        $this->assertInstanceOf('LmcRbac\Guard\ControllerPermissionsGuard', $guards[3]);
+        $this->assertInstanceOf('LmcRbacMvc\Guard\RouteGuard', $guards[0]);
+        $this->assertInstanceOf('LmcRbacMvc\Guard\RoutePermissionsGuard', $guards[1]);
+        $this->assertInstanceOf('LmcRbacMvc\Guard\ControllerGuard', $guards[2]);
+        $this->assertInstanceOf('LmcRbacMvc\Guard\ControllerPermissionsGuard', $guards[3]);
     }
 
     public function testReturnArrayIfNoConfig()
@@ -86,7 +86,7 @@ class GuardsFactoryTest extends \PHPUnit_Framework_TestCase
         $serviceManager = new ServiceManager();
         $pluginManager = new GuardPluginManager($serviceManager);
 
-        $serviceManager->setService('LmcRbac\Options\ModuleOptions', $moduleOptions);
+        $serviceManager->setService('LmcRbacMvc\Options\ModuleOptions', $moduleOptions);
 
         $factory = new GuardsFactory();
         $guards  = $factory->createService($serviceManager);

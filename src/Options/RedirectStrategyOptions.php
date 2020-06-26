@@ -16,7 +16,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbac\Options;
+namespace LmcRbacMvc\Options;
 
 use Laminas\Stdlib\AbstractOptions;
 

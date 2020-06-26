@@ -1,6 +1,6 @@
 <?php
 
-namespace LmcRbacTest\Asset;
+namespace LmcRbacMvcTest\Asset;
 
 use Rbac\Role\RoleInterface;
 

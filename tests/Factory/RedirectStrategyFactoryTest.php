@@ -16,22 +16,22 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacTest\Factory;
+namespace LmcRbacMvcTest\Factory;
 
 use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
-use LmcRbac\Factory\RedirectStrategyFactory;
+use LmcRbacMvc\Factory\RedirectStrategyFactory;
 
 /**
- * @covers \LmcRbac\Factory\RedirectStrategyFactory
+ * @covers \LmcRbacMvc\Factory\RedirectStrategyFactory
  */
 class RedirectStrategyFactoryTest extends \PHPUnit_Framework_TestCase
 {
     public function testFactory()
     {
-        $redirectStrategyOptions = $this->getMock('LmcRbac\Options\RedirectStrategyOptions');
+        $redirectStrategyOptions = $this->getMock('LmcRbacMvc\Options\RedirectStrategyOptions');
 
-        $moduleOptionsMock = $this->getMock('LmcRbac\Options\ModuleOptions');
+        $moduleOptionsMock = $this->getMock('LmcRbacMvc\Options\ModuleOptions');
         $moduleOptionsMock->expects($this->once())
                           ->method('getRedirectStrategy')
                           ->will($this->returnValue($redirectStrategyOptions));
@@ -40,7 +40,7 @@ class RedirectStrategyFactoryTest extends \PHPUnit_Framework_TestCase
 
         $serviceLocatorMock = $this->prophesize(ServiceLocatorInterface::class);
         $serviceLocatorMock->willImplement(ContainerInterface::class);
-        $serviceLocatorMock->get('LmcRbac\Options\ModuleOptions')
+        $serviceLocatorMock->get('LmcRbacMvc\Options\ModuleOptions')
                            ->willReturn($moduleOptionsMock)
                            ->shouldBeCalled();
         $serviceLocatorMock->get('Laminas\Authentication\AuthenticationService')
@@ -50,6 +50,6 @@ class RedirectStrategyFactoryTest extends \PHPUnit_Framework_TestCase
         $factory          = new RedirectStrategyFactory();
         $redirectStrategy = $factory->createService($serviceLocatorMock->reveal());
 
-        $this->assertInstanceOf('LmcRbac\View\Strategy\RedirectStrategy', $redirectStrategy);
+        $this->assertInstanceOf('LmcRbacMvc\View\Strategy\RedirectStrategy', $redirectStrategy);
     }
 }

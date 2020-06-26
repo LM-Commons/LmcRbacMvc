@@ -16,7 +16,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbac\Collector;
+namespace LmcRbacMvc\Collector;
 
 use Rbac\Role\HierarchicalRoleInterface;
 use Rbac\Role\RoleInterface;
@@ -28,9 +28,9 @@ use Serializable;
 use Traversable;
 use Laminas\Mvc\MvcEvent;
 use Laminas\DeveloperTools\Collector\CollectorInterface;
-use LmcRbac\Options\ModuleOptions;
-use LmcRbac\Service\RoleService;
-use LmcRbac\Exception\InvalidArgumentException;
+use LmcRbacMvc\Options\ModuleOptions;
+use LmcRbacMvc\Service\RoleService;
+use LmcRbacMvc\Exception\InvalidArgumentException;
 
 /**
  * RbacCollector
@@ -100,10 +100,10 @@ class RbacCollector implements CollectorInterface, Serializable
         $serviceManager = $application->getServiceManager();
 
         /* @var RoleService $roleService */
-        $roleService = $serviceManager->get('LmcRbac\Service\RoleService');
+        $roleService = $serviceManager->get('LmcRbacMvc\Service\RoleService');
 
         /* @var ModuleOptions $options */
-        $options = $serviceManager->get('LmcRbac\Options\ModuleOptions');
+        $options = $serviceManager->get('LmcRbacMvc\Options\ModuleOptions');
 
         // Start collect all the data we need!
         $this->collectOptions($options);

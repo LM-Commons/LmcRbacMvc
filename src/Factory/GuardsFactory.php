@@ -16,14 +16,14 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbac\Factory;
+namespace LmcRbacMvc\Factory;
 
 use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
-use LmcRbac\Guard\GuardInterface;
-use LmcRbac\Guard\GuardPluginManager;
-use LmcRbac\Options\ModuleOptions;
+use LmcRbacMvc\Guard\GuardInterface;
+use LmcRbacMvc\Guard\GuardPluginManager;
+use LmcRbacMvc\Options\ModuleOptions;
 
 /**
  * Create a list of guards

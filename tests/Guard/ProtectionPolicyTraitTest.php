@@ -16,18 +16,18 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacTest\Guard;
+namespace LmcRbacMvcTest\Guard;
 
-use LmcRbac\Guard\GuardInterface;
+use LmcRbacMvc\Guard\GuardInterface;
 
 /**
- * @covers \LmcRbac\Guard\ProtectionPolicyTrait
+ * @covers \LmcRbacMvc\Guard\ProtectionPolicyTrait
  */
 class ProtectionPolicyTraitTest extends \PHPUnit_Framework_TestCase
 {
     public function testTrait()
     {
-        $trait = $this->getObjectForTrait('LmcRbac\Guard\ProtectionPolicyTrait');
+        $trait = $this->getObjectForTrait('LmcRbacMvc\Guard\ProtectionPolicyTrait');
         $trait->setProtectionPolicy(GuardInterface::POLICY_DENY);
 
         $this->assertEquals(GuardInterface::POLICY_DENY, $trait->getProtectionPolicy());

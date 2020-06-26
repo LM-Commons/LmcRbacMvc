@@ -16,15 +16,15 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbac\Factory;
+namespace LmcRbacMvc\Factory;
 
 use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
-use LmcRbac\Assertion\AssertionPluginManager;
-use LmcRbac\Options\ModuleOptions;
-use LmcRbac\Service\AuthorizationService;
-use LmcRbac\Service\RoleService;
+use LmcRbacMvc\Assertion\AssertionPluginManager;
+use LmcRbacMvc\Options\ModuleOptions;
+use LmcRbacMvc\Service\AuthorizationService;
+use LmcRbacMvc\Service\RoleService;
 use Rbac\Rbac;
 
 /**

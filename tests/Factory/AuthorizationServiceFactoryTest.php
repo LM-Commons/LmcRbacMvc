@@ -16,14 +16,14 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacTest\Factory;
+namespace LmcRbacMvcTest\Factory;
 
 use Laminas\ServiceManager\ServiceManager;
-use LmcRbac\Factory\AuthorizationServiceFactory;
-use LmcRbac\Options\ModuleOptions;
+use LmcRbacMvc\Factory\AuthorizationServiceFactory;
+use LmcRbacMvc\Options\ModuleOptions;
 
 /**
- * @covers \LmcRbac\Factory\AuthorizationServiceFactory
+ * @covers \LmcRbacMvc\Factory\AuthorizationServiceFactory
  */
 class AuthorizationServiceFactoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -34,21 +34,21 @@ class AuthorizationServiceFactoryTest extends \PHPUnit_Framework_TestCase
         $serviceManager->setService('Rbac\Rbac', $this->getMock('Rbac\Rbac', [], [], '', false));
 
         $serviceManager->setService(
-            'LmcRbac\Service\RoleService',
-            $this->getMock('LmcRbac\Service\RoleService', [], [], '', false)
+            'LmcRbacMvc\Service\RoleService',
+            $this->getMock('LmcRbacMvc\Service\RoleService', [], [], '', false)
         );
         $serviceManager->setService(
-            'LmcRbac\Assertion\AssertionPluginManager',
-            $this->getMock('LmcRbac\Assertion\AssertionPluginManager', [], [], '', false)
+            'LmcRbacMvc\Assertion\AssertionPluginManager',
+            $this->getMock('LmcRbacMvc\Assertion\AssertionPluginManager', [], [], '', false)
         );
         $serviceManager->setService(
-            'LmcRbac\Options\ModuleOptions',
+            'LmcRbacMvc\Options\ModuleOptions',
             new ModuleOptions([])
         );
 
         $factory              = new AuthorizationServiceFactory();
         $authorizationService = $factory->createService($serviceManager);
 
-        $this->assertInstanceOf('LmcRbac\Service\AuthorizationService', $authorizationService);
+        $this->assertInstanceOf('LmcRbacMvc\Service\AuthorizationService', $authorizationService);
     }
 }

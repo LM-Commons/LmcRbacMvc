@@ -15,19 +15,19 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
-namespace LmcRbacTest\Guard;
+namespace LmcRbacMvcTest\Guard;
 
 use Laminas\Mvc\MvcEvent;
 use Laminas\Mvc\Router\RouteMatch as V2RouteMatch;
 use Laminas\Router\RouteMatch;
-use LmcRbac\Guard\ControllerGuard;
-use LmcRbac\Guard\GuardInterface;
-use LmcRbac\Guard\RouteGuard;
-use LmcRbac\Guard\RoutePermissionsGuard;
+use LmcRbacMvc\Guard\ControllerGuard;
+use LmcRbacMvc\Guard\GuardInterface;
+use LmcRbacMvc\Guard\RouteGuard;
+use LmcRbacMvc\Guard\RoutePermissionsGuard;
 
 /**
- * @covers \LmcRbac\Guard\AbstractGuard
- * @covers \LmcRbac\Guard\RoutePermissionsGuard
+ * @covers \LmcRbacMvc\Guard\AbstractGuard
+ * @covers \LmcRbacMvc\Guard\RoutePermissionsGuard
  */
 class RoutePermissionsGuardTest extends \PHPUnit_Framework_TestCase
 {
@@ -38,7 +38,7 @@ class RoutePermissionsGuardTest extends \PHPUnit_Framework_TestCase
             ->method('attach')
             ->with(RouteGuard::EVENT_NAME);
 
-        $guard = new RoutePermissionsGuard($this->getMock('LmcRbac\Service\AuthorizationService', [], [], '', false));
+        $guard = new RoutePermissionsGuard($this->getMock('LmcRbacMvc\Service\AuthorizationService', [], [], '', false));
         $guard->attach($eventManager);
     }
 
@@ -98,7 +98,7 @@ class RoutePermissionsGuardTest extends \PHPUnit_Framework_TestCase
      */
     public function testRulesConversions(array $rules, array $expected)
     {
-        $roleService  = $this->getMock('LmcRbac\Service\AuthorizationService', [], [], '', false);
+        $roleService  = $this->getMock('LmcRbacMvc\Service\AuthorizationService', [], [], '', false);
         $routeGuard   = new RoutePermissionsGuard($roleService, $rules);
         $reflProperty = new \ReflectionProperty($routeGuard, 'rules');
         $reflProperty->setAccessible(true);
@@ -366,7 +366,7 @@ class RoutePermissionsGuardTest extends \PHPUnit_Framework_TestCase
         $event = new MvcEvent();
         $event->setRouteMatch($routeMatch);
 
-        $authorizationService = $this->getMock('LmcRbac\Service\AuthorizationServiceInterface', [], [], '', false);
+        $authorizationService = $this->getMock('LmcRbacMvc\Service\AuthorizationServiceInterface', [], [], '', false);
         $authorizationService->expects($this->any())
             ->method('isGranted')
             ->will($this->returnValueMap($identityPermissions));
@@ -393,7 +393,7 @@ class RoutePermissionsGuardTest extends \PHPUnit_Framework_TestCase
         $event->setRouteMatch($routeMatch);
         $event->setApplication($application);
 
-        $authorizationService = $this->getMock('LmcRbac\Service\AuthorizationServiceInterface', [], [], '', false);
+        $authorizationService = $this->getMock('LmcRbacMvc\Service\AuthorizationServiceInterface', [], [], '', false);
         $authorizationService->expects($this->once())
             ->method('isGranted')
             ->with('post.edit')
@@ -428,7 +428,7 @@ class RoutePermissionsGuardTest extends \PHPUnit_Framework_TestCase
             ->method('triggerEvent')
             ->with($event);
 
-        $authorizationService = $this->getMock('LmcRbac\Service\AuthorizationServiceInterface', [], [], '', false);
+        $authorizationService = $this->getMock('LmcRbacMvc\Service\AuthorizationServiceInterface', [], [], '', false);
         $authorizationService->expects($this->once())
             ->method('isGranted')
             ->with('post.edit')
@@ -441,7 +441,7 @@ class RoutePermissionsGuardTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue($event->propagationIsStopped());
         $this->assertEquals(RouteGuard::GUARD_UNAUTHORIZED, $event->getError());
-        $this->assertInstanceOf('LmcRbac\Exception\UnauthorizedException', $event->getParam('exception'));
+        $this->assertInstanceOf('LmcRbacMvc\Exception\UnauthorizedException', $event->getParam('exception'));
     }
 
     public function createRouteMatch(array $params = [])

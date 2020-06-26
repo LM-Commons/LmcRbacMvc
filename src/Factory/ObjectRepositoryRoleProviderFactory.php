@@ -16,15 +16,15 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbac\Factory;
+namespace LmcRbacMvc\Factory;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\Persistence\ObjectRepository;
 use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
-use LmcRbac\Exception;
-use LmcRbac\Role\ObjectRepositoryRoleProvider;
+use LmcRbacMvc\Exception;
+use LmcRbacMvc\Role\ObjectRepositoryRoleProvider;
 
 /**
  * Factory used to create an object repository role provider
@@ -85,7 +85,7 @@ class ObjectRepositoryRoleProviderFactory implements FactoryInterface
         }
 
         throw new Exception\RuntimeException(
-            'No object repository was found while creating the LmcRbac object repository role provider. Are
+            'No object repository was found while creating the LmcRbacMvc object repository role provider. Are
              you sure you specified either the "object_repository" option or "object_manager"/"class_name" options?'
         );
     }

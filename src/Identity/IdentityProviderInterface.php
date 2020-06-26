@@ -16,7 +16,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbac\Identity;
+namespace LmcRbacMvc\Identity;
 
 /**
  * An identity provider is an object that returns an object that implement ZfcRbac\Identity\IdentityInterface

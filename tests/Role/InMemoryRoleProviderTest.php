@@ -16,12 +16,12 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacTest\Role;
+namespace LmcRbacMvcTest\Role;
 
-use LmcRbac\Role\InMemoryRoleProvider;
+use LmcRbacMvc\Role\InMemoryRoleProvider;
 
 /**
- * @covers \LmcRbac\Role\InMemoryRoleProvider
+ * @covers \LmcRbacMvc\Role\InMemoryRoleProvider
  */
 class InMemoryRoleProviderTest extends \PHPUnit_Framework_TestCase
 {

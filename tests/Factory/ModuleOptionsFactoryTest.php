@@ -19,10 +19,10 @@
 namespace LmcRbacTest\Factory;
 
 use Laminas\ServiceManager\ServiceManager;
-use LmcRbac\Factory\ModuleOptionsFactory;
+use LmcRbacMvc\Factory\ModuleOptionsFactory;
 
 /**
- * @covers \LmcRbac\Factory\ModuleOptionsFactory
+ * @covers \LmcRbacMvc\Factory\ModuleOptionsFactory
  */
 class ModuleOptionsFactoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -36,6 +36,6 @@ class ModuleOptionsFactoryTest extends \PHPUnit_Framework_TestCase
         $factory = new ModuleOptionsFactory();
         $options = $factory->createService($serviceManager);
 
-        $this->assertInstanceOf('LmcRbac\Options\ModuleOptions', $options);
+        $this->assertInstanceOf('LmcRbacMvc\Options\ModuleOptions', $options);
     }
 }

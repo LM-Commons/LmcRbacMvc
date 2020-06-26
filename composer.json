@@ -1,6 +1,6 @@
 {
-    "name": "laminas-commons/lmc-rbac",
-    "description": "Laminas Framework Module that provides a layer of features of Laminas\\Permissions\\Rbac",
+    "name": "laminas-commons/lmc-rbac-mvc",
+    "description": "Laminas Framework MVC Module that provides a layer of features of Laminas\\Permissions\\Rbac",
     "type": "library",
     "license": "MIT",
     "keywords": [
@@ -9,7 +9,7 @@
         "rbac",
         "permissions"
     ],
-    "homepage": "http://www.github.com/Laminas-Commons/LmcRbac",
+    "homepage": "http://www.github.com/Laminas-Commons/LmcRbacMvc",
     "authors": [
         {
             "name": "Kyle Spraggs",
@@ -56,12 +56,12 @@
     },
     "autoload": {
         "psr-4": {
-            "LmcRbac\\": "src"
+            "LmcRbacMvc\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "LmcRbacTest\\": "tests"
+            "LmcRbacMvcTest\\": "tests"
         }
     }
 }

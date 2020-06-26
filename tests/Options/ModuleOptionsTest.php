@@ -16,29 +16,29 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacTest;
+namespace LmcRbacMvcTest;
 
-use LmcRbac\Options\ModuleOptions;
-use LmcRbacTest\Util\ServiceManagerFactory;
+use LmcRbacMvc\Options\ModuleOptions;
+use LmcRbacMvcTest\Util\ServiceManagerFactory;
 
 /**
- * @covers \LmcRbac\Options\ModuleOptions
+ * @covers \LmcRbacMvc\Options\ModuleOptions
  */
 class ModuleOptionsTest extends \PHPUnit_Framework_TestCase
 {
     public function testAssertModuleDefaultOptions()
     {
-        /** @var \LmcRbac\Options\ModuleOptions $moduleOptions */
-        $moduleOptions = ServiceManagerFactory::getServiceManager()->get('LmcRbac\Options\ModuleOptions');
+        /** @var \LmcRbacMvc\Options\ModuleOptions $moduleOptions */
+        $moduleOptions = ServiceManagerFactory::getServiceManager()->get('LmcRbacMvc\Options\ModuleOptions');
 
-        $this->assertEquals('LmcRbac\Identity\AuthenticationIdentityProvider', $moduleOptions->getIdentityProvider());
+        $this->assertEquals('LmcRbacMvc\Identity\AuthenticationIdentityProvider', $moduleOptions->getIdentityProvider());
         $this->assertEquals('guest', $moduleOptions->getGuestRole());
         $this->assertEquals('allow', $moduleOptions->getProtectionPolicy());
         $this->assertInternalType('array', $moduleOptions->getGuards());
         $this->assertInternalType('array', $moduleOptions->getRoleProvider());
         $this->assertInternalType('array', $moduleOptions->getAssertionMap());
-        $this->assertInstanceOf('LmcRbac\Options\UnauthorizedStrategyOptions', $moduleOptions->getUnauthorizedStrategy());
-        $this->assertInstanceOf('LmcRbac\Options\RedirectStrategyOptions', $moduleOptions->getRedirectStrategy());
+        $this->assertInstanceOf('LmcRbacMvc\Options\UnauthorizedStrategyOptions', $moduleOptions->getUnauthorizedStrategy());
+        $this->assertInstanceOf('LmcRbacMvc\Options\RedirectStrategyOptions', $moduleOptions->getRedirectStrategy());
     }
 
     public function testSettersAndGetters()
@@ -67,13 +67,13 @@ class ModuleOptionsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('deny', $moduleOptions->getProtectionPolicy());
         $this->assertEquals([], $moduleOptions->getRoleProvider());
         $this->assertEquals(['foo' => 'bar'], $moduleOptions->getAssertionMap());
-        $this->assertInstanceOf('LmcRbac\Options\UnauthorizedStrategyOptions', $moduleOptions->getUnauthorizedStrategy());
-        $this->assertInstanceOf('LmcRbac\Options\RedirectStrategyOptions', $moduleOptions->getRedirectStrategy());
+        $this->assertInstanceOf('LmcRbacMvc\Options\UnauthorizedStrategyOptions', $moduleOptions->getUnauthorizedStrategy());
+        $this->assertInstanceOf('LmcRbacMvc\Options\RedirectStrategyOptions', $moduleOptions->getRedirectStrategy());
     }
 
     public function testThrowExceptionForInvalidProtectionPolicy()
     {
-        $this->setExpectedException('LmcRbac\Exception\RuntimeException');
+        $this->setExpectedException('LmcRbacMvc\Exception\RuntimeException');
 
         $moduleOptions = new ModuleOptions();
         $moduleOptions->setProtectionPolicy('invalid');
@@ -81,7 +81,7 @@ class ModuleOptionsTest extends \PHPUnit_Framework_TestCase
 
     public function testThrowExceptionIfMoreThanOneRoleProviderIsSet()
     {
-        $this->setExpectedException('LmcRbac\Exception\RuntimeException');
+        $this->setExpectedException('LmcRbacMvc\Exception\RuntimeException');
 
         $moduleOptions = new ModuleOptions();
         $moduleOptions->setRoleProvider(['foo', 'bar']);

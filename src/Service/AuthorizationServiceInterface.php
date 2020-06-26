@@ -16,7 +16,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbac\Service;
+namespace LmcRbacMvc\Service;
 
 use Rbac\Permission\PermissionInterface;
 

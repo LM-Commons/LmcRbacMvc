@@ -16,16 +16,16 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbac;
+namespace LmcRbacMvc;
 
 use Laminas\EventManager\EventInterface;
 use Laminas\ModuleManager\Feature\BootstrapListenerInterface;
 use Laminas\ModuleManager\Feature\ConfigProviderInterface;
 use Laminas\Mvc\Application;
-use LmcRbac\Guard\GuardInterface;
+use LmcRbacMvc\Guard\GuardInterface;
 
 /**
- * Module class for LmcRbac
+ * Module class for LmcRbacMvc
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @license MIT
@@ -43,7 +43,7 @@ class Module implements BootstrapListenerInterface, ConfigProviderInterface
         $eventManager   = $application->getEventManager();
 
         /* @var GuardInterface[]|array $guards */
-        $guards = $serviceManager->get('LmcRbac\Guards');
+        $guards = $serviceManager->get('LmcRbacMvc\Guards');
 
         // Register listeners, if any
         foreach ($guards as $guard) {

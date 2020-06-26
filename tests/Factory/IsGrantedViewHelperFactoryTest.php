@@ -20,10 +20,10 @@ namespace LmcRbacTest\Factory;
 
 use Laminas\ServiceManager\ServiceManager;
 use Laminas\View\HelperPluginManager;
-use LmcRbac\Factory\IsGrantedViewHelperFactory;
+use LmcRbacMvc\Factory\IsGrantedViewHelperFactory;
 
 /**
- * @covers \LmcRbac\Factory\IsGrantedViewHelperFactory
+ * @covers \LmcRbacMvc\Factory\IsGrantedViewHelperFactory
  */
 class IsGrantedViewHelperFactoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -42,14 +42,14 @@ class IsGrantedViewHelperFactoryTest extends \PHPUnit_Framework_TestCase
         $pluginManager  = new HelperPluginManager($serviceManager);
 
         $serviceManager->setService(
-            'LmcRbac\Service\AuthorizationService',
-            $this->getMock('LmcRbac\Service\AuthorizationServiceInterface')
+            'LmcRbacMvc\Service\AuthorizationService',
+            $this->getMock('LmcRbacMvc\Service\AuthorizationServiceInterface')
         );
 
         $factory   = new IsGrantedViewHelperFactory();
         $isGranted = $factory->createService($pluginManager);
 
-        $this->assertInstanceOf('LmcRbac\View\Helper\IsGranted', $isGranted);
+        $this->assertInstanceOf('LmcRbacMvc\View\Helper\IsGranted', $isGranted);
     }
     */
 
@@ -61,13 +61,13 @@ class IsGrantedViewHelperFactoryTest extends \PHPUnit_Framework_TestCase
             $this->markTestSkipped('this test is only vor zend-servicemanager v3');
         }
         $serviceManager->setService(
-            'LmcRbac\Service\AuthorizationService',
-            $this->getMock('LmcRbac\Service\AuthorizationServiceInterface')
+            'LmcRbacMvc\Service\AuthorizationService',
+            $this->getMock('LmcRbacMvc\Service\AuthorizationServiceInterface')
         );
 
         $factory   = new IsGrantedViewHelperFactory();
-        $isGranted = $factory($serviceManager, 'LmcRbac\View\Helper\IsGranted');
+        $isGranted = $factory($serviceManager, 'LmcRbacMvc\View\Helper\IsGranted');
 
-        $this->assertInstanceOf('LmcRbac\View\Helper\IsGranted', $isGranted);
+        $this->assertInstanceOf('LmcRbacMvc\View\Helper\IsGranted', $isGranted);
     }
 }

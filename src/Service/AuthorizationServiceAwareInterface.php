@@ -15,7 +15,7 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
-namespace LmcRbac\Service;
+namespace LmcRbacMvc\Service;
 
 /**
  * @author      Aeneas Rekkas

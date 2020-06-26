@@ -16,18 +16,18 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacTest\Role;
+namespace LmcRbacMvcTest\Role;
 
 use Doctrine\ORM\Tools\SchemaTool;
 use Rbac\Traversal\RecursiveRoleIterator;
 use Laminas\ServiceManager\ServiceManager;
-use LmcRbac\Role\ObjectRepositoryRoleProvider;
-use LmcRbacTest\Asset\FlatRole;
-use LmcRbacTest\Asset\HierarchicalRole;
-use LmcRbacTest\Util\ServiceManagerFactory;
+use LmcRbacMvc\Role\ObjectRepositoryRoleProvider;
+use LmcRbacMvcTest\Asset\FlatRole;
+use LmcRbacMvcTest\Asset\HierarchicalRole;
+use LmcRbacMvcTest\Util\ServiceManagerFactory;
 
 /**
- * @covers \LmcRbac\Role\ObjectRepositoryRoleProvider
+ * @covers \LmcRbacMvc\Role\ObjectRepositoryRoleProvider
  */
 class ObjectRepositoryRoleProviderTest extends \PHPUnit_Framework_TestCase
 {
@@ -50,7 +50,7 @@ class ObjectRepositoryRoleProviderTest extends \PHPUnit_Framework_TestCase
 
         $objectManager->flush();
 
-        $objectRepository = $objectManager->getRepository('LmcRbacTest\Asset\FlatRole');
+        $objectRepository = $objectManager->getRepository('LmcRbacMvcTest\Asset\FlatRole');
 
         $objectRepositoryRoleProvider = new ObjectRepositoryRoleProvider($objectRepository, 'name');
 
@@ -83,7 +83,7 @@ class ObjectRepositoryRoleProviderTest extends \PHPUnit_Framework_TestCase
 
         $objectManager->flush();
 
-        $objectRepository = $objectManager->getRepository('LmcRbacTest\Asset\HierarchicalRole');
+        $objectRepository = $objectManager->getRepository('LmcRbacMvcTest\Asset\HierarchicalRole');
 
         $objectRepositoryRoleProvider = new ObjectRepositoryRoleProvider($objectRepository, 'name');
 
@@ -143,11 +143,11 @@ class ObjectRepositoryRoleProviderTest extends \PHPUnit_Framework_TestCase
         $this->serviceManager = ServiceManagerFactory::getServiceManager();
 
         $objectManager                = $this->getObjectManager();
-        $objectRepository             = $objectManager->getRepository('LmcRbacTest\Asset\FlatRole');
+        $objectRepository             = $objectManager->getRepository('LmcRbacMvcTest\Asset\FlatRole');
         $objectRepositoryRoleProvider = new ObjectRepositoryRoleProvider($objectRepository, 'name');
 
         $this->setExpectedException(
-            'LmcRbac\Exception\RoleNotFoundException',
+            'LmcRbacMvc\Exception\RoleNotFoundException',
             'Some roles were asked but could not be loaded from database: guest, admin'
         );
 

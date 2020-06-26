@@ -15,11 +15,11 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
-namespace LmcRbac\Guard;
+namespace LmcRbacMvc\Guard;
 
 use Laminas\Mvc\MvcEvent;
-use LmcRbac\Exception\InvalidArgumentException;
-use LmcRbac\Service\AuthorizationServiceInterface;
+use LmcRbacMvc\Exception\InvalidArgumentException;
+use LmcRbacMvc\Service\AuthorizationServiceInterface;
 
 /**
  * A route guard can protect a route or a hierarchy of routes (using simple wildcard pattern)

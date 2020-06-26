@@ -16,10 +16,10 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbac\Assertion;
+namespace LmcRbacMvc\Assertion;
 
 use Laminas\ServiceManager\AbstractPluginManager;
-use LmcRbac\Exception;
+use LmcRbacMvc\Exception;
 
 /**
  * Plugin manager to create assertions
@@ -41,7 +41,7 @@ class AssertionPluginManager extends AbstractPluginManager
         }
 
         throw new Exception\RuntimeException(sprintf(
-            'Assertions must implement "LmcRbac\Assertion\AssertionInterface", but "%s" was given',
+            'Assertions must implement "LmcRbacMvc\Assertion\AssertionInterface", but "%s" was given',
             is_object($plugin) ? get_class($plugin) : gettype($plugin)
         ));
     }

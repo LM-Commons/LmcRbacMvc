@@ -16,9 +16,9 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbac\Assertion;
+namespace LmcRbacMvc\Assertion;
 
-use LmcRbac\Service\AuthorizationService;
+use LmcRbacMvc\Service\AuthorizationService;
 
 /**
  * Interface that you can implement for dynamic assertions

@@ -16,14 +16,14 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbac\Service;
+namespace LmcRbacMvc\Service;
 
 use Rbac\Role\RoleInterface;
 use Traversable;
-use LmcRbac\Exception;
-use LmcRbac\Identity\IdentityInterface;
-use LmcRbac\Identity\IdentityProviderInterface;
-use LmcRbac\Role\RoleProviderInterface;
+use LmcRbacMvc\Exception;
+use LmcRbacMvc\Identity\IdentityInterface;
+use LmcRbacMvc\Identity\IdentityProviderInterface;
+use LmcRbacMvc\Role\RoleProviderInterface;
 use Rbac\Traversal\Strategy\TraversalStrategyInterface;
 
 /**
@@ -136,7 +136,7 @@ class RoleService
 
         if (!$identity instanceof IdentityInterface) {
             throw new Exception\RuntimeException(sprintf(
-                'LmcRbac expects your identity to implement LmcRbac\Identity\IdentityInterface, "%s" given',
+                'LmcRbacMvc expects your identity to implement LmcRbacMvc\Identity\IdentityInterface, "%s" given',
                 is_object($identity) ? get_class($identity) : gettype($identity)
             ));
         }

@@ -16,15 +16,15 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacTest\Factory;
+namespace LmcRbacMvcTest\Factory;
 
 use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
 use Laminas\ServiceManager\ServiceManager;
-use LmcRbac\Exception\RuntimeException;
-use LmcRbac\Role\RoleProviderPluginManager;
+use LmcRbacMvc\Exception\RuntimeException;
+use LmcRbacMvc\Role\RoleProviderPluginManager;
 
 /**
- * @covers \LmcRbac\Factory\ObjectRepositoryRoleProviderFactory
+ * @covers \LmcRbacMvc\Factory\ObjectRepositoryRoleProviderFactory
  */
 class ObjectRepositoryRoleProviderFactoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -40,8 +40,8 @@ class ObjectRepositoryRoleProviderFactoryTest extends \PHPUnit_Framework_TestCas
 
         $serviceManager->setService('RoleObjectRepository', $this->getMock('Doctrine\Common\Persistence\ObjectRepository'));
 
-        $roleProvider = $pluginManager->get('LmcRbac\Role\ObjectRepositoryRoleProvider', $options);
-        $this->assertInstanceOf('LmcRbac\Role\ObjectRepositoryRoleProvider', $roleProvider);
+        $roleProvider = $pluginManager->get('LmcRbacMvc\Role\ObjectRepositoryRoleProvider', $options);
+        $this->assertInstanceOf('LmcRbacMvc\Role\ObjectRepositoryRoleProvider', $roleProvider);
     }
 
     public function testFactoryUsingObjectManager()
@@ -63,8 +63,8 @@ class ObjectRepositoryRoleProviderFactoryTest extends \PHPUnit_Framework_TestCas
 
         $serviceManager->setService('ObjectManager', $objectManager);
 
-        $roleProvider = $pluginManager->get('LmcRbac\Role\ObjectRepositoryRoleProvider', $options);
-        $this->assertInstanceOf('LmcRbac\Role\ObjectRepositoryRoleProvider', $roleProvider);
+        $roleProvider = $pluginManager->get('LmcRbacMvc\Role\ObjectRepositoryRoleProvider', $options);
+        $this->assertInstanceOf('LmcRbacMvc\Role\ObjectRepositoryRoleProvider', $roleProvider);
     }
 
     /**
@@ -76,7 +76,7 @@ class ObjectRepositoryRoleProviderFactoryTest extends \PHPUnit_Framework_TestCas
             $serviceManager = new ServiceManager();
             $pluginManager  = new RoleProviderPluginManager($serviceManager);
 
-            $pluginManager->get('LmcRbac\Role\ObjectRepositoryRoleProvider', []);
+            $pluginManager->get('LmcRbacMvc\Role\ObjectRepositoryRoleProvider', []);
         } catch (ServiceNotCreatedException $smException) {
             while ($e = $smException->getPrevious()) {
                 if ($e instanceof RuntimeException) {
@@ -86,8 +86,8 @@ class ObjectRepositoryRoleProviderFactoryTest extends \PHPUnit_Framework_TestCas
         }
 
         $this->fail(
-            'LmcRbac\Factory\ObjectRepositoryRoleProviderFactory::createService() :: '
-            .'LmcRbac\Exception\RuntimeException was not found in the previous Exceptions'
+            'LmcRbacMvc\Factory\ObjectRepositoryRoleProviderFactory::createService() :: '
+            .'LmcRbacMvc\Exception\RuntimeException was not found in the previous Exceptions'
         );
     }
 
@@ -100,7 +100,7 @@ class ObjectRepositoryRoleProviderFactoryTest extends \PHPUnit_Framework_TestCas
             $serviceManager = new ServiceManager();
             $pluginManager  = new RoleProviderPluginManager($serviceManager);
 
-            $pluginManager->get('LmcRbac\Role\ObjectRepositoryRoleProvider', [
+            $pluginManager->get('LmcRbacMvc\Role\ObjectRepositoryRoleProvider', [
                 'role_name_property' => 'name'
             ]);
         } catch (ServiceNotCreatedException $smException) {
@@ -112,8 +112,8 @@ class ObjectRepositoryRoleProviderFactoryTest extends \PHPUnit_Framework_TestCas
         }
 
         $this->fail(
-             'LmcRbac\Factory\ObjectRepositoryRoleProviderFactory::createService() :: '
-            .'LmcRbac\Exception\RuntimeException was not found in the previous Exceptions'
+             'LmcRbacMvc\Factory\ObjectRepositoryRoleProviderFactory::createService() :: '
+            .'LmcRbacMvc\Exception\RuntimeException was not found in the previous Exceptions'
         );
     }
 }

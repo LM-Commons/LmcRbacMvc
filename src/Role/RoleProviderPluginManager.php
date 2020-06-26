@@ -16,11 +16,11 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbac\Role;
+namespace LmcRbacMvc\Role;
 
 use Laminas\ServiceManager\AbstractPluginManager;
-use LmcRbac\Exception;
-use LmcRbac\Factory\ObjectRepositoryRoleProviderFactory;
+use LmcRbacMvc\Exception;
+use LmcRbacMvc\Factory\ObjectRepositoryRoleProviderFactory;
 
 /**
  * Plugin manager to create role providers
@@ -36,7 +36,7 @@ class RoleProviderPluginManager extends AbstractPluginManager
      * @var array
      */
     protected $invokableClasses = [
-        'LmcRbac\Role\InMemoryRoleProvider' => InMemoryRoleProvider::class,
+        'LmcRbacMvc\Role\InMemoryRoleProvider' => InMemoryRoleProvider::class,
     ];
 
     /**
@@ -56,7 +56,7 @@ class RoleProviderPluginManager extends AbstractPluginManager
         }
 
         throw new Exception\RuntimeException(sprintf(
-            'Role provider must implement "LmcRbac\Role\RoleProviderInterface", but "%s" was given',
+            'Role provider must implement "LmcRbacMvc\Role\RoleProviderInterface", but "%s" was given',
             is_object($plugin) ? get_class($plugin) : gettype($plugin)
         ));
     }

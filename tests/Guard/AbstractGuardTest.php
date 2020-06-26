@@ -16,12 +16,12 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacTest\Guard;
+namespace LmcRbacMvcTest\Guard;
 
 use Laminas\EventManager\EventManager;
 use Laminas\Mvc\Application;
 use Laminas\Mvc\MvcEvent;
-use LmcRbacTest\Asset\DummyGuard;
+use LmcRbacMvcTest\Asset\DummyGuard;
 
 /**
  * @covers \LmcRbac\Guard\AbstractGuard

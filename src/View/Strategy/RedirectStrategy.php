@@ -16,13 +16,13 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbac\View\Strategy;
+namespace LmcRbacMvc\View\Strategy;
 
 use Laminas\Authentication\AuthenticationServiceInterface;
 use Laminas\Http\Response as HttpResponse;
 use Laminas\Mvc\MvcEvent;
-use LmcRbac\Exception\UnauthorizedExceptionInterface;
-use LmcRbac\Options\RedirectStrategyOptions;
+use LmcRbacMvc\Exception\UnauthorizedExceptionInterface;
+use LmcRbacMvc\Options\RedirectStrategyOptions;
 
 /**
  * This strategy redirects to another route when a user is unauthorized

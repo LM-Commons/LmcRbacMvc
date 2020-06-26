@@ -16,15 +16,15 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbac\Factory;
+namespace LmcRbacMvc\Factory;
 
 use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\AbstractPluginManager;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
-use LmcRbac\Guard\ControllerPermissionsGuard;
-use LmcRbac\Options\ModuleOptions;
-use LmcRbac\Service\AuthorizationService;
+use LmcRbacMvc\Guard\ControllerPermissionsGuard;
+use LmcRbacMvc\Options\ModuleOptions;
+use LmcRbacMvc\Service\AuthorizationService;
 
 /**
  * Create a controller guard for checking permissions
@@ -68,10 +68,10 @@ class ControllerPermissionsGuardFactory implements FactoryInterface
         }
 
         /* @var ModuleOptions $moduleOptions */
-        $moduleOptions = $container->get('LmcRbac\Options\ModuleOptions');
+        $moduleOptions = $container->get('LmcRbacMvc\Options\ModuleOptions');
 
         /* @var AuthorizationService $authorizationService */
-        $authorizationService = $container->get('LmcRbac\Service\AuthorizationService');
+        $authorizationService = $container->get('LmcRbacMvc\Service\AuthorizationService');
 
         $guard = new ControllerPermissionsGuard($authorizationService, $options);
         $guard->setProtectionPolicy($moduleOptions->getProtectionPolicy());

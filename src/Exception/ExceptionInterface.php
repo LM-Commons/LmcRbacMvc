@@ -16,7 +16,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbac\Exception;
+namespace LmcRbacMvc\Exception;
 
 /**
  * Base exception interface for ZfcRbac

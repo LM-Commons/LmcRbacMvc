@@ -16,7 +16,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacTest\View\Strategy;
+namespace LmcRbacMvcTest\View\Strategy;
 
 use Laminas\Authentication\AuthenticationService;
 use Laminas\Http\Request as HttpRequest;
@@ -24,13 +24,13 @@ use Laminas\Http\Response as HttpResponse;
 use Laminas\Mvc\MvcEvent;
 use Laminas\Mvc\Router\Http\TreeRouteStack as V2TreeRouteStack;
 use Laminas\Router\Http\TreeRouteStack;
-use LmcRbac\Exception\UnauthorizedException;
-use LmcRbac\Options\RedirectStrategyOptions;
-use LmcRbac\View\Strategy\RedirectStrategy;
+use LmcRbacMvc\Exception\UnauthorizedException;
+use LmcRbacMvc\Options\RedirectStrategyOptions;
+use LmcRbacMvc\View\Strategy\RedirectStrategy;
 
 /**
- * @covers \LmcRbac\View\Strategy\RedirectStrategy
- * @covers \LmcRbac\View\Strategy\AbstractStrategy
+ * @covers \LmcRbacMvc\View\Strategy\RedirectStrategy
+ * @covers \LmcRbacMvc\View\Strategy\AbstractStrategy
  */
 class RedirectStrategyTest extends \PHPUnit_Framework_TestCase
 {

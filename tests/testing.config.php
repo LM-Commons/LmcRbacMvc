@@ -28,7 +28,7 @@ return [
             ],
             'orm_default' => [
                 'drivers' => [
-                    'LmcRbacTest\Asset' => 'application_driver'
+                    'LmcRbacMvcTest\Asset' => 'application_driver'
                 ]
             ]
         ],

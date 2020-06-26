@@ -16,12 +16,12 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacTest;
+namespace LmcRbacMvcTest;
 
-use LmcRbac\Module;
+use LmcRbacMvc\Module;
 
 /**
- * @covers \LmcRbac\Module
+ * @covers \LmcRbacMvc\Module
  */
 class ModuleTest extends \PHPUnit_Framework_TestCase
 {
@@ -44,12 +44,12 @@ class ModuleTest extends \PHPUnit_Framework_TestCase
         $application->expects($this->once())->method('getServiceManager')->will($this->returnValue($serviceManager));
 
         $guards = [
-            $this->getMock('LmcRbac\Guard\GuardInterface')
+            $this->getMock('LmcRbacMvc\Guard\GuardInterface')
         ];
 
         $serviceManager->expects($this->once())
                        ->method('get')
-                       ->with('LmcRbac\Guards')
+                       ->with('LmcRbacMvc\Guards')
                        ->will($this->returnValue($guards));
 
         $module->onBootstrap($mvcEvent);

@@ -16,13 +16,13 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbac\Factory;
+namespace LmcRbacMvc\Factory;
 
 use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
-use LmcRbac\Options\ModuleOptions;
-use LmcRbac\View\Strategy\UnauthorizedStrategy;
+use LmcRbacMvc\Options\ModuleOptions;
+use LmcRbacMvc\View\Strategy\UnauthorizedStrategy;
 
 /**
  * Factory to create an unauthorized strategy

@@ -16,18 +16,18 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacTest\Mvc\Controller\Plugin;
+namespace LmcRbacMvcTest\Mvc\Controller\Plugin;
 
-use LmcRbac\Mvc\Controller\Plugin\IsGranted;
+use LmcRbacMvc\Mvc\Controller\Plugin\IsGranted;
 
 /**
- * @covers \LmcRbac\Mvc\Controller\Plugin\IsGranted
+ * @covers \LmcRbacMvc\Mvc\Controller\Plugin\IsGranted
  */
 class IsGrantedTest extends \PHPUnit_Framework_TestCase
 {
     public function testCallAuthorizationService()
     {
-        $authorizationService = $this->getMock('LmcRbac\Service\AuthorizationServiceInterface');
+        $authorizationService = $this->getMock('LmcRbacMvc\Service\AuthorizationServiceInterface');
 
         $authorizationService->expects($this->once())
                              ->method('isGranted')

@@ -19,10 +19,10 @@
 namespace LmcRbacTest\Factory;
 
 use Laminas\ServiceManager\ServiceManager;
-use LmcRbac\Factory\RbacFactory;
+use LmcRbacMvc\Factory\RbacFactory;
 
 /**
- * @covers LmcRbac\Factory\RbacFactory
+ * @covers LmcRbacMvc\Factory\RbacFactory
  */
 class RbacFactoryTest extends \PHPUnit_Framework_TestCase
 {

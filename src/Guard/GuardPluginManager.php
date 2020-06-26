@@ -16,15 +16,15 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbac\Guard;
+namespace LmcRbacMvc\Guard;
 
 use Interop\Container\Exception\ContainerException;
 use Laminas\ServiceManager\AbstractPluginManager;
-use LmcRbac\Exception;
-use LmcRbac\Factory\ControllerGuardFactory;
-use LmcRbac\Factory\ControllerPermissionsGuardFactory;
-use LmcRbac\Factory\RouteGuardFactory;
-use LmcRbac\Factory\RoutePermissionsGuardFactory;
+use LmcRbacMvc\Exception;
+use LmcRbacMvc\Factory\ControllerGuardFactory;
+use LmcRbacMvc\Factory\ControllerPermissionsGuardFactory;
+use LmcRbacMvc\Factory\RouteGuardFactory;
+use LmcRbacMvc\Factory\RoutePermissionsGuardFactory;
 
 /**
  * Plugin manager to create guards
@@ -57,7 +57,7 @@ class GuardPluginManager extends AbstractPluginManager
         }
 
         throw new Exception\RuntimeException(sprintf(
-            'Guards must implement "LmcRbac\Guard\GuardInterface", but "%s" was given',
+            'Guards must implement "LmcRbacMvc\Guard\GuardInterface", but "%s" was given',
             is_object($plugin) ? get_class($plugin) : gettype($plugin)
         ));
     }

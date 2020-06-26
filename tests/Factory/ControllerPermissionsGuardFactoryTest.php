@@ -19,13 +19,13 @@
 namespace LmcRbacTest\Factory;
 
 use Laminas\ServiceManager\ServiceManager;
-use LmcRbac\Factory\ControllerPermissionsGuardFactory;
-use LmcRbac\Guard\GuardInterface;
-use LmcRbac\Guard\GuardPluginManager;
-use LmcRbac\Options\ModuleOptions;
+use LmcRbacMvc\Factory\ControllerPermissionsGuardFactory;
+use LmcRbacMvc\Guard\GuardInterface;
+use LmcRbacMvc\Guard\GuardPluginManager;
+use LmcRbacMvc\Options\ModuleOptions;
 
 /**
- * @covers \LmcRbac\Factory\ControllerPermissionsGuardFactory
+ * @covers \LmcRbacMvc\Factory\ControllerPermissionsGuardFactory
  */
 class ControllerPermissionsGuardFactoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -46,17 +46,17 @@ class ControllerPermissionsGuardFactoryTest extends \PHPUnit_Framework_TestCase
         ];
 
         $options = new ModuleOptions([
-            'identity_provider' => 'LmcRbac\Identity\AuthenticationProvider',
+            'identity_provider' => 'LmcRbacMvc\Identity\AuthenticationProvider',
             'guards'            => [
-                'LmcRbac\Guard\ControllerPermissionsGuard' => $creationOptions
+                'LmcRbacMvc\Guard\ControllerPermissionsGuard' => $creationOptions
             ],
             'protection_policy' => GuardInterface::POLICY_ALLOW,
         ]);
 
-        $serviceManager->setService('LmcRbac\Options\ModuleOptions', $options);
+        $serviceManager->setService('LmcRbacMvc\Options\ModuleOptions', $options);
         $serviceManager->setService(
-            'LmcRbac\Service\AuthorizationService',
-            $this->getMock('LmcRbac\Service\AuthorizationService', [], [], '', false)
+            'LmcRbacMvc\Service\AuthorizationService',
+            $this->getMock('LmcRbacMvc\Service\AuthorizationService', [], [], '', false)
         );
 
         $pluginManager = new GuardPluginManager($serviceManager);
@@ -64,7 +64,7 @@ class ControllerPermissionsGuardFactoryTest extends \PHPUnit_Framework_TestCase
         $factory    = new ControllerPermissionsGuardFactory();
         $guard = $factory->createService($pluginManager);
 
-        $this->assertInstanceOf('LmcRbac\Guard\ControllerPermissionsGuard', $guard);
+        $this->assertInstanceOf('LmcRbacMvc\Guard\ControllerPermissionsGuard', $guard);
         $this->assertEquals(GuardInterface::POLICY_ALLOW, $guard->getProtectionPolicy());
     }
     */
@@ -82,23 +82,23 @@ class ControllerPermissionsGuardFactoryTest extends \PHPUnit_Framework_TestCase
         ];
 
         $options = new ModuleOptions([
-            'identity_provider' => 'LmcRbac\Identity\AuthenticationProvider',
+            'identity_provider' => 'LmcRbacMvc\Identity\AuthenticationProvider',
             'guards'            => [
-                'LmcRbac\Guard\ControllerPermissionsGuard' => $creationOptions
+                'LmcRbacMvc\Guard\ControllerPermissionsGuard' => $creationOptions
             ],
             'protection_policy' => GuardInterface::POLICY_ALLOW,
         ]);
 
-        $serviceManager->setService('LmcRbac\Options\ModuleOptions', $options);
+        $serviceManager->setService('LmcRbacMvc\Options\ModuleOptions', $options);
         $serviceManager->setService(
-            'LmcRbac\Service\AuthorizationService',
-            $this->getMock('LmcRbac\Service\AuthorizationService', [], [], '', false)
+            'LmcRbacMvc\Service\AuthorizationService',
+            $this->getMock('LmcRbacMvc\Service\AuthorizationService', [], [], '', false)
         );
 
         $factory    = new ControllerPermissionsGuardFactory();
         $guard = $factory($serviceManager, GuardPluginManager::class);
 
-        $this->assertInstanceOf('LmcRbac\Guard\ControllerPermissionsGuard', $guard);
+        $this->assertInstanceOf('LmcRbacMvc\Guard\ControllerPermissionsGuard', $guard);
         $this->assertEquals(GuardInterface::POLICY_ALLOW, $guard->getProtectionPolicy());
     }
 }

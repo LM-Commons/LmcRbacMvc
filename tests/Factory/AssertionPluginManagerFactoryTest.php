@@ -16,13 +16,13 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacTest\Factory;
+namespace LmcRbacMvcTest\Factory;
 
 use Laminas\ServiceManager\ServiceManager;
-use LmcRbac\Factory\AssertionPluginManagerFactory;
+use LmcRbacMvc\Factory\AssertionPluginManagerFactory;
 
 /**
- * @covers \LmcRbac\Factory\AssertionPluginManagerFactory
+ * @covers \LmcRbacMvc\Factory\AssertionPluginManagerFactory
  */
 class AssertionPluginManagerFactoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -38,6 +38,6 @@ class AssertionPluginManagerFactoryTest extends \PHPUnit_Framework_TestCase
         $factory       = new AssertionPluginManagerFactory();
         $pluginManager = $factory->createService($serviceManager);
 
-        $this->assertInstanceOf('LmcRbac\Assertion\AssertionPluginManager', $pluginManager);
+        $this->assertInstanceOf('LmcRbacMvc\Assertion\AssertionPluginManager', $pluginManager);
     }
 }

@@ -16,11 +16,11 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbac\Options;
+namespace LmcRbacMvc\Options;
 
 use Laminas\Stdlib\AbstractOptions;
-use LmcRbac\Exception;
-use LmcRbac\Guard\GuardInterface;
+use LmcRbacMvc\Exception;
+use LmcRbacMvc\Guard\GuardInterface;
 
 /**
  * Options for ZfcRbac module
@@ -35,7 +35,7 @@ class ModuleOptions extends AbstractOptions
      *
      * @var string
      */
-    protected $identityProvider = 'LmcRbac\Identity\AuthenticationIdentityProvider';
+    protected $identityProvider = 'LmcRbacMvc\Identity\AuthenticationIdentityProvider';
 
     /**
      * Guest role (used when no identity is found)

@@ -16,14 +16,14 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbac\Factory;
+namespace LmcRbacMvc\Factory;
 
 use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
-use LmcRbac\Guard\ControllerGuard;
-use LmcRbac\Options\ModuleOptions;
-use LmcRbac\Service\RoleService;
+use LmcRbacMvc\Guard\ControllerGuard;
+use LmcRbacMvc\Options\ModuleOptions;
+use LmcRbacMvc\Service\RoleService;
 
 /**
  * Create a controller guard
@@ -67,10 +67,10 @@ class ControllerGuardFactory implements FactoryInterface
         }
 
         /* @var ModuleOptions $moduleOptions */
-        $moduleOptions = $container->get('LmcRbac\Options\ModuleOptions');
+        $moduleOptions = $container->get('LmcRbacMvc\Options\ModuleOptions');
 
         /* @var RoleService $roleService */
-        $roleService = $container->get('LmcRbac\Service\RoleService');
+        $roleService = $container->get('LmcRbacMvc\Service\RoleService');
 
         $controllerGuard = new ControllerGuard($roleService, $options);
         $controllerGuard->setProtectionPolicy($moduleOptions->getProtectionPolicy());

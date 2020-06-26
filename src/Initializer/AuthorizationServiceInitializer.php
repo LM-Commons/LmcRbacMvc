@@ -16,13 +16,13 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbac\Initializer;
+namespace LmcRbacMvc\Initializer;
 
 use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\AbstractPluginManager;
 use Laminas\ServiceManager\Initializer\InitializerInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
-use LmcRbac\Service\AuthorizationServiceAwareInterface;
+use LmcRbacMvc\Service\AuthorizationServiceAwareInterface;
 
 /**
  * Initializer for classes implementing AuthorizationServiceAwareInterface
@@ -39,7 +39,7 @@ class AuthorizationServiceInitializer implements InitializerInterface
     public function __invoke(ContainerInterface $container, $instance)
     {
         if ($instance instanceof AuthorizationServiceAwareInterface) {
-            $authorizationService = $container->get('LmcRbac\Service\AuthorizationService');
+            $authorizationService = $container->get('LmcRbacMvc\Service\AuthorizationService');
             $instance->setAuthorizationService($authorizationService);
         }
     }

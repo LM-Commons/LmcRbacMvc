@@ -19,11 +19,11 @@
 namespace LmcRbacTest\Factory;
 
 use Laminas\ServiceManager\ServiceManager;
-use LmcRbac\Factory\GuardPluginManagerFactory;
-use LmcRbac\Guard\GuardPluginManager;
+use LmcRbacMvc\Factory\GuardPluginManagerFactory;
+use LmcRbacMvc\Guard\GuardPluginManager;
 
 /**
- * @covers \LmcRbac\Factory\GuardPluginManagerFactory
+ * @covers \LmcRbacMvc\Factory\GuardPluginManagerFactory
  */
 class GuardPluginManagerFactoryTest extends \PHPUnit_Framework_TestCase
 {

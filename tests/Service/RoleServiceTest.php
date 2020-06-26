@@ -16,14 +16,14 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacTest\Service;
+namespace LmcRbacMvcTest\Service;
 
-use LmcRbac\Role\InMemoryRoleProvider;
-use LmcRbac\Service\RoleService;
+use LmcRbacMvc\Role\InMemoryRoleProvider;
+use LmcRbacMvc\Service\RoleService;
 use Rbac\Traversal\Strategy\RecursiveRoleIteratorStrategy;
 
 /**
- * @covers \LmcRbac\Service\RoleService
+ * @covers \LmcRbacMvc\Service\RoleService
  */
 class RoleServiceTest extends \PHPUnit_Framework_TestCase
 {
@@ -182,10 +182,10 @@ class RoleServiceTest extends \PHPUnit_Framework_TestCase
      */
     public function testMatchIdentityRoles(array $rolesConfig, array $identityRoles, array $rolesToCheck, $doesMatch)
     {
-        $identity = $this->getMock('LmcRbac\Identity\IdentityInterface');
+        $identity = $this->getMock('LmcRbacMvc\Identity\IdentityInterface');
         $identity->expects($this->once())->method('getRoles')->will($this->returnValue($identityRoles));
 
-        $identityProvider = $this->getMock('LmcRbac\Identity\IdentityProviderInterface');
+        $identityProvider = $this->getMock('LmcRbacMvc\Identity\IdentityProviderInterface');
         $identityProvider->expects($this->any())
                          ->method('getIdentity')
                          ->will($this->returnValue($identity));
@@ -197,7 +197,7 @@ class RoleServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testReturnGuestRoleIfNoIdentityIsFound()
     {
-        $identityProvider = $this->getMock('LmcRbac\Identity\IdentityProviderInterface');
+        $identityProvider = $this->getMock('LmcRbacMvc\Identity\IdentityProviderInterface');
         $identityProvider->expects($this->any())
                          ->method('getIdentity')
                          ->will($this->returnValue(null));
@@ -221,18 +221,18 @@ class RoleServiceTest extends \PHPUnit_Framework_TestCase
     public function testThrowExceptionIfIdentityIsWrongType()
     {
         $this->setExpectedException(
-            'LmcRbac\Exception\RuntimeException',
-            'LmcRbac expects your identity to implement LmcRbac\Identity\IdentityInterface, "stdClass" given'
+            'LmcRbacMvc\Exception\RuntimeException',
+            'LmcRbacMvc expects your identity to implement LmcRbacMvc\Identity\IdentityInterface, "stdClass" given'
         );
 
-        $identityProvider = $this->getMock('LmcRbac\Identity\IdentityProviderInterface');
+        $identityProvider = $this->getMock('LmcRbacMvc\Identity\IdentityProviderInterface');
         $identityProvider->expects($this->any())
                          ->method('getIdentity')
                          ->will($this->returnValue(new \stdClass()));
 
         $roleService = new RoleService(
             $identityProvider,
-            $this->getMock('LmcRbac\Role\RoleProviderInterface'),
+            $this->getMock('LmcRbacMvc\Role\RoleProviderInterface'),
             $this->getMock('Rbac\Traversal\Strategy\TraversalStrategyInterface')
         );
 

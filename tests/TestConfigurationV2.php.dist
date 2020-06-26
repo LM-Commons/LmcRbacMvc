@@ -18,7 +18,7 @@
 
 return [
     'modules' => [
-        'LmcRbac',
+        'LmcRbacMvc',
         'DoctrineModule',
         'DoctrineORMModule',
     ],

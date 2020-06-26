@@ -16,14 +16,14 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacTest\Guard;
+namespace LmcRbacMvcTest\Guard;
 
 use Laminas\ServiceManager\ServiceManager;
-use LmcRbac\Guard\GuardPluginManager;
-use LmcRbac\Options\ModuleOptions;
+use LmcRbacMvc\Guard\GuardPluginManager;
+use LmcRbacMvc\Options\ModuleOptions;
 
 /**
- * @covers \LmcRbac\Guard\GuardPluginManager
+ * @covers \LmcRbacMvc\Guard\GuardPluginManager
  */
 class GuardPluginManagerTest extends \PHPUnit_Framework_TestCase
 {
@@ -31,19 +31,19 @@ class GuardPluginManagerTest extends \PHPUnit_Framework_TestCase
     {
         return [
             [
-                'LmcRbac\Guard\RouteGuard',
+                'LmcRbacMvc\Guard\RouteGuard',
                 [
                     'admin/*' => 'foo'
                 ]
             ],
             [
-                'LmcRbac\Guard\RoutePermissionsGuard',
+                'LmcRbacMvc\Guard\RoutePermissionsGuard',
                 [
                     'post/delete' => 'post.delete'
                 ]
             ],
             [
-                'LmcRbac\Guard\ControllerGuard',
+                'LmcRbacMvc\Guard\ControllerGuard',
                 [
                     [
                         'controller' => 'Foo',
@@ -53,7 +53,7 @@ class GuardPluginManagerTest extends \PHPUnit_Framework_TestCase
                 ]
             ],
             [
-                'LmcRbac\Guard\ControllerPermissionsGuard',
+                'LmcRbacMvc\Guard\ControllerPermissionsGuard',
                 [
                     [
                         'controller'  => 'Foo',
@@ -71,14 +71,14 @@ class GuardPluginManagerTest extends \PHPUnit_Framework_TestCase
     public function testCanCreateDefaultGuards($type, $options)
     {
         $serviceManager = new ServiceManager();
-        $serviceManager->setService('LmcRbac\Options\ModuleOptions', new ModuleOptions());
+        $serviceManager->setService('LmcRbacMvc\Options\ModuleOptions', new ModuleOptions());
         $serviceManager->setService(
-            'LmcRbac\Service\RoleService',
-            $this->getMock('LmcRbac\Service\RoleService', [], [], '', false)
+            'LmcRbacMvc\Service\RoleService',
+            $this->getMock('LmcRbacMvc\Service\RoleService', [], [], '', false)
         );
         $serviceManager->setService(
-            'LmcRbac\Service\AuthorizationService',
-            $this->getMock('LmcRbac\Service\AuthorizationService', [], [], '', false)
+            'LmcRbacMvc\Service\AuthorizationService',
+            $this->getMock('LmcRbacMvc\Service\AuthorizationService', [], [], '', false)
         );
 
         $pluginManager = new GuardPluginManager($serviceManager);
@@ -90,7 +90,7 @@ class GuardPluginManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testThrowExceptionForInvalidPlugin()
     {
-        $this->setExpectedException('LmcRbac\Exception\RuntimeException');
+        $this->setExpectedException('LmcRbacMvc\Exception\RuntimeException');
 
         $pluginManager = new GuardPluginManager(new ServiceManager());
         $pluginManager->get('stdClass');

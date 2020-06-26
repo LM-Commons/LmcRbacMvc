@@ -16,10 +16,10 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbac\Role;
+namespace LmcRbacMvc\Role;
 
 use Doctrine\Common\Persistence\ObjectRepository;
-use LmcRbac\Exception\RoleNotFoundException;
+use LmcRbacMvc\Exception\RoleNotFoundException;
 
 /**
  * Role provider that uses Doctrine object repository to fetch roles

@@ -16,17 +16,17 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbac\Factory;
+namespace LmcRbacMvc\Factory;
 
 use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
-use LmcRbac\Exception\RuntimeException;
-use LmcRbac\Identity\IdentityProviderInterface;
-use LmcRbac\Options\ModuleOptions;
-use LmcRbac\Role\RoleProviderInterface;
-use LmcRbac\Role\RoleProviderPluginManager;
-use LmcRbac\Service\RoleService;
+use LmcRbacMvc\Exception\RuntimeException;
+use LmcRbacMvc\Identity\IdentityProviderInterface;
+use LmcRbacMvc\Options\ModuleOptions;
+use LmcRbacMvc\Role\RoleProviderInterface;
+use LmcRbacMvc\Role\RoleProviderPluginManager;
+use LmcRbacMvc\Service\RoleService;
 use Rbac\Rbac;
 use Rbac\Traversal\Strategy\TraversalStrategyInterface;
 
@@ -55,7 +55,7 @@ class RoleServiceFactory implements FactoryInterface
         $roleProviderConfig = $moduleOptions->getRoleProvider();
 
         if (empty($roleProviderConfig)) {
-            throw new RuntimeException('No role provider has been set for LmcRbac');
+            throw new RuntimeException('No role provider has been set for LmcRbacMvc');
         }
 
         /* @var RoleProviderPluginManager $pluginManager */

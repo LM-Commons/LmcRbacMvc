@@ -15,14 +15,14 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
-namespace LmcRbacTest\Initializer;
+namespace LmcRbacMvcTest\Initializer;
 
 use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
-use LmcRbac\Initializer\AuthorizationServiceInitializer;
+use LmcRbacMvc\Initializer\AuthorizationServiceInitializer;
 
 /**
- * @covers  \LmcRbac\Initializer\AuthorizationServiceInitializer
+ * @covers  \LmcRbacMvc\Initializer\AuthorizationServiceInitializer
  * @author  Aeneas Rekkas
  * @license MIT License
  */
@@ -30,12 +30,12 @@ class AuthorizationServiceInitializerTest extends \PHPUnit_Framework_TestCase
 {
     public function testInitializer()
     {
-        $authServiceClassName = 'LmcRbac\Service\AuthorizationService';
+        $authServiceClassName = 'LmcRbacMvc\Service\AuthorizationService';
         $initializer          = new AuthorizationServiceInitializer();
         $instance             = new AuthorizationAwareFake();
 
         $serviceLocator = $this->prophesize(ServiceLocatorInterface::class)->willImplement(ContainerInterface::class);
-        $authorizationService = $this->getMock('LmcRbac\Service\AuthorizationService', [], [], '', false);
+        $authorizationService = $this->getMock('LmcRbacMvc\Service\AuthorizationService', [], [], '', false);
 
         $serviceLocator
             ->get($authServiceClassName)

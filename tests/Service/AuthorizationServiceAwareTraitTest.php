@@ -15,10 +15,10 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
-namespace LmcRbacTest\Service;
+namespace LmcRbacMvcTest\Service;
 
 /**
- * @covers  \LmcRbac\Service\AuthorizationServiceAwareTrait
+ * @covers  \LmcRbacMvc\Service\AuthorizationServiceAwareTrait
  * @author  Aeneas Rekkas
  * @license MIT License
  */
@@ -26,8 +26,8 @@ class AuthorizationServiceAwareTraitTest extends \PHPUnit_Framework_TestCase
 {
     public function testTrait()
     {
-        $trait                = $this->getObjectForTrait('LmcRbac\Service\AuthorizationServiceAwareTrait');
-        $authorizationService = $this->getMock('LmcRbac\Service\AuthorizationService', [], [], '', false);
+        $trait                = $this->getObjectForTrait('LmcRbacMvc\Service\AuthorizationServiceAwareTrait');
+        $authorizationService = $this->getMock('LmcRbacMvc\Service\AuthorizationService', [], [], '', false);
 
         $trait->setAuthorizationService($authorizationService);
 

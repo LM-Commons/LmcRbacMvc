@@ -16,7 +16,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbac\Guard;
+namespace LmcRbacMvc\Guard;
 
 use Laminas\EventManager\ListenerAggregateInterface;
 use Laminas\Mvc\MvcEvent;
@@ -24,7 +24,7 @@ use Laminas\Mvc\MvcEvent;
 /**
  * Interface that each guard must implement
  *
- * A guard is a lightweight security layer that occurs typically after the route has been matched. LmcRbac
+ * A guard is a lightweight security layer that occurs typically after the route has been matched. LmcRbacMvc
  * provides built-in implementations that can guard your routes and/or controllers.
  *
  * A guard can be used to block, for instance, a whole route hierarchy (all admin routes). However, only

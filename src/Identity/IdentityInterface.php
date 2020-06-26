@@ -16,7 +16,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbac\Identity;
+namespace LmcRbacMvc\Identity;
 
 use Rbac\Role\RoleInterface;
 

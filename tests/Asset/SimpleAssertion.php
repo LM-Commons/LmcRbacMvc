@@ -16,10 +16,10 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacTest\Asset;
+namespace LmcRbacMvcTest\Asset;
 
-use LmcRbac\Assertion\AssertionInterface;
-use LmcRbac\Service\AuthorizationService;
+use LmcRbacMvc\Assertion\AssertionInterface;
+use LmcRbacMvc\Service\AuthorizationService;
 
 class SimpleAssertion implements AssertionInterface
 {

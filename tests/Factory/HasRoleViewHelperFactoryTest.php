@@ -20,10 +20,10 @@ namespace LmcRbacTest\Factory;
 
 use Laminas\ServiceManager\ServiceManager;
 use Laminas\View\HelperPluginManager;
-use LmcRbac\Factory\HasRoleViewHelperFactory;
+use LmcRbacMvc\Factory\HasRoleViewHelperFactory;
 
 /**
- * @covers \LmcRbac\Factory\HasRoleViewHelperFactory
+ * @covers \LmcRbacMvc\Factory\HasRoleViewHelperFactory
  */
 class HasRoleViewHelperFactoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -42,14 +42,14 @@ class HasRoleViewHelperFactoryTest extends \PHPUnit_Framework_TestCase
         $pluginManager  = new HelperPluginManager($serviceManager);
 
         $serviceManager->setService(
-            'LmcRbac\Service\RoleService',
-            $this->getMock('LmcRbac\Service\RoleService', [], [], '', false)
+            'LmcRbacMvc\Service\RoleService',
+            $this->getMock('LmcRbacMvc\Service\RoleService', [], [], '', false)
         );
 
         $factory   = new HasRoleViewHelperFactory();
         $viewHelper = $factory->createService($pluginManager);
 
-        $this->assertInstanceOf('LmcRbac\View\Helper\HasRole', $viewHelper);
+        $this->assertInstanceOf('LmcRbacMvc\View\Helper\HasRole', $viewHelper);
     }
     */
 
@@ -62,13 +62,13 @@ class HasRoleViewHelperFactoryTest extends \PHPUnit_Framework_TestCase
         }
 
         $serviceManager->setService(
-            'LmcRbac\Service\RoleService',
-            $this->getMock('LmcRbac\Service\RoleService', [], [], '', false)
+            'LmcRbacMvc\Service\RoleService',
+            $this->getMock('LmcRbacMvc\Service\RoleService', [], [], '', false)
         );
 
         $factory   = new HasRoleViewHelperFactory();
-        $viewHelper = $factory($serviceManager, 'LmcRbac\View\Helper\HasRole');
+        $viewHelper = $factory($serviceManager, 'LmcRbacMvc\View\Helper\HasRole');
 
-        $this->assertInstanceOf('LmcRbac\View\Helper\HasRole', $viewHelper);
+        $this->assertInstanceOf('LmcRbacMvc\View\Helper\HasRole', $viewHelper);
     }
 }

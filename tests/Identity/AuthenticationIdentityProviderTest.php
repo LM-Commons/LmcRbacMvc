@@ -16,12 +16,12 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacTest\Identity;
+namespace LmcRbacMvcTest\Identity;
 
-use LmcRbac\Identity\AuthenticationIdentityProvider;
+use LmcRbacMvc\Identity\AuthenticationIdentityProvider;
 
 /**
- * @covers \LmcRbac\Identity\AuthenticationIdentityProvider
+ * @covers \LmcRbacMvc\Identity\AuthenticationIdentityProvider
  */
 class AuthenticationIdentityProviderTest extends \PHPUnit_Framework_TestCase
 {
@@ -43,7 +43,7 @@ class AuthenticationIdentityProviderTest extends \PHPUnit_Framework_TestCase
 
     public function testCanReturnIdentity()
     {
-        $identity = $this->getMock('LmcRbac\Identity\IdentityInterface');
+        $identity = $this->getMock('LmcRbacMvc\Identity\IdentityInterface');
 
         $this->authenticationService->expects($this->once())
                                     ->method('getIdentity')

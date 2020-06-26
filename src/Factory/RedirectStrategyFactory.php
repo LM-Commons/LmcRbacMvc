@@ -16,14 +16,14 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbac\Factory;
+namespace LmcRbacMvc\Factory;
 
 use Interop\Container\ContainerInterface;
 use Laminas\Authentication\AuthenticationService;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
-use LmcRbac\Options\ModuleOptions;
-use LmcRbac\View\Strategy\RedirectStrategy;
+use LmcRbacMvc\Options\ModuleOptions;
+use LmcRbacMvc\View\Strategy\RedirectStrategy;
 
 /**
  * Factory to create a redirect strategy

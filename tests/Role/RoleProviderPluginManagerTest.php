@@ -16,19 +16,19 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacTest\Role;
+namespace LmcRbacMvcTest\Role;
 
 use Laminas\ServiceManager\ServiceManager;
-use LmcRbac\Role\RoleProviderPluginManager;
+use LmcRbacMvc\Role\RoleProviderPluginManager;
 
 /**
- * @covers \LmcRbac\Role\RoleProviderPluginManager
+ * @covers \LmcRbacMvc\Role\RoleProviderPluginManager
  */
 class RoleProviderPluginManagerTest extends \PHPUnit_Framework_TestCase
 {
     public function testValidationOfPluginSucceedsIfRoleProviderInterfaceIsImplemented()
     {
-        $pluginMock    = $this->getMock('LmcRbac\Role\RoleProviderInterface');
+        $pluginMock    = $this->getMock('LmcRbacMvc\Role\RoleProviderInterface');
         $pluginManager = new RoleProviderPluginManager(new ServiceManager());
 
         $this->assertNull($pluginManager->validatePlugin($pluginMock));
@@ -36,7 +36,7 @@ class RoleProviderPluginManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testValidationOfPluginFailsIfRoleProviderInterfaceIsNotImplemented()
     {
-        $this->setExpectedException('LmcRbac\Exception\RuntimeException');
+        $this->setExpectedException('LmcRbacMvc\Exception\RuntimeException');
 
         $pluginManager  = new RoleProviderPluginManager(new ServiceManager());
         $pluginManager->get('stdClass', []);

@@ -16,7 +16,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbac\Role;
+namespace LmcRbacMvc\Role;
 
 use Rbac\Role\RoleInterface;
 use Rbac\Role\HierarchicalRole;

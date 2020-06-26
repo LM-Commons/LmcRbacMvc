@@ -16,22 +16,22 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacTest\Collector;
+namespace LmcRbacMvcTest\Collector;
 
 use Rbac\Role\RoleInterface;
 use Laminas\Mvc\MvcEvent;
 use Laminas\Permissions\Rbac\Role;
-use LmcRbac\Collector\RbacCollector;
-use LmcRbac\Guard\GuardInterface;
-use LmcRbac\Options\ModuleOptions;
-use LmcRbac\Role\InMemoryRoleProvider;
-use LmcRbac\Service\RoleService;
+use LmcRbacMvc\Collector\RbacCollector;
+use LmcRbacMvc\Guard\GuardInterface;
+use LmcRbacMvc\Options\ModuleOptions;
+use LmcRbacMvc\Role\InMemoryRoleProvider;
+use LmcRbacMvc\Service\RoleService;
 use Rbac\Traversal\Strategy\RecursiveRoleIteratorStrategy;
-use LmcRbacTest\Asset\MockRoleWithPermissionMethod;
-use LmcRbacTest\Asset\MockRoleWithPermissionProperty;
+use LmcRbacMvcTest\Asset\MockRoleWithPermissionMethod;
+use LmcRbacMvcTest\Asset\MockRoleWithPermissionProperty;
 
 /**
- * @covers \LmcRbac\Collector\RbacCollector
+ * @covers \LmcRbacMvc\Collector\RbacCollector
  */
 class RbacCollectorTest extends \PHPUnit_Framework_TestCase
 {
@@ -81,7 +81,7 @@ class RbacCollectorTest extends \PHPUnit_Framework_TestCase
 
     public function testUnserializeThrowsInvalidArgumentException()
     {
-        $this->setExpectedException('LmcRbac\Exception\InvalidArgumentException');
+        $this->setExpectedException('LmcRbacMvc\Exception\InvalidArgumentException');
         $collector    = new RbacCollector();
         $unserialized = 'not_an_array';
         $serialized   = serialize($unserialized);
@@ -105,10 +105,10 @@ class RbacCollectorTest extends \PHPUnit_Framework_TestCase
                 'guest_role'        => 'guest',
                 'protection_policy' => GuardInterface::POLICY_ALLOW,
                 'guards'            => [
-                    'LmcRbac\Guard\RouteGuard' => [
+                    'LmcRbacMvc\Guard\RouteGuard' => [
                         'admin*' => ['*']
                     ],
-                    'LmcRbac\Guard\ControllerGuard' => [
+                    'LmcRbacMvc\Guard\ControllerGuard' => [
                         [
                             'controller' => 'Foo',
                             'roles'      => ['*']
@@ -136,12 +136,12 @@ class RbacCollectorTest extends \PHPUnit_Framework_TestCase
         $mvcEvent = new MvcEvent();
         $mvcEvent->setApplication($application);
 
-        $identity = $this->getMock('LmcRbac\Identity\IdentityInterface');
+        $identity = $this->getMock('LmcRbacMvc\Identity\IdentityInterface');
         $identity->expects($this->once())
                  ->method('getRoles')
                  ->will($this->returnValue($dataToCollect['identity_role']));
 
-        $identityProvider = $this->getMock('LmcRbac\Identity\IdentityProviderInterface');
+        $identityProvider = $this->getMock('LmcRbacMvc\Identity\IdentityProviderInterface');
         $identityProvider->expects($this->once())
                          ->method('getIdentity')
                          ->will($this->returnValue($identity));
@@ -150,12 +150,12 @@ class RbacCollectorTest extends \PHPUnit_Framework_TestCase
 
         $serviceManager->expects($this->at(0))
                        ->method('get')
-                       ->with('LmcRbac\Service\RoleService')
+                       ->with('LmcRbacMvc\Service\RoleService')
                        ->will($this->returnValue($roleService));
 
         $serviceManager->expects($this->at(1))
                        ->method('get')
-                       ->with('LmcRbac\Options\ModuleOptions')
+                       ->with('LmcRbacMvc\Options\ModuleOptions')
                        ->will($this->returnValue(new ModuleOptions($dataToCollect['module_options'])));
 
         $collector = new RbacCollector();
@@ -170,10 +170,10 @@ class RbacCollectorTest extends \PHPUnit_Framework_TestCase
                 'protection_policy' => 'allow'
             ],
             'guards' => [
-                'LmcRbac\Guard\RouteGuard' => [
+                'LmcRbacMvc\Guard\RouteGuard' => [
                     'admin*' => ['*']
                 ],
-                'LmcRbac\Guard\ControllerGuard' => [
+                'LmcRbacMvc\Guard\ControllerGuard' => [
                     [
                         'controller' => 'Foo',
                         'roles'      => ['*']
@@ -249,17 +249,17 @@ class RbacCollectorTest extends \PHPUnit_Framework_TestCase
         $mvcEvent = new MvcEvent();
         $mvcEvent->setApplication($application);
 
-        $identity = $this->getMock('LmcRbac\Identity\IdentityInterface');
+        $identity = $this->getMock('LmcRbacMvc\Identity\IdentityInterface');
         $identity->expects($this->once())
             ->method('getRoles')
             ->will($this->returnValue([$role]));
 
-        $identityProvider = $this->getMock('LmcRbac\Identity\IdentityProviderInterface');
+        $identityProvider = $this->getMock('LmcRbacMvc\Identity\IdentityProviderInterface');
         $identityProvider->expects($this->once())
             ->method('getIdentity')
             ->will($this->returnValue($identity));
 
-        $roleProvider = $this->getMock('LmcRbac\Role\RoleProviderInterface');
+        $roleProvider = $this->getMock('LmcRbacMvc\Role\RoleProviderInterface');
 
         $roleService = new RoleService(
             $identityProvider,
@@ -269,12 +269,12 @@ class RbacCollectorTest extends \PHPUnit_Framework_TestCase
 
         $serviceManager->expects($this->at(0))
             ->method('get')
-            ->with('LmcRbac\Service\RoleService')
+            ->with('LmcRbacMvc\Service\RoleService')
             ->will($this->returnValue($roleService));
 
         $serviceManager->expects($this->at(1))
             ->method('get')
-            ->with('LmcRbac\Options\ModuleOptions')
+            ->with('LmcRbacMvc\Options\ModuleOptions')
             ->will($this->returnValue(new ModuleOptions()));
 
         $collector = new RbacCollector();
