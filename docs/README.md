@@ -1,16 +1,14 @@
-**Note: this documentation needs to be updated to reflect the port to Laminas**
+_Up-to-date with version 3.* of LmcRbacMvc
 
-_Up-to-date with version 2.3.* of ZfcRbac_
-
-Welcome to the official ZfcRbac documentation. This documentation will help you quickly understand how to use
-and extend ZfcRbac.
+Welcome to the official LmcRbacMvc documentation. This documentation will help you quickly understand how to use
+and extend LmcRbacMvc.
 
 If you are looking for some information that is not listed in the documentation, please open an issue!
 
 1. [Introduction](01.%20Introduction.md)
    1. [Why should I use an authorization module?](01.%20Introduction.md#why-should-i-use-an-authorization-module)
    2. [What is the Rbac model?](01.%20Introduction.md#what-is-the-rbac-model)
-   3. [How can I integrate ZfcRbac into my application?](01.%20Introduction.md#how-can-i-integrate-zfcrbac-into-my-application)
+   3. [How can I integrate LmcRbacMvc into my application?](01.%20Introduction.md#how-can-i-integrate-zfcrbac-into-my-application)
 
 2. [Quick Start](02.%20Quick%20Start.md)
    1. [Specifying an identity provider](02.%20Quick%20Start.md#specifying-an-identity-provider)
@@ -46,7 +44,7 @@ If you are looking for some information that is not listed in the documentation,
 7. [Cookbook](07.%20Cookbook.md)
    1. [A real world example](07.%20Cookbook.md#a-real-world-application)
    2. [Best practices](07.%20Cookbook.md#best-practices)
-   3. [Using ZfcRbac with Doctrine ORM](07.%20Cookbook.md#using-zfcrbac-with-doctrine-orm)
+   3. [Using LmcRbacMvc with Doctrine ORM](07.%20Cookbook.md#using-zfcrbac-with-doctrine-orm)
    4. [How to deal with roles with lot of permissions?](07.%20Cookbook.md#how-to-deal-with-roles-with-lot-of-permissions)
-   5. [Using ZfcRbac and ZF2 Assetic](07.%20Cookbook.md#using-zfcrbac-and-zf2-assetic)
-   6. [Using ZfcRbac and ZfcUser](07.%20Cookbook.md#using-zfcrbac-and-zfcuser)
+   5. [Using LmcRbacMvc and ZF2 Assetic](07.%20Cookbook.md#using-zfcrbac-and-zf2-assetic)
+   6. [Using LmcRbacMvc and ZfcUser](07.%20Cookbook.md#using-zfcrbac-and-zfcuser)
