@@ -31,7 +31,7 @@ class AuthenticationIdentityProviderFactoryTest extends \PHPUnit_Framework_TestC
         $serviceManager = new ServiceManager();
         $serviceManager->setService(
             'Laminas\Authentication\AuthenticationService',
-            $this->getMock('Laminas\Authentication\AuthenticationService')
+            $this->createMock('Laminas\Authentication\AuthenticationService')
         );
 
         $factory                = new AuthenticationIdentityProviderFactory();

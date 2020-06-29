@@ -58,11 +58,11 @@ class GuardsFactoryTest extends \PHPUnit_Framework_TestCase
         $serviceManager->setService('LmcRbacMvc\Guard\GuardPluginManager', $pluginManager);
         $serviceManager->setService(
             'LmcRbacMvc\Service\RoleService',
-            $this->getMock('LmcRbacMvc\Service\RoleService', [], [], '', false)
+            $this->getMockBuilder('LmcRbacMvc\Service\RoleService')->disableOriginalConstructor()->getMock()
         );
         $serviceManager->setService(
             'LmcRbacMvc\Service\AuthorizationService',
-            $this->getMock('LmcRbacMvc\Service\AuthorizationServiceInterface', [], [], '', false)
+            $this->getMockBuilder('LmcRbacMvc\Service\AuthorizationServiceInterface')->disableOriginalConstructor()->getMock()
         );
 
         $factory = new GuardsFactory();

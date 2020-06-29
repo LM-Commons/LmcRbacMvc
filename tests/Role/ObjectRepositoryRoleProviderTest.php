@@ -113,7 +113,7 @@ class ObjectRepositoryRoleProviderTest extends \PHPUnit_Framework_TestCase
 
     public function testRoleCacheOnConsecutiveCalls()
     {
-        $objectRepository = $this->getMock('Doctrine\ORM\EntityRepository', ['findBy'], [], '', false);
+        $objectRepository = $this->createMock('Doctrine\ORM\EntityRepository');
         $memberRole       = new FlatRole('member');
         $provider         = new ObjectRepositoryRoleProvider($objectRepository, 'name');
         $result           = [$memberRole];
@@ -126,7 +126,7 @@ class ObjectRepositoryRoleProviderTest extends \PHPUnit_Framework_TestCase
 
     public function testClearRoleCache()
     {
-        $objectRepository = $this->getMock('Doctrine\ORM\EntityRepository', ['findBy'], [], '', false);
+        $objectRepository = $this->createMock('Doctrine\ORM\EntityRepository');
         $memberRole       = new FlatRole('member');
         $provider         = new ObjectRepositoryRoleProvider($objectRepository, 'name');
         $result           = [$memberRole];

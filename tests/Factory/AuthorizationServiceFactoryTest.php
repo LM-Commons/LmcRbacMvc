@@ -31,15 +31,16 @@ class AuthorizationServiceFactoryTest extends \PHPUnit_Framework_TestCase
     {
         $serviceManager = new ServiceManager();
 
-        $serviceManager->setService('Rbac\Rbac', $this->getMock('Rbac\Rbac', [], [], '', false));
+        $serviceManager->setService('Rbac\Rbac', $this->getMockBuilder('Rbac\Rbac')->disableOriginalConstructor()->getMock());
 
         $serviceManager->setService(
             'LmcRbacMvc\Service\RoleService',
-            $this->getMock('LmcRbacMvc\Service\RoleService', [], [], '', false)
+            $this->getMockBuilder('LmcRbacMvc\Service\RoleService')->disableOriginalConstructor()->getMock()
         );
         $serviceManager->setService(
             'LmcRbacMvc\Assertion\AssertionPluginManager',
-            $this->getMock('LmcRbacMvc\Assertion\AssertionPluginManager', [], [], '', false)
+            $this->getMockBuilder('LmcRbacMvc\Assertion\AssertionPluginManager')->disableOriginalConstructor()->getMock()
+
         );
         $serviceManager->setService(
             'LmcRbacMvc\Options\ModuleOptions',

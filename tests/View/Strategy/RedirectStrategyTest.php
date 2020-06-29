@@ -38,7 +38,7 @@ class RedirectStrategyTest extends \PHPUnit_Framework_TestCase
     {
         $strategyListener = new RedirectStrategy(new RedirectStrategyOptions(), new AuthenticationService());
 
-        $eventManager = $this->getMock('Laminas\EventManager\EventManagerInterface');
+        $eventManager = $this->createMock('Laminas\EventManager\EventManagerInterface');
         $eventManager->expects($this->once())
                      ->method('attach')
                      ->with(MvcEvent::EVENT_DISPATCH_ERROR);
@@ -77,7 +77,7 @@ class RedirectStrategyTest extends \PHPUnit_Framework_TestCase
             'append_previous_uri'            => false
         ]);
 
-        $authenticationService = $this->getMock('Laminas\Authentication\AuthenticationService');
+        $authenticationService = $this->createMock('Laminas\Authentication\AuthenticationService');
         $authenticationService->expects($this->once())->method('hasIdentity')->will($this->returnValue(false));
 
         $redirectStrategy = new RedirectStrategy($options, $authenticationService);
@@ -111,7 +111,7 @@ class RedirectStrategyTest extends \PHPUnit_Framework_TestCase
             'append_previous_uri'            => false
         ]);
 
-        $authenticationService = $this->getMock('Laminas\Authentication\AuthenticationService');
+        $authenticationService = $this->createMock('Laminas\Authentication\AuthenticationService');
         $authenticationService->expects($this->once())->method('hasIdentity')->will($this->returnValue(true));
 
         $redirectStrategy = new RedirectStrategy($options, $authenticationService);
@@ -144,7 +144,7 @@ class RedirectStrategyTest extends \PHPUnit_Framework_TestCase
             'redirect_when_connected' => false
         ]);
 
-        $authenticationService = $this->getMock('Laminas\Authentication\AuthenticationService');
+        $authenticationService = $this->createMock('Laminas\Authentication\AuthenticationService');
         $authenticationService->expects($this->once())->method('hasIdentity')->will($this->returnValue(true));
 
         $redirectStrategy = new RedirectStrategy($options, $authenticationService);
@@ -181,7 +181,7 @@ class RedirectStrategyTest extends \PHPUnit_Framework_TestCase
             'previous_uri_query_key'         => 'redirect-uri'
         ]);
 
-        $authenticationService = $this->getMock('Laminas\Authentication\AuthenticationService');
+        $authenticationService = $this->createMock('Laminas\Authentication\AuthenticationService');
         $authenticationService->expects($this->once())->method('hasIdentity')->will($this->returnValue(false));
 
         $redirectStrategy = new RedirectStrategy($options, $authenticationService);

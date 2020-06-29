@@ -18,6 +18,7 @@
 
 namespace LmcRbacMvcTest\Collector;
 
+use LmcRbacMvc\Identity\IdentityInterface;
 use Rbac\Role\RoleInterface;
 use Laminas\Mvc\MvcEvent;
 use Laminas\Permissions\Rbac\Role;
@@ -128,20 +129,26 @@ class RbacCollectorTest extends \PHPUnit_Framework_TestCase
             'identity_role' => 'member'
         ];
 
-        $serviceManager = $this->getMock('Laminas\ServiceManager\ServiceLocatorInterface');
+        $serviceManager = $this->getMockBuilder('Laminas\ServiceManager\ServiceLocatorInterface')->getMock();
+//        $serviceManager = $this->getMock('Laminas\ServiceManager\ServiceLocatorInterface');
+        $application = $this->getMockBuilder('Laminas\Mvc\Application')
+            ->disableOriginalConstructor()
+            ->getMock();
 
-        $application = $this->getMock('Laminas\Mvc\Application', [], [], '', false);
+//        $application = $this->getMock('Laminas\Mvc\Application', [], [], '', false);
         $application->expects($this->once())->method('getServiceManager')->will($this->returnValue($serviceManager));
 
         $mvcEvent = new MvcEvent();
         $mvcEvent->setApplication($application);
 
-        $identity = $this->getMock('LmcRbacMvc\Identity\IdentityInterface');
+        $identity = $this->createMock(IdentityInterface::class);
+//        $identity = $this->getMock('LmcRbacMvc\Identity\IdentityInterface');
         $identity->expects($this->once())
                  ->method('getRoles')
                  ->will($this->returnValue($dataToCollect['identity_role']));
 
-        $identityProvider = $this->getMock('LmcRbacMvc\Identity\IdentityProviderInterface');
+//        $identityProvider = $this->getMock('LmcRbacMvc\Identity\IdentityProviderInterface');
+        $identityProvider = $this->createMock(\LmcRbacMvc\Identity\IdentityProviderInterface::class);
         $identityProvider->expects($this->once())
                          ->method('getIdentity')
                          ->will($this->returnValue($identity));
@@ -241,25 +248,32 @@ class RbacCollectorTest extends \PHPUnit_Framework_TestCase
      */
     private function collectPermissionsPropertyTestBase(RoleInterface $role)
     {
-        $serviceManager = $this->getMock('Laminas\ServiceManager\ServiceLocatorInterface');
+//        $serviceManager = $this->getMock('Laminas\ServiceManager\ServiceLocatorInterface');
+        $serviceManager = $this->createMock(\Laminas\ServiceManager\ServiceLocatorInterface::class);
 
-        $application = $this->getMock('Laminas\Mvc\Application', [], [], '', false);
+//        $application = $this->getMock('Laminas\Mvc\Application', [], [], '', false);
+        $application = $this->getMockBuilder(\Laminas\Mvc\Application::class)
+            ->disableOriginalConstructor()
+            ->getMock();
         $application->expects($this->once())->method('getServiceManager')->will($this->returnValue($serviceManager));
 
         $mvcEvent = new MvcEvent();
         $mvcEvent->setApplication($application);
 
-        $identity = $this->getMock('LmcRbacMvc\Identity\IdentityInterface');
+//        $identity = $this->getMock('LmcRbacMvc\Identity\IdentityInterface');
+        $identity = $this->createMock(\LmcRbacMvc\Identity\IdentityInterface::class);
         $identity->expects($this->once())
             ->method('getRoles')
             ->will($this->returnValue([$role]));
 
-        $identityProvider = $this->getMock('LmcRbacMvc\Identity\IdentityProviderInterface');
+//        $identityProvider = $this->getMock('LmcRbacMvc\Identity\IdentityProviderInterface');
+        $identityProvider = $this->createMock(\LmcRbacMvc\Identity\IdentityProviderInterface::class);
         $identityProvider->expects($this->once())
             ->method('getIdentity')
             ->will($this->returnValue($identity));
 
-        $roleProvider = $this->getMock('LmcRbacMvc\Role\RoleProviderInterface');
+//        $roleProvider = $this->getMock('LmcRbacMvc\Role\RoleProviderInterface');
+        $roleProvider = $this->createMock(\LmcRbacMvc\Role\RoleProviderInterface::class);
 
         $roleService = new RoleService(
             $identityProvider,

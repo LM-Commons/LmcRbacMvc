@@ -29,14 +29,14 @@ class RedirectStrategyFactoryTest extends \PHPUnit_Framework_TestCase
 {
     public function testFactory()
     {
-        $redirectStrategyOptions = $this->getMock('LmcRbacMvc\Options\RedirectStrategyOptions');
+        $redirectStrategyOptions = $this->createMock('LmcRbacMvc\Options\RedirectStrategyOptions');
 
-        $moduleOptionsMock = $this->getMock('LmcRbacMvc\Options\ModuleOptions');
+        $moduleOptionsMock = $this->createMock('LmcRbacMvc\Options\ModuleOptions');
         $moduleOptionsMock->expects($this->once())
                           ->method('getRedirectStrategy')
                           ->will($this->returnValue($redirectStrategyOptions));
 
-        $authenticationServiceMock = $this->getMock('Laminas\Authentication\AuthenticationService');
+        $authenticationServiceMock = $this->createMock('Laminas\Authentication\AuthenticationService');
 
         $serviceLocatorMock = $this->prophesize(ServiceLocatorInterface::class);
         $serviceLocatorMock->willImplement(ContainerInterface::class);

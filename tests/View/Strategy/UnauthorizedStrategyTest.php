@@ -34,7 +34,7 @@ class UnauthorizedStrategyTest extends \PHPUnit_Framework_TestCase
     {
         $strategyListener = new UnauthorizedStrategy(new UnauthorizedStrategyOptions());
 
-        $eventManager = $this->getMock('Laminas\EventManager\EventManagerInterface');
+        $eventManager = $this->createMock('Laminas\EventManager\EventManagerInterface');
         $eventManager->expects($this->once())
                      ->method('attach')
                      ->with(MvcEvent::EVENT_DISPATCH_ERROR);

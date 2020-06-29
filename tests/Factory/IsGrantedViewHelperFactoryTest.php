@@ -62,7 +62,7 @@ class IsGrantedViewHelperFactoryTest extends \PHPUnit_Framework_TestCase
         }
         $serviceManager->setService(
             'LmcRbacMvc\Service\AuthorizationService',
-            $this->getMock('LmcRbacMvc\Service\AuthorizationServiceInterface')
+            $this->createMock('LmcRbacMvc\Service\AuthorizationServiceInterface')
         );
 
         $factory   = new IsGrantedViewHelperFactory();

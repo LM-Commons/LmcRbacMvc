@@ -92,7 +92,7 @@ class ControllerPermissionsGuardFactoryTest extends \PHPUnit_Framework_TestCase
         $serviceManager->setService('LmcRbacMvc\Options\ModuleOptions', $options);
         $serviceManager->setService(
             'LmcRbacMvc\Service\AuthorizationService',
-            $this->getMock('LmcRbacMvc\Service\AuthorizationService', [], [], '', false)
+            $this->getMockBuilder('LmcRbacMvc\Service\AuthorizationService')->disableOriginalConstructor()->getMock()
         );
 
         $factory    = new ControllerPermissionsGuardFactory();

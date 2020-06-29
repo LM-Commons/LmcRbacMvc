@@ -40,8 +40,8 @@ class RoleServiceFactoryTest extends \PHPUnit_Framework_TestCase
             ]
         ]);
 
-        $traversalStrategy = $this->getMock('Rbac\Traversal\Strategy\TraversalStrategyInterface');
-        $roleProvider = $this->getMock('\LmcRbacMvc\Role\RoleProviderInterface');
+        $traversalStrategy = $this->createMock('Rbac\Traversal\Strategy\TraversalStrategyInterface');
+        $roleProvider = $this->createMock('\LmcRbacMvc\Role\RoleProviderInterface');
 
         $rbac = $this
             ->getMockBuilder('Rbac\Rbac')
@@ -68,7 +68,7 @@ class RoleServiceFactoryTest extends \PHPUnit_Framework_TestCase
         $serviceManager->setService('LmcRbacMvc\Options\ModuleOptions', $options);
         $serviceManager->setService('Rbac\Rbac', $rbac);
         $serviceManager->setService('LmcRbacMvc\Role\RoleProviderPluginManager', $pluginManager);
-        $serviceManager->setService('LmcRbacMvc\Identity\AuthenticationProvider', $this->getMock('LmcRbacMvc\Identity\IdentityProviderInterface'));
+        $serviceManager->setService('LmcRbacMvc\Identity\AuthenticationProvider', $this->createMock('LmcRbacMvc\Identity\IdentityProviderInterface'));
 
         $factory = new RoleServiceFactory();
         $roleService = $factory->createService($serviceManager);
@@ -95,8 +95,8 @@ class RoleServiceFactoryTest extends \PHPUnit_Framework_TestCase
         next($roleProvider);
         $options->setRoleProvider($roleProvider);
 
-        $traversalStrategy = $this->getMock('Rbac\Traversal\Strategy\TraversalStrategyInterface');
-        $roleProvider = $this->getMock('\LmcRbacMvc\Role\RoleProviderInterface');
+        $traversalStrategy = $this->createMock('Rbac\Traversal\Strategy\TraversalStrategyInterface');
+        $roleProvider = $this->createMock('\LmcRbacMvc\Role\RoleProviderInterface');
 
         $rbac = $this
             ->getMockBuilder('Rbac\Rbac')
@@ -123,7 +123,7 @@ class RoleServiceFactoryTest extends \PHPUnit_Framework_TestCase
         $serviceManager->setService('LmcRbacMvc\Options\ModuleOptions', $options);
         $serviceManager->setService('Rbac\Rbac', $rbac);
         $serviceManager->setService('LmcRbacMvc\Role\RoleProviderPluginManager', $pluginManager);
-        $serviceManager->setService('LmcRbacMvc\Identity\AuthenticationProvider', $this->getMock('LmcRbacMvc\Identity\IdentityProviderInterface'));
+        $serviceManager->setService('LmcRbacMvc\Identity\AuthenticationProvider', $this->createMock('LmcRbacMvc\Identity\IdentityProviderInterface'));
 
         $factory = new RoleServiceFactory();
         $factory->createService($serviceManager);
@@ -143,7 +143,7 @@ class RoleServiceFactoryTest extends \PHPUnit_Framework_TestCase
         $serviceManager->setService('LmcRbacMvc\Options\ModuleOptions', $options);
         $serviceManager->setService(
             'LmcRbacMvc\Identity\AuthenticationProvider',
-            $this->getMock('LmcRbacMvc\Identity\IdentityProviderInterface')
+            $this->createMock('LmcRbacMvc\Identity\IdentityProviderInterface')
         );
 
         $factory     = new RoleServiceFactory();

@@ -46,7 +46,7 @@ class HasRoleTest extends \PHPUnit_Framework_TestCase
             [['member'], true],
         ];
 
-        $authorizationService = $this->getMock('LmcRbacMvc\Service\RoleService', [], [], '', false);
+        $authorizationService = $this->createMock('LmcRbacMvc\Service\RoleService');
         $authorizationService->expects($this->any())
             ->method('matchIdentityRoles')
             ->will($this->returnValueMap($rolesConfig));

@@ -27,7 +27,7 @@ class IsGrantedTest extends \PHPUnit_Framework_TestCase
 {
     public function testCallAuthorizationService()
     {
-        $authorizationService = $this->getMock('LmcRbacMvc\Service\AuthorizationServiceInterface');
+        $authorizationService = $this->createMock('LmcRbacMvc\Service\AuthorizationServiceInterface');
 
         $authorizationService->expects($this->once())
                              ->method('isGranted')

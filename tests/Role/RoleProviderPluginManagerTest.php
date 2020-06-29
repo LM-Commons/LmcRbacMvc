@@ -28,7 +28,7 @@ class RoleProviderPluginManagerTest extends \PHPUnit_Framework_TestCase
 {
     public function testValidationOfPluginSucceedsIfRoleProviderInterfaceIsImplemented()
     {
-        $pluginMock    = $this->getMock('LmcRbacMvc\Role\RoleProviderInterface');
+        $pluginMock    = $this->createMock('LmcRbacMvc\Role\RoleProviderInterface');
         $pluginManager = new RoleProviderPluginManager(new ServiceManager());
 
         $this->assertNull($pluginManager->validatePlugin($pluginMock));

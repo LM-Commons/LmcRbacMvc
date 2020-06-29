@@ -33,12 +33,12 @@ class RoutePermissionsGuardTest extends \PHPUnit_Framework_TestCase
 {
     public function testAttachToRightEvent()
     {
-        $eventManager = $this->getMock('Laminas\EventManager\EventManagerInterface');
+        $eventManager = $this->createMock('Laminas\EventManager\EventManagerInterface');
         $eventManager->expects($this->once())
             ->method('attach')
             ->with(RouteGuard::EVENT_NAME);
 
-        $guard = new RoutePermissionsGuard($this->getMock('LmcRbacMvc\Service\AuthorizationService', [], [], '', false));
+        $guard = new RoutePermissionsGuard($this->createMock('LmcRbacMvc\Service\AuthorizationService'));
         $guard->attach($eventManager);
     }
 
@@ -98,7 +98,7 @@ class RoutePermissionsGuardTest extends \PHPUnit_Framework_TestCase
      */
     public function testRulesConversions(array $rules, array $expected)
     {
-        $roleService  = $this->getMock('LmcRbacMvc\Service\AuthorizationService', [], [], '', false);
+        $roleService  = $this->createMock('LmcRbacMvc\Service\AuthorizationService');
         $routeGuard   = new RoutePermissionsGuard($roleService, $rules);
         $reflProperty = new \ReflectionProperty($routeGuard, 'rules');
         $reflProperty->setAccessible(true);
@@ -366,7 +366,7 @@ class RoutePermissionsGuardTest extends \PHPUnit_Framework_TestCase
         $event = new MvcEvent();
         $event->setRouteMatch($routeMatch);
 
-        $authorizationService = $this->getMock('LmcRbacMvc\Service\AuthorizationServiceInterface', [], [], '', false);
+        $authorizationService = $this->createMock('LmcRbacMvc\Service\AuthorizationServiceInterface');
         $authorizationService->expects($this->any())
             ->method('isGranted')
             ->will($this->returnValueMap($identityPermissions));
@@ -379,9 +379,9 @@ class RoutePermissionsGuardTest extends \PHPUnit_Framework_TestCase
 
     public function testProperlyFillEventOnAuthorization()
     {
-        $eventManager = $this->getMock('Laminas\EventManager\EventManagerInterface');
+        $eventManager = $this->createMock('Laminas\EventManager\EventManagerInterface');
 
-        $application = $this->getMock('Laminas\Mvc\Application', [], [], '', false);
+        $application = $this->createMock('Laminas\Mvc\Application');
         $application->expects($this->never())
             ->method('getEventManager')
             ->will($this->returnValue($eventManager));
@@ -393,7 +393,7 @@ class RoutePermissionsGuardTest extends \PHPUnit_Framework_TestCase
         $event->setRouteMatch($routeMatch);
         $event->setApplication($application);
 
-        $authorizationService = $this->getMock('LmcRbacMvc\Service\AuthorizationServiceInterface', [], [], '', false);
+        $authorizationService = $this->createMock('LmcRbacMvc\Service\AuthorizationServiceInterface');
         $authorizationService->expects($this->once())
             ->method('isGranted')
             ->with('post.edit')
@@ -410,9 +410,9 @@ class RoutePermissionsGuardTest extends \PHPUnit_Framework_TestCase
 
     public function testProperlySetUnauthorizedAndTriggerEventOnUnauthorization()
     {
-        $eventManager = $this->getMock('Laminas\EventManager\EventManager');
+        $eventManager = $this->createMock('Laminas\EventManager\EventManager');
 
-        $application = $this->getMock('Laminas\Mvc\Application', [], [], '', false);
+        $application = $this->createMock('Laminas\Mvc\Application');
         $application->expects($this->once())
             ->method('getEventManager')
             ->will($this->returnValue($eventManager));
@@ -428,7 +428,7 @@ class RoutePermissionsGuardTest extends \PHPUnit_Framework_TestCase
             ->method('triggerEvent')
             ->with($event);
 
-        $authorizationService = $this->getMock('LmcRbacMvc\Service\AuthorizationServiceInterface', [], [], '', false);
+        $authorizationService = $this->createMock('LmcRbacMvc\Service\AuthorizationServiceInterface');
         $authorizationService->expects($this->once())
             ->method('isGranted')
             ->with('post.edit')

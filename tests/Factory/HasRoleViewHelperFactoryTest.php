@@ -63,7 +63,7 @@ class HasRoleViewHelperFactoryTest extends \PHPUnit_Framework_TestCase
 
         $serviceManager->setService(
             'LmcRbacMvc\Service\RoleService',
-            $this->getMock('LmcRbacMvc\Service\RoleService', [], [], '', false)
+            $this->getMockBuilder('LmcRbacMvc\Service\RoleService')->disableOriginalConstructor()->getMock()
         );
 
         $factory   = new HasRoleViewHelperFactory();

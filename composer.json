@@ -63,5 +63,8 @@
         "psr-4": {
             "LmcRbacMvcTest\\": "tests"
         }
+    },
+    "scripts": {
+        "test": "phpunit --coverage-clover ./build/logs/clover.xml --exclude-group Functional"
     }
 }

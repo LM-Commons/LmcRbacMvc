@@ -34,17 +34,17 @@ class ModuleTest extends \PHPUnit_Framework_TestCase
     public function testCanRegisterGuards()
     {
         $module         = new Module();
-        $mvcEvent       = $this->getMock('Laminas\Mvc\MvcEvent');
-        $application    = $this->getMock('Laminas\Mvc\Application', [], [], '', false);
-        $eventManager   = $this->getMock('Laminas\EventManager\EventManagerInterface');
-        $serviceManager = $this->getMock('Laminas\ServiceManager\ServiceManager');
+        $mvcEvent       = $this->createMock('Laminas\Mvc\MvcEvent');
+        $application    = $this->createMock('Laminas\Mvc\Application');
+        $eventManager   = $this->createMock('Laminas\EventManager\EventManagerInterface');
+        $serviceManager = $this->createMock('Laminas\ServiceManager\ServiceManager');
 
         $mvcEvent->expects($this->once())->method('getTarget')->will($this->returnValue($application));
         $application->expects($this->once())->method('getEventManager')->will($this->returnValue($eventManager));
         $application->expects($this->once())->method('getServiceManager')->will($this->returnValue($serviceManager));
 
         $guards = [
-            $this->getMock('LmcRbacMvc\Guard\GuardInterface')
+            $this->createMock('LmcRbacMvc\Guard\GuardInterface')
         ];
 
         $serviceManager->expects($this->once())

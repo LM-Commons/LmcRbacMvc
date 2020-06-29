@@ -37,13 +37,13 @@ class AuthenticationIdentityProviderTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->authenticationService = $this->getMock('Laminas\Authentication\AuthenticationService');
+        $this->authenticationService = $this->createMock('Laminas\Authentication\AuthenticationService');
         $this->identityProvider = new AuthenticationIdentityProvider($this->authenticationService);
     }
 
     public function testCanReturnIdentity()
     {
-        $identity = $this->getMock('LmcRbacMvc\Identity\IdentityInterface');
+        $identity = $this->createMock('LmcRbacMvc\Identity\IdentityInterface');
 
         $this->authenticationService->expects($this->once())
                                     ->method('getIdentity')
