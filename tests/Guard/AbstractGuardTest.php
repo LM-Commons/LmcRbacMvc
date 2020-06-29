@@ -24,8 +24,8 @@ use Laminas\Mvc\MvcEvent;
 use LmcRbacMvcTest\Asset\DummyGuard;
 
 /**
- * @covers \LmcRbac\Guard\AbstractGuard
- * @covers \LmcRbac\Guard\ControllerGuard
+ * @covers \LmcRbacMvc\Guard\AbstractGuard
+ * @covers \LmcRbacMvc\Guard\ControllerGuard
  */
 class AbstractGuardTest extends \PHPUnit_Framework_TestCase
 {
