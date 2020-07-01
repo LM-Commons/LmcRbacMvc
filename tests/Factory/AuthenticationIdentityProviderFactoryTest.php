@@ -24,14 +24,14 @@ use LmcRbacMvc\Factory\AuthenticationIdentityProviderFactory;
 /**
  * @covers \LmcRbacMvc\Factory\AuthenticationIdentityProviderFactory
  */
-class AuthenticationIdentityProviderFactoryTest extends \PHPUnit_Framework_TestCase
+class AuthenticationIdentityProviderFactoryTest extends \PHPUnit\Framework\TestCase
 {
     public function testFactory()
     {
         $serviceManager = new ServiceManager();
         $serviceManager->setService(
             'Laminas\Authentication\AuthenticationService',
-            $this->getMock('Laminas\Authentication\AuthenticationService')
+            $this->createMock('Laminas\Authentication\AuthenticationService')
         );
 
         $factory                = new AuthenticationIdentityProviderFactory();

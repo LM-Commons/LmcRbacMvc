@@ -23,7 +23,7 @@ use LmcRbacMvc\Guard\GuardInterface;
 /**
  * @covers \LmcRbacMvc\Guard\ProtectionPolicyTrait
  */
-class ProtectionPolicyTraitTest extends \PHPUnit_Framework_TestCase
+class ProtectionPolicyTraitTest extends \PHPUnit\Framework\TestCase
 {
     public function testTrait()
     {

@@ -30,7 +30,7 @@ use LmcRbacMvc\Assertion\AssertionPluginManager;
 /**
  * @covers \LmcRbacMvc\Service\AuthorizationService
  */
-class AuthorizationServiceTest extends \PHPUnit_Framework_TestCase
+class AuthorizationServiceTest extends \PHPUnit\Framework\TestCase
 {
     public function grantedProvider()
     {
@@ -124,10 +124,10 @@ class AuthorizationServiceTest extends \PHPUnit_Framework_TestCase
             ]
         ];
 
-        $identity = $this->getMock('LmcRbacMvc\Identity\IdentityInterface');
+        $identity = $this->createMock('LmcRbacMvc\Identity\IdentityInterface');
         $identity->expects($this->once())->method('getRoles')->will($this->returnValue((array) $role));
 
-        $identityProvider = $this->getMock('LmcRbacMvc\Identity\IdentityProviderInterface');
+        $identityProvider = $this->createMock('LmcRbacMvc\Identity\IdentityProviderInterface');
         $identityProvider->expects($this->any())
             ->method('getIdentity')
             ->will($this->returnValue($identity));
@@ -148,13 +148,13 @@ class AuthorizationServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testDoNotCallAssertionIfThePermissionIsNotGranted()
     {
-        $role = $this->getMock('Rbac\Role\RoleInterface');
-        $rbac = $this->getMock('Rbac\Rbac', [], [], '', false);
+        $role = $this->createMock('Rbac\Role\RoleInterface');
+        $rbac = $this->createMock('Rbac\Rbac');
 
-        $roleService = $this->getMock('LmcRbacMvc\Service\RoleService', [], [], '', false);
+        $roleService = $this->createMock('LmcRbacMvc\Service\RoleService');
         $roleService->expects($this->once())->method('getIdentityRoles')->will($this->returnValue([$role]));
 
-        $assertionPluginManager = $this->getMock('LmcRbacMvc\Assertion\AssertionPluginManager', [], [], '', false);
+        $assertionPluginManager = $this->createMock('LmcRbacMvc\Assertion\AssertionPluginManager');
         $assertionPluginManager->expects($this->never())->method('get');
 
         $authorizationService = new AuthorizationService($rbac, $roleService, $assertionPluginManager);
@@ -164,18 +164,18 @@ class AuthorizationServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testThrowExceptionForInvalidAssertion()
     {
-        $role = $this->getMock('Rbac\Role\RoleInterface');
-        $rbac = $this->getMock('Rbac\Rbac', [], [], '', false);
+        $role = $this->createMock('Rbac\Role\RoleInterface');
+        $rbac = $this->createMock('Rbac\Rbac');
 
         $rbac->expects($this->once())->method('isGranted')->will($this->returnValue(true));
 
-        $roleService = $this->getMock('LmcRbacMvc\Service\RoleService', [], [], '', false);
+        $roleService = $this->createMock('LmcRbacMvc\Service\RoleService');
         $roleService->expects($this->once())->method('getIdentityRoles')->will($this->returnValue([$role]));
 
-        $assertionPluginManager = $this->getMock('LmcRbacMvc\Assertion\AssertionPluginManager', [], [], '', false);
+        $assertionPluginManager = $this->createMock('LmcRbacMvc\Assertion\AssertionPluginManager');
         $authorizationService   = new AuthorizationService($rbac, $roleService, $assertionPluginManager);
 
-        $this->setExpectedException('LmcRbacMvc\Exception\InvalidArgumentException');
+        $this->expectException('LmcRbacMvc\Exception\InvalidArgumentException');
 
         $authorizationService->setAssertion('foo', new \stdClass());
         $authorizationService->isGranted('foo');
@@ -183,15 +183,15 @@ class AuthorizationServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testDynamicAssertions()
     {
-        $role = $this->getMock('Rbac\Role\RoleInterface');
-        $rbac = $this->getMock('Rbac\Rbac', [], [], '', false);
+        $role = $this->createMock('Rbac\Role\RoleInterface');
+        $rbac = $this->createMock('Rbac\Rbac');
 
         $rbac->expects($this->exactly(2))->method('isGranted')->will($this->returnValue(true));
 
-        $roleService = $this->getMock('LmcRbacMvc\Service\RoleService', [], [], '', false);
+        $roleService = $this->createMock('LmcRbacMvc\Service\RoleService');
         $roleService->expects($this->exactly(2))->method('getIdentityRoles')->will($this->returnValue([$role]));
 
-        $assertionPluginManager = $this->getMock('LmcRbacMvc\Assertion\AssertionPluginManager', [], [], '', false);
+        $assertionPluginManager = $this->createMock('LmcRbacMvc\Assertion\AssertionPluginManager');
         $authorizationService   = new AuthorizationService($rbac, $roleService, $assertionPluginManager);
 
         // Using a callable
@@ -221,9 +221,9 @@ class AuthorizationServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testAssertionMap()
     {
-        $rbac                   = $this->getMock('Rbac\Rbac', [], [], '', false);
-        $roleService            = $this->getMock('LmcRbacMvc\Service\RoleService', [], [], '', false);
-        $assertionPluginManager = $this->getMock('LmcRbacMvc\Assertion\AssertionPluginManager', [], [], '', false);
+        $rbac                   = $this->createMock('Rbac\Rbac');
+        $roleService            = $this->createMock('LmcRbacMvc\Service\RoleService');
+        $assertionPluginManager = $this->createMock('LmcRbacMvc\Assertion\AssertionPluginManager');
         $authorizationService   = new AuthorizationService($rbac, $roleService, $assertionPluginManager);
 
         $authorizationService->setAssertions(['foo' => 'bar', 'bar' => 'foo']);
@@ -241,10 +241,10 @@ class AuthorizationServiceTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetIdentity()
     {
-        $rbac             = $this->getMock('Rbac\Rbac', [], [], '', false);
-        $identity         = $this->getMock('LmcRbacMvc\Identity\IdentityInterface');
-        $roleService      = $this->getMock('LmcRbacMvc\Service\RoleService', [], [], '', false);
-        $assertionManager = $this->getMock('LmcRbacMvc\Assertion\AssertionPluginManager', [], [], '', false);
+        $rbac             = $this->createMock('Rbac\Rbac');
+        $identity         = $this->createMock('LmcRbacMvc\Identity\IdentityInterface');
+        $roleService      = $this->createMock('LmcRbacMvc\Service\RoleService');
+        $assertionManager = $this->createMock('LmcRbacMvc\Assertion\AssertionPluginManager');
         $authorization    = new AuthorizationService($rbac, $roleService, $assertionManager);
 
         $roleService->expects($this->once())->method('getIdentity')->will($this->returnValue($identity));

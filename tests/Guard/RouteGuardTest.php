@@ -33,13 +33,13 @@ use Rbac\Traversal\Strategy\RecursiveRoleIteratorStrategy;
  * @covers \LmcRbacMvc\Guard\AbstractGuard
  * @covers \LmcRbacMvc\Guard\RouteGuard
  */
-class RouteGuardTest extends \PHPUnit_Framework_TestCase
+class RouteGuardTest extends \PHPUnit\Framework\TestCase
 {
     public function testAttachToRightEvent()
     {
-        $guard = new RouteGuard($this->getMock('LmcRbacMvc\Service\RoleService', [], [], '', false));
+        $guard = new RouteGuard($this->createMock('LmcRbacMvc\Service\RoleService'));
 
-        $eventManager = $this->getMock('Laminas\EventManager\EventManagerInterface');
+        $eventManager = $this->createMock('Laminas\EventManager\EventManagerInterface');
         $eventManager->expects($this->once())
                      ->method('attach')
                      ->with(RouteGuard::EVENT_NAME);
@@ -106,7 +106,7 @@ class RouteGuardTest extends \PHPUnit_Framework_TestCase
      */
     public function testRulesConversions(array $rules, array $expected)
     {
-        $roleService = $this->getMock('LmcRbacMvc\Service\RoleService', [], [], '', false);
+        $roleService = $this->createMock('LmcRbacMvc\Service\RoleService');
         $routeGuard  = new RouteGuard($roleService, $rules);
 
         $reflProperty = new \ReflectionProperty($routeGuard, 'rules');
@@ -373,10 +373,10 @@ class RouteGuardTest extends \PHPUnit_Framework_TestCase
 
         $event->setRouteMatch($routeMatch);
 
-        $identity = $this->getMock('LmcRbacMvc\Identity\IdentityInterface');
+        $identity = $this->createMock('LmcRbacMvc\Identity\IdentityInterface');
         $identity->expects($this->any())->method('getRoles')->will($this->returnValue($identityRole));
 
-        $identityProvider = $this->getMock('LmcRbacMvc\Identity\IdentityProviderInterface');
+        $identityProvider = $this->createMock('LmcRbacMvc\Identity\IdentityProviderInterface');
         $identityProvider->expects($this->any())
                          ->method('getIdentity')
                          ->will($this->returnValue($identity));
@@ -395,8 +395,8 @@ class RouteGuardTest extends \PHPUnit_Framework_TestCase
         $event      = new MvcEvent();
         $routeMatch = $this->createRouteMatch();
 
-        $application  = $this->getMock('Laminas\Mvc\Application', [], [], '', false);
-        $eventManager = $this->getMock('Laminas\EventManager\EventManagerInterface');
+        $application  = $this->createMock('Laminas\Mvc\Application');
+        $eventManager = $this->createMock('Laminas\EventManager\EventManagerInterface');
 
         $application->expects($this->never())
                     ->method('getEventManager')
@@ -406,10 +406,10 @@ class RouteGuardTest extends \PHPUnit_Framework_TestCase
         $event->setRouteMatch($routeMatch);
         $event->setApplication($application);
 
-        $identity = $this->getMock('LmcRbacMvc\Identity\IdentityInterface');
+        $identity = $this->createMock('LmcRbacMvc\Identity\IdentityInterface');
         $identity->expects($this->any())->method('getRoles')->will($this->returnValue(['member']));
 
-        $identityProvider = $this->getMock('LmcRbacMvc\Identity\IdentityProviderInterface');
+        $identityProvider = $this->createMock('LmcRbacMvc\Identity\IdentityProviderInterface');
         $identityProvider->expects($this->any())
                          ->method('getIdentity')
                          ->will($this->returnValue($identity));
@@ -432,8 +432,8 @@ class RouteGuardTest extends \PHPUnit_Framework_TestCase
         $event      = new MvcEvent();
         $routeMatch = $this->createRouteMatch();
 
-        $application  = $this->getMock('Laminas\Mvc\Application', [], [], '', false);
-        $eventManager = $this->getMock('Laminas\EventManager\EventManager');
+        $application  = $this->createMock('Laminas\Mvc\Application');
+        $eventManager = $this->createMock('Laminas\EventManager\EventManager');
 
         $application->expects($this->once())
                     ->method('getEventManager')
@@ -447,10 +447,13 @@ class RouteGuardTest extends \PHPUnit_Framework_TestCase
         $event->setRouteMatch($routeMatch);
         $event->setApplication($application);
 
-        $identityProvider = $this->getMock('LmcRbacMvc\Identity\IdentityProviderInterface');
+        $identity = $this->createMock('LmcRbacMvc\Identity\IdentityInterface');
+        $identity->expects($this->any())->method('getRoles')->will($this->returnValue(['member']));
+
+        $identityProvider = $this->createMock('LmcRbacMvc\Identity\IdentityProviderInterface');
         $identityProvider->expects($this->any())
-                         ->method('getIdentityRoles')
-                         ->will($this->returnValue('member'));
+                         ->method('getIdentity')
+                         ->will($this->returnValue($identity));
 
         $roleProvider = new InMemoryRoleProvider(['member', 'guest']);
         $roleService  = new RoleService($identityProvider, $roleProvider, new RecursiveRoleIteratorStrategy());

@@ -24,7 +24,7 @@ use LmcRbacMvc\Factory\RbacFactory;
 /**
  * @covers LmcRbacMvc\Factory\RbacFactory
  */
-class RbacFactoryTest extends \PHPUnit_Framework_TestCase
+class RbacFactoryTest extends \PHPUnit\Framework\TestCase
 {
     public function testCanCreateFromFactory()
     {

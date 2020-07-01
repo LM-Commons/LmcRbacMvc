@@ -24,13 +24,13 @@ use LmcRbacMvc\Factory\UnauthorizedStrategyFactory;
 /**
  * @covers \LmcRbacMvc\Factory\UnauthorizedStrategyFactory
  */
-class UnauthorizedStrategyFactoryTest extends \PHPUnit_Framework_TestCase
+class UnauthorizedStrategyFactoryTest extends \PHPUnit\Framework\TestCase
 {
     public function testFactory()
     {
-        $unauthorizedStrategyOptions = $this->getMock('LmcRbacMvc\Options\UnauthorizedStrategyOptions');
+        $unauthorizedStrategyOptions = $this->createMock('LmcRbacMvc\Options\UnauthorizedStrategyOptions');
 
-        $moduleOptionsMock = $this->getMock('LmcRbacMvc\Options\ModuleOptions');
+        $moduleOptionsMock = $this->createMock('LmcRbacMvc\Options\ModuleOptions');
         $moduleOptionsMock->expects($this->once())
                           ->method('getUnauthorizedStrategy')
                           ->will($this->returnValue($unauthorizedStrategyOptions));

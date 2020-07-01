@@ -23,28 +23,28 @@ use LmcRbacMvc\Module;
 /**
  * @covers \LmcRbacMvc\Module
  */
-class ModuleTest extends \PHPUnit_Framework_TestCase
+class ModuleTest extends \PHPUnit\Framework\TestCase
 {
     public function testConfigIsArray()
     {
         $module = new Module();
-        $this->assertInternalType('array', $module->getConfig());
+        $this->assertIsArray($module->getConfig());
     }
 
     public function testCanRegisterGuards()
     {
         $module         = new Module();
-        $mvcEvent       = $this->getMock('Laminas\Mvc\MvcEvent');
-        $application    = $this->getMock('Laminas\Mvc\Application', [], [], '', false);
-        $eventManager   = $this->getMock('Laminas\EventManager\EventManagerInterface');
-        $serviceManager = $this->getMock('Laminas\ServiceManager\ServiceManager');
+        $mvcEvent       = $this->createMock('Laminas\Mvc\MvcEvent');
+        $application    = $this->createMock('Laminas\Mvc\Application');
+        $eventManager   = $this->createMock('Laminas\EventManager\EventManagerInterface');
+        $serviceManager = $this->createMock('Laminas\ServiceManager\ServiceManager');
 
         $mvcEvent->expects($this->once())->method('getTarget')->will($this->returnValue($application));
         $application->expects($this->once())->method('getEventManager')->will($this->returnValue($eventManager));
         $application->expects($this->once())->method('getServiceManager')->will($this->returnValue($serviceManager));
 
         $guards = [
-            $this->getMock('LmcRbacMvc\Guard\GuardInterface')
+            $this->createMock('LmcRbacMvc\Guard\GuardInterface')
         ];
 
         $serviceManager->expects($this->once())

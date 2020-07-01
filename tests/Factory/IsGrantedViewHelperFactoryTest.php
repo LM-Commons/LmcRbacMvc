@@ -25,7 +25,7 @@ use LmcRbacMvc\Factory\IsGrantedViewHelperFactory;
 /**
  * @covers \LmcRbacMvc\Factory\IsGrantedViewHelperFactory
  */
-class IsGrantedViewHelperFactoryTest extends \PHPUnit_Framework_TestCase
+class IsGrantedViewHelperFactoryTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Dependency on zend-servicemanager v2 removed
@@ -62,7 +62,7 @@ class IsGrantedViewHelperFactoryTest extends \PHPUnit_Framework_TestCase
         }
         $serviceManager->setService(
             'LmcRbacMvc\Service\AuthorizationService',
-            $this->getMock('LmcRbacMvc\Service\AuthorizationServiceInterface')
+            $this->createMock('LmcRbacMvc\Service\AuthorizationServiceInterface')
         );
 
         $factory   = new IsGrantedViewHelperFactory();

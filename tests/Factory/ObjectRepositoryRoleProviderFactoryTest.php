@@ -26,7 +26,7 @@ use LmcRbacMvc\Role\RoleProviderPluginManager;
 /**
  * @covers \LmcRbacMvc\Factory\ObjectRepositoryRoleProviderFactory
  */
-class ObjectRepositoryRoleProviderFactoryTest extends \PHPUnit_Framework_TestCase
+class ObjectRepositoryRoleProviderFactoryTest extends \PHPUnit\Framework\TestCase
 {
     public function testFactoryUsingObjectRepository()
     {
@@ -38,7 +38,7 @@ class ObjectRepositoryRoleProviderFactoryTest extends \PHPUnit_Framework_TestCas
             'object_repository'  => 'RoleObjectRepository'
         ];
 
-        $serviceManager->setService('RoleObjectRepository', $this->getMock('Doctrine\Common\Persistence\ObjectRepository'));
+        $serviceManager->setService('RoleObjectRepository', $this->createMock('Doctrine\Common\Persistence\ObjectRepository'));
 
         $roleProvider = $pluginManager->get('LmcRbacMvc\Role\ObjectRepositoryRoleProvider', $options);
         $this->assertInstanceOf('LmcRbacMvc\Role\ObjectRepositoryRoleProvider', $roleProvider);
@@ -55,11 +55,11 @@ class ObjectRepositoryRoleProviderFactoryTest extends \PHPUnit_Framework_TestCas
             'class_name'         => 'Role'
         ];
 
-        $objectManager = $this->getMock('Doctrine\Common\Persistence\ObjectManager');
+        $objectManager = $this->createMock('Doctrine\Common\Persistence\ObjectManager');
         $objectManager->expects($this->once())
                       ->method('getRepository')
                       ->with($options['class_name'])
-                      ->will($this->returnValue($this->getMock('Doctrine\Common\Persistence\ObjectRepository')));
+                      ->will($this->returnValue($this->createMock('Doctrine\Common\Persistence\ObjectRepository')));
 
         $serviceManager->setService('ObjectManager', $objectManager);
 
@@ -80,6 +80,7 @@ class ObjectRepositoryRoleProviderFactoryTest extends \PHPUnit_Framework_TestCas
         } catch (ServiceNotCreatedException $smException) {
             while ($e = $smException->getPrevious()) {
                 if ($e instanceof RuntimeException) {
+                    $this->assertInstanceOf(RuntimeException::class, $e);
                     return true;
                 }
             }
@@ -106,6 +107,7 @@ class ObjectRepositoryRoleProviderFactoryTest extends \PHPUnit_Framework_TestCas
         } catch (ServiceNotCreatedException $smException) {
             while ($e = $smException->getPrevious()) {
                 if ($e instanceof RuntimeException) {
+                    $this->assertInstanceOf(RuntimeException::class, $e);
                     return true;
                 }
             }

@@ -23,7 +23,7 @@ use LmcRbacMvc\Identity\AuthenticationIdentityProvider;
 /**
  * @covers \LmcRbacMvc\Identity\AuthenticationIdentityProvider
  */
-class AuthenticationIdentityProviderTest extends \PHPUnit_Framework_TestCase
+class AuthenticationIdentityProviderTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var AuthenticationIdentityProvider
@@ -35,15 +35,15 @@ class AuthenticationIdentityProviderTest extends \PHPUnit_Framework_TestCase
      */
     protected $authenticationService;
 
-    public function setUp()
+    public function setUp() :void
     {
-        $this->authenticationService = $this->getMock('Laminas\Authentication\AuthenticationService');
+        $this->authenticationService = $this->createMock('Laminas\Authentication\AuthenticationService');
         $this->identityProvider = new AuthenticationIdentityProvider($this->authenticationService);
     }
 
     public function testCanReturnIdentity()
     {
-        $identity = $this->getMock('LmcRbacMvc\Identity\IdentityInterface');
+        $identity = $this->createMock('LmcRbacMvc\Identity\IdentityInterface');
 
         $this->authenticationService->expects($this->once())
                                     ->method('getIdentity')

@@ -25,7 +25,7 @@ use LmcRbacMvc\Factory\IsGrantedPluginFactory;
 /**
  * @covers \LmcRbacMvc\Factory\IsGrantedPluginFactory
  */
-class IsGrantedPluginFactoryTest extends \PHPUnit_Framework_TestCase
+class IsGrantedPluginFactoryTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Dependency on zend-servicemanager v2 removed
@@ -61,7 +61,7 @@ class IsGrantedPluginFactoryTest extends \PHPUnit_Framework_TestCase
         }
         $serviceManager->setService(
             'LmcRbacMvc\Service\AuthorizationService',
-            $this->getMock('LmcRbacMvc\Service\AuthorizationServiceInterface')
+            $this->createMock('LmcRbacMvc\Service\AuthorizationServiceInterface')
         );
 
         $factory   = new IsGrantedPluginFactory();

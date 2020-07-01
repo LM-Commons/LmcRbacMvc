@@ -25,7 +25,7 @@ use LmcRbacMvc\Role\RoleProviderPluginManager;
 /**
  * @covers \LmcRbacMvc\Factory\RoleProviderPluginManagerFactory
  */
-class RoleProviderPluginManagerFactoryTest extends \PHPUnit_Framework_TestCase
+class RoleProviderPluginManagerFactoryTest extends \PHPUnit\Framework\TestCase
 {
     public function testFactory()
     {

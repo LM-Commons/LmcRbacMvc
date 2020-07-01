@@ -25,7 +25,7 @@ use LmcRbacMvc\Options\ModuleOptions;
 /**
  * @covers \LmcRbacMvc\Guard\GuardPluginManager
  */
-class GuardPluginManagerTest extends \PHPUnit_Framework_TestCase
+class GuardPluginManagerTest extends \PHPUnit\Framework\TestCase
 {
     public function guardProvider()
     {
@@ -74,11 +74,11 @@ class GuardPluginManagerTest extends \PHPUnit_Framework_TestCase
         $serviceManager->setService('LmcRbacMvc\Options\ModuleOptions', new ModuleOptions());
         $serviceManager->setService(
             'LmcRbacMvc\Service\RoleService',
-            $this->getMock('LmcRbacMvc\Service\RoleService', [], [], '', false)
+            $this->createMock('LmcRbacMvc\Service\RoleService')
         );
         $serviceManager->setService(
             'LmcRbacMvc\Service\AuthorizationService',
-            $this->getMock('LmcRbacMvc\Service\AuthorizationService', [], [], '', false)
+            $this->createMock('LmcRbacMvc\Service\AuthorizationService')
         );
 
         $pluginManager = new GuardPluginManager($serviceManager);
@@ -90,7 +90,7 @@ class GuardPluginManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testThrowExceptionForInvalidPlugin()
     {
-        $this->setExpectedException('LmcRbacMvc\Exception\RuntimeException');
+        $this->expectException('LmcRbacMvc\Exception\RuntimeException');
 
         $pluginManager = new GuardPluginManager(new ServiceManager());
         $pluginManager->get('stdClass');

@@ -26,7 +26,7 @@ use LmcRbacMvc\Initializer\AuthorizationServiceInitializer;
  * @author  Aeneas Rekkas
  * @license MIT License
  */
-class AuthorizationServiceInitializerTest extends \PHPUnit_Framework_TestCase
+class AuthorizationServiceInitializerTest extends \PHPUnit\Framework\TestCase
 {
     public function testInitializer()
     {
@@ -35,7 +35,7 @@ class AuthorizationServiceInitializerTest extends \PHPUnit_Framework_TestCase
         $instance             = new AuthorizationAwareFake();
 
         $serviceLocator = $this->prophesize(ServiceLocatorInterface::class)->willImplement(ContainerInterface::class);
-        $authorizationService = $this->getMock('LmcRbacMvc\Service\AuthorizationService', [], [], '', false);
+        $authorizationService = $this->createMock('LmcRbacMvc\Service\AuthorizationService');
 
         $serviceLocator
             ->get($authServiceClassName)

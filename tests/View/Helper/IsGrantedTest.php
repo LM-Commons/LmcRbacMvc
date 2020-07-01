@@ -24,7 +24,7 @@ use LmcRbacMvcTest\Util\ServiceManagerFactory;
 /**
  * @covers \LmcRbacMvc\View\Helper\IsGranted
  */
-class IsGrantedTest extends \PHPUnit_Framework_TestCase
+class IsGrantedTest extends \PHPUnit\Framework\TestCase
 {
     public function testHelperIsRegistered()
     {
@@ -41,7 +41,7 @@ class IsGrantedTest extends \PHPUnit_Framework_TestCase
 
     public function testCallAuthorizationService()
     {
-        $authorizationService = $this->getMock('LmcRbacMvc\Service\AuthorizationServiceInterface');
+        $authorizationService = $this->createMock('LmcRbacMvc\Service\AuthorizationServiceInterface');
 
         $authorizationService->expects($this->once())
                              ->method('isGranted')

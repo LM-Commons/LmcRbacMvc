@@ -2,7 +2,7 @@ language: php
 
 php:
   - 7.2
-  - hhvm
+  - 7.3
 
 env:
   matrix:
@@ -25,8 +25,3 @@ notifications:
   irc: "irc.freenode.org#zftalk.modules"
   email: true
 
-matrix:
-  allow_failures:
-    - php: hhvm
-    - php: 7.2
-      env: DEPENDENCIES="--prefer-lowest --prefer-stable"

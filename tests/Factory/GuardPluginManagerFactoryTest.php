@@ -25,7 +25,7 @@ use LmcRbacMvc\Guard\GuardPluginManager;
 /**
  * @covers \LmcRbacMvc\Factory\GuardPluginManagerFactory
  */
-class GuardPluginManagerFactoryTest extends \PHPUnit_Framework_TestCase
+class GuardPluginManagerFactoryTest extends \PHPUnit\Framework\TestCase
 {
     public function testFactory()
     {

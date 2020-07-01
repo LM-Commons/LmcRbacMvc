@@ -27,7 +27,7 @@ use LmcRbacMvc\Options\ModuleOptions;
 /**
  * @covers \LmcRbacMvc\Factory\ControllerPermissionsGuardFactory
  */
-class ControllerPermissionsGuardFactoryTest extends \PHPUnit_Framework_TestCase
+class ControllerPermissionsGuardFactoryTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Dependency on zend-servicemanager v2 removed
@@ -92,7 +92,7 @@ class ControllerPermissionsGuardFactoryTest extends \PHPUnit_Framework_TestCase
         $serviceManager->setService('LmcRbacMvc\Options\ModuleOptions', $options);
         $serviceManager->setService(
             'LmcRbacMvc\Service\AuthorizationService',
-            $this->getMock('LmcRbacMvc\Service\AuthorizationService', [], [], '', false)
+            $this->getMockBuilder('LmcRbacMvc\Service\AuthorizationService')->disableOriginalConstructor()->getMock()
         );
 
         $factory    = new ControllerPermissionsGuardFactory();
