@@ -24,7 +24,7 @@ use LmcRbacMvcTest\Util\ServiceManagerFactory;
 /**
  * @covers \LmcRbacMvc\Options\ModuleOptions
  */
-class ModuleOptionsTest extends \PHPUnit_Framework_TestCase
+class ModuleOptionsTest extends \PHPUnit\Framework\TestCase
 {
     public function testAssertModuleDefaultOptions()
     {
@@ -34,9 +34,9 @@ class ModuleOptionsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('LmcRbacMvc\Identity\AuthenticationIdentityProvider', $moduleOptions->getIdentityProvider());
         $this->assertEquals('guest', $moduleOptions->getGuestRole());
         $this->assertEquals('allow', $moduleOptions->getProtectionPolicy());
-        $this->assertInternalType('array', $moduleOptions->getGuards());
-        $this->assertInternalType('array', $moduleOptions->getRoleProvider());
-        $this->assertInternalType('array', $moduleOptions->getAssertionMap());
+        $this->assertIsArray($moduleOptions->getGuards());
+        $this->assertIsArray($moduleOptions->getRoleProvider());
+        $this->assertIsArray($moduleOptions->getAssertionMap());
         $this->assertInstanceOf('LmcRbacMvc\Options\UnauthorizedStrategyOptions', $moduleOptions->getUnauthorizedStrategy());
         $this->assertInstanceOf('LmcRbacMvc\Options\RedirectStrategyOptions', $moduleOptions->getRedirectStrategy());
     }
@@ -73,7 +73,7 @@ class ModuleOptionsTest extends \PHPUnit_Framework_TestCase
 
     public function testThrowExceptionForInvalidProtectionPolicy()
     {
-        $this->setExpectedException('LmcRbacMvc\Exception\RuntimeException');
+        $this->expectException(\LmcRbacMvc\Exception\RuntimeException::class);
 
         $moduleOptions = new ModuleOptions();
         $moduleOptions->setProtectionPolicy('invalid');
@@ -81,7 +81,7 @@ class ModuleOptionsTest extends \PHPUnit_Framework_TestCase
 
     public function testThrowExceptionIfMoreThanOneRoleProviderIsSet()
     {
-        $this->setExpectedException('LmcRbacMvc\Exception\RuntimeException');
+        $this->expectException(\LmcRbacMvc\Exception\RuntimeException::class);
 
         $moduleOptions = new ModuleOptions();
         $moduleOptions->setRoleProvider(['foo', 'bar']);
