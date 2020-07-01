@@ -1,19 +1,16 @@
 # LmcRbacMvc
 
+[![Version](https://poser.pugx.org/laminas-commons/lmc-rbac-mvc/version)](//packagist.org/packages/laminas-commons/lmc-rbac-mvc)
+[![Total Downloads](https://poser.pugx.org/laminas-commons/lmc-rbac-mvc/downloads)](//packagist.org/packages/laminas-commons/lmc-rbac-mvc)
+[![License](https://poser.pugx.org/laminas-commons/lmc-rbac-mvc/license)](//packagist.org/packages/laminas-commons/lmc-rbac-mvc)
 [![Master Branch Build Status](https://travis-ci.org/Laminas-Commons/LmcRbacMvc.svg?branch=master)](http://travis-ci.org/Laminas-Commons/LmcRbac)
 [![Gitter](https://badges.gitter.im/LaminasCommons/community.svg)](https://gitter.im/LaminasCommons/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Coverage Status](https://coveralls.io/repos/github/Laminas-Commons/LmcRbacMvc/badge.svg?branch=master)](https://coveralls.io/github/Laminas-Commons/LmcRbacMvc?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Laminas-Commons/LmcRbacMvc/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Laminas-Commons/LmcRbacMvc/?branch=master)
 
 Role-based access control module to provide additional features on top of Zend\Permissions\Rbac
 
 Based on [ZF-Commons/zfc-rbac](https://github.com/ZF-Commons/zfc-rbac) v2.6.x. If you are looking for the Laminas version of zfc-rbac v3, please use [Laminas-Commons/LmcRbac](https://github.com/Laminas-Commons/LmcRbac).
-
-<!--
-[![Coverage Status](https://coveralls.io/repos/ZF-Commons/zfc-rbac/badge.png)](https://coveralls.io/r/ZF-Commons/zfc-rbac)
-[![Latest Stable Version](https://poser.pugx.org/zf-commons/zfc-rbac/v/stable.png)](https://packagist.org/packages/zf-commons/zfc-rbac)
-[![Latest Unstable Version](https://poser.pugx.org/zf-commons/zfc-rbac/v/unstable.png)](https://packagist.org/packages/zf-commons/zfc-rbac)
-[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/ZF-Commons/zfc-rbac/badges/quality-score.png?s=685a2b34dc626a0af9934f9c8d246b68a8cac884)](https://scrutinizer-ci.com/g/ZF-Commons/zfc-rbac/)
-[![Total Downloads](https://poser.pugx.org/zf-commons/zfc-rbac/downloads.png)](https://packagist.org/packages/zf-commons/zfc-rbac)
--->
 
 ### Important Notes:  
 
