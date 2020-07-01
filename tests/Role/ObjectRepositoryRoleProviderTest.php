@@ -29,7 +29,7 @@ use LmcRbacMvcTest\Util\ServiceManagerFactory;
 /**
  * @covers \LmcRbacMvc\Role\ObjectRepositoryRoleProvider
  */
-class ObjectRepositoryRoleProviderTest extends \PHPUnit_Framework_TestCase
+class ObjectRepositoryRoleProviderTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var ServiceManager
@@ -58,7 +58,7 @@ class ObjectRepositoryRoleProviderTest extends \PHPUnit_Framework_TestCase
         $roles = $objectRepositoryRoleProvider->getRoles(['admin']);
 
         $this->assertCount(1, $roles);
-        $this->assertInternalType('array', $roles);
+        $this->assertIsArray($roles);
 
         $this->assertInstanceOf('Rbac\Role\RoleInterface', $roles[0]);
         $this->assertEquals('admin', $roles[0]->getName());
@@ -91,7 +91,7 @@ class ObjectRepositoryRoleProviderTest extends \PHPUnit_Framework_TestCase
         $roles = $objectRepositoryRoleProvider->getRoles(['admin']);
 
         $this->assertCount(1, $roles);
-        $this->assertInternalType('array', $roles);
+        $this->assertIsArray($roles);
 
         $this->assertInstanceOf('Rbac\Role\HierarchicalRoleInterface', $roles[0]);
         $this->assertEquals('admin', $roles[0]->getName());
@@ -146,8 +146,8 @@ class ObjectRepositoryRoleProviderTest extends \PHPUnit_Framework_TestCase
         $objectRepository             = $objectManager->getRepository('LmcRbacMvcTest\Asset\FlatRole');
         $objectRepositoryRoleProvider = new ObjectRepositoryRoleProvider($objectRepository, 'name');
 
-        $this->setExpectedException(
-            'LmcRbacMvc\Exception\RoleNotFoundException',
+        $this->expectException(
+            \LmcRbacMvc\Exception\RoleNotFoundException::class,
             'Some roles were asked but could not be loaded from database: guest, admin'
         );
 
