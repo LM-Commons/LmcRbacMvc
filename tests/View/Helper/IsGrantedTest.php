@@ -24,7 +24,7 @@ use LmcRbacMvcTest\Util\ServiceManagerFactory;
 /**
  * @covers \LmcRbacMvc\View\Helper\IsGranted
  */
-class IsGrantedTest extends \PHPUnit_Framework_TestCase
+class IsGrantedTest extends \PHPUnit\Framework\TestCase
 {
     public function testHelperIsRegistered()
     {

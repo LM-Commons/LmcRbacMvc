@@ -23,7 +23,7 @@ use LmcRbacMvc\Options\RedirectStrategyOptions;
 /**
  * @covers \LmcRbacMvc\Options\RedirectStrategyOptions
  */
-class RedirectStrategyOptionsTest extends \PHPUnit_Framework_TestCase
+class RedirectStrategyOptionsTest extends \PHPUnit\Framework\TestCase
 {
     public function testAssertDefaultValues()
     {

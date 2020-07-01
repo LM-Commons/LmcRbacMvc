@@ -27,7 +27,7 @@ use LmcRbacMvc\Options\ModuleOptions;
 /**
  * @covers \LmcRbacMvc\Factory\ControllerGuardFactory
  */
-class ControllerGuardFactoryTest extends \PHPUnit_Framework_TestCase
+class ControllerGuardFactoryTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Dependency on zend-servicemanager v2 removed

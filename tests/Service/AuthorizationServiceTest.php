@@ -30,7 +30,7 @@ use LmcRbacMvc\Assertion\AssertionPluginManager;
 /**
  * @covers \LmcRbacMvc\Service\AuthorizationService
  */
-class AuthorizationServiceTest extends \PHPUnit_Framework_TestCase
+class AuthorizationServiceTest extends \PHPUnit\Framework\TestCase
 {
     public function grantedProvider()
     {
@@ -175,7 +175,7 @@ class AuthorizationServiceTest extends \PHPUnit_Framework_TestCase
         $assertionPluginManager = $this->createMock('LmcRbacMvc\Assertion\AssertionPluginManager');
         $authorizationService   = new AuthorizationService($rbac, $roleService, $assertionPluginManager);
 
-        $this->setExpectedException('LmcRbacMvc\Exception\InvalidArgumentException');
+        $this->expectException('LmcRbacMvc\Exception\InvalidArgumentException');
 
         $authorizationService->setAssertion('foo', new \stdClass());
         $authorizationService->isGranted('foo');

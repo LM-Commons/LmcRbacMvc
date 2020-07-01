@@ -25,7 +25,7 @@ use LmcRbacMvc\Options\ModuleOptions;
 /**
  * @covers \LmcRbacMvc\Guard\GuardPluginManager
  */
-class GuardPluginManagerTest extends \PHPUnit_Framework_TestCase
+class GuardPluginManagerTest extends \PHPUnit\Framework\TestCase
 {
     public function guardProvider()
     {
@@ -90,7 +90,7 @@ class GuardPluginManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testThrowExceptionForInvalidPlugin()
     {
-        $this->setExpectedException('LmcRbacMvc\Exception\RuntimeException');
+        $this->expectException('LmcRbacMvc\Exception\RuntimeException');
 
         $pluginManager = new GuardPluginManager(new ServiceManager());
         $pluginManager->get('stdClass');

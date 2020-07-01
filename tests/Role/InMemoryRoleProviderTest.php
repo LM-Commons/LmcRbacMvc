@@ -23,7 +23,7 @@ use LmcRbacMvc\Role\InMemoryRoleProvider;
 /**
  * @covers \LmcRbacMvc\Role\InMemoryRoleProvider
  */
-class InMemoryRoleProviderTest extends \PHPUnit_Framework_TestCase
+class InMemoryRoleProviderTest extends \PHPUnit\Framework\TestCase
 {
     public function testInMemoryProvider()
     {

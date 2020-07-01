@@ -24,7 +24,7 @@ use LmcRbacMvcTest\Util\ServiceManagerFactory;
 /**
  * @covers \LmcRbacMvc\View\Helper\HasRole
  */
-class HasRoleTest extends \PHPUnit_Framework_TestCase
+class HasRoleTest extends \PHPUnit\Framework\TestCase
 {
     public function testHelperIsRegistered()
     {

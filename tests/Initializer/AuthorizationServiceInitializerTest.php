@@ -26,7 +26,7 @@ use LmcRbacMvc\Initializer\AuthorizationServiceInitializer;
  * @author  Aeneas Rekkas
  * @license MIT License
  */
-class AuthorizationServiceInitializerTest extends \PHPUnit_Framework_TestCase
+class AuthorizationServiceInitializerTest extends \PHPUnit\Framework\TestCase
 {
     public function testInitializer()
     {

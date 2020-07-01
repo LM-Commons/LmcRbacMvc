@@ -33,7 +33,7 @@ use Rbac\Traversal\Strategy\RecursiveRoleIteratorStrategy;
  * @covers \LmcRbacMvc\Guard\AbstractGuard
  * @covers \LmcRbacMvc\Guard\RouteGuard
  */
-class RouteGuardTest extends \PHPUnit_Framework_TestCase
+class RouteGuardTest extends \PHPUnit\Framework\TestCase
 {
     public function testAttachToRightEvent()
     {

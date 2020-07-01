@@ -25,7 +25,7 @@ use LmcRbacMvc\Factory\IsGrantedPluginFactory;
 /**
  * @covers \LmcRbacMvc\Factory\IsGrantedPluginFactory
  */
-class IsGrantedPluginFactoryTest extends \PHPUnit_Framework_TestCase
+class IsGrantedPluginFactoryTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Dependency on zend-servicemanager v2 removed

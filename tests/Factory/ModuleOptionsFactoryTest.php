@@ -24,7 +24,7 @@ use LmcRbacMvc\Factory\ModuleOptionsFactory;
 /**
  * @covers \LmcRbacMvc\Factory\ModuleOptionsFactory
  */
-class ModuleOptionsFactoryTest extends \PHPUnit_Framework_TestCase
+class ModuleOptionsFactoryTest extends \PHPUnit\Framework\TestCase
 {
     public function testFactory()
     {

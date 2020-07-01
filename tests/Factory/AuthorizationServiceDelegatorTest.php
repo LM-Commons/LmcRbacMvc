@@ -28,7 +28,7 @@ use LmcRbacMvcTest\Util\ServiceManagerFactory;
  * @author  Jean-Marie Leroux <jmleroux.pro@gmail.com>
  * @license MIT License
  */
-class AuthorizationServiceDelegatorTest extends \PHPUnit_Framework_TestCase
+class AuthorizationServiceDelegatorTest extends \PHPUnit\Framework\TestCase
 {
     public function testDelegatorFactory()
     {

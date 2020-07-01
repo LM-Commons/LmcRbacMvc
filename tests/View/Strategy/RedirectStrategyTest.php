@@ -32,7 +32,7 @@ use LmcRbacMvc\View\Strategy\RedirectStrategy;
  * @covers \LmcRbacMvc\View\Strategy\RedirectStrategy
  * @covers \LmcRbacMvc\View\Strategy\AbstractStrategy
  */
-class RedirectStrategyTest extends \PHPUnit_Framework_TestCase
+class RedirectStrategyTest extends \PHPUnit\Framework\TestCase
 {
     public function testAttachToRightEvent()
     {

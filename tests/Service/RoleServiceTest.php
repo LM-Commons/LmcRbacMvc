@@ -25,7 +25,7 @@ use Rbac\Traversal\Strategy\RecursiveRoleIteratorStrategy;
 /**
  * @covers \LmcRbacMvc\Service\RoleService
  */
-class RoleServiceTest extends \PHPUnit_Framework_TestCase
+class RoleServiceTest extends \PHPUnit\Framework\TestCase
 {
     public function roleProvider()
     {
@@ -220,10 +220,8 @@ class RoleServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testThrowExceptionIfIdentityIsWrongType()
     {
-        $this->setExpectedException(
-            'LmcRbacMvc\Exception\RuntimeException',
-            'LmcRbacMvc expects your identity to implement LmcRbacMvc\Identity\IdentityInterface, "stdClass" given'
-        );
+        $this->expectException('LmcRbacMvc\Exception\RuntimeException');
+        $this->expectExceptionMessage('LmcRbacMvc expects your identity to implement LmcRbacMvc\Identity\IdentityInterface, "stdClass" given');
 
         $identityProvider = $this->createMock('LmcRbacMvc\Identity\IdentityProviderInterface');
         $identityProvider->expects($this->any())

@@ -24,7 +24,7 @@ use LmcRbacMvc\Factory\AssertionPluginManagerFactory;
 /**
  * @covers \LmcRbacMvc\Factory\AssertionPluginManagerFactory
  */
-class AssertionPluginManagerFactoryTest extends \PHPUnit_Framework_TestCase
+class AssertionPluginManagerFactoryTest extends \PHPUnit\Framework\TestCase
 {
     public function testFactory()
     {

@@ -25,7 +25,7 @@ use LmcRbacMvc\Factory\RedirectStrategyFactory;
 /**
  * @covers \LmcRbacMvc\Factory\RedirectStrategyFactory
  */
-class RedirectStrategyFactoryTest extends \PHPUnit_Framework_TestCase
+class RedirectStrategyFactoryTest extends \PHPUnit\Framework\TestCase
 {
     public function testFactory()
     {

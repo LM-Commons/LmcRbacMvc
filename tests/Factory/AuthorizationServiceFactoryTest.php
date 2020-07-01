@@ -25,7 +25,7 @@ use LmcRbacMvc\Options\ModuleOptions;
 /**
  * @covers \LmcRbacMvc\Factory\AuthorizationServiceFactory
  */
-class AuthorizationServiceFactoryTest extends \PHPUnit_Framework_TestCase
+class AuthorizationServiceFactoryTest extends \PHPUnit\Framework\TestCase
 {
     public function testFactory()
     {

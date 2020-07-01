@@ -27,7 +27,7 @@ use LmcRbacMvcTest\Asset\DummyGuard;
  * @covers \LmcRbacMvc\Guard\AbstractGuard
  * @covers \LmcRbacMvc\Guard\ControllerGuard
  */
-class AbstractGuardTest extends \PHPUnit_Framework_TestCase
+class AbstractGuardTest extends \PHPUnit\Framework\TestCase
 {
     public function testDoesNotLimitDispatchErrorEventToOnlyOneListener()
     {

@@ -24,7 +24,7 @@ use LmcRbacMvc\Factory\AuthenticationIdentityProviderFactory;
 /**
  * @covers \LmcRbacMvc\Factory\AuthenticationIdentityProviderFactory
  */
-class AuthenticationIdentityProviderFactoryTest extends \PHPUnit_Framework_TestCase
+class AuthenticationIdentityProviderFactoryTest extends \PHPUnit\Framework\TestCase
 {
     public function testFactory()
     {

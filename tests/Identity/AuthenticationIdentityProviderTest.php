@@ -23,7 +23,7 @@ use LmcRbacMvc\Identity\AuthenticationIdentityProvider;
 /**
  * @covers \LmcRbacMvc\Identity\AuthenticationIdentityProvider
  */
-class AuthenticationIdentityProviderTest extends \PHPUnit_Framework_TestCase
+class AuthenticationIdentityProviderTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var AuthenticationIdentityProvider
@@ -35,7 +35,7 @@ class AuthenticationIdentityProviderTest extends \PHPUnit_Framework_TestCase
      */
     protected $authenticationService;
 
-    public function setUp()
+    public function setUp() :void
     {
         $this->authenticationService = $this->createMock('Laminas\Authentication\AuthenticationService');
         $this->identityProvider = new AuthenticationIdentityProvider($this->authenticationService);

@@ -29,7 +29,7 @@ use LmcRbacMvc\Guard\RoutePermissionsGuard;
  * @covers \LmcRbacMvc\Guard\AbstractGuard
  * @covers \LmcRbacMvc\Guard\RoutePermissionsGuard
  */
-class RoutePermissionsGuardTest extends \PHPUnit_Framework_TestCase
+class RoutePermissionsGuardTest extends \PHPUnit\Framework\TestCase
 {
     public function testAttachToRightEvent()
     {

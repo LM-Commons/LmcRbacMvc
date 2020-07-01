@@ -27,7 +27,7 @@ use LmcRbacMvc\Options\ModuleOptions;
 /**
  * @covers \LmcRbacMvc\Factory\RouteGuardFactory
  */
-class RouteGuardFactoryTest extends \PHPUnit_Framework_TestCase
+class RouteGuardFactoryTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Dependency on zend-servicemanager v2 removed

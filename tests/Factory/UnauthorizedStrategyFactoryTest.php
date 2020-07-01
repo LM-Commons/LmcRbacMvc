@@ -24,7 +24,7 @@ use LmcRbacMvc\Factory\UnauthorizedStrategyFactory;
 /**
  * @covers \LmcRbacMvc\Factory\UnauthorizedStrategyFactory
  */
-class UnauthorizedStrategyFactoryTest extends \PHPUnit_Framework_TestCase
+class UnauthorizedStrategyFactoryTest extends \PHPUnit\Framework\TestCase
 {
     public function testFactory()
     {

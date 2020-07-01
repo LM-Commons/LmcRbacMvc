@@ -26,7 +26,7 @@ use LmcRbacMvc\Role\RoleProviderPluginManager;
 /**
  * @covers \LmcRbacMvc\Factory\ObjectRepositoryRoleProviderFactory
  */
-class ObjectRepositoryRoleProviderFactoryTest extends \PHPUnit_Framework_TestCase
+class ObjectRepositoryRoleProviderFactoryTest extends \PHPUnit\Framework\TestCase
 {
     public function testFactoryUsingObjectRepository()
     {
@@ -80,6 +80,7 @@ class ObjectRepositoryRoleProviderFactoryTest extends \PHPUnit_Framework_TestCas
         } catch (ServiceNotCreatedException $smException) {
             while ($e = $smException->getPrevious()) {
                 if ($e instanceof RuntimeException) {
+                    $this->assertInstanceOf(RuntimeException::class, $e);
                     return true;
                 }
             }
@@ -106,6 +107,7 @@ class ObjectRepositoryRoleProviderFactoryTest extends \PHPUnit_Framework_TestCas
         } catch (ServiceNotCreatedException $smException) {
             while ($e = $smException->getPrevious()) {
                 if ($e instanceof RuntimeException) {
+                    $this->assertInstanceOf(RuntimeException::class, $e);
                     return true;
                 }
             }

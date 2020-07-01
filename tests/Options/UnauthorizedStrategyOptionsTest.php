@@ -23,7 +23,7 @@ use LmcRbacMvc\Options\UnauthorizedStrategyOptions;
 /**
  * @covers \LmcRbacMvc\Options\UnauthorizedStrategyOptions
  */
-class UnauthorizedStrategyOptionsTest extends \PHPUnit_Framework_TestCase
+class UnauthorizedStrategyOptionsTest extends \PHPUnit\Framework\TestCase
 {
     public function testAssertDefaultValues()
     {

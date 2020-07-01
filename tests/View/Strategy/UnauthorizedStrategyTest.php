@@ -28,7 +28,7 @@ use LmcRbacMvc\View\Strategy\UnauthorizedStrategy;
  * @covers \LmcRbacMvc\View\Strategy\UnauthorizedStrategy
  * @covers \LmcRbacMvc\View\Strategy\AbstractStrategy
  */
-class UnauthorizedStrategyTest extends \PHPUnit_Framework_TestCase
+class UnauthorizedStrategyTest extends \PHPUnit\Framework\TestCase
 {
     public function testAttachToRightEvent()
     {

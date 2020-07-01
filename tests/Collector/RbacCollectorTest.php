@@ -34,7 +34,7 @@ use LmcRbacMvcTest\Asset\MockRoleWithPermissionProperty;
 /**
  * @covers \LmcRbacMvc\Collector\RbacCollector
  */
-class RbacCollectorTest extends \PHPUnit_Framework_TestCase
+class RbacCollectorTest extends \PHPUnit\Framework\TestCase
 {
     public function testDefaultGetterReturnValues()
     {
@@ -49,7 +49,7 @@ class RbacCollectorTest extends \PHPUnit_Framework_TestCase
         $collector  = new RbacCollector();
         $serialized = $collector->serialize();
 
-        $this->assertInternalType('string', $serialized);
+        $this->assertIsString($serialized);
 
         $unserialized = unserialize($serialized);
 
@@ -73,7 +73,7 @@ class RbacCollectorTest extends \PHPUnit_Framework_TestCase
 
         $collection = $collector->getCollection();
 
-        $this->assertInternalType('array', $collection);
+        $this->assertIsArray($collection);
         $this->assertSame(['foo' => 'bar'], $collection['guards']);
         $this->assertSame(['foo' => 'bar'], $collection['roles']);
         $this->assertSame(['foo' => 'bar'], $collection['options']);
@@ -82,7 +82,7 @@ class RbacCollectorTest extends \PHPUnit_Framework_TestCase
 
     public function testUnserializeThrowsInvalidArgumentException()
     {
-        $this->setExpectedException('LmcRbacMvc\Exception\InvalidArgumentException');
+        $this->expectException('LmcRbacMvc\Exception\InvalidArgumentException');
         $collector    = new RbacCollector();
         $unserialized = 'not_an_array';
         $serialized   = serialize($unserialized);

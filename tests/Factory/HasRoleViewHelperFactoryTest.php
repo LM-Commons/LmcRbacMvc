@@ -25,7 +25,7 @@ use LmcRbacMvc\Factory\HasRoleViewHelperFactory;
 /**
  * @covers \LmcRbacMvc\Factory\HasRoleViewHelperFactory
  */
-class HasRoleViewHelperFactoryTest extends \PHPUnit_Framework_TestCase
+class HasRoleViewHelperFactoryTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Dependency on zend-servicemanager v2 removed

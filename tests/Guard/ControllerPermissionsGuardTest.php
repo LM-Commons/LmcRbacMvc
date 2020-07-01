@@ -32,7 +32,7 @@ use Rbac\Traversal\Strategy\RecursiveRoleIteratorStrategy;
  * @covers \LmcRbacMvc\Guard\AbstractGuard
  * @covers \LmcRbacMvc\Guard\ControllerPermissionsGuard
  */
-class ControllerPermissionsGuardTest extends \PHPUnit_Framework_TestCase
+class ControllerPermissionsGuardTest extends \PHPUnit\Framework\TestCase
 {
     private function getMockAuthorizationService()
     {
