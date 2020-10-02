@@ -1,16 +1,16 @@
 # LmcRbacMvc
 
-[![Version](https://poser.pugx.org/laminas-commons/lmc-rbac-mvc/version)](//packagist.org/packages/laminas-commons/lmc-rbac-mvc)
-[![Total Downloads](https://poser.pugx.org/laminas-commons/lmc-rbac-mvc/downloads)](//packagist.org/packages/laminas-commons/lmc-rbac-mvc)
-[![License](https://poser.pugx.org/laminas-commons/lmc-rbac-mvc/license)](//packagist.org/packages/laminas-commons/lmc-rbac-mvc)
-[![Master Branch Build Status](https://travis-ci.org/Laminas-Commons/LmcRbacMvc.svg?branch=master)](http://travis-ci.org/Laminas-Commons/LmcRbac)
-[![Gitter](https://badges.gitter.im/LaminasCommons/community.svg)](https://gitter.im/LaminasCommons/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-[![Coverage Status](https://coveralls.io/repos/github/Laminas-Commons/LmcRbacMvc/badge.svg?branch=master)](https://coveralls.io/github/Laminas-Commons/LmcRbacMvc?branch=master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Laminas-Commons/LmcRbacMvc/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Laminas-Commons/LmcRbacMvc/?branch=master)
+[![Version](https://poser.pugx.org/lm-commons/lmc-rbac-mvc/version)](//packagist.org/packages/lm-commons/lmc-rbac-mvc)
+[![Total Downloads](https://poser.pugx.org/lm-commons/lmc-rbac-mvc/downloads)](//packagist.org/packages/lm-commons/lmc-rbac-mvc)
+[![License](https://poser.pugx.org/lm-commons/lmc-rbac-mvc/license)](//packagist.org/packages/lm-commons/lmc-rbac-mvc)
+[![Master Branch Build Status](https://travis-ci.org/LM-Commons/LmcRbacMvc.svg?branch=master)](http://travis-ci.org/LM-Commons/LmcRbac)
+[![Gitter](https://badges.gitter.im/LM-Commons/community.svg)](https://gitter.im/LM-Commons/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Coverage Status](https://coveralls.io/repos/github/LM-Commons/LmcRbacMvc/badge.svg?branch=master)](https://coveralls.io/github/LM-Commons/LmcRbacMvc?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/LM-Commons/LmcRbacMvc/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/LM-Commons/LmcRbacMvc/?branch=master)
 
 Role-based access control module to provide additional features on top of Zend\Permissions\Rbac
 
-Based on [ZF-Commons/zfc-rbac](https://github.com/ZF-Commons/zfc-rbac) v2.6.x. If you are looking for the Laminas version of zfc-rbac v3, please use [Laminas-Commons/LmcRbac](https://github.com/Laminas-Commons/LmcRbac).
+Based on [ZF-Commons/zfc-rbac](https://github.com/ZF-Commons/zfc-rbac) v2.6.x. If you are looking for the Laminas version of zfc-rbac v3, please use [LM-Commons/LmcRbac](https://github.com/LM-Commons/LmcRbac).
 
 ### Important Notes:  
 
@@ -35,8 +35,8 @@ the Laminas Developer toolbar.
 
 LmcRbac introduces breaking changes from zfcrbac v2:
 - The namespace has been changed from `ZfcRbac` to `LmcRbacMvc`. 
-- The key `zfc-rbac` in autoload and module config files has been replaced
-by the `lmc-rbac` key.
+- The key `zfc_rbac` in autoload and module config files has been replaced
+by the `lmc_rbac` key.
 
 You can find an [upgrade guide](UPGRADE.md) to quickly upgrade your application from major versions of ZfcRbac.
 
@@ -48,7 +48,7 @@ LmcRbacMvc only officially supports installation through Composer. For Composer 
 Install the module:
 
 ```sh
-$ php composer.phar require laminas-commons/lmc-rbac-mvc:^3.0
+$ php composer.phar require lm-commons/lmc-rbac-mvc:^3.0
 ```
 This will install a Laminas MVC equivalent of zfc-rbac 2.6.3.
 
@@ -64,5 +64,5 @@ of LmcRbac.
 
 ## Support
 
-- File issues at https://github.com/Laminas-Commons/LmcRbacMvc/issues.
-- Ask questions in the [LaminasCommons gitter](https://gitter.im/LaminasCommons) chat.
+- File issues at https://github.com/LM-Commons/LmcRbacMvc/issues.
+- Ask questions in the [LM-Commons gitter](https://gitter.im/LM-Commons/community) chat.

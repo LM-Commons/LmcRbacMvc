@@ -1,5 +1,5 @@
 {
-    "name": "laminas-commons/lmc-rbac-mvc",
+    "name": "lm-commons/lmc-rbac-mvc",
     "description": "Laminas Framework MVC Module that provides a layer of features of Laminas\\Permissions\\Rbac",
     "type": "library",
     "license": "MIT",
@@ -51,6 +51,9 @@
     "suggest": {
         "laminas/laminas-developer-tools": "if you want to show information about the roles",
         "doctrine/doctrine-module": "if you want to use Doctrine role provider"
+    },
+    "replace": {
+        "laminas-commons/lmc-rbac-mvc": "3.0.1"
     },
     "autoload": {
         "psr-4": {
