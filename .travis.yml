@@ -20,7 +20,7 @@ script:
   - ./vendor/bin/phpcs --standard=PSR2 ./src/
 
 after_success:
-  - travis_retry ./vendor/bin/php-coveralls -v
+  - composer upload-coverage
 
 notifications:
   irc: "irc.freenode.org#zftalk.modules"

@@ -66,6 +66,8 @@
         }
     },
     "scripts": {
-        "test": "phpunit --coverage-clover ./build/logs/clover.xml --exclude-group Functional"
+        "test": "phpunit --coverage-clover ./build/logs/clover.xml --exclude-group Functional",
+        "test-coverage": "phpunit --coverage-clover build/logs/clover.xml",
+        "upload-coverage": "php-coveralls -v"
     }
 }
