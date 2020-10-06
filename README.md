@@ -3,7 +3,7 @@
 [![Version](https://poser.pugx.org/lm-commons/lmc-rbac-mvc/version)](//packagist.org/packages/lm-commons/lmc-rbac-mvc)
 [![Total Downloads](https://poser.pugx.org/lm-commons/lmc-rbac-mvc/downloads)](//packagist.org/packages/lm-commons/lmc-rbac-mvc)
 [![License](https://poser.pugx.org/lm-commons/lmc-rbac-mvc/license)](//packagist.org/packages/lm-commons/lmc-rbac-mvc)
-[![Master Branch Build Status](https://travis-ci.org/LM-Commons/LmcRbacMvc.svg?branch=master)](http://travis-ci.org/LM-Commons/LmcRbac)
+[![Master Branch Build Status](https://travis-ci.com/LM-Commons/LmcRbacMvc.svg?branch=master)](http://travis-ci.com/LM-Commons/LmcRbac)
 [![Gitter](https://badges.gitter.im/LM-Commons/community.svg)](https://gitter.im/LM-Commons/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![Coverage Status](https://coveralls.io/repos/github/LM-Commons/LmcRbacMvc/badge.svg?branch=master)](https://coveralls.io/github/LM-Commons/LmcRbacMvc?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/LM-Commons/LmcRbacMvc/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/LM-Commons/LmcRbacMvc/?branch=master)
