@@ -47,4 +47,4 @@ If you are looking for some information that is not listed in the documentation,
    3. [Using LmcRbacMvc with Doctrine ORM](07.%20Cookbook.md#using-zfcrbac-with-doctrine-orm)
    4. [How to deal with roles with lot of permissions?](07.%20Cookbook.md#how-to-deal-with-roles-with-lot-of-permissions)
    5. [Using LmcRbacMvc and ZF2 Assetic](07.%20Cookbook.md#using-zfcrbac-and-zf2-assetic)
-   6. [Using LmcRbacMvc and ZfcUser](07.%20Cookbook.md#using-zfcrbac-and-zfcuser)
+   6. [Using LmcRbacMvc and LmcUser](07.%20Cookbook.md#using-lmcrbacmvc-and-lmcuser)
