@@ -33,7 +33,7 @@
         "laminas/laminas-mvc": "^3.0",
         "laminas/laminas-servicemanager": "^3.0.3",
         "zfr/rbac": "~1.2",
-        "laminas/laminas-dependency-plugin": "^1.0"
+        "laminas/laminas-dependency-plugin": "2.0.0beta1"
     },
     "require-dev": {
         "laminas/laminas-authentication": "~2.2",
