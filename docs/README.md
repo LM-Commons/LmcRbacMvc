@@ -1,5 +1,3 @@
-_Up-to-date with version 3.* of LmcRbacMvc
-
 Welcome to the official LmcRbacMvc documentation. This documentation will help you quickly understand how to use
 and extend LmcRbacMvc.
 
@@ -8,7 +6,7 @@ If you are looking for some information that is not listed in the documentation,
 1. [Introduction](01.%20Introduction.md)
    1. [Why should I use an authorization module?](01.%20Introduction.md#why-should-i-use-an-authorization-module)
    2. [What is the Rbac model?](01.%20Introduction.md#what-is-the-rbac-model)
-   3. [How can I integrate LmcRbacMvc into my application?](01.%20Introduction.md#how-can-i-integrate-zfcrbac-into-my-application)
+   3. [How can I integrate LmcRbacMvc into my application?](01.%20Introduction.md#how-can-i-integrate-lmcrbacmvc-into-my-application)
 
 2. [Quick Start](02.%20Quick%20Start.md)
    1. [Specifying an identity provider](02.%20Quick%20Start.md#specifying-an-identity-provider)
@@ -24,7 +22,7 @@ If you are looking for some information that is not listed in the documentation,
    4. [Creating custom role providers](03.%20Role%20providers.md#creating-custom-role-providers)
 
 4. [Guards](04.%20Guards.md)
-   1. [What are guards and when to use them?](04.%20Guards.md#what-are-guards-and-when-to-use-them)
+   1. [What are guards and when to use them?](04.%20Guards.md#what-are-guards-and-when-should-you-use-them)
    2. [Built-in guards](04.%20Guards.md#built-in-guards)
    3. [Creating custom guards](04.%20Guards.md#creating-custom-guards)
 
@@ -44,7 +42,7 @@ If you are looking for some information that is not listed in the documentation,
 7. [Cookbook](07.%20Cookbook.md)
    1. [A real world example](07.%20Cookbook.md#a-real-world-application)
    2. [Best practices](07.%20Cookbook.md#best-practices)
-   3. [Using LmcRbacMvc with Doctrine ORM](07.%20Cookbook.md#using-zfcrbac-with-doctrine-orm)
+   3. [Using LmcRbacMvc with Doctrine ORM](07.%20Cookbook.md#using-lmcrbacmvc-with-doctrine-orm)
    4. [How to deal with roles with lot of permissions?](07.%20Cookbook.md#how-to-deal-with-roles-with-lot-of-permissions)
-   5. [Using LmcRbacMvc and ZF2 Assetic](07.%20Cookbook.md#using-zfcrbac-and-zf2-assetic)
+   5. [Using LmcRbacMvc and ZF2 Assetic](07.%20Cookbook.md#using-lmcrbacmvc-and-zf2-assetic)
    6. [Using LmcRbacMvc and LmcUser](07.%20Cookbook.md#using-lmcrbacmvc-and-lmcuser)
