@@ -5,16 +5,43 @@ php:
   - 7.3
 
 env:
-  matrix:
-    - DEPENDENCIES=""
-    - DEPENDENCIES="--prefer-lowest --prefer-stable"
+  global:
+    - COMPOSER_ARGS="--no-interaction"
+    - XDEBUG_MODE=coverage
+
+matrix:
+  fast_finish: true
+  include:
+    - php: 7.3
+      env:
+        - DEPS=lowest
+    - php: 7.3
+      env:
+        - DEPS=latest
+        - CS_CHECK=true
+        - TEST_COVERAGE=true
+    - php: 7.4
+      env:
+        - DEPS=lowest
+    - php: 7.4
+      env:
+        - DEPS=latest
+
+before_install:
+  - if [[ $TEST_COVERAGE != 'true ]]; then phpenv config-rm xdebug.ini || return 0 ; fi
+
+install:
+  - travis_retry composer install $COMPOSER_ARGS --ignore-platform-reqs
+  - if [[ $LEGACY_DEPS != '' ]]; then travis_retry composer update $COMPOSER_ARGS --with-dependencies $LEGACY_DEPS ; fi
+  - if [[ $DEPS == 'latest' ]]; then travis_retry composer update $COMPOSER_ARGS; fi
+  - if [[ $DEPS == 'lowest' ]]; then travis_retry composer update --prefer-lowest --prefer-stable $COMPOSER_ARGS; fi
+  - stty cols 120 && composer show
 
 before_script:
-  - composer self-update
-  - composer update --prefer-dist $DEPENDENCIES
   - mkdir -p ./build/logs
 
 script:
+  - if [[ $TEST_COVERAGE == 'true ]]; then composer test-coverage ; else composer test ; fi
   - ./vendor/bin/phpunit --coverage-clover ./build/logs/clover.xml --exclude-group Functional
   - ./vendor/bin/phpunit --group=Functional
   - ./vendor/bin/phpcs --standard=PSR2 ./src/
@@ -23,6 +50,5 @@ after_success:
   - composer upload-coverage
 
 notifications:
-  irc: "irc.freenode.org#zftalk.modules"
   email: true
 
