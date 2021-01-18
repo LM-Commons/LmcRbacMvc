@@ -1,8 +1,8 @@
 language: php
 
-php:
-  - 7.2
-  - 7.3
+cache:
+  directories:
+    - $HOME/.composer/cache
 
 env:
   global:
@@ -42,9 +42,7 @@ before_script:
 
 script:
   - if [[ $TEST_COVERAGE == 'true' ]]; then composer test-coverage ; else composer test ; fi
-  - ./vendor/bin/phpunit --coverage-clover ./build/logs/clover.xml --exclude-group Functional
-  - ./vendor/bin/phpunit --group=Functional
-  - ./vendor/bin/phpcs --standard=PSR2 ./src/
+  - composer cs-check
 
 after_success:
   - composer upload-coverage
