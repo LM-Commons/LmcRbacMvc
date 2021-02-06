@@ -19,6 +19,8 @@
 namespace LmcRbacMvcTest\Role;
 
 use Doctrine\ORM\Tools\SchemaTool;
+use Doctrine\ORM\Tools\ToolsException;
+use Doctrine\Persistence\ObjectManager;
 use Rbac\Traversal\RecursiveRoleIterator;
 use Laminas\ServiceManager\ServiceManager;
 use LmcRbacMvc\Role\ObjectRepositoryRoleProvider;
@@ -155,7 +157,8 @@ class ObjectRepositoryRoleProviderTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @return \Doctrine\Common\Persistence\ObjectManager
+     * @return ObjectManager
+     * @throws ToolsException
      */
     private function getObjectManager()
     {

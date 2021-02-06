@@ -38,7 +38,7 @@ class ObjectRepositoryRoleProviderFactoryTest extends \PHPUnit\Framework\TestCas
             'object_repository'  => 'RoleObjectRepository'
         ];
 
-        $serviceManager->setService('RoleObjectRepository', $this->createMock('Doctrine\Common\Persistence\ObjectRepository'));
+        $serviceManager->setService('RoleObjectRepository', $this->createMock('Doctrine\Persistence\ObjectRepository'));
 
         $roleProvider = $pluginManager->get('LmcRbacMvc\Role\ObjectRepositoryRoleProvider', $options);
         $this->assertInstanceOf('LmcRbacMvc\Role\ObjectRepositoryRoleProvider', $roleProvider);
@@ -55,11 +55,11 @@ class ObjectRepositoryRoleProviderFactoryTest extends \PHPUnit\Framework\TestCas
             'class_name'         => 'Role'
         ];
 
-        $objectManager = $this->createMock('Doctrine\Common\Persistence\ObjectManager');
+        $objectManager = $this->createMock('Doctrine\Persistence\ObjectManager');
         $objectManager->expects($this->once())
                       ->method('getRepository')
                       ->with($options['class_name'])
-                      ->will($this->returnValue($this->createMock('Doctrine\Common\Persistence\ObjectRepository')));
+                      ->will($this->returnValue($this->createMock('Doctrine\Persistence\ObjectRepository')));
 
         $serviceManager->setService('ObjectManager', $objectManager);
 

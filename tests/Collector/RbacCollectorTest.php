@@ -19,6 +19,7 @@
 namespace LmcRbacMvcTest\Collector;
 
 use LmcRbacMvc\Identity\IdentityInterface;
+use LmcRbacMvcTest\Asset\MockRoleWithPermissionTraversable;
 use Rbac\Role\RoleInterface;
 use Laminas\Mvc\MvcEvent;
 use Laminas\Permissions\Rbac\Role;
@@ -240,6 +241,28 @@ class RbacCollectorTest extends \PHPUnit\Framework\TestCase
         $collection = $this->collectPermissionsPropertyTestBase(new MockRoleWithPermissionMethod());
         $this->assertEquals($expectedCollection, $collection);
     }
+
+    /**
+     * Tests the collectPermissions method when the role implements Traversable
+     */
+    public function testCollectPermissionsTraversable()
+    {
+        $expectedCollection = [
+            'guards' => [],
+            'roles'  => ['role-with-permission-traversable'],
+            'permissions' => [
+                'role-with-permission-traversable' => ['permission-method-a', 'permission-method-b'],
+            ],
+            'options' => [
+                'guest_role' => 'guest',
+                'protection_policy' => GuardInterface::POLICY_ALLOW,
+            ],
+        ];
+
+        $collection = $this->collectPermissionsPropertyTestBase(new MockRoleWithPermissionTraversable());
+        $this->assertEquals($expectedCollection, $collection);
+    }
+
 
     /**
      * Base method for the *collectPermissionProperty tests

@@ -72,6 +72,7 @@ class UnauthorizedStrategy extends AbstractStrategy
                 break;
 
             default:
+                break;
         }
 
         $response = $event->getResponse() ?: new HttpResponse();

@@ -18,14 +18,20 @@
 
 namespace LmcRbacMvcTest\Service;
 
+use LmcRbacMvc\Identity\IdentityInterface;
+use LmcRbacMvc\Identity\IdentityProviderInterface;
 use LmcRbacMvc\Role\InMemoryRoleProvider;
+use LmcRbacMvc\Role\RoleProviderInterface;
 use LmcRbacMvc\Service\RoleService;
+use PHPUnit\Framework\TestCase;
+use Rbac\Role\RoleInterface;
 use Rbac\Traversal\Strategy\RecursiveRoleIteratorStrategy;
+use Rbac\Traversal\Strategy\TraversalStrategyInterface;
 
 /**
  * @covers \LmcRbacMvc\Service\RoleService
  */
-class RoleServiceTest extends \PHPUnit\Framework\TestCase
+class RoleServiceTest extends TestCase
 {
     public function roleProvider()
     {
@@ -217,6 +223,72 @@ class RoleServiceTest extends \PHPUnit\Framework\TestCase
         $this->assertInstanceOf('Rbac\Role\RoleInterface', $result[0]);
         $this->assertEquals('guest', $result[0]->getName());
     }
+
+    public function testSetIdentityProvider()
+    {
+        $identityProvider = $this->createMock(IdentityProviderInterface::class);
+        $identityProvider->expects($this->any())
+            ->method('getIdentity')
+            ->will($this->returnValue('test'));
+        $roleService = new RoleService(
+            $this->createMock(IdentityProviderInterface::class),
+            new InMemoryRoleProvider([]),
+            $this->createMock(TraversalStrategyInterface::class)
+        );
+        $roleService->setIdentityProvider($identityProvider);
+        $this->assertEquals('test', $roleService->getIdentity());
+    }
+
+    public function testSetRoleProvider()
+    {
+        $role = $this->createMock(RoleInterface::class);
+        $identity = $this->createMock(IdentityInterface::class);
+        $identity->expects($this->once())->method('getRoles')->will($this->returnValue(new \ArrayObject([$role])));
+
+        $identityProvider = $this->createMock(IdentityProviderInterface::class);
+        $identityProvider->expects($this->any())
+            ->method('getIdentity')
+            ->will($this->returnValue($identity));
+        $roleProvider = new InMemoryRoleProvider([
+            'member' => [
+                'children' => ['guest'],
+            ],
+            'guest'
+        ]);
+        $roleService = new RoleService(
+            $identityProvider,
+            $roleProvider,
+            new RecursiveRoleIteratorStrategy()
+        );
+        $roleService->setRoleProvider($roleProvider);
+        $roles = $roleService->getIdentityRoles();
+        $this->assertEquals($role, $roles[0]);
+    }
+
+    public function testConvertRolesTraversable()
+    {
+        $identity = $this->createMock(IdentityInterface::class);
+        $identity->expects($this->once())->method('getRoles')->will($this->returnValue(['guest']));
+
+        $identityProvider = $this->createMock(IdentityProviderInterface::class);
+        $identityProvider->expects($this->any())
+            ->method('getIdentity')
+            ->will($this->returnValue($identity));
+        $roleService = new RoleService(
+            $identityProvider,
+            $this->createMock(RoleProviderInterface::class),
+            new RecursiveRoleIteratorStrategy()
+        );
+        $roleProvider = new InMemoryRoleProvider([
+            'member' => [
+                'children' => ['guest']
+            ],
+            'guest'
+        ]);
+        $roleService->setRoleProvider($roleProvider);
+        $this->assertEquals(false, $roleService->matchIdentityRoles(['member']));
+    }
+
 
     public function testThrowExceptionIfIdentityIsWrongType()
     {
