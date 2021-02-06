@@ -28,6 +28,9 @@ class InMemoryRoleProviderTest extends \PHPUnit\Framework\TestCase
     public function testInMemoryProvider()
     {
         $inMemoryProvider = new InMemoryRoleProvider([
+            'system' => [
+                'permissions' => ['all'],
+            ],
             'admin' => [
                 'children'    => ['member'],
                 'permissions' => ['delete']
@@ -39,9 +42,9 @@ class InMemoryRoleProviderTest extends \PHPUnit\Framework\TestCase
             'guest'
         ]);
 
-        $roles = $inMemoryProvider->getRoles(['admin', 'member', 'guest']);
+        $roles = $inMemoryProvider->getRoles(['admin', 'member', 'guest', 'system']);
 
-        $this->assertCount(3, $roles);
+        $this->assertCount(4, $roles);
 
         // Test admin role
         $adminRole = $roles[0];
@@ -63,6 +66,15 @@ class InMemoryRoleProviderTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('guest', $guestRole->getName());
         $this->assertFalse($guestRole->hasPermission('write'));
         $this->assertFalse($guestRole->hasPermission('delete'));
+
+        // Test system role
+        $systemRole = $roles[3];
+        $this->assertInstanceOf('Rbac\Role\RoleInterface', $systemRole);
+        $this->assertNotInstanceOf('Rbac\Role\HierarchicalRoleInterface', $systemRole);
+        $this->assertEquals('system', $systemRole->getName());
+        $this->assertTrue($systemRole->hasPermission('all'));
+        $this->assertFalse($systemRole->hasPermission('write'));
+        $this->assertFalse($systemRole->hasPermission('delete'));
 
         $this->assertSame($adminRole->getChildren()['member'], $memberRole);
         $this->assertSame($memberRole->getChildren()['guest'], $guestRole);

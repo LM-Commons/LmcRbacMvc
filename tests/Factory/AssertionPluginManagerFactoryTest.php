@@ -40,4 +40,19 @@ class AssertionPluginManagerFactoryTest extends \PHPUnit\Framework\TestCase
 
         $this->assertInstanceOf('LmcRbacMvc\Assertion\AssertionPluginManager', $pluginManager);
     }
+
+    public function testFactoryInvokable()
+    {
+        $serviceManager = new ServiceManager();
+        $serviceManager->setService('Config', [
+            'lmc_rbac' => [
+                'assertion_manager' => []
+            ]
+        ]);
+
+        $factory       = new AssertionPluginManagerFactory();
+        $pluginManager = $factory($serviceManager, 'notused');
+
+        $this->assertInstanceOf('LmcRbacMvc\Assertion\AssertionPluginManager', $pluginManager);
+    }
 }

@@ -18,7 +18,7 @@
 
 namespace LmcRbacMvc\Role;
 
-use Doctrine\Common\Persistence\ObjectRepository;
+use Doctrine\Persistence\ObjectRepository;
 use LmcRbacMvc\Exception\RoleNotFoundException;
 
 /**
