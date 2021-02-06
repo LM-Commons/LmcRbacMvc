@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8353502272dc36b7498439d504dab9dd",
+    "content-hash": "eb310f2b019d9a804ad0935adbc4eeba",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -751,6 +751,73 @@
             "time": "2019-12-31T17:05:27+00:00"
         },
         {
+            "name": "laminas/laminas-json",
+            "version": "2.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laminas/laminas-json.git",
+                "reference": "db58425b7f0eba44a7539450cc926af80915951a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laminas/laminas-json/zipball/db58425b7f0eba44a7539450cc926af80915951a",
+                "reference": "db58425b7f0eba44a7539450cc926af80915951a",
+                "shasum": ""
+            },
+            "require": {
+                "laminas/laminas-zendframework-bridge": "^1.0",
+                "php": "^5.5 || ^7.0"
+            },
+            "replace": {
+                "zendframework/zend-json": "self.version"
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "1.7.*",
+                "laminas/laminas-http": "^2.5.4",
+                "laminas/laminas-server": "^2.6.1",
+                "laminas/laminas-stdlib": "^2.5 || ^3.0",
+                "laminas/laminas-xml": "^1.0.2",
+                "phpunit/phpunit": "~4.0"
+            },
+            "suggest": {
+                "laminas/laminas-http": "Laminas\\Http component, required to use Laminas\\Json\\Server",
+                "laminas/laminas-server": "Laminas\\Server component, required to use Laminas\\Json\\Server",
+                "laminas/laminas-stdlib": "Laminas\\Stdlib component, for use with caching Laminas\\Json\\Server responses",
+                "laminas/laminas-xml": "To support Laminas\\Json\\Json::fromXml() usage"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.6-dev",
+                    "dev-develop": "2.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laminas\\Json\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "provides convenience methods for serializing native PHP to JSON and decoding JSON to native PHP",
+            "homepage": "https://laminas.dev",
+            "keywords": [
+                "json",
+                "laminas"
+            ],
+            "support": {
+                "chat": "https://laminas.dev/chat",
+                "docs": "https://docs.laminas.dev/laminas-json/",
+                "forum": "https://discourse.laminas.dev",
+                "issues": "https://github.com/laminas/laminas-json/issues",
+                "rss": "https://github.com/laminas/laminas-json/releases.atom",
+                "source": "https://github.com/laminas/laminas-json"
+            },
+            "time": "2019-12-31T17:15:00+00:00"
+        },
+        {
             "name": "laminas/laminas-loader",
             "version": "2.5.0",
             "source": {
@@ -1304,32 +1371,33 @@
         },
         {
             "name": "laminas/laminas-view",
-            "version": "2.6.7",
+            "version": "2.11.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-view.git",
-                "reference": "7f868d9f9ba7d96a53533aa7757b924b0213b744"
+                "reference": "f2f321d45f91742ab9417997d705073a34d60db7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-view/zipball/7f868d9f9ba7d96a53533aa7757b924b0213b744",
-                "reference": "7f868d9f9ba7d96a53533aa7757b924b0213b744",
+                "url": "https://api.github.com/repos/laminas/laminas-view/zipball/f2f321d45f91742ab9417997d705073a34d60db7",
+                "reference": "f2f321d45f91742ab9417997d705073a34d60db7",
                 "shasum": ""
             },
             "require": {
                 "laminas/laminas-eventmanager": "^2.6.2 || ^3.0",
+                "laminas/laminas-json": "^2.6.1 || ^3.0",
                 "laminas/laminas-loader": "^2.5",
                 "laminas/laminas-stdlib": "^2.7 || ^3.0",
                 "laminas/laminas-zendframework-bridge": "^1.0",
-                "php": "^5.5 || ^7.0"
+                "php": "^5.6 || ^7.0"
             },
             "replace": {
                 "zendframework/zend-view": "self.version"
             },
             "require-dev": {
-                "fabpot/php-cs-fixer": "1.7.*",
                 "laminas/laminas-authentication": "^2.5",
                 "laminas/laminas-cache": "^2.6.1",
+                "laminas/laminas-coding-standard": "~1.0.0",
                 "laminas/laminas-config": "^2.6",
                 "laminas/laminas-console": "^2.6",
                 "laminas/laminas-escaper": "^2.5",
@@ -1337,19 +1405,18 @@
                 "laminas/laminas-filter": "^2.6.1",
                 "laminas/laminas-http": "^2.5.4",
                 "laminas/laminas-i18n": "^2.6",
-                "laminas/laminas-json": "^2.6.1",
                 "laminas/laminas-log": "^2.7",
                 "laminas/laminas-modulemanager": "^2.7.1",
-                "laminas/laminas-mvc": "^2.7",
+                "laminas/laminas-mvc": "^2.7.14 || ^3.0",
                 "laminas/laminas-navigation": "^2.5",
                 "laminas/laminas-paginator": "^2.5",
                 "laminas/laminas-permissions-acl": "^2.6",
                 "laminas/laminas-router": "^3.0.1",
                 "laminas/laminas-serializer": "^2.6.1",
                 "laminas/laminas-servicemanager": "^2.7.5 || ^3.0.3",
-                "laminas/laminas-session": "^2.6.2",
+                "laminas/laminas-session": "^2.8.1",
                 "laminas/laminas-uri": "^2.5",
-                "phpunit/phpunit": "^4.5"
+                "phpunit/phpunit": "^5.7.15 || ^6.0.8"
             },
             "suggest": {
                 "laminas/laminas-authentication": "Laminas\\Authentication component",
@@ -1358,19 +1425,22 @@
                 "laminas/laminas-filter": "Laminas\\Filter component",
                 "laminas/laminas-http": "Laminas\\Http component",
                 "laminas/laminas-i18n": "Laminas\\I18n component",
-                "laminas/laminas-json": "Laminas\\Json component",
                 "laminas/laminas-mvc": "Laminas\\Mvc component",
+                "laminas/laminas-mvc-plugin-flashmessenger": "laminas-mvc-plugin-flashmessenger component, if you want to use the FlashMessenger view helper with laminas-mvc versions 3 and up",
                 "laminas/laminas-navigation": "Laminas\\Navigation component",
                 "laminas/laminas-paginator": "Laminas\\Paginator component",
                 "laminas/laminas-permissions-acl": "Laminas\\Permissions\\Acl component",
                 "laminas/laminas-servicemanager": "Laminas\\ServiceManager component",
                 "laminas/laminas-uri": "Laminas\\Uri component"
             },
+            "bin": [
+                "bin/templatemap_generator.php"
+            ],
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.6-dev",
-                    "dev-develop": "2.7-dev"
+                    "dev-master": "2.11.x-dev",
+                    "dev-develop": "2.12.x-dev"
                 }
             },
             "autoload": {
@@ -1382,7 +1452,7 @@
             "license": [
                 "BSD-3-Clause"
             ],
-            "description": "provides a system of helpers, output filters, and variable escaping",
+            "description": "Flexible view layer supporting and providing multiple view layers, helpers, and more",
             "homepage": "https://laminas.dev",
             "keywords": [
                 "laminas",
@@ -1396,7 +1466,7 @@
                 "rss": "https://github.com/laminas/laminas-view/releases.atom",
                 "source": "https://github.com/laminas/laminas-view"
             },
-            "time": "2019-12-31T18:05:06+00:00"
+            "time": "2019-12-31T18:03:25+00:00"
         },
         {
             "name": "laminas/laminas-zendframework-bridge",
@@ -3197,73 +3267,6 @@
                 "source": "https://github.com/laminas/laminas-inputfilter"
             },
             "time": "2019-12-31T17:13:19+00:00"
-        },
-        {
-            "name": "laminas/laminas-json",
-            "version": "2.6.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laminas/laminas-json.git",
-                "reference": "dd5a908bcf957b846048175b76dfb0aa53b68e41"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-json/zipball/dd5a908bcf957b846048175b76dfb0aa53b68e41",
-                "reference": "dd5a908bcf957b846048175b76dfb0aa53b68e41",
-                "shasum": ""
-            },
-            "require": {
-                "laminas/laminas-zendframework-bridge": "^1.0",
-                "php": ">=5.5"
-            },
-            "replace": {
-                "zendframework/zend-json": "self.version"
-            },
-            "require-dev": {
-                "fabpot/php-cs-fixer": "1.7.*",
-                "laminas/laminas-http": "~2.5",
-                "laminas/laminas-server": "~2.5",
-                "laminas/laminas-stdlib": "~2.5",
-                "laminas/laminas-xml": "~1.0",
-                "phpunit/phpunit": "~4.0"
-            },
-            "suggest": {
-                "laminas/laminas-http": "Laminas\\Http component",
-                "laminas/laminas-server": "Laminas\\Server component",
-                "laminas/laminas-stdlib": "To use the cache for Laminas\\Server",
-                "laminas/laminas-xml": "To support Laminas\\Json\\Json::fromXml() usage"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.6-dev",
-                    "dev-develop": "2.7-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Laminas\\Json\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "provides convenience methods for serializing native PHP to JSON and decoding JSON to native PHP",
-            "homepage": "https://laminas.dev",
-            "keywords": [
-                "json",
-                "laminas"
-            ],
-            "support": {
-                "chat": "https://laminas.dev/chat",
-                "docs": "https://docs.laminas.dev/laminas-json/",
-                "forum": "https://discourse.laminas.dev",
-                "issues": "https://github.com/laminas/laminas-json/issues",
-                "rss": "https://github.com/laminas/laminas-json/releases.atom",
-                "source": "https://github.com/laminas/laminas-json"
-            },
-            "time": "2019-12-31T17:14:58+00:00"
         },
         {
             "name": "laminas/laminas-log",
