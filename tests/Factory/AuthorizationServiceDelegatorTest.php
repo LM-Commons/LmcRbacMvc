@@ -22,6 +22,7 @@ use Laminas\ServiceManager\ServiceLocatorInterface;
 use LmcRbacMvc\Factory\AuthorizationServiceDelegatorFactory;
 use LmcRbacMvcTest\Initializer\AuthorizationAwareFake;
 use LmcRbacMvcTest\Util\ServiceManagerFactory;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @covers  \LmcRbacMvc\Factory\AuthorizationServiceDelegatorFactory
@@ -30,6 +31,8 @@ use LmcRbacMvcTest\Util\ServiceManagerFactory;
  */
 class AuthorizationServiceDelegatorTest extends \PHPUnit\Framework\TestCase
 {
+    use ProphecyTrait;
+
     public function testDelegatorFactory()
     {
         $authServiceClassName = 'LmcRbacMvc\Service\AuthorizationService';
@@ -37,7 +40,7 @@ class AuthorizationServiceDelegatorTest extends \PHPUnit\Framework\TestCase
         $serviceLocator       = $this->prophesize(ServiceLocatorInterface::class);
         $serviceLocator->willImplement(ContainerInterface::class);
 
-//        $authorizationService = $this->getMock('LmcRbacMvc\Service\AuthorizationService', [], [], '', false);
+
         $authorizationService = $this->getMockBuilder('LmcRbacMvc\Service\AuthorizationService')
             ->disableOriginalConstructor()
             ->getMock();
@@ -76,41 +79,6 @@ class AuthorizationServiceDelegatorTest extends \PHPUnit\Framework\TestCase
         $this->assertNull($decoratedInstance->getAuthorizationService());
     }
 
-    /**
-     * dependency on zend-servivemanager v2 removed
-     *
-     */
-/*
-    public function testAuthorizationServiceIsInjectedWithDelegator()
-    {
-        $serviceManager = ServiceManagerFactory::getServiceManager();
-
-        if (method_exists($serviceManager, 'build')) {
-            $this->markTestSkipped('this test is only for zend-servicemanager v2');
-        }
-
-        $serviceManager->setAllowOverride(true);
-        $authorizationService = $this->getMock('LmcRbacMvc\Service\AuthorizationService', [], [], '', false);
-        $serviceManager->setService(
-            'LmcRbacMvc\Service\AuthorizationService',
-            $authorizationService
-        );
-        $serviceManager->setAllowOverride(false);
-
-        $serviceManager->setInvokableClass(
-            'LmcRbacMvcTest\AuthorizationAware',
-            'LmcRbacMvcTest\Initializer\AuthorizationAwareFake'
-        );
-
-        $serviceManager->addDelegator(
-            'LmcRbacMvcTest\AuthorizationAware',
-            'LmcRbacMvc\Factory\AuthorizationServiceDelegatorFactory'
-        );
-
-        $decoratedInstance = $serviceManager->get('LmcRbacMvcTest\AuthorizationAware');
-        $this->assertEquals($authorizationService, $decoratedInstance->getAuthorizationService());
-    }
-*/
     public function testAuthorizationServiceIsInjectedWithDelegatorV3()
     {
         $serviceManager = ServiceManagerFactory::getServiceManager();

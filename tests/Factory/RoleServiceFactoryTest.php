@@ -16,7 +16,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacTest\Factory;
+namespace LmcRbacMvcTest\Factory;
 
 use Laminas\ServiceManager\ServiceManager;
 use LmcRbacMvc\Factory\RoleServiceFactory;

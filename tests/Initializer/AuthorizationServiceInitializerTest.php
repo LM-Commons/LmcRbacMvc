@@ -20,6 +20,7 @@ namespace LmcRbacMvcTest\Initializer;
 use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 use LmcRbacMvc\Initializer\AuthorizationServiceInitializer;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @covers  \LmcRbacMvc\Initializer\AuthorizationServiceInitializer
@@ -28,6 +29,8 @@ use LmcRbacMvc\Initializer\AuthorizationServiceInitializer;
  */
 class AuthorizationServiceInitializerTest extends \PHPUnit\Framework\TestCase
 {
+    use ProphecyTrait;
+
     public function testInitializer()
     {
         $authServiceClassName = 'LmcRbacMvc\Service\AuthorizationService';

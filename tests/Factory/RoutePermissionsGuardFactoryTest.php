@@ -16,7 +16,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacTest\Factory;
+namespace LmcRbacMvcTest\Factory;
 
 use Laminas\ServiceManager\ServiceManager;
 use LmcRbacMvc\Factory\RoutePermissionsGuardFactory;
@@ -29,47 +29,7 @@ use LmcRbacMvc\Options\ModuleOptions;
  */
 class RoutePermissionsGuardFactoryTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * Dependency on zend-servicemanager v2 removed
-     */
-    /*
     public function testFactory()
-    {
-        $serviceManager = new ServiceManager();
-
-        if (method_exists($serviceManager, 'build')) {
-            $this->markTestSkipped('this test is only vor zend-servicemanager v2');
-        }
-
-        $creationOptions = [
-            'route' => 'role'
-        ];
-
-        $options = new ModuleOptions([
-            'identity_provider' => 'LmcRbacMvc\Identity\AuthenticationProvider',
-            'guards'            => [
-                'LmcRbacMvc\Guard\RoutePermissionsGuard' => $creationOptions
-            ],
-            'protection_policy' => GuardInterface::POLICY_ALLOW,
-        ]);
-
-        $serviceManager->setService('LmcRbacMvc\Options\ModuleOptions', $options);
-        $serviceManager->setService(
-            'LmcRbacMvc\Service\AuthorizationService',
-            $this->getMock('LmcRbacMvc\Service\AuthorizationService', [], [], '', false)
-        );
-
-        $pluginManager = new GuardPluginManager($serviceManager);
-
-        $factory    = new RoutePermissionsGuardFactory();
-        $routeGuard = $factory->createService($pluginManager);
-
-        $this->assertInstanceOf('LmcRbacMvc\Guard\RoutePermissionsGuard', $routeGuard);
-        $this->assertEquals(GuardInterface::POLICY_ALLOW, $routeGuard->getProtectionPolicy());
-    }
-    */
-
-    public function testFactoryV3()
     {
         $serviceManager = new ServiceManager();
 

@@ -20,12 +20,15 @@ namespace LmcRbacMvcTest\Factory;
 
 use Interop\Container\ContainerInterface;
 use LmcRbacMvc\Factory\UnauthorizedStrategyFactory;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @covers \LmcRbacMvc\Factory\UnauthorizedStrategyFactory
  */
 class UnauthorizedStrategyFactoryTest extends \PHPUnit\Framework\TestCase
 {
+    use ProphecyTrait;
+
     public function testFactory()
     {
         $unauthorizedStrategyOptions = $this->createMock('LmcRbacMvc\Options\UnauthorizedStrategyOptions');

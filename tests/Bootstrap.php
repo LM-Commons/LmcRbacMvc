@@ -40,22 +40,6 @@ if (! isset($loader)) {
 
 $loader->add('LmcRbacMvcTest\\', __DIR__);
 
-$r = new \ReflectionClass(Application::class);
-$requiredParams = $r->getConstructor()->getNumberOfRequiredParameters();
-$version = $requiredParams == 1 ? 3 : 2;
-
-$configFiles = [
-    sprintf(__DIR__ . '/TestConfigurationV%s.php', $version),
-    sprintf(__DIR__ . '/TestConfigurationV%s.php.dist', $version),
-];
-
-foreach ($configFiles as $configFile) {
-    if (file_exists($configFile)) {
-        $config = require $configFile;
-
-        break;
-    }
-}
-
+$config = require __DIR__ . '/TestConfiguration.php.dist';
 ServiceManagerFactory::setApplicationConfig($config);
 unset($files, $file, $loader, $configFiles, $configFile, $config);

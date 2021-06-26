@@ -27,7 +27,7 @@ use LmcRbacMvc\Exception;
  * @author  Aeneas Rekkas
  * @license MIT
  *
- * @method AssertionInterface get($name)
+ * @method AssertionInterface get($name, $options=null)
  */
 class AssertionPluginManager extends AbstractPluginManager
 {

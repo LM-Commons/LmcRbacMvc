@@ -25,7 +25,7 @@ use LmcRbacMvc\Factory\ObjectRepositoryRoleProviderFactory;
 /**
  * Plugin manager to create role providers
  *
- * @method RoleProviderInterface get($name)
+ * @method RoleProviderInterface get($name, $options=null)
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @license MIT

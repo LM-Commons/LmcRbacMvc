@@ -21,12 +21,15 @@ namespace LmcRbacMvcTest\Factory;
 use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 use LmcRbacMvc\Factory\RedirectStrategyFactory;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @covers \LmcRbacMvc\Factory\RedirectStrategyFactory
  */
 class RedirectStrategyFactoryTest extends \PHPUnit\Framework\TestCase
 {
+    use ProphecyTrait;
+
     public function testFactory()
     {
         $redirectStrategyOptions = $this->createMock('LmcRbacMvc\Options\RedirectStrategyOptions');
