@@ -27,32 +27,7 @@ use LmcRbacMvc\Factory\IsGrantedPluginFactory;
  */
 class IsGrantedPluginFactoryTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * Dependency on zend-servicemanager v2 removed
-     */
-    /*
     public function testFactory()
-    {
-        $serviceManager = new ServiceManager();
-
-        if (method_exists($serviceManager, 'build')) {
-            $this->markTestSkipped('this test is only vor zend-servicemanager v2');
-        }
-
-        $pluginManager  = new PluginManager($serviceManager);
-
-        $serviceManager->setService(
-            'LmcRbacMvc\Service\AuthorizationService',
-            $this->getMock('LmcRbacMvc\Service\AuthorizationServiceInterface')
-        );
-
-        $factory   = new IsGrantedPluginFactory();
-        $isGranted = $factory->createService($pluginManager);
-
-        $this->assertInstanceOf('LmcRbacMvc\Mvc\Controller\Plugin\IsGranted', $isGranted);
-    }
-    */
-    public function testFactoryV3()
     {
         $serviceManager = new ServiceManager();
 

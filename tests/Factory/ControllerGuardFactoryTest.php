@@ -29,46 +29,7 @@ use LmcRbacMvc\Options\ModuleOptions;
  */
 class ControllerGuardFactoryTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * Dependency on zend-servicemanager v2 removed
-     */
-    /*
     public function testFactory()
-    {
-        $serviceManager = new ServiceManager();
-
-        if (method_exists($serviceManager, 'build')) {
-            $this->markTestSkipped('this test is only vor zend-servicemanager v2');
-        }
-
-        $options = new ModuleOptions([
-            'identity_provider' => 'LmcRbacMvc\Identity\AuthenticationProvider',
-            'guards'            => [
-                'LmcRbacMvc\Guard\ControllerGuard' => [
-                    'controller' => 'MyController',
-                    'actions'    => 'edit',
-                    'roles'      => 'member'
-                ]
-            ],
-            'protection_policy' => GuardInterface::POLICY_ALLOW
-        ]);
-
-        $serviceManager->setService('LmcRbacMvc\Options\ModuleOptions', $options);
-        $serviceManager->setService(
-            'LmcRbacMvc\Service\RoleService',
-            $this->getMock('LmcRbacMvc\Service\RoleService', [], [], '', false)
-        );
-
-        $pluginManager = new GuardPluginManager($serviceManager);
-
-        $factory         = new ControllerGuardFactory();
-        $controllerGuard = $factory->createService($pluginManager);
-
-        $this->assertInstanceOf('LmcRbacMvc\Guard\ControllerGuard', $controllerGuard);
-        $this->assertEquals(GuardInterface::POLICY_ALLOW, $controllerGuard->getProtectionPolicy());
-    }
-*/
-    public function testFactoryV3()
     {
         $serviceManager = new ServiceManager();
 

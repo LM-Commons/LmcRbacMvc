@@ -16,7 +16,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacTest\Factory;
+namespace LmcRbacMvcTest\Factory;
 
 use Laminas\ServiceManager\ServiceManager;
 use Laminas\View\HelperPluginManager;
@@ -27,33 +27,7 @@ use LmcRbacMvc\Factory\HasRoleViewHelperFactory;
  */
 class HasRoleViewHelperFactoryTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * Dependency on zend-servicemanager v2 removed
-     */
-    /*
     public function testFactory()
-    {
-        $serviceManager = new ServiceManager();
-
-        if (method_exists($serviceManager, 'build')) {
-            $this->markTestSkipped('this test is only vor zend-servicemanager v2');
-        }
-
-        $pluginManager  = new HelperPluginManager($serviceManager);
-
-        $serviceManager->setService(
-            'LmcRbacMvc\Service\RoleService',
-            $this->getMock('LmcRbacMvc\Service\RoleService', [], [], '', false)
-        );
-
-        $factory   = new HasRoleViewHelperFactory();
-        $viewHelper = $factory->createService($pluginManager);
-
-        $this->assertInstanceOf('LmcRbacMvc\View\Helper\HasRole', $viewHelper);
-    }
-    */
-
-    public function testFactoryV3()
     {
         $serviceManager = new ServiceManager();
 

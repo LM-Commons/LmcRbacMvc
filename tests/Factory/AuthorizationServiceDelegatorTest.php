@@ -79,41 +79,6 @@ class AuthorizationServiceDelegatorTest extends \PHPUnit\Framework\TestCase
         $this->assertNull($decoratedInstance->getAuthorizationService());
     }
 
-    /**
-     * dependency on zend-servivemanager v2 removed
-     *
-     */
-/*
-    public function testAuthorizationServiceIsInjectedWithDelegator()
-    {
-        $serviceManager = ServiceManagerFactory::getServiceManager();
-
-        if (method_exists($serviceManager, 'build')) {
-            $this->markTestSkipped('this test is only for zend-servicemanager v2');
-        }
-
-        $serviceManager->setAllowOverride(true);
-        $authorizationService = $this->getMock('LmcRbacMvc\Service\AuthorizationService', [], [], '', false);
-        $serviceManager->setService(
-            'LmcRbacMvc\Service\AuthorizationService',
-            $authorizationService
-        );
-        $serviceManager->setAllowOverride(false);
-
-        $serviceManager->setInvokableClass(
-            'LmcRbacMvcTest\AuthorizationAware',
-            'LmcRbacMvcTest\Initializer\AuthorizationAwareFake'
-        );
-
-        $serviceManager->addDelegator(
-            'LmcRbacMvcTest\AuthorizationAware',
-            'LmcRbacMvc\Factory\AuthorizationServiceDelegatorFactory'
-        );
-
-        $decoratedInstance = $serviceManager->get('LmcRbacMvcTest\AuthorizationAware');
-        $this->assertEquals($authorizationService, $decoratedInstance->getAuthorizationService());
-    }
-*/
     public function testAuthorizationServiceIsInjectedWithDelegatorV3()
     {
         $serviceManager = ServiceManagerFactory::getServiceManager();
