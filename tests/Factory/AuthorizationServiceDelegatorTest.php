@@ -22,6 +22,7 @@ use Laminas\ServiceManager\ServiceLocatorInterface;
 use LmcRbacMvc\Factory\AuthorizationServiceDelegatorFactory;
 use LmcRbacMvcTest\Initializer\AuthorizationAwareFake;
 use LmcRbacMvcTest\Util\ServiceManagerFactory;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @covers  \LmcRbacMvc\Factory\AuthorizationServiceDelegatorFactory
@@ -30,6 +31,8 @@ use LmcRbacMvcTest\Util\ServiceManagerFactory;
  */
 class AuthorizationServiceDelegatorTest extends \PHPUnit\Framework\TestCase
 {
+    use ProphecyTrait;
+
     public function testDelegatorFactory()
     {
         $authServiceClassName = 'LmcRbacMvc\Service\AuthorizationService';
@@ -37,7 +40,7 @@ class AuthorizationServiceDelegatorTest extends \PHPUnit\Framework\TestCase
         $serviceLocator       = $this->prophesize(ServiceLocatorInterface::class);
         $serviceLocator->willImplement(ContainerInterface::class);
 
-//        $authorizationService = $this->getMock('LmcRbacMvc\Service\AuthorizationService', [], [], '', false);
+
         $authorizationService = $this->getMockBuilder('LmcRbacMvc\Service\AuthorizationService')
             ->disableOriginalConstructor()
             ->getMock();

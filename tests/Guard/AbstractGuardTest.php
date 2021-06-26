@@ -22,6 +22,7 @@ use Laminas\EventManager\EventManager;
 use Laminas\Mvc\Application;
 use Laminas\Mvc\MvcEvent;
 use LmcRbacMvcTest\Asset\DummyGuard;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @covers \LmcRbacMvc\Guard\AbstractGuard
@@ -29,6 +30,8 @@ use LmcRbacMvcTest\Asset\DummyGuard;
  */
 class AbstractGuardTest extends \PHPUnit\Framework\TestCase
 {
+    use ProphecyTrait;
+
     public function testDoesNotLimitDispatchErrorEventToOnlyOneListener()
     {
         $eventManager = new EventManager();

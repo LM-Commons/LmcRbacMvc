@@ -18,6 +18,7 @@
 
 namespace LmcRbacMvcTest\Collector;
 
+use Laminas\ServiceManager\ServiceManager;
 use LmcRbacMvc\Identity\IdentityInterface;
 use LmcRbacMvcTest\Asset\MockRoleWithPermissionTraversable;
 use Rbac\Role\RoleInterface;
@@ -130,7 +131,8 @@ class RbacCollectorTest extends \PHPUnit\Framework\TestCase
             'identity_role' => 'member'
         ];
 
-        $serviceManager = $this->getMockBuilder('Laminas\ServiceManager\ServiceLocatorInterface')->getMock();
+        //$serviceManager = $this->getMockBuilder('Laminas\ServiceManager\ServiceLocatorInterface')->getMock();
+        $serviceManager = new ServiceManager();
 //        $serviceManager = $this->getMock('Laminas\ServiceManager\ServiceLocatorInterface');
         $application = $this->getMockBuilder('Laminas\Mvc\Application')
             ->disableOriginalConstructor()
@@ -156,6 +158,7 @@ class RbacCollectorTest extends \PHPUnit\Framework\TestCase
 
         $roleService = new RoleService($identityProvider, new InMemoryRoleProvider($dataToCollect['role_config']), new RecursiveRoleIteratorStrategy());
 
+        /*
         $serviceManager->expects($this->at(0))
                        ->method('get')
                        ->with('LmcRbacMvc\Service\RoleService')
@@ -165,7 +168,9 @@ class RbacCollectorTest extends \PHPUnit\Framework\TestCase
                        ->method('get')
                        ->with('LmcRbacMvc\Options\ModuleOptions')
                        ->will($this->returnValue(new ModuleOptions($dataToCollect['module_options'])));
-
+*/
+        $serviceManager->setService('LmcRbacMvc\Service\RoleService', $roleService);
+        $serviceManager->setService('LmcRbacMvc\Options\ModuleOptions', new ModuleOptions($dataToCollect['module_options']));
         $collector = new RbacCollector();
         $collector->collect($mvcEvent);
 
@@ -271,10 +276,9 @@ class RbacCollectorTest extends \PHPUnit\Framework\TestCase
      */
     private function collectPermissionsPropertyTestBase(RoleInterface $role)
     {
-//        $serviceManager = $this->getMock('Laminas\ServiceManager\ServiceLocatorInterface');
-        $serviceManager = $this->createMock(\Laminas\ServiceManager\ServiceLocatorInterface::class);
+//        $serviceManager = $this->createMock(\Laminas\ServiceManager\ServiceLocatorInterface::class);
+        $serviceManager = new ServiceManager();
 
-//        $application = $this->getMock('Laminas\Mvc\Application', [], [], '', false);
         $application = $this->getMockBuilder(\Laminas\Mvc\Application::class)
             ->disableOriginalConstructor()
             ->getMock();
@@ -283,19 +287,16 @@ class RbacCollectorTest extends \PHPUnit\Framework\TestCase
         $mvcEvent = new MvcEvent();
         $mvcEvent->setApplication($application);
 
-//        $identity = $this->getMock('LmcRbacMvc\Identity\IdentityInterface');
         $identity = $this->createMock(\LmcRbacMvc\Identity\IdentityInterface::class);
         $identity->expects($this->once())
             ->method('getRoles')
             ->will($this->returnValue([$role]));
 
-//        $identityProvider = $this->getMock('LmcRbacMvc\Identity\IdentityProviderInterface');
         $identityProvider = $this->createMock(\LmcRbacMvc\Identity\IdentityProviderInterface::class);
         $identityProvider->expects($this->once())
             ->method('getIdentity')
             ->will($this->returnValue($identity));
 
-//        $roleProvider = $this->getMock('LmcRbacMvc\Role\RoleProviderInterface');
         $roleProvider = $this->createMock(\LmcRbacMvc\Role\RoleProviderInterface::class);
 
         $roleService = new RoleService(
@@ -303,17 +304,20 @@ class RbacCollectorTest extends \PHPUnit\Framework\TestCase
             $roleProvider,
             new RecursiveRoleIteratorStrategy()
         );
-
+        $serviceManager->setService('LmcRbacMvc\Service\RoleService', $roleService);
+/*
         $serviceManager->expects($this->at(0))
             ->method('get')
             ->with('LmcRbacMvc\Service\RoleService')
             ->will($this->returnValue($roleService));
-
+*/
+        $serviceManager->setService('LmcRbacMvc\Options\ModuleOptions', new ModuleOptions());
+/*
         $serviceManager->expects($this->at(1))
             ->method('get')
             ->with('LmcRbacMvc\Options\ModuleOptions')
             ->will($this->returnValue(new ModuleOptions()));
-
+*/
         $collector = new RbacCollector();
         $collector->collect($mvcEvent);
 
