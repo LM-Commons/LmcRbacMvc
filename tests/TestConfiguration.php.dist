@@ -20,10 +20,8 @@ return [
     'modules' => [
         'Laminas\Router',
         'LmcRbacMvc',
-/*
         'DoctrineModule',
         'DoctrineORMModule',
-*/
     ],
     'module_listener_options' => [
         'config_glob_paths' => [
