@@ -2,7 +2,7 @@
 
 ## From zfc-rbac v2.x to LmcRbacMvc v3.0
 
-- [BC] The namespace has been changed to `LmcRbcaMvc`
+- [BC] The namespace has been changed to `LmcRbacMvc`
 - [BC] The `zfc_rbac` configuration key has been changed to `lmc_rbac`
 - Requires PHP 7.2 or later
 - Requires Laminas MVC components 3.x or later
