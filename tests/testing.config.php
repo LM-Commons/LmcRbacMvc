@@ -18,6 +18,7 @@
 
 return [
     'lmc_rbac' => [],
+/*
     'doctrine' => [
         'driver' => [
             'application_driver' => [
@@ -48,4 +49,5 @@ return [
             ],
         ],
     ],
+*/
 ];
