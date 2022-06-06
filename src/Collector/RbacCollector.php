@@ -220,21 +220,32 @@ class RbacCollector implements CollectorInterface, Serializable
      */
     public function serialize()
     {
-        return serialize($this->getCollection());
+        return serialize($this->__serialize());
     }
 
     /**
      * {@inheritDoc}
      */
-    public function unserialize($serialized)
+    public function unserialize($data)
     {
-        $collection = unserialize($serialized);
+        $collection = unserialize($data);
         if (!is_array($collection)) {
             throw new InvalidArgumentException(__METHOD__ . ": Unserialized data should be an array.");
         }
-        $this->collectedGuards = $collection['guards'];
-        $this->collectedRoles  = $collection['roles'];
-        $this->collectedPermissions =  $collection['permissions'];
-        $this->collectedOptions = $collection['options'];
+
+        $this->__unserialize($collection);
+    }
+
+    public function __serialize(): array
+    {
+        return $this->getCollection();
+    }
+
+    public function __unserialize(array $data): void
+    {
+        $this->collectedGuards = $data['guards'];
+        $this->collectedRoles  = $data['roles'];
+        $this->collectedPermissions =  $data['permissions'];
+        $this->collectedOptions = $data['options'];
     }
 }
