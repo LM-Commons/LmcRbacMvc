@@ -147,14 +147,14 @@ class RbacCollectorTest extends \PHPUnit\Framework\TestCase
         $identity = $this->createMock(IdentityInterface::class);
 //        $identity = $this->getMock('LmcRbacMvc\Identity\IdentityInterface');
         $identity->expects($this->once())
-                 ->method('getRoles')
-                 ->will($this->returnValue($dataToCollect['identity_role']));
+            ->method('getRoles')
+            ->will($this->returnValue($dataToCollect['identity_role']));
 
 //        $identityProvider = $this->getMock('LmcRbacMvc\Identity\IdentityProviderInterface');
         $identityProvider = $this->createMock(\LmcRbacMvc\Identity\IdentityProviderInterface::class);
         $identityProvider->expects($this->once())
-                         ->method('getIdentity')
-                         ->will($this->returnValue($identity));
+            ->method('getIdentity')
+            ->will($this->returnValue($identity));
 
         $roleService = new RoleService($identityProvider, new InMemoryRoleProvider($dataToCollect['role_config']), new RecursiveRoleIteratorStrategy());
 
@@ -305,19 +305,19 @@ class RbacCollectorTest extends \PHPUnit\Framework\TestCase
             new RecursiveRoleIteratorStrategy()
         );
         $serviceManager->setService('LmcRbacMvc\Service\RoleService', $roleService);
-/*
-        $serviceManager->expects($this->at(0))
-            ->method('get')
-            ->with('LmcRbacMvc\Service\RoleService')
-            ->will($this->returnValue($roleService));
-*/
+        /*
+                $serviceManager->expects($this->at(0))
+                    ->method('get')
+                    ->with('LmcRbacMvc\Service\RoleService')
+                    ->will($this->returnValue($roleService));
+        */
         $serviceManager->setService('LmcRbacMvc\Options\ModuleOptions', new ModuleOptions());
-/*
-        $serviceManager->expects($this->at(1))
-            ->method('get')
-            ->with('LmcRbacMvc\Options\ModuleOptions')
-            ->will($this->returnValue(new ModuleOptions()));
-*/
+        /*
+                $serviceManager->expects($this->at(1))
+                    ->method('get')
+                    ->with('LmcRbacMvc\Options\ModuleOptions')
+                    ->will($this->returnValue(new ModuleOptions()));
+        */
         $collector = new RbacCollector();
         $collector->collect($mvcEvent);
 
