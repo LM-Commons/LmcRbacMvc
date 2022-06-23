@@ -18,7 +18,6 @@
 
 return [
     'lmc_rbac' => [],
-/*
     'doctrine' => [
         'driver' => [
             'application_driver' => [
@@ -35,7 +34,7 @@ return [
 
         'connection' => [
             'orm_default' => [
-                'driverClass' => 'Doctrine\DBAL\Driver\PDOSqlite\Driver',
+                'driverClass'       => 'Doctrine\DBAL\Driver\PDO\SQLite\Driver',
                 'params' => [
                     'host'          => null,
                     'port'          => null,
@@ -49,5 +48,4 @@ return [
             ],
         ],
     ],
-*/
 ];
