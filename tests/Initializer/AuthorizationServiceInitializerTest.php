@@ -17,7 +17,7 @@
  */
 namespace LmcRbacMvcTest\Initializer;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 use LmcRbacMvc\Initializer\AuthorizationServiceInitializer;
 use Prophecy\PhpUnit\ProphecyTrait;

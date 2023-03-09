@@ -18,7 +18,7 @@
 
 namespace LmcRbacMvc\Initializer;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Laminas\ServiceManager\AbstractPluginManager;
 use Laminas\ServiceManager\Initializer\InitializerInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
