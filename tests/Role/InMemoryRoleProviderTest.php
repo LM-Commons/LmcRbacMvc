@@ -19,7 +19,6 @@
 namespace LmcRbacMvcTest\Role;
 
 use LmcRbacMvc\Role\InMemoryRoleProvider;
-
 /**
  * @covers \LmcRbacMvc\Role\InMemoryRoleProvider
  */
@@ -48,35 +47,33 @@ class InMemoryRoleProviderTest extends \PHPUnit\Framework\TestCase
 
         // Test admin role
         $adminRole = $roles[0];
-        $this->assertInstanceOf('Rbac\Role\HierarchicalRoleInterface', $adminRole);
+        $this->assertInstanceOf('Laminas\Permissions\Rbac\RoleInterface', $adminRole);
         $this->assertEquals('admin', $adminRole->getName());
         $this->assertTrue($adminRole->hasPermission('delete'));
 
         // Test member role
         $memberRole = $roles[1];
-        $this->assertInstanceOf('Rbac\Role\HierarchicalRoleInterface', $memberRole);
+        $this->assertInstanceOf('Laminas\Permissions\Rbac\RoleInterface', $memberRole);
         $this->assertEquals('member', $memberRole->getName());
         $this->assertTrue($memberRole->hasPermission('write'));
         $this->assertFalse($memberRole->hasPermission('delete'));
 
         // Test guest role
         $guestRole = $roles[2];
-        $this->assertInstanceOf('Rbac\Role\RoleInterface', $guestRole);
-        $this->assertNotInstanceOf('Rbac\Role\HierarchicalRoleInterface', $guestRole);
+        $this->assertInstanceOf('Laminas\Permissions\Rbac\RoleInterface', $guestRole);
         $this->assertEquals('guest', $guestRole->getName());
         $this->assertFalse($guestRole->hasPermission('write'));
         $this->assertFalse($guestRole->hasPermission('delete'));
 
         // Test system role
         $systemRole = $roles[3];
-        $this->assertInstanceOf('Rbac\Role\RoleInterface', $systemRole);
-        $this->assertNotInstanceOf('Rbac\Role\HierarchicalRoleInterface', $systemRole);
+        $this->assertInstanceOf('Laminas\Permissions\Rbac\RoleInterface', $systemRole);
         $this->assertEquals('system', $systemRole->getName());
         $this->assertTrue($systemRole->hasPermission('all'));
         $this->assertFalse($systemRole->hasPermission('write'));
         $this->assertFalse($systemRole->hasPermission('delete'));
 
-        $this->assertSame($adminRole->getChildren()['member'], $memberRole);
-        $this->assertSame($memberRole->getChildren()['guest'], $guestRole);
+        $this->assertSame($adminRole->getChildren()[0], $memberRole);
+        $this->assertSame($memberRole->getChildren()[0], $guestRole);
     }
 }

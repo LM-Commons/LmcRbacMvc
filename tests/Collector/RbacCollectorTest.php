@@ -21,15 +21,14 @@ namespace LmcRbacMvcTest\Collector;
 use Laminas\ServiceManager\ServiceManager;
 use LmcRbacMvc\Identity\IdentityInterface;
 use LmcRbacMvcTest\Asset\MockRoleWithPermissionTraversable;
-use Rbac\Role\RoleInterface;
+use Laminas\Permissions\Rbac\RoleInterface;
 use Laminas\Mvc\MvcEvent;
-use Laminas\Permissions\Rbac\Role;
 use LmcRbacMvc\Collector\RbacCollector;
 use LmcRbacMvc\Guard\GuardInterface;
 use LmcRbacMvc\Options\ModuleOptions;
 use LmcRbacMvc\Role\InMemoryRoleProvider;
 use LmcRbacMvc\Service\RoleService;
-use Rbac\Traversal\Strategy\RecursiveRoleIteratorStrategy;
+use LmcRbacMvc\Role\RecursiveRoleIteratorStrategy;
 use LmcRbacMvcTest\Asset\MockRoleWithPermissionMethod;
 use LmcRbacMvcTest\Asset\MockRoleWithPermissionProperty;
 
@@ -272,7 +271,7 @@ class RbacCollectorTest extends \PHPUnit\Framework\TestCase
     /**
      * Base method for the *collectPermissionProperty tests
      * @param RoleInterface $role
-     * @return array|\string[]
+     * @return array|string[]
      */
     private function collectPermissionsPropertyTestBase(RoleInterface $role)
     {

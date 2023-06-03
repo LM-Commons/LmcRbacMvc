@@ -31,7 +31,7 @@ class AuthenticationIdentityProviderTest extends \PHPUnit\Framework\TestCase
     protected $identityProvider;
 
     /**
-     * @var \Laminas\Authentication\AuthenticationService|\PHPUnit_Framework_MockObject_MockObject
+     * @var \Laminas\Authentication\AuthenticationService|\PHPUnit\Framework\MockObject\MockObject
      */
     protected $authenticationService;
 

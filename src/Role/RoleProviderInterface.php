@@ -18,7 +18,7 @@
 
 namespace LmcRbacMvc\Role;
 
-use Rbac\Role\RoleInterface;
+use Laminas\Permissions\Rbac\RoleInterface;
 
 /**
  * A role provider is an object that collect roles from string and convert them to RoleInterface instances

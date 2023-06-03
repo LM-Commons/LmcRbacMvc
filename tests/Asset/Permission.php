@@ -20,13 +20,12 @@ namespace LmcRbacMvcTest\Asset;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Rbac\Permission\PermissionInterface;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="permissions")
  */
-class Permission implements PermissionInterface
+class Permission
 {
     /**
      * @var int|null

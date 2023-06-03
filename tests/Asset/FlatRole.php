@@ -20,8 +20,8 @@ namespace LmcRbacMvcTest\Asset;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Rbac\Permission\PermissionInterface;
-use Rbac\Role\Role;
+use LmcRbacMvc\Role\Role;
+use LmcRbacMvc\Permission\PermissionInterface;
 
 /**
  * @ORM\Entity
@@ -77,7 +77,7 @@ class FlatRole extends Role
      * @param  PermissionInterface|string $permission
      * @return void
      */
-    public function addPermission($permission)
+    public function addPermission($permission):void
     {
         if (is_string($permission)) {
             $name       = $permission;
