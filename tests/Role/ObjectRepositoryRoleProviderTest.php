@@ -21,7 +21,7 @@ namespace LmcRbacMvcTest\Role;
 use Doctrine\ORM\Tools\SchemaTool;
 use Doctrine\ORM\Tools\ToolsException;
 use Doctrine\Persistence\ObjectManager;
-use Rbac\Traversal\RecursiveRoleIterator;
+use LmcRbacMvc\Role\RecursiveRoleIterator;
 use Laminas\ServiceManager\ServiceManager;
 use LmcRbacMvc\Role\ObjectRepositoryRoleProvider;
 use LmcRbacMvcTest\Asset\FlatRole;
@@ -62,7 +62,7 @@ class ObjectRepositoryRoleProviderTest extends \PHPUnit\Framework\TestCase
         $this->assertCount(1, $roles);
         $this->assertIsArray($roles);
 
-        $this->assertInstanceOf('Rbac\Role\RoleInterface', $roles[0]);
+        $this->assertInstanceOf('Laminas\Permissions\Rbac\RoleInterface', $roles[0]);
         $this->assertEquals('admin', $roles[0]->getName());
     }
 
@@ -95,7 +95,7 @@ class ObjectRepositoryRoleProviderTest extends \PHPUnit\Framework\TestCase
         $this->assertCount(1, $roles);
         $this->assertIsArray($roles);
 
-        $this->assertInstanceOf('Rbac\Role\HierarchicalRoleInterface', $roles[0]);
+        $this->assertInstanceOf('Laminas\Permissions\Rbac\RoleInterface', $roles[0]);
         $this->assertEquals('admin', $roles[0]->getName());
 
         $iteratorIterator = new \RecursiveIteratorIterator(
@@ -106,7 +106,7 @@ class ObjectRepositoryRoleProviderTest extends \PHPUnit\Framework\TestCase
         $childRolesString = '';
 
         foreach ($iteratorIterator as $childRole) {
-            $this->assertInstanceOf('Rbac\Role\HierarchicalRoleInterface', $childRole);
+            $this->assertInstanceOf('Laminas\Permissions\Rbac\RoleInterface', $childRole);
             $childRolesString .= $childRole->getName();
         }
 

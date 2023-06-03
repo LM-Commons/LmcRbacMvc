@@ -18,8 +18,8 @@
 
 namespace LmcRbacMvcTest\Service;
 
-use Rbac\Rbac;
-use Rbac\Traversal\Strategy\RecursiveRoleIteratorStrategy;
+use LmcRbacMvc\Rbac\Rbac;
+use LmcRbacMvc\Role\RecursiveRoleIteratorStrategy;
 use Laminas\ServiceManager\ServiceManager;
 use LmcRbacMvc\Role\InMemoryRoleProvider;
 use LmcRbacMvc\Service\AuthorizationService;
@@ -124,7 +124,7 @@ class AuthorizationServiceTest extends \PHPUnit\Framework\TestCase
             ]
         ];
 
-        $identity = $this->createMock('LmcRbacMvc\Identity\IdentityInterface');
+        $identity = $this->createMock(\LmcRbacMvc\Identity\IdentityInterface::class);
         $identity->expects($this->once())->method('getRoles')->will($this->returnValue((array) $role));
 
         $identityProvider = $this->createMock('LmcRbacMvc\Identity\IdentityProviderInterface');
@@ -136,8 +136,9 @@ class AuthorizationServiceTest extends \PHPUnit\Framework\TestCase
         $roleService            = new RoleService(
             $identityProvider,
             new InMemoryRoleProvider($roleConfig),
-            $rbac->getTraversalStrategy()
+            new RecursiveRoleIteratorStrategy()
         );
+        
         $assertionPluginManager = new AssertionPluginManager(new ServiceManager(), $assertionPluginConfig);
         $authorizationService   = new AuthorizationService($rbac, $roleService, $assertionPluginManager);
 
@@ -148,8 +149,8 @@ class AuthorizationServiceTest extends \PHPUnit\Framework\TestCase
 
     public function testDoNotCallAssertionIfThePermissionIsNotGranted()
     {
-        $role = $this->createMock('Rbac\Role\RoleInterface');
-        $rbac = $this->createMock('Rbac\Rbac');
+        $role = $this->createMock('Laminas\Permissions\Rbac\RoleInterface');
+        $rbac = $this->createMock('LmcRbacMvc\Rbac\Rbac');
 
         $roleService = $this->createMock('LmcRbacMvc\Service\RoleService');
         $roleService->expects($this->once())->method('getIdentityRoles')->will($this->returnValue([$role]));
@@ -164,8 +165,8 @@ class AuthorizationServiceTest extends \PHPUnit\Framework\TestCase
 
     public function testThrowExceptionForInvalidAssertion()
     {
-        $role = $this->createMock('Rbac\Role\RoleInterface');
-        $rbac = $this->createMock('Rbac\Rbac');
+        $role = $this->createMock('Laminas\Permissions\Rbac\RoleInterface');
+        $rbac = $this->createMock('LmcRbacMvc\Rbac\Rbac');
 
         $rbac->expects($this->once())->method('isGranted')->will($this->returnValue(true));
 
@@ -183,8 +184,8 @@ class AuthorizationServiceTest extends \PHPUnit\Framework\TestCase
 
     public function testDynamicAssertions()
     {
-        $role = $this->createMock('Rbac\Role\RoleInterface');
-        $rbac = $this->createMock('Rbac\Rbac');
+        $role = $this->createMock('Laminas\Permissions\Rbac\RoleInterface');
+        $rbac = $this->createMock('LmcRbacMvc\Rbac\Rbac');
 
         $rbac->expects($this->exactly(2))->method('isGranted')->will($this->returnValue(true));
 
@@ -221,7 +222,7 @@ class AuthorizationServiceTest extends \PHPUnit\Framework\TestCase
 
     public function testAssertionMap()
     {
-        $rbac                   = $this->createMock('Rbac\Rbac');
+        $rbac                   = $this->createMock('LmcRbacMvc\Rbac\Rbac');
         $roleService            = $this->createMock('LmcRbacMvc\Service\RoleService');
         $assertionPluginManager = $this->createMock('LmcRbacMvc\Assertion\AssertionPluginManager');
         $authorizationService   = new AuthorizationService($rbac, $roleService, $assertionPluginManager);
@@ -241,7 +242,7 @@ class AuthorizationServiceTest extends \PHPUnit\Framework\TestCase
      */
     public function testGetIdentity()
     {
-        $rbac             = $this->createMock('Rbac\Rbac');
+        $rbac             = $this->createMock('LmcRbacMvc\Rbac\Rbac');
         $identity         = $this->createMock('LmcRbacMvc\Identity\IdentityInterface');
         $roleService      = $this->createMock('LmcRbacMvc\Service\RoleService');
         $assertionManager = $this->createMock('LmcRbacMvc\Assertion\AssertionPluginManager');

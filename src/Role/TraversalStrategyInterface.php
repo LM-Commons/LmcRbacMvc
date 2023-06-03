@@ -16,18 +16,19 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvc\Permission;
+namespace LmcRbacMvc\Role;
+
+use Laminas\Permissions\Rbac\RoleInterface;
+use Traversable;
 
 /**
- * Interface that permissions must implement to be used with the AuthorizationService
- *
- * Please note that currently the interface extends the one from RBAC, but starting in ZF3, the
- * permission will be removed from RBAC component and moved here completely
- *
- * @author  Michaël Gallego <mic.gallego@gmail.com>
- * @license MIT
- * TODO Remove deprecated interface
+ * Interface for a traversal strategy
  */
-interface PermissionInterface
+interface TraversalStrategyInterface
 {
+    /**
+     * @param  RoleInterface[]|Traversable
+     * @return Traversable
+     */
+    public function getRolesIterator($roles);
 }

@@ -24,9 +24,9 @@ use LmcRbacMvc\Role\InMemoryRoleProvider;
 use LmcRbacMvc\Role\RoleProviderInterface;
 use LmcRbacMvc\Service\RoleService;
 use PHPUnit\Framework\TestCase;
-use Rbac\Role\RoleInterface;
-use Rbac\Traversal\Strategy\RecursiveRoleIteratorStrategy;
-use Rbac\Traversal\Strategy\TraversalStrategyInterface;
+use Laminas\Permissions\Rbac\RoleInterface;
+use LmcRbacMvc\Role\RecursiveRoleIteratorStrategy;
+use LmcRbacMvc\Role\TraversalStrategyInterface;
 
 /**
  * @covers \LmcRbacMvc\Service\RoleService
@@ -211,7 +211,7 @@ class RoleServiceTest extends TestCase
         $roleService = new RoleService(
             $identityProvider,
             new InMemoryRoleProvider([]),
-            $this->createMock('Rbac\Traversal\Strategy\TraversalStrategyInterface')
+            $this->createMock('LmcRbacMvc\Role\TraversalStrategyInterface')
         );
 
         $roleService->setGuestRole('guest');
@@ -220,7 +220,7 @@ class RoleServiceTest extends TestCase
 
         $this->assertEquals('guest', $roleService->getGuestRole());
         $this->assertCount(1, $result);
-        $this->assertInstanceOf('Rbac\Role\RoleInterface', $result[0]);
+        $this->assertInstanceOf('Laminas\Permissions\Rbac\RoleInterface', $result[0]);
         $this->assertEquals('guest', $result[0]->getName());
     }
 
@@ -303,7 +303,7 @@ class RoleServiceTest extends TestCase
         $roleService = new RoleService(
             $identityProvider,
             $this->createMock('LmcRbacMvc\Role\RoleProviderInterface'),
-            $this->createMock('Rbac\Traversal\Strategy\TraversalStrategyInterface')
+            $this->createMock('LmcRbacMvc\Role\TraversalStrategyInterface')
         );
 
         $roleService->getIdentityRoles();

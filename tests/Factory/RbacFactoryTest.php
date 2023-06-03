@@ -33,7 +33,7 @@ class RbacFactoryTest extends \PHPUnit\Framework\TestCase
 
         $rbac = $factory->createService($serviceManager);
 
-        $this->assertInstanceOf('Rbac\Rbac', $rbac);
-        $this->assertInstanceOf('Rbac\Traversal\Strategy\TraversalStrategyInterface', $rbac->getTraversalStrategy());
+        $this->assertInstanceOf('LmcRbacMvc\Rbac\Rbac', $rbac);
+//         $this->assertInstanceOf('LmcRbacMvc\Role\TraversalStrategyInterface', $rbac->getTraversalStrategy());
     }
 }

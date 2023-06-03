@@ -21,15 +21,14 @@ namespace LmcRbacMvcTest\Collector;
 use Laminas\ServiceManager\ServiceManager;
 use LmcRbacMvc\Identity\IdentityInterface;
 use LmcRbacMvcTest\Asset\MockRoleWithPermissionTraversable;
-use Rbac\Role\RoleInterface;
+use Laminas\Permissions\Rbac\RoleInterface;
 use Laminas\Mvc\MvcEvent;
-use Laminas\Permissions\Rbac\Role;
 use LmcRbacMvc\Collector\RbacCollector;
 use LmcRbacMvc\Guard\GuardInterface;
 use LmcRbacMvc\Options\ModuleOptions;
 use LmcRbacMvc\Role\InMemoryRoleProvider;
 use LmcRbacMvc\Service\RoleService;
-use Rbac\Traversal\Strategy\RecursiveRoleIteratorStrategy;
+use LmcRbacMvc\Role\RecursiveRoleIteratorStrategy;
 use LmcRbacMvcTest\Asset\MockRoleWithPermissionMethod;
 use LmcRbacMvcTest\Asset\MockRoleWithPermissionProperty;
 
@@ -178,10 +177,7 @@ class RbacCollectorTest extends \PHPUnit\Framework\TestCase
         $collection = $collector->getCollection();
 
         $expectedCollection = [
-            'options' => [
-                'guest_role'        => 'guest',
-                'protection_policy' => 'allow'
-            ],
+            
             'guards' => [
                 'LmcRbacMvc\Guard\RouteGuard' => [
                     'admin*' => ['*']
@@ -197,9 +193,13 @@ class RbacCollectorTest extends \PHPUnit\Framework\TestCase
                 'member' => ['guest']
             ],
             'permissions' => [
-                'member' => ['write', 'delete'],
+                'member' => ['write', 'delete', 'read'],
                 'guest'  => ['read']
-            ]
+            ],
+            'options' => [
+                'guest_role'        => 'guest',
+                'protection_policy' => 'allow'
+            ],
         ];
 
         $this->assertEquals($expectedCollection, $collection);
@@ -272,7 +272,7 @@ class RbacCollectorTest extends \PHPUnit\Framework\TestCase
     /**
      * Base method for the *collectPermissionProperty tests
      * @param RoleInterface $role
-     * @return array|\string[]
+     * @return array|string[]
      */
     private function collectPermissionsPropertyTestBase(RoleInterface $role)
     {

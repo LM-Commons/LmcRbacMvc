@@ -27,7 +27,7 @@ use LmcRbacMvc\Guard\RouteGuard;
 use LmcRbacMvc\Guard\RoutePermissionsGuard;
 use LmcRbacMvc\Role\InMemoryRoleProvider;
 use LmcRbacMvc\Service\RoleService;
-use Rbac\Traversal\Strategy\RecursiveRoleIteratorStrategy;
+use LmcRbacMvc\Role\RecursiveRoleIteratorStrategy;
 
 /**
  * @covers \LmcRbacMvc\Guard\AbstractGuard
