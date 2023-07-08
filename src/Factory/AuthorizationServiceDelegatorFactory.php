@@ -18,7 +18,7 @@
 
 namespace LmcRbacMvc\Factory;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 //use Laminas\ServiceManager\AbstractPluginManager;
 use Laminas\ServiceManager\Factory\DelegatorFactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;

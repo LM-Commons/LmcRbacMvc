@@ -18,8 +18,9 @@
 
 namespace LmcRbacMvc\Factory;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use LmcRbacMvc\Rbac\Rbac;
+use Rbac\Traversal\Strategy\GeneratorStrategy;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 

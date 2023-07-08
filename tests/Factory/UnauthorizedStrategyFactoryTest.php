@@ -18,7 +18,7 @@
 
 namespace LmcRbacMvcTest\Factory;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use LmcRbacMvc\Factory\UnauthorizedStrategyFactory;
 use Prophecy\PhpUnit\ProphecyTrait;
 

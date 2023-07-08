@@ -17,7 +17,7 @@
  */
 namespace LmcRbacMvcTest\Factory;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 use LmcRbacMvc\Factory\AuthorizationServiceDelegatorFactory;
 use LmcRbacMvcTest\Initializer\AuthorizationAwareFake;
