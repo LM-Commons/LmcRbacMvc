@@ -40,8 +40,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-php--${{matrix.php_version}}
 
-      - name: Install dependencies
-        run: composer install --prefer-dist --no-progress
+      - name: Install/update dependencies
+        run: composer update --prefer-dist --no-progress
 
       - name: Run PHPUnit test suite
         run: composer test
