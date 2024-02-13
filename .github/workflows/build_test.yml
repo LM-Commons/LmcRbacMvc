@@ -13,8 +13,7 @@ jobs:
   build:
     strategy:
       matrix:
-#        php_version: ['8.1', '8.2']  need to fix dependencies issues on 8.2
-        php_version: ['8.1']
+        php_version: ['8.1', '8.2']
     runs-on: ubuntu-latest
 
     steps:
