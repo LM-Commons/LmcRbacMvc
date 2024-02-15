@@ -5,7 +5,7 @@ on:
     pull_request:
 
 env:
-  COMPOSER_ARGS: ''
+  COMPOSER_ARGS: '--no-progress'
 
 jobs:
   build:
@@ -16,7 +16,7 @@ jobs:
         include:
           - code-coverage: 'yes'
             php_version: '8.2'
-            deps: 'latest'
+            deps: ''
     runs-on: ubuntu-latest
 
     steps:
@@ -47,7 +47,11 @@ jobs:
         run: composer update ${{matrix.deps}} $COMPOSER_ARGS
 
       - name: Run PHPUnit test suite
+        if: ${{ matrix.code-coverage != 'no' }}
         run: composer test
 
+      - name: Run PHPUnit test suite with coverage
+        if: ${{ matrix.code-coverage != 'yes' }}
+        run: composer test
 
 
