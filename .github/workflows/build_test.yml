@@ -54,4 +54,8 @@ jobs:
         if: ${{ matrix.code-coverage == 'yes' }}
         run: composer run-script test-coverage
 
+      - name: Upload coverage results to Coverall
+        if: ${{ matrix.code-coverage == 'yes' }}
+        uses: coverallsapp/github-action@v2
+
 
