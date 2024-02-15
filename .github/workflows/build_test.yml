@@ -48,10 +48,10 @@ jobs:
 
       - name: Run PHPUnit test suite
         if: ${{ matrix.code-coverage != 'yes' }}
-        run: composer test
+        run: composer run-script test
 
       - name: Run PHPUnit test suite with coverage
         if: ${{ matrix.code-coverage == 'yes' }}
-        run: composer test
+        run: composer run-script test-coverage
 
 
