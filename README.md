@@ -3,27 +3,18 @@
 [![Version](https://poser.pugx.org/lm-commons/lmc-rbac-mvc/version)](//packagist.org/packages/lm-commons/lmc-rbac-mvc)
 [![Total Downloads](https://poser.pugx.org/lm-commons/lmc-rbac-mvc/downloads)](//packagist.org/packages/lm-commons/lmc-rbac-mvc)
 [![License](https://poser.pugx.org/lm-commons/lmc-rbac-mvc/license)](//packagist.org/packages/lm-commons/lmc-rbac-mvc)
-[![Master Branch Build Status](https://travis-ci.com/LM-Commons/LmcRbacMvc.svg?branch=master)](http://travis-ci.com/LM-Commons/LmcRbac)
-[![Gitter](https://badges.gitter.im/LM-Commons/community.svg)](https://gitter.im/LM-Commons/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Build](https://github.com/lm-commons/LmcRbacMvc/actions/workflows/build_test.yml/badge.svg)](https://github.com/lm-commons/LmcRbacMvc/actions/workflows/build_test.yml)
+<!-- ![Gitter](https://badges.gitter.im/LM-Commons/community.svg)](https://gitter.im/LM-Commons/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) -->
 [![Coverage Status](https://coveralls.io/repos/github/LM-Commons/LmcRbacMvc/badge.svg?branch=master)](https://coveralls.io/github/LM-Commons/LmcRbacMvc?branch=master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/LM-Commons/LmcRbacMvc/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/LM-Commons/LmcRbacMvc/?branch=master)
+<!-- [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/LM-Commons/LmcRbacMvc/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/LM-Commons/LmcRbacMvc/?branch=master) -->
 
-Role-based access control module to provide additional features on top of Zend\Permissions\Rbac
-
-Based on [ZF-Commons/zfc-rbac](https://github.com/ZF-Commons/zfc-rbac) v2.6.x. If you are looking for the Laminas version of zfc-rbac v3, please use [LM-Commons/LmcRbac](https://github.com/LM-Commons/LmcRbac).
-
-### Important Notes:  
-
-This version has breaking changes with respect to ZfcRbac v2. See the [Upgrade](#upgrade) section for details.
-
+Role-based access control module to provide additional features on top of Laminas\Permissions\Rbac
 
 ## Requirements
 
-- PHP 7.2 or higher
-- [Zf-fr/Rbac component v1](https://github.com/zf-fr/rbac): this is actually a prototype for the ZF3 Rbac component.
-- [Laminas Components 2.x | 3.x or higher](http://www.github.com/laminas)
+- PHP 8.1 or higher
+- [Laminas Components 3.x or higher](http://www.github.com/laminas)
 
-> 
 
 ## Optional
 
@@ -33,7 +24,7 @@ the Laminas Developer toolbar.
 
 ## Upgrade
 
-LmcRbac introduces breaking changes from zfcrbac v2:
+LmcRbacMvc introduces breaking changes from zfcrbac v2:
 - The namespace has been changed from `ZfcRbac` to `LmcRbacMvc`. 
 - The key `zfc_rbac` in autoload and module config files has been replaced
 by the `lmc_rbac` key.
@@ -48,10 +39,8 @@ LmcRbacMvc only officially supports installation through Composer. For Composer 
 Install the module:
 
 ```sh
-$ php composer.phar require lm-commons/lmc-rbac-mvc:^3.0
+$ php composer.phar require lm-commons/lmc-rbac-mvc
 ```
-This will install a Laminas MVC equivalent of zfc-rbac 2.6.3.
-
 Enable the module by adding `LmcRbacMvc` key to your `application.config.php` or `modules.config.php` file. Customize the module by copy-pasting
 the `lmc_rbac.global.php.dist` file to your `config/autoload` folder.
 
@@ -65,4 +54,3 @@ of LmcRbac.
 ## Support
 
 - File issues at https://github.com/LM-Commons/LmcRbacMvc/issues.
-- Ask questions in the [LM-Commons gitter](https://gitter.im/LM-Commons/community) chat.
