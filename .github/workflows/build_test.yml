@@ -47,11 +47,11 @@ jobs:
         run: composer update ${{matrix.deps}} $COMPOSER_ARGS
 
       - name: Run PHPUnit test suite
-        if: ${{ matrix.code-coverage != 'no' }}
+        if: ${{ matrix.code-coverage != 'yes' }}
         run: composer test
 
       - name: Run PHPUnit test suite with coverage
-        if: ${{ matrix.code-coverage != 'yes' }}
+        if: ${{ matrix.code-coverage == 'yes' }}
         run: composer test
 
 
