@@ -1,19 +1,22 @@
-name: Build and test
+name: Build
 
 on:
     push:
-      branches:
-        - '4.x-dev-GH-actions'
-
     pull_request:
-      branches:
-        - '4.x-dev-GH-actions'
+
+env:
+  COMPOSER_ARGS: ''
 
 jobs:
   build:
     strategy:
       matrix:
         php_version: ['8.1', '8.2']
+        deps: ['--prefer-lowest --prefer-dist', '']
+        include:
+          - code-coverage: 'yes'
+            php_version: '8.2'
+            deps: 'latest'
     runs-on: ubuntu-latest
 
     steps:
@@ -22,10 +25,10 @@ jobs:
         with:
           php-version: ${{matrix.php_version}}
 
-      - name: Check PHP version
+      - name: Show PHP version
         run: php -v
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         name: Checkout branch
 
       - name: Validate composer.json and composer.lock
@@ -33,15 +36,15 @@ jobs:
 
       - name: Cache Composer packages
         id: composer-cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: vendor
           key: ${{ runner.os }}-php-${{matrix.php_version}}-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
-            ${{ runner.os }}-php--${{matrix.php_version}}
+            ${{ runner.os }}-php--${{matrix.php_version}}-
 
       - name: Install/update dependencies
-        run: composer update --prefer-dist --no-progress
+        run: composer update ${{matrix.deps}} $COMPOSER_ARGS
 
       - name: Run PHPUnit test suite
         run: composer test
