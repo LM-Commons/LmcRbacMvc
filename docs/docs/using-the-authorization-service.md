@@ -1,3 +1,6 @@
+---
+sidebar_position: 7
+---
 # Using the Authorization Service
 
 This section will teach you how to use the AuthorizationService to its full extent.
@@ -110,38 +113,6 @@ class Module
 }
 ```
 
-### Using Laminas\DI
-
-DI is a great way for prototyping, getting results *fast* and maintaining a flexible structure. However it adds overhead and can get very slow. Unless you are using a compiler it is **not** recommended for production.
-Here's how you enable Laminas\DI to inject the AuthorizationService in MyClass:
-
-*YourModule/Module.php*
-
-```php
-namespace YourModule;
-
-class Module
-{
-    // getAutoloaderConfig(), etc...
-
-    public function getConfig()
-    {
-        return [
-            'di' => [
-                'definition' => [
-                    'class' => [
-                        __NAMESPACE__ . '\MyClass' => [
-                            'setAuthorizationService' => [
-                                'required' => true
-                            ]
-                        ]
-                    ]
-                ]
-            ]
-        ];
-    }
-}
-```
 
 ## Permissions and Assertions
 
@@ -267,9 +238,3 @@ $authorizationService->isGranted('myPermission', $context);
 ```
 
 *Please note: The context parameter is optional!*
-
-### Navigation
-
-* Continue to [the **Cookbook**](07.%20Cookbook.md)
-* Back to [the Strategies](05.%20Strategies.md)
-* Back to [the Index](README.md)

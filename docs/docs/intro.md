@@ -1,17 +1,27 @@
+---
+sidebar_position: 1
+---
+
 # Introduction
 
-Welcome to the official documentation of LmcRbacMvc!
+LmcRbacMvc is a role-based access control Laminas MVC module to provide additional features on top of Laminas\Permissions\Rbac
 
-In this part, the following questions will be answered:
+LmcRbacMvc is part of the [LM-Commons](https://lm-commons.github.io) series of community developed packages for Laminas.
 
-* Why should I use an authorization module?
-* What is the Rbac model?
-* How can I integrate LmcRbacMvc into my application?
+LM-Commons is a GitHub organization dedicated to the collaborative
+and community-driven long-term maintenance of packages & libraries based on the Laminas MVC and Components.
+
+
+:::tip
+**Important Note:**
+ 
+If you are migrating from ZfcRbac v2, there are breaking changes to take into account. See the [Upgrade](installation.md#upgrade) section for details.
+:::
 
 ## Why should I use an authorization module?
 
-The authorization part of an application is an essential aspect of securing your application. While the authentication
-part tells you who is using your website, the authorization answers if the given identity has the permission to
+The authorization part of an application is an essential aspect of securing your application. 
+While the *authentication* part tells you who is using your website, the *authorization* answers if the given identity has the permission to
 perform specific actions.
 
 ## What is the Rbac model?
@@ -29,9 +39,9 @@ The basic idea of Rbac is to use roles and permissions:
 By default, LmcRbacMvc can be used for two kinds of Rbac model:
 
 * Flat RBAC model: in this model, roles cannot have children. This is ideal for smaller applications, as it is easier
-to understand, and the database design is simpler (no need for a join table).
+  to understand, and the database design is simpler (no need for a join table).
 * Hierarchical RBAC model: in this model, roles can have child roles. When evaluating if a given role has a
-permission, this model also checks recursively if any of its child roles also have the permission.
+  permission, this model also checks recursively if any of its child roles also have the permission.
 
 
 ## How can I integrate LmcRbacMvc into my application?
@@ -49,9 +59,4 @@ can choose either of them independently.
 
 To find out about how you can easily make your existing application more secure, please refer to the following section:
 
-* [Cookbook: A real world example](07.%20Cookbook.md#a-real-world-application)
-
-### Navigation
-
-* Continue to [the **Quick Start**](02.%20Quick%20Start.md)
-* Back to [the Index](README.md)
+* [Cookbook: A real world example](cookbook.md#a-real-world-application)

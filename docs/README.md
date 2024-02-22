@@ -1,48 +1,41 @@
-Welcome to the official LmcRbacMvc documentation. This documentation will help you quickly understand how to use
-and extend LmcRbacMvc.
+# Website
 
-If you are looking for some information that is not listed in the documentation, please open an issue!
+This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
 
-1. [Introduction](01.%20Introduction.md)
-   1. [Why should I use an authorization module?](01.%20Introduction.md#why-should-i-use-an-authorization-module)
-   2. [What is the Rbac model?](01.%20Introduction.md#what-is-the-rbac-model)
-   3. [How can I integrate LmcRbacMvc into my application?](01.%20Introduction.md#how-can-i-integrate-lmcrbacmvc-into-my-application)
+### Installation
 
-2. [Quick Start](02.%20Quick%20Start.md)
-   1. [Specifying an identity provider](02.%20Quick%20Start.md#specifying-an-identity-provider)
-   2. [Adding a guard](02.%20Quick%20Start.md#adding-a-guard)
-   3. [Adding a role provider](02.%20Quick%20Start.md#adding-a-role-provider)
-   5. [Registering a strategy](02.%20Quick%20Start.md#registering-a-strategy)
-   6. [Using the authorization service](02.%20Quick%20Start.md#using-the-authorization-service)
+```
+$ yarn
+```
 
-3. [Role providers](03.%20Role%20providers.md)
-   1. [What are role providers?](03.%20Role%20providers.md#what-are-role-providers)
-   2. [Identity providers](03.%20Role%20providers.md#identity-providers)
-   3. [Built-in role providers](03.%20Role%20providers.md#built-in-role-providers)
-   4. [Creating custom role providers](03.%20Role%20providers.md#creating-custom-role-providers)
+### Local Development
 
-4. [Guards](04.%20Guards.md)
-   1. [What are guards and when to use them?](04.%20Guards.md#what-are-guards-and-when-should-you-use-them)
-   2. [Built-in guards](04.%20Guards.md#built-in-guards)
-   3. [Creating custom guards](04.%20Guards.md#creating-custom-guards)
+```
+$ yarn start
+```
 
-5. [Strategies](05.%20Strategies.md)
-   1. [What are strategies?](05.%20Strategies.md#what-are-strategies)
-   2. [Built-in strategies](05.%20Strategies.md#built-in-strategies)
-   3. [Creating custom strategies](05.%20Strategies.md#creating-custom-strategies)
+This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
 
-6. [Using the Authorization Service](06.%20Using%20the%20Authorization%20Service.md)
-   1. [Injecting the AuthorizationService](06.%20Using%20the%20Authorization%20Service.md#injecting-the-authorization-service)
-   2. [Checking permissions](06.%20Using%20the%20Authorization%20Service.md#checking-permissions-in-a-service)
-       1. [In a service](06.%20Using%20the%20Authorization%20Service.md#checking-permissions-in-a-service)
-       2. [In a controller's action using the isGranted controller plugin](06.%20Using%20the%20Authorization%20Service.md#in-a-controller-)
-       3. [In a view using the isGranted view helper](06.%20Using%20the%20Authorization%20Service.md#in-a-view-)
-   3. [Permissions and Assertions](06.%20Using%20the%20Authorization%20Service.md#permissions-and-assertions)
+### Build
 
-7. [Cookbook](07.%20Cookbook.md)
-   1. [A real world example](07.%20Cookbook.md#a-real-world-application)
-   2. [Best practices](07.%20Cookbook.md#best-practices)
-   3. [Using LmcRbacMvc with Doctrine ORM](07.%20Cookbook.md#using-lmcrbacmvc-with-doctrine-orm)
-   4. [How to deal with roles with lot of permissions?](07.%20Cookbook.md#how-to-deal-with-roles-with-lot-of-permissions)
-   5. [Using LmcRbacMvc and ZF2 Assetic](07.%20Cookbook.md#using-lmcrbacmvc-and-zf2-assetic)
-   6. [Using LmcRbacMvc and LmcUser](07.%20Cookbook.md#using-lmcrbacmvc-and-lmcuser)
+```
+$ yarn build
+```
+
+This command generates static content into the `build` directory and can be served using any static contents hosting service.
+
+### Deployment
+
+Using SSH:
+
+```
+$ USE_SSH=true yarn deploy
+```
+
+Not using SSH:
+
+```
+$ GIT_USER=<Your GitHub username> yarn deploy
+```
+
+If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
