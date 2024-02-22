@@ -59,4 +59,4 @@ can choose either of them independently.
 
 To find out about how you can easily make your existing application more secure, please refer to the following section:
 
-* [Cookbook: A real world example](07-cookbook.md#a-real-world-application)
+* [Cookbook: A real world example](cookbook.md#a-real-world-application)
