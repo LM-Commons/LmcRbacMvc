@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://lm-commons.github.io/lmcrbacmvc/blog</id>
+    <id>https://lm-commons.github.io/LmcRbacMvc/blog</id>
     <title>LmcRbacMvc Blog</title>
     <updated>2024-02-22T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://lm-commons.github.io/lmcrbacmvc/blog"/>
+    <link rel="alternate" href="https://lm-commons.github.io/LmcRbacMvc/blog"/>
     <subtitle>LmcRbacMvc Blog</subtitle>
-    <icon>https://lm-commons.github.io/lmcrbacmvc/img/favicon.ico</icon>
+    <icon>https://lm-commons.github.io/LmcRbacMvc/img/favicon.ico</icon>
     <entry>
         <title type="html"><![CDATA[New documentation]]></title>
-        <id>https://lm-commons.github.io/lmcrbacmvc/blog/new-documentation</id>
-        <link href="https://lm-commons.github.io/lmcrbacmvc/blog/new-documentation"/>
+        <id>https://lm-commons.github.io/LmcRbacMvc/blog/new-documentation</id>
+        <link href="https://lm-commons.github.io/LmcRbacMvc/blog/new-documentation"/>
         <updated>2024-02-22T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[This the new documentation site dedicated to the LmcRbacMvc module.]]></summary>
         <content type="html"><![CDATA[<p>This the new documentation site dedicated to the LmcRbacMvc module.</p>
@@ -25,8 +25,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[Welcome]]></title>
-        <id>https://lm-commons.github.io/lmcrbacmvc/blog/welcome</id>
-        <link href="https://lm-commons.github.io/lmcrbacmvc/blog/welcome"/>
+        <id>https://lm-commons.github.io/LmcRbacMvc/blog/welcome</id>
+        <link href="https://lm-commons.github.io/LmcRbacMvc/blog/welcome"/>
         <updated>2022-08-02T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Welcome to the new documentation website for the LM-Commons organization.]]></summary>
         <content type="html"><![CDATA[<p>Welcome to the new documentation website for the LM-Commons organization.</p>
