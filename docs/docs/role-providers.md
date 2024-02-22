@@ -1,3 +1,6 @@
+---
+sidebar_position: 4
+---
 # Role providers
 
 In this section, you will learn:
@@ -193,8 +196,3 @@ return [
 ];
 ```
 
-### Navigation
-
-* Continue to [the **Guards**](04.%20Guards.md)
-* Back to [the Quick Start](02.%20Quick%20Start.md)
-* Back to [the Index](README.md)

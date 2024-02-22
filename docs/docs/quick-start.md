@@ -1,3 +1,7 @@
+---
+sidebar_position: 3
+---
+
 # Quick Start
 
 In this section, you will learn:
@@ -25,10 +29,17 @@ return [
     ]
 ];
 ```
-The identity given by `Laminas\Authentication\AuthenticationService` must implement `LmcRbacMvc\Identity\IdentityInterface`. Note that the default identity provided with Laminas does not implement this interface, neither does the LmcUser suite.
+:::tip
+If you are also using the [LmcUser](https://github.com/lm-commons/lmcuser) package, then the `Laminas\Authentication\AuthenticationService` will be provided for you and there is no need to implement your own.
+:::
+
+The identity given by `Laminas\Authentication\AuthenticationService` must implement `LmcRbacMvc\Identity\IdentityInterface`.
+:::warning
+Note that the default identity provided with Laminas does not implement this interface, neither does the LmcUser suite.
+:::
 
 LmcRbacMvc is flexible enough to use something other than the built-in `AuthenticationService`, by specifying custom
-identity providers. For more information, refer [to this section](03.%20Role%20providers.md#identity-providers).
+identity providers. For more information, refer [to this section](role-providers.md#identity-providers).
 
 ## Adding a guard
 
@@ -48,7 +59,7 @@ return [
 ```
 
 LmcRbacMvc has several built-in guards, and you can also register your own guards. For more information, refer
-[to this section](04.%20Guards.md#built-in-guards).
+[to this section](guards.md#built-in-guards).
 
 ## Adding a role provider
 
@@ -80,7 +91,7 @@ In this example, the *admin* role has two permissions: `delete` and `edit` (beca
 its child), while the *member* role only has the `edit` permission.
 
 LmcRbacMvc has several built-in role providers, and you can also register your own role providers. For more information,
-refer [to this section](03.%20Role%20providers.md#built-in-role-providers).
+refer [to this section](role-providers.md#built-in-role-providers).
 
 ## Registering a strategy
 
@@ -102,12 +113,13 @@ public function onBootstrap(MvcEvent $e)
 }
 ```
 
-By default, `RedirectStrategy` redirects all unauthorized requests to a route named "login" when the user is not connected 
+By default, `RedirectStrategy` redirects all unauthorized requests to a route named "login" when the user is not connected
 and to a route named "home" when the user is connected. This is, of course, entirely configurable.
 
 > For flexibility purposes, LmcRbacMvc **does not** register any strategy for you by default!
 
-For more information about built-in strategies, refer [to this section](05.%20Strategies.md#built-in-strategies).
+For more information about built-in strategies, refer [to this section](strategies.md#built-in-strategies).
+[to this section](strategies.md)
 
 ## Using the authorization service
 
@@ -115,7 +127,7 @@ Now that LmcRbacMvc is properly configured, you can inject the authorization ser
 if the current identity is granted to do something.
 
 The authorization service is registered inside the service manager using the following key: `LmcRbacMvc\Service\AuthorizationService`.
-Once injected, you can use it as follow:
+Once injected, you can use it as follows:
 
 ```php
 use LmcRbacMvc\Exception\UnauthorizedException;
@@ -131,9 +143,3 @@ public function delete()
 }
 }
 ```
-
-### Navigation
-
-* Continue to [the **Role providers**](03.%20Role%20providers.md)
-* Back to [the Introduction](01.%20Introduction.md)
-* Back to [the Index](README.md)
