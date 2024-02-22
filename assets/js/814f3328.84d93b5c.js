@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[472],{5513:e=>{e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"New documentation","permalink":"/lmcrbacmvc/blog/new-documentation","unlisted":false},{"title":"Welcome","permalink":"/lmcrbacmvc/blog/welcome","unlisted":false}]}')}}]);
