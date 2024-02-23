@@ -20,8 +20,8 @@ namespace LmcRbacMvcTest\Asset;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Rbac\Permission\PermissionInterface;
-use Rbac\Role\HierarchicalRole as BaseHierarchicalRole;
+use LmcRbacMvc\Permission\PermissionInterface;
+use LmcRbacMvc\Role\Role as BaseHierarchicalRole;
 
 /**
  * @ORM\Entity
@@ -46,7 +46,7 @@ class HierarchicalRole extends BaseHierarchicalRole
     protected $name;
 
     /**
-     * @var \Rbac\Role\RoleInterface[]|\Doctrine\Common\Collections\Collection
+     * @var \Laminas\Permissions\Rbac\RoleInterface[]|\Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="HierarchicalRole")
      */
@@ -84,7 +84,7 @@ class HierarchicalRole extends BaseHierarchicalRole
      * @param  PermissionInterface|string $permission
      * @return void
      */
-    public function addPermission($permission)
+    public function addPermission($permission):void
     {
         if (is_string($permission)) {
             $name       = $permission;

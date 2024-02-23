@@ -25,7 +25,6 @@ use LmcRbacMvc\Assertion\AssertionPluginManager;
 use LmcRbacMvc\Options\ModuleOptions;
 use LmcRbacMvc\Service\AuthorizationService;
 use LmcRbacMvc\Service\RoleService;
-use Rbac\Rbac;
 
 /**
  * Factory to create the authorization service
@@ -43,8 +42,8 @@ class AuthorizationServiceFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        /* @var Rbac $rbac */
-        $rbac = $container->get(Rbac::class);
+        /* @var \Laminas\Permissions\Rbac\Rbac $rbac */
+        $rbac = $container->get(\Rbac\Rbac::class);
 
         /* @var RoleService $roleService */
         $roleService = $container->get(RoleService::class);

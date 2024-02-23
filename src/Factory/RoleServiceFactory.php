@@ -27,8 +27,8 @@ use LmcRbacMvc\Options\ModuleOptions;
 use LmcRbacMvc\Role\RoleProviderInterface;
 use LmcRbacMvc\Role\RoleProviderPluginManager;
 use LmcRbacMvc\Service\RoleService;
-use Rbac\Rbac;
-use Rbac\Traversal\Strategy\TraversalStrategyInterface;
+use LmcRbacMvc\Role\RecursiveRoleIteratorStrategy;
+use LmcRbacMvc\Role\TraversalStrategyInterface;
 
 /**
  * Factory to create the role service
@@ -66,7 +66,7 @@ class RoleServiceFactory implements FactoryInterface
         $roleProvider = $pluginManager->get(key($roleProviderConfig), current($roleProviderConfig));
 
         /* @var TraversalStrategyInterface $traversalStrategy */
-        $traversalStrategy = $container->get(Rbac::class)->getTraversalStrategy();
+        $traversalStrategy = new RecursiveRoleIteratorStrategy();//$container->get(Rbac::class)->getTraversalStrategy();
 
         $roleService = new RoleService($identityProvider, $roleProvider, $traversalStrategy);
         $roleService->setGuestRole($moduleOptions->getGuestRole());

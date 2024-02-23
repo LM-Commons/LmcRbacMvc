@@ -18,8 +18,8 @@
 
 namespace LmcRbacMvc\Service;
 
-use Rbac\Rbac;
-use Rbac\Permission\PermissionInterface;
+use LmcRbacMvc\Rbac\Rbac;
+use LmcRbacMvc\Permission\PermissionInterface;
 use LmcRbacMvc\Assertion\AssertionPluginManager;
 use LmcRbacMvc\Assertion\AssertionInterface;
 use LmcRbacMvc\Exception;
@@ -122,11 +122,11 @@ class AuthorizationService implements AuthorizationServiceInterface
     public function isGranted($permission, $context = null)
     {
         $roles = $this->roleService->getIdentityRoles();
-
+//         var_dump(__METHOD__,$roles);
         if (empty($roles)) {
             return false;
         }
-
+// var_dump('Checking IsGranted by Rbac class');
         if (!$this->rbac->isGranted($roles, $permission)) {
             return false;
         }

@@ -36,7 +36,7 @@
         "laminas/laminas-eventmanager": "^3.0",
         "laminas/laminas-mvc": "^3.0",
         "laminas/laminas-servicemanager": "^3.0",
-        "zfr/rbac": "~1.2",
+        "laminas/laminas-permissions-rbac": "^3.0",
         "doctrine/persistence": "^2.1"
     },
     "require-dev": {

@@ -18,9 +18,7 @@
 
 namespace LmcRbacMvc\Role;
 
-use Rbac\Role\RoleInterface;
-use Rbac\Role\HierarchicalRole;
-use Rbac\Role\Role;
+use Laminas\Permissions\Rbac\RoleInterface;
 
 /**
  * Simple role providers that store them in memory (ideal for small websites)
@@ -99,7 +97,7 @@ class InMemoryRoleProvider implements RoleProviderInterface
         $roleConfig = $this->rolesConfig[$roleName];
 
         if (isset($roleConfig['children'])) {
-            $role = new HierarchicalRole($roleName);
+            $role = new Role($roleName);
             $childRoles = (array)$roleConfig['children'];
             foreach ($childRoles as $childRole) {
                 $childRole = $this->getRole($childRole);

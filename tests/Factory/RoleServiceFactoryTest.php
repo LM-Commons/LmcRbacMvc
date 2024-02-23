@@ -40,15 +40,15 @@ class RoleServiceFactoryTest extends \PHPUnit\Framework\TestCase
             ]
         ]);
 
-        $traversalStrategy = $this->createMock('Rbac\Traversal\Strategy\TraversalStrategyInterface');
+        $traversalStrategy = $this->createMock('LmcRbacMvc\Role\RecursiveRoleIteratorStrategy');
         $roleProvider = $this->createMock('\LmcRbacMvc\Role\RoleProviderInterface');
 
-        $rbac = $this->createMock('Rbac\Rbac');
-        $rbac->expects($this->once())
-            ->method('getTraversalStrategy')
-            ->will($this->returnValue(
-                $traversalStrategy
-            ));
+        $rbac = $this->createMock('LmcRbacMvc\Rbac\Rbac');
+//         $rbac->expects($this->once())
+//             ->method('getTraversalStrategy')
+//             ->will($this->returnValue(
+//                 $traversalStrategy
+//             ));
 
         $pluginManager = $this->createMock('\LmcRbacMvc\Role\RoleProviderPluginManager');
         $pluginManager->expects($this->once())
@@ -90,15 +90,15 @@ class RoleServiceFactoryTest extends \PHPUnit\Framework\TestCase
         next($roleProvider);
         $options->setRoleProvider($roleProvider);
 
-        $traversalStrategy = $this->createMock('Rbac\Traversal\Strategy\TraversalStrategyInterface');
+        $traversalStrategy = $this->createMock('LmcRbacMvc\Role\RecursiveRoleIteratorStrategy');
         $roleProvider = $this->createMock('\LmcRbacMvc\Role\RoleProviderInterface');
 
-        $rbac = $this->createMock('Rbac\Rbac');
-        $rbac->expects($this->once())
-            ->method('getTraversalStrategy')
-            ->will($this->returnValue(
-                $traversalStrategy
-            ));
+        $rbac = $this->createMock('Laminas\Permissions\Rbac\Rbac');
+//         $rbac->expects($this->once())
+//             ->method('getTraversalStrategy')
+//             ->will($this->returnValue(
+//                 $traversalStrategy
+//             ));
 
         $pluginManager = $this->createMock('\LmcRbacMvc\Role\RoleProviderPluginManager');
         $pluginManager->expects($this->once())

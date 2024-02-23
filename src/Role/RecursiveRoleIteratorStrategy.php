@@ -16,18 +16,25 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvc\Permission;
+namespace LmcRbacMvc\Role;
+
+use Laminas\Permissions\Rbac\RoleInterface;
+use RecursiveIteratorIterator;
 
 /**
- * Interface that permissions must implement to be used with the AuthorizationService
- *
- * Please note that currently the interface extends the one from RBAC, but starting in ZF3, the
- * permission will be removed from RBAC component and moved here completely
- *
- * @author  Michaël Gallego <mic.gallego@gmail.com>
- * @license MIT
- * TODO Remove deprecated interface
+ * Create a {@link RecursiveRoleIterator} and wrap it into a {@link RecursiveIteratorIterator}
  */
-interface PermissionInterface
+class RecursiveRoleIteratorStrategy implements TraversalStrategyInterface
 {
+    /**
+     * @param  RoleInterface[]           $roles
+     * @return RecursiveIteratorIterator
+     */
+    public function getRolesIterator($roles)
+    {
+        return new RecursiveIteratorIterator(
+            new RecursiveRoleIterator($roles),
+            RecursiveIteratorIterator::SELF_FIRST
+        );
+    }
 }

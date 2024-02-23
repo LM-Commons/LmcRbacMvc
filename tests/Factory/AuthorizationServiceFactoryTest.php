@@ -31,7 +31,7 @@ class AuthorizationServiceFactoryTest extends \PHPUnit\Framework\TestCase
     {
         $serviceManager = new ServiceManager();
 
-        $serviceManager->setService('Rbac\Rbac', $this->getMockBuilder('Rbac\Rbac')->disableOriginalConstructor()->getMock());
+        $serviceManager->setService('Rbac\Rbac', $this->getMockBuilder(\LmcRbacMvc\Rbac\Rbac::class)->disableOriginalConstructor()->getMock());
 
         $serviceManager->setService(
             'LmcRbacMvc\Service\RoleService',

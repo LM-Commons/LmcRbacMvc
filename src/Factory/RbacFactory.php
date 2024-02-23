@@ -19,7 +19,7 @@
 namespace LmcRbacMvc\Factory;
 
 use Psr\Container\ContainerInterface;
-use Rbac\Rbac;
+use LmcRbacMvc\Rbac\Rbac;
 use Rbac\Traversal\Strategy\GeneratorStrategy;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
@@ -38,7 +38,7 @@ class RbacFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        return new Rbac(new GeneratorStrategy());
+        return new Rbac();
     }
 
     /**

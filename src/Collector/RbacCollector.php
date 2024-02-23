@@ -18,9 +18,8 @@
 
 namespace LmcRbacMvc\Collector;
 
-use Rbac\Role\HierarchicalRoleInterface;
-use Rbac\Role\RoleInterface;
-use Rbac\Traversal\RecursiveRoleIterator;
+use Laminas\Permissions\Rbac\RoleInterface;
+use LmcRbacMvc\Role\RecursiveRoleIterator;
 use RecursiveIteratorIterator;
 use ReflectionProperty;
 use ReflectionException;
@@ -154,7 +153,7 @@ class RbacCollector implements CollectorInterface, Serializable
         foreach ($identityRoles as $role) {
             $roleName = $role->getName();
 
-            if (!$role instanceof HierarchicalRoleInterface) {
+            if (empty($role->hasChildren())) {
                 $this->collectedRoles[] = $roleName;
             } else {
                 $iteratorIterator = new RecursiveIteratorIterator(
