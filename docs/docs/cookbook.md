@@ -1,17 +1,10 @@
+---
+sidebar_position: 8
+---
 # Cookbook
 
 This section will help you further understand how LmcRbacMvc works by providing more concrete examples. If you have
 any other recipe you'd like to add, please open an issue!
-
-- [A Real World Application](07.%20Cookbook.md#a-real-world-application)
-    - [When to use Guards](07.%20Cookbook.md#when-using-guards-then)
-- [A Real World Application Part 2 - Only delete your own Posts](07.%20Cookbook.md#a-real-world-application-part-2---only-delete-your-own-posts)
-- [A Real World Application Part 3 - But Admins can delete everything](07.%20Cookbook.md#a-real-world-application-part-3---admins-can-delete-everything)
-- [A Real World Application Part 4 - Only admins have the menu item for managing the posts](07.%20Cookbook.md#user-content-a-real-world-application-part-4---checking-permissions-in-the-view)
-- [Using LmcRbacMvc with Doctrine ORM](07.%20Cookbook.md#using-lmcrbac-with-doctrine-orm)
-    - [How to deal with roles with lot of permissions?](07.%20Cookbook.md#how-to-deal-with-roles-with-lot-of-permissions)
-- [Using LmcRbacMvc and ZF2 Assetic](07.%20Cookbook.md#using-lmcrbacmvc-and-zf2-assetic)
-- [Using LmcRbacMvc and LmcUser](07.%20Cookbook.md#using-lmcrbacmvc-and-lmcuser)
 
 ## A Real World Application
 
@@ -326,7 +319,7 @@ As we can see, we check within our Service if the User of our Application is all
 against the `deletePost` permission. Now how can we achieve that only a user who is the owner of the Post to be able to
 delete his own post, but other users can't? We do not want to change our Service with more complex logic because this
 is not the task of such service. The Permission-System should handle this. And we can, for this we have the
- [`AssertionPluginManager`](/LmcRbacMvc/Assertion/AssertionPluginManager.php) and here is how to do it:
+ `AssertionPluginManager` and here is how to do it:
 
 First of all we need to write an Assertion. The Assertion will return a boolean statement about the current
 identity being the owner of the post.
@@ -661,7 +654,7 @@ class HierarchicalRole implements HierarchicalRoleInterface
 
 And the last step is to create a Permission entity class which is a very simple entity class. You don't have to do specific things!
 
-You can find all entity examples in this folder : [Example](/data)
+You can find all entity examples in this folder : [Example](https://github.com/LM-Commons/LmcRbacMvc/tree/master/data)
 
 You need one more configuration step. Indeed, how can the RoleProvider retrieve your role and permissions? For this you need to configure `LmcRbacMvc\Role\ObjectRepositoryRoleProvider` in your `lmc_rbac.global.php` file :
 ```php
@@ -772,8 +765,3 @@ return [
     ]
 ];
 ```
-
-### Navigation
-
-* Back to [the Using the Authorization Service](06.%20Using%20the%20Authorization%20Service.md)
-* Back to [the Index](README.md)

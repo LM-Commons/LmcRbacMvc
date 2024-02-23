@@ -57,7 +57,7 @@ the `lmc_rbac.global.php.dist` file to your `config/autoload` folder.
 
 ## Documentation
 
-The official documentation is available in the [/docs](/docs) folder.
+The official documentation is available [here](https://lm-commons.github.io/LmcRbacMvc).
 
 You can also find some Doctrine entities in the [/data](/data) folder that will help you to more quickly take advantage
 of LmcRbac.
