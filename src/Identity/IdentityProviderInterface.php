@@ -19,7 +19,7 @@
 namespace LmcRbacMvc\Identity;
 
 /**
- * An identity provider is an object that returns an object that implement ZfcRbac\Identity\IdentityInterface
+ * An identity provider is an object that returns an object that implement LmcRbacMvc\Identity\IdentityInterface
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @license MIT
@@ -31,5 +31,5 @@ interface IdentityProviderInterface
      *
      * @return IdentityInterface|null
      */
-    public function getIdentity();
+    public function getIdentity(): ?IdentityInterface;
 }

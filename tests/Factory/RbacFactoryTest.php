@@ -20,20 +20,21 @@ namespace LmcRbacMvcTest\Factory;
 
 use Laminas\ServiceManager\ServiceManager;
 use LmcRbacMvc\Factory\RbacFactory;
+use Laminas\Permissions\Rbac\Rbac;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @covers LmcRbacMvc\Factory\RbacFactory
  */
-class RbacFactoryTest extends \PHPUnit\Framework\TestCase
+class RbacFactoryTest extends TestCase
 {
     public function testCanCreateFromFactory()
     {
         $serviceManager = new ServiceManager();
         $factory        = new RbacFactory();
 
-        $rbac = $factory->createService($serviceManager);
+        $rbac = $factory($serviceManager, 'rbac');
 
-        $this->assertInstanceOf('LmcRbacMvc\Rbac\Rbac', $rbac);
-//         $this->assertInstanceOf('LmcRbacMvc\Role\TraversalStrategyInterface', $rbac->getTraversalStrategy());
+        $this->assertInstanceOf(Rbac::class, $rbac);
     }
 }

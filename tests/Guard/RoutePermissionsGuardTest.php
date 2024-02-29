@@ -51,7 +51,7 @@ class RoutePermissionsGuardTest extends \PHPUnit\Framework\TestCase
         $this->assertGreaterThan(ControllerGuard::EVENT_PRIORITY, RoutePermissionsGuard::EVENT_PRIORITY);
     }
 
-    public function rulesConversionProvider()
+    public static function rulesConversionProvider(): array
     {
         return [
             // Simple string to array conversion
@@ -105,7 +105,7 @@ class RoutePermissionsGuardTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, $reflProperty->getValue($routeGuard));
     }
 
-    public function routeDataProvider()
+    public static function routeDataProvider(): array
     {
         return [
             // Assert basic one-to-one mapping with both policies
@@ -340,11 +340,31 @@ class RoutePermissionsGuardTest extends \PHPUnit\Framework\TestCase
             [
                 'rules'               => ['route' => [
                     'permissions' => ['post.edit', 'post.read'],
+                    'condition'   => GuardInterface::CONDITION_OR
+                ]],
+                'matchedRouteName'    => 'route',
+                'identityPermissions' => [['post.edit', null, false], ['post.read', null, true]],
+                'isGranted'           => true,
+                'policy'              => GuardInterface::POLICY_DENY
+            ],
+            [
+                'rules'               => ['route' => [
+                    'permissions' => ['post.edit', 'post.read'],
                     'condition'   => GuardInterface::CONDITION_AND
                 ]],
                 'matchedRouteName'    => 'route',
-                'identityPermissions' => [['post.edit', null, true]],
+                'identityPermissions' => [['post.edit', null, true], ['post.read', null, false]],
                 'isGranted'           => false,
+                'policy'              => GuardInterface::POLICY_DENY
+            ],
+            [
+                'rules'               => ['route' => [
+                    'permissions' => ['post.edit', 'post.read'],
+                    'condition'   => GuardInterface::CONDITION_AND
+                ]],
+                'matchedRouteName'    => 'route',
+                'identityPermissions' => [['post.edit', null, true], ['post.read', null, true]],
+                'isGranted'           => true,
                 'policy'              => GuardInterface::POLICY_DENY
             ]
         ];
@@ -444,9 +464,10 @@ class RoutePermissionsGuardTest extends \PHPUnit\Framework\TestCase
         $this->assertInstanceOf('LmcRbacMvc\Exception\UnauthorizedException', $event->getParam('exception'));
     }
 
-    public function createRouteMatch(array $params = [])
+    public function createRouteMatch(array $params = []): RouteMatch
     {
-        $class = class_exists(V2RouteMatch::class) ? V2RouteMatch::class : RouteMatch::class;
-        return new $class($params);
+        return new RouteMatch($params);
+//        $class = class_exists(V2RouteMatch::class) ? V2RouteMatch::class : RouteMatch::class;
+//        return new $class($params);
     }
 }

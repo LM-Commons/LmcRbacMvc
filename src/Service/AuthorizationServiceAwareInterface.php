@@ -31,5 +31,5 @@ interface AuthorizationServiceAwareInterface
      * @param   AuthorizationService $authorizationService
      * @return  void
      */
-    public function setAuthorizationService(AuthorizationService $authorizationService);
+    public function setAuthorizationService(AuthorizationService $authorizationService): void;
 }

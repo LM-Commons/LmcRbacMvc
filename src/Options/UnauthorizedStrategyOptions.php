@@ -30,23 +30,21 @@ class UnauthorizedStrategyOptions extends AbstractOptions
 {
     /**
      * Template to use
-     *
-     * @var string
      */
-    protected $template = 'error/403';
+    protected string $template = 'error/403';
 
     /**
      * @param string $template
      */
-    public function setTemplate($template)
+    public function setTemplate(string $template): void
     {
-        $this->template = (string) $template;
+        $this->template = $template;
     }
 
     /**
      * @return string
      */
-    public function getTemplate()
+    public function getTemplate(): string
     {
         return $this->template;
     }

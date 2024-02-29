@@ -16,51 +16,78 @@
  * and is licensed under the MIT license.
  */
 
+namespace LmcRbacMvcTest\Asset;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Laminas\Permissions\Rbac\RoleInterface;
 use Doctrine\ORM\Mapping as ORM;
-
-/**
- * There is no specific implementation of a flot role.
- * A flot role is a simple utilization of the Laminas\Permission\Rbac\Role without children
- */
-
+use Laminas\Permissions\Rbac\RoleInterface;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="flat_roles")
+ * @ORM\Table(name="hierarchical_roles")
  */
-class FlatRole implements RoleInterface
+#[ORM\Entity]
+#[ORM\Table(name:"hierarchical_roles")]
+class HierarchicalRole implements RoleInterface
 {
     /**
      * @var int|null
      *
      * @ORM\Id
      * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
+    #[ORM\Id]
+    #[ORM\Column(type:"integer")]
+    #[ORM\GeneratedValue(strategy:"AUTO")]
     private ?int $id;
 
     /**
      * @var string|null
+     *
      * @ORM\Column(type="string", length=32, unique=true)
      */
-    protected ?string $name;
+    #[ORM\Column(type:"string", length:32, unique:true)]
+    private ?string $name;
 
     /**
      * @var Collection
-     * @ORM\ManyToMany(targetEntity="Permission", indexBy="name", cascade={"persist"}, fetch="EAGER")
+     *
+     * @ORM\JoinTable(name="children")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
+     * @ORM\InverseJoinColumn(name="child_id", referencedColumnName="id")
+     * @ORM\ManyToMany(targetEntity="HierarchicalRole", cascade={"persist"})
      */
-    protected Collection $permissions;
+    #[ORM\JoinTable(name:"children")]
+    #[ORM\JoinColumn(name:"parent_id", referencedColumnName:"id")]
+    #[ORM\InverseJoinColumn(name:"child_id", referencedColumnName:"id")]
+    #[ORM\ManyToMany(targetEntity:"HierarchicalRole", cascade:["persist"])]
+    private Collection $children;
+
+    /**
+     * @var Collection
+     *
+     * @ORM\ManyToMany(targetEntity="HierarchicalRole", cascade={"persist"})
+     */
+    //private Collection $parents;
+
+
+    /**
+     * @var Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Permission", indexBy="name", fetch="EAGER", cascade={"persist"})
+     */
+    #[ORM\ManyToMany(targetEntity: "Permission", cascade: ["persist"], fetch: "EAGER", indexBy: "name")]
+    private Collection $permissions;
 
     /**
      * Init the Doctrine collection
      */
-    public function __construct($name)
+    public function __construct(string $name)
     {
-        $this->name        = (string) $name;
+        $this->name = $name;
+        $this->children = new ArrayCollection();
         $this->permissions = new ArrayCollection();
     }
 
@@ -77,12 +104,12 @@ class FlatRole implements RoleInterface
     /**
      * Add a permission
      *
-     * @param string $name
+     * @param  string $name
      * @return void
      */
     public function addPermission(string $name):void
     {
-        $permission = new \LmcRbacMvcTest\Asset\Permission($name);
+        $permission = new Permission($name);
 
         $this->permissions[$name] = $permission;
     }
@@ -99,21 +126,22 @@ class FlatRole implements RoleInterface
 
     public function addChild(RoleInterface $child): void
     {
-        // Do nothing
+        $this->children[] = $child;
     }
 
     public function getChildren(): iterable
     {
-        return [];
+        return $this->children;
     }
 
     public function addParent(RoleInterface $parent): void
     {
-        // Do nothing
+        // TODO: Implement addParent() method.
     }
 
     public function getParents(): iterable
     {
         return [];
+        //return $this->parents;
     }
 }

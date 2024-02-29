@@ -45,7 +45,7 @@ class ControllerGuardTest extends \PHPUnit\Framework\TestCase
         $guard->attach($eventManager);
     }
 
-    public function rulesConversionProvider()
+    public static function rulesConversionProvider(): array
     {
         return [
             // Without actions
@@ -167,7 +167,7 @@ class ControllerGuardTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, $reflProperty->getValue($controllerGuard));
     }
 
-    public function controllerDataProvider()
+    public static function controllerDataProvider(): array
     {
         return [
             // Test simple guard with both policies
@@ -183,7 +183,7 @@ class ControllerGuardTest extends \PHPUnit\Framework\TestCase
                 'rolesConfig'  => [
                     'admin'
                 ],
-                'identityRole' => 'admin',
+                'identityRole' => ['admin'],
                 'isGranted'    => true,
                 'policy'       => GuardInterface::POLICY_ALLOW
             ],
@@ -199,7 +199,7 @@ class ControllerGuardTest extends \PHPUnit\Framework\TestCase
                 'rolesConfig'  => [
                     'admin'
                 ],
-                'identityRole' => 'admin',
+                'identityRole' => ['admin'],
                 'isGranted'    => true,
                 'policy'       => GuardInterface::POLICY_DENY
             ],
@@ -223,7 +223,7 @@ class ControllerGuardTest extends \PHPUnit\Framework\TestCase
                 'rolesConfig'  => [
                     'admin'
                 ],
-                'identityRole' => 'admin',
+                'identityRole' => ['admin'],
                 'isGranted'    => true,
                 'policy'       => GuardInterface::POLICY_ALLOW
             ],
@@ -245,7 +245,7 @@ class ControllerGuardTest extends \PHPUnit\Framework\TestCase
                 'rolesConfig'  => [
                     'admin'
                 ],
-                'identityRole' => 'admin',
+                'identityRole' => ['admin'],
                 'isGranted'    => true,
                 'policy'       => GuardInterface::POLICY_DENY
             ],
@@ -263,7 +263,7 @@ class ControllerGuardTest extends \PHPUnit\Framework\TestCase
                 'rolesConfig'  => [
                     'member'
                 ],
-                'identityRole' => 'member',
+                'identityRole' => ['member'],
                 'isGranted'    => true,
                 'policy'       => GuardInterface::POLICY_ALLOW
             ],
@@ -279,7 +279,7 @@ class ControllerGuardTest extends \PHPUnit\Framework\TestCase
                 'rolesConfig'  => [
                     'member'
                 ],
-                'identityRole' => 'member',
+                'identityRole' => ['member'],
                 'isGranted'    => false,
                 'policy'       => GuardInterface::POLICY_DENY
             ],
@@ -298,7 +298,7 @@ class ControllerGuardTest extends \PHPUnit\Framework\TestCase
                 'rolesConfig'  => [
                     'member'
                 ],
-                'identityRole' => 'member',
+                'identityRole' => ['member'],
                 'isGranted'    => true,
                 'policy'       => GuardInterface::POLICY_ALLOW
             ],
@@ -315,7 +315,7 @@ class ControllerGuardTest extends \PHPUnit\Framework\TestCase
                 'rolesConfig'  => [
                     'member'
                 ],
-                'identityRole' => 'member',
+                'identityRole' => ['member'],
                 'isGranted'    => false,
                 'policy'       => GuardInterface::POLICY_DENY
             ],
@@ -337,7 +337,7 @@ class ControllerGuardTest extends \PHPUnit\Framework\TestCase
                     ],
                     'guest'
                 ],
-                'identityRole' => 'admin',
+                'identityRole' => ['admin'],
                 'isGranted'    => true,
                 'policy'       => GuardInterface::POLICY_ALLOW
             ],
@@ -357,7 +357,7 @@ class ControllerGuardTest extends \PHPUnit\Framework\TestCase
                     ],
                     'guest'
                 ],
-                'identityRole' => 'admin',
+                'identityRole' => ['admin'],
                 'isGranted'    => true,
                 'policy'       => GuardInterface::POLICY_DENY
             ],

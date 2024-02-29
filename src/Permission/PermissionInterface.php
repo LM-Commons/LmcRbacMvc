@@ -26,6 +26,7 @@ namespace LmcRbacMvc\Permission;
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @license MIT
+ * @deprecated
  * TODO Remove deprecated interface
  */
 interface PermissionInterface

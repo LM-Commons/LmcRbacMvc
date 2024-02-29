@@ -18,12 +18,15 @@
 
 return [
     'service_manager' => [
+        'aliases' => [
+            'Rbac' => 'rbac',
+        ],
         'factories' => [
             /* Factories that do not map to a class */
             'LmcRbacMvc\Guards' => \LmcRbacMvc\Factory\GuardsFactory::class,
+            'rbac' => \LmcRbacMvc\Factory\RbacFactory::class,
 
             /* Factories that map to a class */
-            \Rbac\Rbac::class                                           => \LmcRbacMvc\Factory\RbacFactory::class,
             \LmcRbacMvc\Assertion\AssertionPluginManager::class        => \LmcRbacMvc\Factory\AssertionPluginManagerFactory::class,
             \LmcRbacMvc\Collector\RbacCollector::class                 => \Laminas\ServiceManager\Factory\InvokableFactory::class,
             \LmcRbacMvc\Guard\GuardPluginManager::class                => \LmcRbacMvc\Factory\GuardPluginManagerFactory::class,
@@ -64,6 +67,10 @@ return [
         ]
     ],
 
+    /*
+     * Developer tools are now provided by the companion module LmcRbacMvcDevTools
+     * You can still use the config below but you are encouraged to use the new module
+     *
     'laminas-developer-tools' => [
         'profiler' => [
             'collectors' => [
@@ -76,6 +83,7 @@ return [
             ],
         ],
     ],
+     */
 
     'lmc_rbac' => [
         // Guard plugin manager

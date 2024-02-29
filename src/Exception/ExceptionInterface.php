@@ -19,7 +19,7 @@
 namespace LmcRbacMvc\Exception;
 
 /**
- * Base exception interface for ZfcRbac
+ * Base exception interface for LmcRbacMvc
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @license MIT

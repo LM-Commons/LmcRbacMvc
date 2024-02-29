@@ -18,8 +18,6 @@
 
 namespace LmcRbacMvc\Service;
 
-use Rbac\Permission\PermissionInterface;
-
 /**
  * Minimal interface for an authorization service
  *
@@ -31,9 +29,9 @@ interface AuthorizationServiceInterface
     /**
      * Check if the permission is granted to the current identity
      *
-     * @param string|PermissionInterface $permission
-     * @param mixed                      $context
+     * @param string $permission
+     * @param mixed|null $context
      * @return bool
      */
-    public function isGranted($permission, $context = null);
+    public function isGranted(string $permission, mixed $context = null): bool;
 }

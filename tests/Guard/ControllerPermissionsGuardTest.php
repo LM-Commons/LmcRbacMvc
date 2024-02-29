@@ -53,7 +53,7 @@ class ControllerPermissionsGuardTest extends \PHPUnit\Framework\TestCase
         $guard->attach($eventManager);
     }
 
-    public function rulesConversionProvider()
+    public static function rulesConversionProvider(): array
     {
         return [
             // Without actions
@@ -171,7 +171,7 @@ class ControllerPermissionsGuardTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, $reflProperty->getValue($controllerGuard));
     }
 
-    public function controllerDataProvider()
+    public static function controllerDataProvider(): array
     {
         return [
             // Test simple guard with both policies

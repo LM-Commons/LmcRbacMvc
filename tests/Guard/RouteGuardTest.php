@@ -56,7 +56,7 @@ class RouteGuardTest extends \PHPUnit\Framework\TestCase
         $this->assertGreaterThan(ControllerGuard::EVENT_PRIORITY, RouteGuard::EVENT_PRIORITY);
     }
 
-    public function rulesConversionProvider()
+    public static function rulesConversionProvider(): array
     {
         return [
             // Simple string to array conversion
@@ -115,7 +115,7 @@ class RouteGuardTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, $reflProperty->getValue($routeGuard));
     }
 
-    public function routeDataProvider()
+    public static function routeDataProvider(): array
     {
         return [
             // Assert basic one-to-one mapping with both policies
@@ -123,7 +123,7 @@ class RouteGuardTest extends \PHPUnit\Framework\TestCase
                 'rules'            => ['adminRoute' => 'admin'],
                 'matchedRouteName' => 'adminRoute',
                 'rolesConfig'      => ['admin'],
-                'identityRole'     => 'admin',
+                'identityRole'     => ['admin'],
                 'isGranted'        => true,
                 'policy'           => GuardInterface::POLICY_ALLOW
             ],
@@ -131,7 +131,7 @@ class RouteGuardTest extends \PHPUnit\Framework\TestCase
                 'rules'            => ['adminRoute' => 'admin'],
                 'matchedRouteName' => 'adminRoute',
                 'rolesConfig'      => ['admin'],
-                'identityRole'     => 'admin',
+                'identityRole'     => ['admin'],
                 'isGranted'        => true,
                 'policy'           => GuardInterface::POLICY_DENY
             ],
@@ -159,7 +159,7 @@ class RouteGuardTest extends \PHPUnit\Framework\TestCase
                 'rules'            => ['admin/dashboard' => 'admin'],
                 'matchedRouteName' => 'admin/dashboard',
                 'rolesConfig'      => ['admin'],
-                'identityRole'     => 'admin',
+                'identityRole'     => ['admin'],
                 'isGranted'        => true,
                 'policy'           => GuardInterface::POLICY_ALLOW
             ],
@@ -167,7 +167,7 @@ class RouteGuardTest extends \PHPUnit\Framework\TestCase
                 'rules'            => ['admin/dashboard' => 'admin'],
                 'matchedRouteName' => 'admin/dashboard',
                 'rolesConfig'      => ['admin'],
-                'identityRole'     => 'admin',
+                'identityRole'     => ['admin'],
                 'isGranted'        => true,
                 'policy'           => GuardInterface::POLICY_DENY
             ],
@@ -177,7 +177,7 @@ class RouteGuardTest extends \PHPUnit\Framework\TestCase
                 'rules'            => ['admin/*' => 'admin'],
                 'matchedRouteName' => 'admin/dashboard',
                 'rolesConfig'      => ['admin'],
-                'identityRole'     => 'admin',
+                'identityRole'     => ['admin'],
                 'isGranted'        => true,
                 'policy'           => GuardInterface::POLICY_ALLOW
             ],
@@ -185,7 +185,7 @@ class RouteGuardTest extends \PHPUnit\Framework\TestCase
                 'rules'            => ['admin/*' => 'admin'],
                 'matchedRouteName' => 'admin/dashboard',
                 'rolesConfig'      => ['admin'],
-                'identityRole'     => 'admin',
+                'identityRole'     => ['admin'],
                 'isGranted'        => true,
                 'policy'           => GuardInterface::POLICY_DENY
             ],
@@ -195,7 +195,7 @@ class RouteGuardTest extends \PHPUnit\Framework\TestCase
                 'rules'            => ['fooBar/*' => 'admin'],
                 'matchedRouteName' => 'admin/fooBar/baz',
                 'rolesConfig'      => ['admin'],
-                'identityRole'     => 'admin',
+                'identityRole'     => ['admin'],
                 'isGranted'        => true,
                 'policy'           => GuardInterface::POLICY_ALLOW
             ],
@@ -203,7 +203,7 @@ class RouteGuardTest extends \PHPUnit\Framework\TestCase
                 'rules'            => ['fooBar/*' => 'admin'],
                 'matchedRouteName' => 'admin/fooBar/baz',
                 'rolesConfig'      => ['admin'],
-                'identityRole'     => 'admin',
+                'identityRole'     => ['admin'],
                 'isGranted'        => false,
                 'policy'           => GuardInterface::POLICY_DENY
             ],
@@ -216,7 +216,7 @@ class RouteGuardTest extends \PHPUnit\Framework\TestCase
                 ],
                 'matchedRouteName' => 'route1',
                 'rolesConfig'      => ['admin'],
-                'identityRole'     => 'admin',
+                'identityRole'     => ['admin'],
                 'isGranted'        => true,
                 'policy'           => GuardInterface::POLICY_ALLOW
             ],
@@ -227,7 +227,7 @@ class RouteGuardTest extends \PHPUnit\Framework\TestCase
                 ],
                 'matchedRouteName' => 'route1',
                 'rolesConfig'      => ['admin'],
-                'identityRole'     => 'admin',
+                'identityRole'     => ['admin'],
                 'isGranted'        => true,
                 'policy'           => GuardInterface::POLICY_DENY
             ],
@@ -240,7 +240,7 @@ class RouteGuardTest extends \PHPUnit\Framework\TestCase
                 ],
                 'matchedRouteName' => 'route3',
                 'rolesConfig'      => ['admin'],
-                'identityRole'     => 'admin',
+                'identityRole'     => ['admin'],
                 'isGranted'        => true,
                 'policy'           => GuardInterface::POLICY_ALLOW
             ],
@@ -251,7 +251,7 @@ class RouteGuardTest extends \PHPUnit\Framework\TestCase
                 ],
                 'matchedRouteName' => 'route3',
                 'rolesConfig'      => ['admin'],
-                'identityRole'     => 'admin',
+                'identityRole'     => ['admin'],
                 'isGranted'        => false,
                 'policy'           => GuardInterface::POLICY_DENY
             ],
@@ -261,7 +261,7 @@ class RouteGuardTest extends \PHPUnit\Framework\TestCase
                 'rules'            => ['route' => 'admin'],
                 'matchedRouteName' => 'route',
                 'rolesConfig'      => ['admin', 'guest'],
-                'identityRole'     => 'guest',
+                'identityRole'     => ['guest'],
                 'isGranted'        => false,
                 'policy'           => GuardInterface::POLICY_ALLOW
             ],
@@ -269,7 +269,7 @@ class RouteGuardTest extends \PHPUnit\Framework\TestCase
                 'rules'            => ['route' => 'admin'],
                 'matchedRouteName' => 'route',
                 'rolesConfig'      => ['admin', 'guest'],
-                'identityRole'     => 'guest',
+                'identityRole'     => ['guest'],
                 'isGranted'        => false,
                 'policy'           => GuardInterface::POLICY_DENY
             ],
@@ -287,7 +287,7 @@ class RouteGuardTest extends \PHPUnit\Framework\TestCase
                     ],
                     'guest'
                 ],
-                'identityRole'     => 'admin',
+                'identityRole'     => ['admin'],
                 'isGranted'        => true,
                 'policy'           => GuardInterface::POLICY_ALLOW
             ],
@@ -303,7 +303,7 @@ class RouteGuardTest extends \PHPUnit\Framework\TestCase
                     ],
                     'guest'
                 ],
-                'identityRole'     => 'admin',
+                'identityRole'     => ['admin'],
                 'isGranted'        => true,
                 'policy'           => GuardInterface::POLICY_DENY
             ],
@@ -318,7 +318,7 @@ class RouteGuardTest extends \PHPUnit\Framework\TestCase
                     ],
                     'member'
                 ],
-                'identityRole'     => 'member',
+                'identityRole'     => ['member'],
                 'isGranted'        => false,
                 'policy'           => GuardInterface::POLICY_ALLOW
             ],
@@ -331,7 +331,7 @@ class RouteGuardTest extends \PHPUnit\Framework\TestCase
                     ],
                     'member'
                 ],
-                'identityRole'     => 'member',
+                'identityRole'     => ['member'],
                 'isGranted'        => false,
                 'policy'           => GuardInterface::POLICY_DENY
             ],
@@ -341,7 +341,7 @@ class RouteGuardTest extends \PHPUnit\Framework\TestCase
                 'rules'            => ['home' => '*'],
                 'matchedRouteName' => 'home',
                 'rolesConfig'      => ['admin'],
-                'identityRole'     => 'admin',
+                'identityRole'     => ['admin'],
                 'isGranted'        => true,
                 'policy'           => GuardInterface::POLICY_ALLOW
             ],
@@ -349,7 +349,7 @@ class RouteGuardTest extends \PHPUnit\Framework\TestCase
                 'rules'            => ['home' => '*'],
                 'matchedRouteName' => 'home',
                 'rolesConfig'      => ['admin'],
-                'identityRole'     => 'admin',
+                'identityRole'     => ['admin'],
                 'isGranted'        => true,
                 'policy'           => GuardInterface::POLICY_DENY
             ],

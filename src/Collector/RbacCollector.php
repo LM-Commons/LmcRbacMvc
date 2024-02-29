@@ -36,6 +36,7 @@ use LmcRbacMvc\Exception\InvalidArgumentException;
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @license MIT
+ * @deprecated Developer tools are now part of the companion module LmcRbacMvcDevTools.
  */
 class RbacCollector implements CollectorInterface, Serializable
 {
@@ -44,32 +45,20 @@ class RbacCollector implements CollectorInterface, Serializable
      */
     const PRIORITY = -100;
 
-    /**
-     * @var array
-     */
-    protected $collectedGuards = [];
+    protected array $collectedGuards = [];
 
-    /**
-     * @var array
-     */
-    protected $collectedRoles = [];
+    protected array $collectedRoles = [];
 
-    /**
-     * @var array
-     */
-    protected $collectedPermissions = [];
+    protected array $collectedPermissions = [];
 
-    /**
-     * @var array
-     */
-    protected $collectedOptions = [];
+    protected array $collectedOptions = [];
 
     /**
      * Collector Name.
      *
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return 'lmc_rbac';
     }
@@ -79,7 +68,7 @@ class RbacCollector implements CollectorInterface, Serializable
      *
      * @return integer
      */
-    public function getPriority()
+    public function getPriority(): int
     {
         return self::PRIORITY;
     }
@@ -90,7 +79,7 @@ class RbacCollector implements CollectorInterface, Serializable
      * @param MvcEvent $mvcEvent
      * @throws ReflectionException
      */
-    public function collect(MvcEvent $mvcEvent)
+    public function collect(MvcEvent $mvcEvent): void
     {
         if (!$application = $mvcEvent->getApplication()) {
             return;
@@ -116,7 +105,7 @@ class RbacCollector implements CollectorInterface, Serializable
      * @param  ModuleOptions $moduleOptions
      * @return void
      */
-    private function collectOptions(ModuleOptions $moduleOptions)
+    private function collectOptions(ModuleOptions $moduleOptions): void
     {
         $this->collectedOptions = [
             'guest_role'        => $moduleOptions->getGuestRole(),
@@ -127,10 +116,10 @@ class RbacCollector implements CollectorInterface, Serializable
     /**
      * Collect guards
      *
-     * @param  array $guards
+     * @param array $guards
      * @return void
      */
-    private function collectGuards($guards)
+    private function collectGuards(array $guards): void
     {
         $this->collectedGuards = [];
 
@@ -146,14 +135,14 @@ class RbacCollector implements CollectorInterface, Serializable
      * @return void
      * @throws ReflectionException
      */
-    private function collectIdentityRolesAndPermissions(RoleService $roleService)
+    private function collectIdentityRolesAndPermissions(RoleService $roleService): void
     {
         $identityRoles = $roleService->getIdentityRoles();
 
         foreach ($identityRoles as $role) {
             $roleName = $role->getName();
 
-            if (empty($role->hasChildren())) {
+            if (empty($role->getChildren())) {
                 $this->collectedRoles[] = $roleName;
             } else {
                 $iteratorIterator = new RecursiveIteratorIterator(
@@ -178,7 +167,7 @@ class RbacCollector implements CollectorInterface, Serializable
      * @return void
      * @throws ReflectionException
      */
-    private function collectPermissions(RoleInterface $role)
+    private function collectPermissions(RoleInterface $role): void
     {
         if (method_exists($role, 'getPermissions')) {
             $permissions = $role->getPermissions();
@@ -205,7 +194,7 @@ class RbacCollector implements CollectorInterface, Serializable
     /**
      * @return array|string[]
      */
-    public function getCollection()
+    public function getCollection(): array
     {
         return [
             'guards'      => $this->collectedGuards,
@@ -217,7 +206,7 @@ class RbacCollector implements CollectorInterface, Serializable
     /**
      * {@inheritDoc}
      */
-    public function serialize()
+    public function serialize(): ?string
     {
         return serialize($this->__serialize());
     }
@@ -225,7 +214,7 @@ class RbacCollector implements CollectorInterface, Serializable
     /**
      * {@inheritDoc}
      */
-    public function unserialize($data)
+    public function unserialize($data): void
     {
         $collection = unserialize($data);
         if (!is_array($collection)) {

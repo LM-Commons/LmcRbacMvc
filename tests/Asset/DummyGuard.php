@@ -28,7 +28,7 @@ class DummyGuard extends AbstractGuard
      *
      * @return bool
      */
-    public function isGranted(MvcEvent $event)
+    public function isGranted(MvcEvent $event): bool
     {
         return false;
     }

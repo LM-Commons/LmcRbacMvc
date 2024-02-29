@@ -36,7 +36,7 @@ class AssertionPluginManagerFactoryTest extends \PHPUnit\Framework\TestCase
         ]);
 
         $factory       = new AssertionPluginManagerFactory();
-        $pluginManager = $factory->createService($serviceManager);
+        $pluginManager = $factory($serviceManager, 'LmcRbacMvc\Assertion\AssertionPluginManager');
 
         $this->assertInstanceOf('LmcRbacMvc\Assertion\AssertionPluginManager', $pluginManager);
     }

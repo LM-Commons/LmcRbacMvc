@@ -29,10 +29,7 @@ use LmcRbacMvc\Service\AuthorizationServiceInterface;
  */
 class IsGranted extends AbstractHelper
 {
-    /**
-     * @var AuthorizationServiceInterface
-     */
-    private $authorizationService;
+    private AuthorizationServiceInterface $authorizationService;
 
     /**
      * Constructor
@@ -47,11 +44,11 @@ class IsGranted extends AbstractHelper
     /**
      * Check against the given permission
      *
-     * @param  string $permission
-     * @param  mixed  $context
+     * @param string $permission
+     * @param mixed|null $context
      * @return bool
      */
-    public function __invoke($permission, $context = null)
+    public function __invoke(string $permission, mixed $context = null): bool
     {
         return $this->authorizationService->isGranted($permission, $context);
     }

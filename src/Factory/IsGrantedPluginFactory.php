@@ -33,25 +33,13 @@ use LmcRbacMvc\Service\AuthorizationService;
 class IsGrantedPluginFactory implements FactoryInterface
 {
     /**
-     * @param ContainerInterface $container
-     * @param string $requestedName
-     * @param array|null $options
-     * @return IsGranted
+     * {@inheritDoc}
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): IsGranted
     {
         /* @var AuthorizationService $authorizationService */
         $authorizationService = $container->get(AuthorizationService::class);
 
         return new IsGranted($authorizationService);
-    }
-
-    /**
-     * {@inheritDoc}
-     * @return IsGranted
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        return $this($serviceLocator->getServiceLocator(), IsGranted::class);
     }
 }

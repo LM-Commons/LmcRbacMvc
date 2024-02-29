@@ -30,52 +30,42 @@ class RedirectStrategyOptions extends AbstractOptions
 {
     /**
      * Should the user be redirected when connected and not authorized
-     *
-     * @var bool
      */
-    protected $redirectWhenConnected = true;
+    protected bool $redirectWhenConnected = true;
 
     /**
      * The name of the route to redirect when a user is connected and not authorized
-     *
-     * @var string
      */
-    protected $redirectToRouteConnected = 'home';
+    protected string $redirectToRouteConnected = 'home';
 
     /**
      * The name of the route to redirect when a user is disconnected and not authorized
-     *
-     * @var string
      */
-    protected $redirectToRouteDisconnected = 'login';
+    protected string $redirectToRouteDisconnected = 'login';
 
     /**
      * Should the previous URI should be appended as a query param?
-     *
-     * @var bool
      */
-    protected $appendPreviousUri = true;
+    protected bool $appendPreviousUri = true;
 
     /**
      * If appendPreviousUri is enabled, key to use in query params that hold the previous URI
-     *
-     * @var string
      */
-    protected $previousUriQueryKey = 'redirectTo';
+    protected string $previousUriQueryKey = 'redirectTo';
 
     /**
      * @param bool $redirectWhenConnected
      * @return void
      */
-    public function setRedirectWhenConnected($redirectWhenConnected)
+    public function setRedirectWhenConnected(bool $redirectWhenConnected): void
     {
-        $this->redirectWhenConnected = (bool) $redirectWhenConnected;
+        $this->redirectWhenConnected = $redirectWhenConnected;
     }
 
     /**
      * @return bool
      */
-    public function getRedirectWhenConnected()
+    public function getRedirectWhenConnected(): bool
     {
         return $this->redirectWhenConnected;
     }
@@ -84,15 +74,15 @@ class RedirectStrategyOptions extends AbstractOptions
      * @param string $redirectToRouteConnected
      * @return void
      */
-    public function setRedirectToRouteConnected($redirectToRouteConnected)
+    public function setRedirectToRouteConnected(string $redirectToRouteConnected): void
     {
-        $this->redirectToRouteConnected = (string) $redirectToRouteConnected;
+        $this->redirectToRouteConnected = $redirectToRouteConnected;
     }
 
     /**
      * @return string
      */
-    public function getRedirectToRouteConnected()
+    public function getRedirectToRouteConnected(): string
     {
         return $this->redirectToRouteConnected;
     }
@@ -101,15 +91,15 @@ class RedirectStrategyOptions extends AbstractOptions
      * @param string $redirectToRouteDisconnected
      * @return void
      */
-    public function setRedirectToRouteDisconnected($redirectToRouteDisconnected)
+    public function setRedirectToRouteDisconnected(string $redirectToRouteDisconnected): void
     {
-        $this->redirectToRouteDisconnected = (string) $redirectToRouteDisconnected;
+        $this->redirectToRouteDisconnected = $redirectToRouteDisconnected;
     }
 
     /**
      * @return string
      */
-    public function getRedirectToRouteDisconnected()
+    public function getRedirectToRouteDisconnected(): string
     {
         return $this->redirectToRouteDisconnected;
     }
@@ -117,15 +107,15 @@ class RedirectStrategyOptions extends AbstractOptions
     /**
      * @param boolean $appendPreviousUri
      */
-    public function setAppendPreviousUri($appendPreviousUri)
+    public function setAppendPreviousUri(bool $appendPreviousUri): void
     {
-        $this->appendPreviousUri = (bool) $appendPreviousUri;
+        $this->appendPreviousUri = $appendPreviousUri;
     }
 
     /**
      * @return boolean
      */
-    public function getAppendPreviousUri()
+    public function getAppendPreviousUri(): bool
     {
         return $this->appendPreviousUri;
     }
@@ -133,15 +123,15 @@ class RedirectStrategyOptions extends AbstractOptions
     /**
      * @param string $previousUriQueryKey
      */
-    public function setPreviousUriQueryKey($previousUriQueryKey)
+    public function setPreviousUriQueryKey(string $previousUriQueryKey): void
     {
-        $this->previousUriQueryKey = (string) $previousUriQueryKey;
+        $this->previousUriQueryKey = $previousUriQueryKey;
     }
 
     /**
      * @return string
      */
-    public function getPreviousUriQueryKey()
+    public function getPreviousUriQueryKey(): string
     {
         return $this->previousUriQueryKey;
     }

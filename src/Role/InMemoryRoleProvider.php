@@ -19,6 +19,7 @@
 namespace LmcRbacMvc\Role;
 
 use Laminas\Permissions\Rbac\RoleInterface;
+use Laminas\Permissions\Rbac\Role;
 
 /**
  * Simple role providers that store them in memory (ideal for small websites)
@@ -42,20 +43,16 @@ class InMemoryRoleProvider implements RoleProviderInterface
 {
     /**
      * Role storage
-     *
-     * @var array
      */
-    private $roles = [];
+    private array $roles = [];
 
     /**
      * Roles config
-     *
-     * @var array
      */
-    private $rolesConfig = [];
+    private array $rolesConfig = [];
 
     /**
-     * @param array
+     * @param array $rolesConfig
      */
     public function __construct(array $rolesConfig)
     {
@@ -65,7 +62,7 @@ class InMemoryRoleProvider implements RoleProviderInterface
     /**
      * {@inheritDoc}
      */
-    public function getRoles(array $roleNames)
+    public function getRoles(array $roleNames): array
     {
         $roles = [];
 
@@ -79,9 +76,9 @@ class InMemoryRoleProvider implements RoleProviderInterface
      * Get role by role name
      *
      * @param $roleName
-     * @return RoleInterface
+     * @return RoleInterface|Role
      */
-    protected function getRole($roleName)
+    protected function getRole($roleName): RoleInterface|Role
     {
         if (isset($this->roles[$roleName])) {
             return $this->roles[$roleName];
@@ -107,7 +104,7 @@ class InMemoryRoleProvider implements RoleProviderInterface
             $role = new Role($roleName);
         }
 
-        $permissions = isset($roleConfig['permissions']) ? $roleConfig['permissions'] : [];
+        $permissions = $roleConfig['permissions'] ?? [];
         foreach ($permissions as $permission) {
             $role->addPermission($permission);
         }

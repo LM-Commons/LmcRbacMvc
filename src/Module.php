@@ -35,7 +35,7 @@ class Module implements BootstrapListenerInterface, ConfigProviderInterface
     /**
      * {@inheritDoc}
      */
-    public function onBootstrap(EventInterface $event)
+    public function onBootstrap(EventInterface $event): void
     {
         /* @var Application $application */
         $application    = $event->getTarget();

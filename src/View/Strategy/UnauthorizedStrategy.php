@@ -33,10 +33,7 @@ use LmcRbacMvc\Options\UnauthorizedStrategyOptions;
  */
 class UnauthorizedStrategy extends AbstractStrategy
 {
-    /**
-     * @var UnauthorizedStrategyOptions
-     */
-    protected $options;
+    protected UnauthorizedStrategyOptions $options;
 
     /**
      * Constructor
@@ -53,7 +50,7 @@ class UnauthorizedStrategy extends AbstractStrategy
      * @param  MvcEvent $event
      * @return void
      */
-    public function onError(MvcEvent $event)
+    public function onError(MvcEvent $event): void
     {
         // Do nothing if no error or if response is not HTTP response
         if (!($event->getParam('exception') instanceof UnauthorizedExceptionInterface)

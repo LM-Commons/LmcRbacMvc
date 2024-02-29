@@ -32,7 +32,7 @@ use LmcRbacMvc\Assertion\AssertionPluginManager;
  */
 class AuthorizationServiceTest extends \PHPUnit\Framework\TestCase
 {
-    public function grantedProvider()
+    public static function grantedProvider(): array
     {
         return [
             // Simple is granted
@@ -163,23 +163,26 @@ class AuthorizationServiceTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($authorizationService->isGranted('foo'));
     }
 
+    /** this test is no longer needed because of type checking is now enforced*/
+    /** @deprecated  */
     public function testThrowExceptionForInvalidAssertion()
     {
         $role = $this->createMock('Laminas\Permissions\Rbac\RoleInterface');
         $rbac = $this->createMock('LmcRbacMvc\Rbac\Rbac');
 
-        $rbac->expects($this->once())->method('isGranted')->will($this->returnValue(true));
+        //$rbac->expects($this->once())->method('isGranted')->will($this->returnValue(true));
 
         $roleService = $this->createMock('LmcRbacMvc\Service\RoleService');
-        $roleService->expects($this->once())->method('getIdentityRoles')->will($this->returnValue([$role]));
+        //$roleService->expects($this->once())->method('getIdentityRoles')->will($this->returnValue([$role]));
 
         $assertionPluginManager = $this->createMock('LmcRbacMvc\Assertion\AssertionPluginManager');
         $authorizationService   = new AuthorizationService($rbac, $roleService, $assertionPluginManager);
 
-        $this->expectException('LmcRbacMvc\Exception\InvalidArgumentException');
+        //$this->expectException('LmcRbacMvc\Exception\InvalidArgumentException');
+        $this->expectException(\TypeError::class);
 
         $authorizationService->setAssertion('foo', new \stdClass());
-        $authorizationService->isGranted('foo');
+        //$authorizationService->isGranted('foo');
     }
 
     public function testDynamicAssertions()
@@ -232,9 +235,9 @@ class AuthorizationServiceTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($authorizationService->hasAssertion('foo'));
         $this->assertTrue($authorizationService->hasAssertion('bar'));
 
-        $authorizationService->setAssertion('bar', null);
-
-        $this->assertFalse($authorizationService->hasAssertion('bar'));
+        // This test is no longer valid due to type validation
+//        $authorizationService->setAssertion('bar', null);
+//        $this->assertFalse($authorizationService->hasAssertion('bar'));
     }
 
     /**

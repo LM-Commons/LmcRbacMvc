@@ -18,6 +18,7 @@
 
 namespace LmcRbacMvc\Factory;
 
+use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
 use Psr\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
@@ -32,22 +33,14 @@ use LmcRbacMvc\Options\ModuleOptions;
 class ModuleOptionsFactory implements FactoryInterface
 {
     /**
-     * @param ContainerInterface $container
-     * @param string $requestedName
-     * @param array|null $options
-     * @return ModuleOptions
-     */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
-    {
-        return new ModuleOptions($container->get('Config')['lmc_rbac']);
-    }
-
-    /**
      * {@inheritDoc}
-     * @return ModuleOptions
      */
-    public function createService(ServiceLocatorInterface $serviceLocator)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): ModuleOptions
     {
-        return $this($serviceLocator, ModuleOptions::class);
+        $config = $container->get('Config');
+        if (!isset($config['lmc_rbac'])) {
+            throw new ServiceNotCreatedException("Could not find the `lmc_rbac' configuration array ");
+        }
+        return new ModuleOptions($container->get('Config')['lmc_rbac']);
     }
 }

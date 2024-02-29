@@ -51,7 +51,7 @@ class RedirectStrategyFactoryTest extends \PHPUnit\Framework\TestCase
                            ->shouldBeCalled();
 
         $factory          = new RedirectStrategyFactory();
-        $redirectStrategy = $factory->createService($serviceLocatorMock->reveal());
+        $redirectStrategy = $factory($serviceLocatorMock->reveal(), 'LmcRbacMvc\View\Strategy\RedirectStrategy');
 
         $this->assertInstanceOf('LmcRbacMvc\View\Strategy\RedirectStrategy', $redirectStrategy);
     }

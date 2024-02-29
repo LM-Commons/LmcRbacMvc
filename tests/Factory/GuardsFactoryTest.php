@@ -66,7 +66,7 @@ class GuardsFactoryTest extends \PHPUnit\Framework\TestCase
         );
 
         $factory = new GuardsFactory();
-        $guards  = $factory->createService($serviceManager);
+        $guards  = $factory($serviceManager, '');
 
         $this->assertIsArray($guards);
 
@@ -89,7 +89,7 @@ class GuardsFactoryTest extends \PHPUnit\Framework\TestCase
         $serviceManager->setService('LmcRbacMvc\Options\ModuleOptions', $moduleOptions);
 
         $factory = new GuardsFactory();
-        $guards  = $factory->createService($serviceManager);
+        $guards  = $factory($serviceManager, GuardsFactory::class);
 
         $this->assertIsArray($guards);
 

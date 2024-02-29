@@ -127,7 +127,7 @@ class RbacCollectorTest extends \PHPUnit\Framework\TestCase
                     'permissions' => ['read']
                 ]
             ],
-            'identity_role' => 'member'
+            'identity_role' => ['member']
         ];
 
         //$serviceManager = $this->getMockBuilder('Laminas\ServiceManager\ServiceLocatorInterface')->getMock();
@@ -157,17 +157,6 @@ class RbacCollectorTest extends \PHPUnit\Framework\TestCase
 
         $roleService = new RoleService($identityProvider, new InMemoryRoleProvider($dataToCollect['role_config']), new RecursiveRoleIteratorStrategy());
 
-        /*
-        $serviceManager->expects($this->at(0))
-                       ->method('get')
-                       ->with('LmcRbacMvc\Service\RoleService')
-                       ->will($this->returnValue($roleService));
-
-        $serviceManager->expects($this->at(1))
-                       ->method('get')
-                       ->with('LmcRbacMvc\Options\ModuleOptions')
-                       ->will($this->returnValue(new ModuleOptions($dataToCollect['module_options'])));
-*/
         $serviceManager->setService('LmcRbacMvc\Service\RoleService', $roleService);
         $serviceManager->setService('LmcRbacMvc\Options\ModuleOptions', new ModuleOptions($dataToCollect['module_options']));
         $collector = new RbacCollector();

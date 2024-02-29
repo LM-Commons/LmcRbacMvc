@@ -61,7 +61,6 @@ class AuthorizationServiceDelegatorTest extends \PHPUnit\Framework\TestCase
         $serviceManager = ServiceManagerFactory::getServiceManager();
 
         $serviceManager->setAllowOverride(true);
-//        $authorizationService = $this->getMock('LmcRbacMvc\Service\AuthorizationService', [], [], '', false);
         $authorizationService = $this->getMockBuilder('LmcRbacMvc\Service\AuthorizationService')
             ->disableOriginalConstructor()
             ->getMock();

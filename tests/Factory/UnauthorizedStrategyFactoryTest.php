@@ -43,7 +43,7 @@ class UnauthorizedStrategyFactoryTest extends \PHPUnit\Framework\TestCase
         $serviceLocatorMock->get('LmcRbacMvc\Options\ModuleOptions')->willReturn($moduleOptionsMock)->shouldBeCalled();
 
         $factory              = new UnauthorizedStrategyFactory();
-        $unauthorizedStrategy = $factory->createService($serviceLocatorMock->reveal());
+        $unauthorizedStrategy = $factory($serviceLocatorMock->reveal(),'LmcRbacMvc\View\Strategy\UnauthorizedStrategy');
 
         $this->assertInstanceOf('LmcRbacMvc\View\Strategy\UnauthorizedStrategy', $unauthorizedStrategy);
     }

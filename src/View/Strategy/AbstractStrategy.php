@@ -33,7 +33,7 @@ abstract class AbstractStrategy extends AbstractListenerAggregate
     /**
      * {@inheritDoc}
      */
-    public function attach(EventManagerInterface $events, $priority = 1)
+    public function attach(EventManagerInterface $events, $priority = 1): void
     {
         $this->listeners[] = $events->attach(MvcEvent::EVENT_DISPATCH_ERROR, [$this, 'onError'], $priority);
     }
@@ -43,5 +43,5 @@ abstract class AbstractStrategy extends AbstractListenerAggregate
      * @param  MvcEvent $event
      * @return void
      */
-    abstract public function onError(MvcEvent $event);
+    abstract public function onError(MvcEvent $event): void;
 }

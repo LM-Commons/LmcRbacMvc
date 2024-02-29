@@ -33,7 +33,7 @@ use LmcRbacMvc\Role\TraversalStrategyInterface;
  */
 class RoleServiceTest extends TestCase
 {
-    public function roleProvider()
+    public static function roleProvider(): array
     {
         return [
             // No identity role
@@ -229,21 +229,21 @@ class RoleServiceTest extends TestCase
         $identityProvider = $this->createMock(IdentityProviderInterface::class);
         $identityProvider->expects($this->any())
             ->method('getIdentity')
-            ->will($this->returnValue('test'));
+            ->will($this->returnValue(null));
         $roleService = new RoleService(
             $this->createMock(IdentityProviderInterface::class),
             new InMemoryRoleProvider([]),
             $this->createMock(TraversalStrategyInterface::class)
         );
         $roleService->setIdentityProvider($identityProvider);
-        $this->assertEquals('test', $roleService->getIdentity());
+        $this->assertNull($roleService->getIdentity());
     }
 
     public function testSetRoleProvider()
     {
         $role = $this->createMock(RoleInterface::class);
         $identity = $this->createMock(IdentityInterface::class);
-        $identity->expects($this->once())->method('getRoles')->will($this->returnValue(new \ArrayObject([$role])));
+        $identity->expects($this->once())->method('getRoles')->will($this->returnValue([$role]));
 
         $identityProvider = $this->createMock(IdentityProviderInterface::class);
         $identityProvider->expects($this->any())
@@ -290,6 +290,8 @@ class RoleServiceTest extends TestCase
     }
 
 
+    /** @deprecated this is no longer needed since types are now checked */
+    /*
     public function testThrowExceptionIfIdentityIsWrongType()
     {
         $this->expectException('LmcRbacMvc\Exception\RuntimeException');
@@ -299,13 +301,12 @@ class RoleServiceTest extends TestCase
         $identityProvider->expects($this->any())
                          ->method('getIdentity')
                          ->will($this->returnValue(new \stdClass()));
-
         $roleService = new RoleService(
             $identityProvider,
             $this->createMock('LmcRbacMvc\Role\RoleProviderInterface'),
             $this->createMock('LmcRbacMvc\Role\TraversalStrategyInterface')
         );
-
         $roleService->getIdentityRoles();
     }
+    */
 }

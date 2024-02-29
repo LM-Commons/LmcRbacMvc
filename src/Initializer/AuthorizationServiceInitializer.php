@@ -33,26 +33,13 @@ use LmcRbacMvc\Service\AuthorizationServiceAwareInterface;
 class AuthorizationServiceInitializer implements InitializerInterface
 {
     /**
-     * @param ContainerInterface $container
-     * @param object $instance
+     * {@inheritDoc}
      */
-    public function __invoke(ContainerInterface $container, $instance)
+    public function __invoke(ContainerInterface $container, $instance): void
     {
         if ($instance instanceof AuthorizationServiceAwareInterface) {
-            $authorizationService = $container->get('LmcRbacMvc\Service\AuthorizationService');
+            $authorizationService = $container->get(\LmcRbacMvc\Service\AuthorizationService::class);
             $instance->setAuthorizationService($authorizationService);
         }
-    }
-
-    /**
-     * @see \Laminas\ServiceManager\Initializer\InitializerInterface::initialize()
-     */
-    public function initialize($instance, ServiceLocatorInterface $serviceLocator)
-    {
-        if ($serviceLocator instanceof AbstractPluginManager) {
-            $serviceLocator = $serviceLocator->getServiceLocator();
-        }
-
-        $this($serviceLocator, $instance);
     }
 }

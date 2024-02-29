@@ -27,7 +27,7 @@ use LmcRbacMvc\Options\ModuleOptions;
  */
 class GuardPluginManagerTest extends \PHPUnit\Framework\TestCase
 {
-    public function guardProvider()
+    public static function guardProvider(): array
     {
         return [
             [

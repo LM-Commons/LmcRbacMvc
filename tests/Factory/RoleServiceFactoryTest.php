@@ -65,7 +65,7 @@ class RoleServiceFactoryTest extends \PHPUnit\Framework\TestCase
         $serviceManager->setService('LmcRbacMvc\Identity\AuthenticationProvider', $this->createMock('LmcRbacMvc\Identity\IdentityProviderInterface'));
 
         $factory = new RoleServiceFactory();
-        $roleService = $factory->createService($serviceManager);
+        $roleService = $factory($serviceManager, 'LmcRbacMvc\Service\RoleService');
 
         $this->assertInstanceOf('LmcRbacMvc\Service\RoleService', $roleService);
         $this->assertEquals('guest', $roleService->getGuestRole());
@@ -73,6 +73,7 @@ class RoleServiceFactoryTest extends \PHPUnit\Framework\TestCase
 
     }
 
+    /** TODO what are we testing here? */
     public function testIfRoleArrayPointerBeyondArrayEnd()
     {
         $options = new ModuleOptions([
@@ -94,11 +95,6 @@ class RoleServiceFactoryTest extends \PHPUnit\Framework\TestCase
         $roleProvider = $this->createMock('\LmcRbacMvc\Role\RoleProviderInterface');
 
         $rbac = $this->createMock('Laminas\Permissions\Rbac\Rbac');
-//         $rbac->expects($this->once())
-//             ->method('getTraversalStrategy')
-//             ->will($this->returnValue(
-//                 $traversalStrategy
-//             ));
 
         $pluginManager = $this->createMock('\LmcRbacMvc\Role\RoleProviderPluginManager');
         $pluginManager->expects($this->once())
@@ -114,13 +110,14 @@ class RoleServiceFactoryTest extends \PHPUnit\Framework\TestCase
         $serviceManager->setService('LmcRbacMvc\Role\RoleProviderPluginManager', $pluginManager);
         $serviceManager->setService('LmcRbacMvc\Identity\AuthenticationProvider', $this->createMock('LmcRbacMvc\Identity\IdentityProviderInterface'));
 
+        /* TODO what are we testing here? */
         $factory = new RoleServiceFactory();
-        $factory->createService($serviceManager);
+        $factory($serviceManager, '');
     }
 
     public function testThrowExceptionIfNoRoleProvider()
     {
-        $this->ExpectException(\LmcRbacMvc\Exception\RuntimeException::class);
+        $this->expectException(\Laminas\ServiceManager\Exception\ServiceNotCreatedException::class);
 
         $options = new ModuleOptions([
             'identity_provider' => 'LmcRbacMvc\Identity\AuthenticationProvider',
@@ -135,7 +132,8 @@ class RoleServiceFactoryTest extends \PHPUnit\Framework\TestCase
             $this->createMock('LmcRbacMvc\Identity\IdentityProviderInterface')
         );
 
+        /** TODO what are we testing here since there are no assertion? */
         $factory     = new RoleServiceFactory();
-        $factory->createService($serviceManager);
+        $factory($serviceManager, '');
     }
 }

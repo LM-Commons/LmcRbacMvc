@@ -19,10 +19,8 @@
 namespace LmcRbacMvc\Factory;
 
 use Psr\Container\ContainerInterface;
-use LmcRbacMvc\Rbac\Rbac;
-use Rbac\Traversal\Strategy\GeneratorStrategy;
+use Laminas\Permissions\Rbac\Rbac;
 use Laminas\ServiceManager\Factory\FactoryInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
 
 /**
  * @author  Michaël Gallego <mic.gallego@gmail.com>
@@ -36,16 +34,8 @@ class RbacFactory implements FactoryInterface
      * @param array|null $options
      * @return Rbac
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): Rbac
     {
         return new Rbac();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        return $this($serviceLocator, Rbac::class);
     }
 }

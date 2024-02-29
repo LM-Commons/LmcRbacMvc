@@ -33,24 +33,13 @@ use LmcRbacMvc\View\Strategy\UnauthorizedStrategy;
 class UnauthorizedStrategyFactory implements FactoryInterface
 {
     /**
-     * @param ContainerInterface $container
-     * @param string $requestedName
-     * @param array|null $options
-     * @return UnauthorizedStrategy
+     * {@inheritDoc}
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): UnauthorizedStrategy
     {
         /* @var ModuleOptions $moduleOptions */
         $moduleOptions = $container->get(ModuleOptions::class);
 
         return new UnauthorizedStrategy($moduleOptions->getUnauthorizedStrategy());
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        return $this($serviceLocator, UnauthorizedStrategy::class);
     }
 }

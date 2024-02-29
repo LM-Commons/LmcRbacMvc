@@ -9,6 +9,9 @@ use Laminas\Permissions\Rbac\RoleInterface;
 use Laminas\Permissions\Rbac\AssertionInterface;
 use Laminas\Permissions\Rbac\Exception;
 
+/**
+ * @deprecated
+ */
 class Rbac extends LaminasRbac{
     /**
      * Return all the roles

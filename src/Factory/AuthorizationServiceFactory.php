@@ -18,9 +18,9 @@
 
 namespace LmcRbacMvc\Factory;
 
+use Laminas\Permissions\Rbac\Rbac;
 use Psr\Container\ContainerInterface;
-use Laminas\ServiceManager\FactoryInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use LmcRbacMvc\Assertion\AssertionPluginManager;
 use LmcRbacMvc\Options\ModuleOptions;
 use LmcRbacMvc\Service\AuthorizationService;
@@ -40,10 +40,10 @@ class AuthorizationServiceFactory implements FactoryInterface
      * @param array|null $options
      * @return AuthorizationService
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): AuthorizationService
     {
-        /* @var \Laminas\Permissions\Rbac\Rbac $rbac */
-        $rbac = $container->get(\Rbac\Rbac::class);
+        /* @var Rbac $rbac */
+        $rbac = $container->get('rbac');
 
         /* @var RoleService $roleService */
         $roleService = $container->get(RoleService::class);
@@ -58,14 +58,5 @@ class AuthorizationServiceFactory implements FactoryInterface
         $authorizationService->setAssertions($moduleOptions->getAssertionMap());
 
         return $authorizationService;
-    }
-
-    /**
-     * {@inheritDoc}
-     * @return AuthorizationService
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        return $this($serviceLocator, AuthorizationService::class);
     }
 }

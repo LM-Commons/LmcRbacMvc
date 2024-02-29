@@ -33,25 +33,13 @@ use LmcRbacMvc\View\Helper\HasRole;
 class HasRoleViewHelperFactory implements FactoryInterface
 {
     /**
-     * @param ContainerInterface $container
-     * @param string $requestedName
-     * @param array|null $options
-     * @return HasRole
+     * {@inheritDoc}
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): HasRole
     {
         /* @var RoleService $roleService */
         $roleService = $container->get(RoleService::class);
 
         return new HasRole($roleService);
-    }
-
-    /**
-     * {@inheritDoc}
-     * @return HasRole
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        return $this($serviceLocator->getServiceLocator(), HasRole::class);
     }
 }

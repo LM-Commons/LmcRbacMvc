@@ -17,6 +17,8 @@
  */
 namespace LmcRbacMvcTest\Initializer;
 
+use Laminas\ServiceManager\ServiceManager;
+use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 use LmcRbacMvc\Initializer\AuthorizationServiceInitializer;
@@ -27,7 +29,7 @@ use Prophecy\PhpUnit\ProphecyTrait;
  * @author  Aeneas Rekkas
  * @license MIT License
  */
-class AuthorizationServiceInitializerTest extends \PHPUnit\Framework\TestCase
+class AuthorizationServiceInitializerTest extends TestCase
 {
     use ProphecyTrait;
 
@@ -37,15 +39,12 @@ class AuthorizationServiceInitializerTest extends \PHPUnit\Framework\TestCase
         $initializer          = new AuthorizationServiceInitializer();
         $instance             = new AuthorizationAwareFake();
 
-        $serviceLocator = $this->prophesize(ServiceLocatorInterface::class)->willImplement(ContainerInterface::class);
         $authorizationService = $this->createMock('LmcRbacMvc\Service\AuthorizationService');
 
-        $serviceLocator
-            ->get($authServiceClassName)
-            ->willReturn($authorizationService)
-            ->shouldBeCalled();
+        $serviceManager = new ServiceManager();
+        $serviceManager->setService(\LmcRbacMvc\Service\AuthorizationService::class, $authorizationService);
 
-        $initializer->initialize($instance, $serviceLocator->reveal());
+        $initializer($serviceManager, $instance);
 
         $this->assertEquals($authorizationService, $instance->getAuthorizationService());
     }

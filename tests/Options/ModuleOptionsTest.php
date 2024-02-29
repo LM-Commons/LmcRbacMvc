@@ -16,7 +16,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest;
+namespace LmcRbacMvcTest\Options;
 
 use LmcRbacMvc\Options\ModuleOptions;
 use LmcRbacMvcTest\Util\ServiceManagerFactory;
@@ -28,7 +28,7 @@ class ModuleOptionsTest extends \PHPUnit\Framework\TestCase
 {
     public function testAssertModuleDefaultOptions()
     {
-        /** @var \LmcRbacMvc\Options\ModuleOptions $moduleOptions */
+        /** @var ModuleOptions $moduleOptions */
         $moduleOptions = ServiceManagerFactory::getServiceManager()->get('LmcRbacMvc\Options\ModuleOptions');
 
         $this->assertEquals('LmcRbacMvc\Identity\AuthenticationIdentityProvider', $moduleOptions->getIdentityProvider());

@@ -34,12 +34,9 @@ use LmcRbacMvc\View\Strategy\RedirectStrategy;
 class RedirectStrategyFactory implements FactoryInterface
 {
     /**
-     * @param ContainerInterface $container
-     * @param string $requestedName
-     * @param array|null $options
-     * @return RedirectStrategy
+     * {@inheritDoc}
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): RedirectStrategy
     {
         /* @var ModuleOptions $moduleOptions */
         $moduleOptions = $container->get(ModuleOptions::class);
@@ -47,13 +44,5 @@ class RedirectStrategyFactory implements FactoryInterface
         $authenticationService = $container->get(AuthenticationService::class);
 
         return new RedirectStrategy($moduleOptions->getRedirectStrategy(), $authenticationService);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        return $this($serviceLocator, RedirectStrategy::class);
     }
 }

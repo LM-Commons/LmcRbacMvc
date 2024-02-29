@@ -25,23 +25,25 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="permissions")
  */
+#[ORM\Entity]
+#[ORM\Table(name:"permissions")]
 class Permission
 {
     /**
-     * @var int|null
-     *
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    #[ORM\Id]
+    #[ORM\Column(type:"integer")]
+    #[ORM\GeneratedValue]
+    private ?int $id;
 
     /**
-     * @var string|null
-     *
      * @ORM\Column(type="string", length=32, unique=true)
      */
-    protected $name;
+    #[ORM\Column(type:"string", length:32, unique:true)]
+    private ?string $name;
 
     /**
      * Constructor
@@ -49,15 +51,14 @@ class Permission
     public function __construct($name)
     {
         $this->name  = (string) $name;
-        $this->roles = new ArrayCollection();
     }
 
     /**
      * Get the permission identifier
      *
-     * @return int
+     * @return int|null
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -65,17 +66,17 @@ class Permission
     /**
      * Get the permission name
      *
-     * @return string
+     * @return string|null
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
 
     /**
-     * {@inheritDoc}
+     *
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->getName();
     }

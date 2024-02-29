@@ -35,7 +35,7 @@ class AuthenticationIdentityProviderFactoryTest extends \PHPUnit\Framework\TestC
         );
 
         $factory                = new AuthenticationIdentityProviderFactory();
-        $authenticationProvider = $factory->createService($serviceManager);
+        $authenticationProvider = $factory($serviceManager, 'LmcRbacMvc\Identity\AuthenticationIdentityProvider');
 
         $this->assertInstanceOf('LmcRbacMvc\Identity\AuthenticationIdentityProvider', $authenticationProvider);
     }
