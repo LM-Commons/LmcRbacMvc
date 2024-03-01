@@ -422,7 +422,7 @@ following code in your config:
 
 ```php
 return [
-    'zfc_rbac' => [
+    'lmc_rbac' => [
         'guard_manager' => [
             'factories' => [
                 'Application\Guard\IpGuard' => 'Application\Factory\IpGuardFactory'
