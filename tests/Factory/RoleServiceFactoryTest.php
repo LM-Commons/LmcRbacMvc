@@ -43,7 +43,7 @@ class RoleServiceFactoryTest extends \PHPUnit\Framework\TestCase
         $traversalStrategy = $this->createMock('LmcRbacMvc\Role\RecursiveRoleIteratorStrategy');
         $roleProvider = $this->createMock('\LmcRbacMvc\Role\RoleProviderInterface');
 
-        $rbac = $this->createMock('LmcRbacMvc\Rbac\Rbac');
+        $rbac = $this->createMock('Laminas\Permissions\Rbac\Rbac');
 //         $rbac->expects($this->once())
 //             ->method('getTraversalStrategy')
 //             ->will($this->returnValue(

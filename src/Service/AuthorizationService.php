@@ -35,11 +35,6 @@ use LmcRbacMvc\Identity\IdentityInterface;
 class AuthorizationService implements AuthorizationServiceInterface
 {
     /**
-     * @var Rbac
-     */
-    protected Rbac $rbac;
-
-    /**
      * @var RoleService
      */
     protected RoleService $roleService;
@@ -57,13 +52,11 @@ class AuthorizationService implements AuthorizationServiceInterface
     /**
      * Constructor
      *
-     * @param Rbac                   $rbac
      * @param RoleService            $roleService
      * @param AssertionPluginManager $assertionPluginManager
      */
-    public function __construct(Rbac $rbac, RoleService $roleService, AssertionPluginManager $assertionPluginManager)
+    public function __construct(RoleService $roleService, AssertionPluginManager $assertionPluginManager)
     {
-        $this->rbac                   = $rbac;
         $this->roleService            = $roleService;
         $this->assertionPluginManager = $assertionPluginManager;
     }
@@ -122,14 +115,21 @@ class AuthorizationService implements AuthorizationServiceInterface
     public function isGranted(string $permission, mixed $context = null): bool
     {
         $roles = $this->roleService->getIdentityRoles();
-//         var_dump(__METHOD__,$roles);
+
         if (empty($roles)) {
             return false;
         }
+
+        // Create a RBAC container and populate with the identity's roles
+        $rbac = new Rbac();
+        foreach ($roles as $role) {
+            $rbac->addRole($role);
+        }
+
         // Iterate through roles
         $allowed = false;
         foreach ($roles as $role) {
-            if ($this->rbac->isGranted($role, $permission)) {
+            if ($rbac->isGranted($role, $permission)) {
                 $allowed = true;
             }
         }

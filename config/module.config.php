@@ -18,16 +18,13 @@
 
 return [
     'service_manager' => [
-        'aliases' => [
-            'Rbac' => 'rbac',
-        ],
         'factories' => [
             /* Factories that do not map to a class */
             'LmcRbacMvc\Guards' => \LmcRbacMvc\Factory\GuardsFactory::class,
-            'rbac' => \LmcRbacMvc\Factory\RbacFactory::class,
 
             /* Factories that map to a class */
             \LmcRbacMvc\Assertion\AssertionPluginManager::class        => \LmcRbacMvc\Factory\AssertionPluginManagerFactory::class,
+            // TODO Remove RbacCollector once it is moved to a separate library
             \LmcRbacMvc\Collector\RbacCollector::class                 => \Laminas\ServiceManager\Factory\InvokableFactory::class,
             \LmcRbacMvc\Guard\GuardPluginManager::class                => \LmcRbacMvc\Factory\GuardPluginManagerFactory::class,
             \LmcRbacMvc\Identity\AuthenticationIdentityProvider::class => \LmcRbacMvc\Factory\AuthenticationIdentityProviderFactory::class,

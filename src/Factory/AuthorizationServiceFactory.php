@@ -42,9 +42,6 @@ class AuthorizationServiceFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null): AuthorizationService
     {
-        /* @var Rbac $rbac */
-        $rbac = $container->get('rbac');
-
         /* @var RoleService $roleService */
         $roleService = $container->get(RoleService::class);
 
@@ -54,7 +51,7 @@ class AuthorizationServiceFactory implements FactoryInterface
         /* @var ModuleOptions $moduleOptions */
         $moduleOptions = $container->get(ModuleOptions::class);
 
-        $authorizationService = new AuthorizationService($rbac, $roleService, $assertionPluginManager);
+        $authorizationService = new AuthorizationService($roleService, $assertionPluginManager);
         $authorizationService->setAssertions($moduleOptions->getAssertionMap());
 
         return $authorizationService;
