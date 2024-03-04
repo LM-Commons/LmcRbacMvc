@@ -71,6 +71,11 @@
             "LmcRbacMvcTest\\": "tests"
         }
     },
+    "extra": {
+        "laminas": {
+            "module": "LmcRbacMvc"
+        }
+    },
     "scripts": {
         "test": "phpunit",
         "test-coverage": "phpunit --coverage-clover ./build/logs/clover.xml --exclude-group Functional",
