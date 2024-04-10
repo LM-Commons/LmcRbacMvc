@@ -7,6 +7,8 @@ defaults:
 
 on:
   push:
+    branches:
+      - 'master'
     paths:
       - 'docs/**'
   workflow_dispatch:
