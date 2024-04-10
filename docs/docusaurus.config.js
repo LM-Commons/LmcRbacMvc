@@ -65,7 +65,7 @@ const config = {
       // Replace with your project's social card
       image: 'img/LMC-social-card.png',
       navbar: {
-        title: 'LM-Commons LmcRbacMvc',
+        title: 'LmcRbacMvc',
         logo: {
           alt: 'LM-Commons Logo',
           src: 'img/LMC-logo.png',
@@ -106,21 +106,9 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'Gitter',
-                href: 'https://gitter.im/LM-Commons/community',
+                label: 'Slack',
+                href: 'https://join.slack.com/t/lm-commons/shared_invite/zt-2gankt2wj-FTS45hp1W~JEj1tWvDsUHQ',
               },
-
-              /*
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
-            },
-
-               */
             ],
           },
           {
@@ -137,11 +125,12 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} LM Commons Organization. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} LM-Commons Organization. Built with Docusaurus.`,
       },
       prism: {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
+        additionalLanguages: ['bash', 'json', 'php']
       },
     }),
 };
