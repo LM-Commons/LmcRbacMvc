@@ -6,6 +6,9 @@ defaults:
     working-directory: ./docs
 
 on:
+  push:
+    paths:
+      - 'docs/**'
   pull_request:
     paths:
       - 'docs/**'

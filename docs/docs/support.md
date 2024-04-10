@@ -4,7 +4,7 @@ title: Support
 ---
 
 - File issues at https://github.com/LM-Commons/LmcRbacMvc/issues.
-- Ask questions in the [LM-Commons Gitter](https://gitter.im/LM-Commons/community) chat.
+- Ask questions in the [LM-Commons Slack](https://join.slack.com/t/lm-commons/shared_invite/zt-2gankt2wj-FTS45hp1W~JEj1tWvDsUHQ) chat.
 
 
 ##### Notices and Disclaimers
