@@ -27,8 +27,8 @@ use Traversable;
 interface TraversalStrategyInterface
 {
     /**
-     * @param  RoleInterface[]|Traversable
+     * @param Traversable|RoleInterface[] $roles
      * @return Traversable
      */
-    public function getRolesIterator($roles);
+    public function getRolesIterator(Traversable|array $roles): Traversable;
 }

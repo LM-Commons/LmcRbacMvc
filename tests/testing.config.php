@@ -21,7 +21,7 @@ return [
     'doctrine' => [
         'driver' => [
             'application_driver' => [
-                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                'class' => 'Doctrine\ORM\Mapping\Driver\AttributeDriver',
                 'cache' => 'array',
                 'paths' => [__DIR__ . '/Asset']
             ],
@@ -42,6 +42,7 @@ return [
                     'password'      => null,
                     'dbname'        => 'test',
                     'driver'        => 'pdo_sqlite',
+//                    'path'          => __DIR__ . "/../build/db.sqlite",
                     'path'          => null,
                     'memory'        => true,
                 ],

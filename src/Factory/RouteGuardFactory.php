@@ -36,10 +36,10 @@ class RouteGuardFactory implements FactoryInterface
     /**
      * @var array
      */
-    protected $options = [];
+    protected array $options = [];
 
     /**
-     * {@inheritDoc}
+     * @param array $options
      */
     public function __construct(array $options = [])
     {
@@ -47,20 +47,17 @@ class RouteGuardFactory implements FactoryInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @param array $options
      */
-    public function setCreationOptions(array $options)
+    public function setCreationOptions(array $options): void
     {
         $this->options = $options;
     }
 
     /**
-     * @param ContainerInterface $container
-     * @param string $requestedName
-     * @param array|null $options
-     * @return RouteGuard
+     * {@inheritDoc}
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): RouteGuard
     {
         if (null === $options) {
             $options = [];
@@ -76,15 +73,5 @@ class RouteGuardFactory implements FactoryInterface
         $routeGuard->setProtectionPolicy($moduleOptions->getProtectionPolicy());
 
         return $routeGuard;
-    }
-
-
-    /**
-     * {@inheritDoc}
-     * @return RouteGuard
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        return $this($serviceLocator->getServiceLocator(), RouteGuard::class, $this->options);
     }
 }

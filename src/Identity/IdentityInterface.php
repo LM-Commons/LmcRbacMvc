@@ -18,7 +18,7 @@
 
 namespace LmcRbacMvc\Identity;
 
-use Rbac\Role\RoleInterface;
+use Laminas\Permissions\Rbac\RoleInterface;
 
 /**
  * Interface for an identity
@@ -33,5 +33,5 @@ interface IdentityInterface
      *
      * @return string[]|RoleInterface[]
      */
-    public function getRoles();
+    public function getRoles(): array;
 }

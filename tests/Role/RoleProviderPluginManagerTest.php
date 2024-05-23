@@ -26,14 +26,6 @@ use LmcRbacMvc\Role\RoleProviderPluginManager;
  */
 class RoleProviderPluginManagerTest extends \PHPUnit\Framework\TestCase
 {
-    public function testValidationOfPluginSucceedsIfRoleProviderInterfaceIsImplemented()
-    {
-        $pluginMock    = $this->createMock('LmcRbacMvc\Role\RoleProviderInterface');
-        $pluginManager = new RoleProviderPluginManager(new ServiceManager());
-
-        $this->assertNull($pluginManager->validatePlugin($pluginMock));
-    }
-
     public function testValidationOfPluginFailsIfRoleProviderInterfaceIsNotImplemented()
     {
         $this->expectException('LmcRbacMvc\Exception\RuntimeException');

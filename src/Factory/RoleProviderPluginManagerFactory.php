@@ -32,24 +32,12 @@ use LmcRbacMvc\Role\RoleProviderPluginManager;
 class RoleProviderPluginManagerFactory implements FactoryInterface
 {
     /**
-     * @param ContainerInterface $container
-     * @param string $requestedName
-     * @param array|null $options
-     * @return RoleProviderPluginManager
+     * {@inheritDoc}
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): RoleProviderPluginManager
     {
         $config = $container->get('Config')['lmc_rbac']['role_provider_manager'];
 
         return new RoleProviderPluginManager($container, $config);
-    }
-
-    /**
-     * {@inheritDoc}
-     * @return RoleProviderPluginManager
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        return $this($serviceLocator, RoleProviderPluginManager::class);
     }
 }

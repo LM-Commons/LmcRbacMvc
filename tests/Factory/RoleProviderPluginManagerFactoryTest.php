@@ -37,7 +37,7 @@ class RoleProviderPluginManagerFactoryTest extends \PHPUnit\Framework\TestCase
         ]);
 
         $factory       = new RoleProviderPluginManagerFactory();
-        $pluginManager = $factory->createService($serviceManager);
+        $pluginManager = $factory($serviceManager,RoleProviderPluginManager::class);
 
         $this->assertInstanceOf(RoleProviderPluginManager::class, $pluginManager);
     }

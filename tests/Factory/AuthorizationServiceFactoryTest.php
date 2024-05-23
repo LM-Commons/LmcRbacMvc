@@ -18,20 +18,22 @@
 
 namespace LmcRbacMvcTest\Factory;
 
+use Laminas\Permissions\Rbac\Rbac;
 use Laminas\ServiceManager\ServiceManager;
 use LmcRbacMvc\Factory\AuthorizationServiceFactory;
 use LmcRbacMvc\Options\ModuleOptions;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \LmcRbacMvc\Factory\AuthorizationServiceFactory
  */
-class AuthorizationServiceFactoryTest extends \PHPUnit\Framework\TestCase
+class AuthorizationServiceFactoryTest extends TestCase
 {
     public function testFactory()
     {
         $serviceManager = new ServiceManager();
 
-        $serviceManager->setService('Rbac\Rbac', $this->getMockBuilder(\LmcRbacMvc\Rbac\Rbac::class)->disableOriginalConstructor()->getMock());
+        $serviceManager->setService('rbac', new Rbac());
 
         $serviceManager->setService(
             'LmcRbacMvc\Service\RoleService',
@@ -48,8 +50,8 @@ class AuthorizationServiceFactoryTest extends \PHPUnit\Framework\TestCase
         );
 
         $factory              = new AuthorizationServiceFactory();
-        $authorizationService = $factory->createService($serviceManager);
+        $authorizationService = $factory($serviceManager, 'LmcRbacMvc\Service\AuthorizationService');
 
-        $this->assertInstanceOf('LmcRbacMvc\Service\AuthorizationService', $authorizationService);
+        $this->assertInstanceOf(\LmcRbacMvc\Service\AuthorizationService::class, $authorizationService);
     }
 }

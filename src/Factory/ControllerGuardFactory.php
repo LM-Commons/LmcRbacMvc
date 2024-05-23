@@ -33,13 +33,10 @@ use LmcRbacMvc\Service\RoleService;
  */
 class ControllerGuardFactory implements FactoryInterface
 {
-    /**
-     * @var array
-     */
-    protected $options = [];
+    protected array $options = [];
 
     /**
-     * {@inheritDoc}
+     * @param array $options
      */
     public function __construct(array $options = [])
     {
@@ -47,44 +44,31 @@ class ControllerGuardFactory implements FactoryInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @param array $options
      */
-    public function setCreationOptions(array $options)
+    public function setCreationOptions(array $options): void
     {
         $this->options = $options;
     }
 
     /**
-     * @param ContainerInterface $container
-     * @param string $requestedName
-     * @param array|null $options
-     * @return ControllerGuard
+     * {@inheritDoc}
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): ControllerGuard
     {
         if (null === $options) {
             $options = [];
         }
 
         /* @var ModuleOptions $moduleOptions */
-        $moduleOptions = $container->get('LmcRbacMvc\Options\ModuleOptions');
+        $moduleOptions = $container->get(\LmcRbacMvc\Options\ModuleOptions::class);
 
         /* @var RoleService $roleService */
-        $roleService = $container->get('LmcRbacMvc\Service\RoleService');
+        $roleService = $container->get(\LmcRbacMvc\Service\RoleService::class);
 
         $controllerGuard = new ControllerGuard($roleService, $options);
         $controllerGuard->setProtectionPolicy($moduleOptions->getProtectionPolicy());
 
         return $controllerGuard;
-    }
-
-
-    /**
-     * {@inheritDoc}
-     * @return ControllerGuard
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        return $this($serviceLocator->getServiceLocator(), ControllerGuard::class, $this->options);
     }
 }

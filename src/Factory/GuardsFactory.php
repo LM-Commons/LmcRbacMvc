@@ -34,12 +34,9 @@ use LmcRbacMvc\Options\ModuleOptions;
 class GuardsFactory implements FactoryInterface
 {
     /**
-     * @param ContainerInterface $container
-     * @param string $requestedName
-     * @param array|null $options
-     * @return array
+     * {@inheritDoc}
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): object|array
     {
         /* @var ModuleOptions $options */
         $options       = $container->get(ModuleOptions::class);
@@ -58,14 +55,5 @@ class GuardsFactory implements FactoryInterface
         }
 
         return $guards;
-    }
-
-    /**
-     * {@inheritDoc}
-     * @return GuardInterface[]|array
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        return $this($serviceLocator, GuardInterface::class);
     }
 }

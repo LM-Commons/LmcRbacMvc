@@ -29,10 +29,7 @@ use LmcRbacMvc\Service\RoleService;
  */
 class HasRole extends AbstractHelper
 {
-    /**
-     * @var RoleService
-     */
-    private $roleService;
+    private RoleService $roleService;
 
     /**
      * Constructor
@@ -48,7 +45,7 @@ class HasRole extends AbstractHelper
      * @param string|string[] $roleOrRoles
      * @return bool
      */
-    public function __invoke($roleOrRoles)
+    public function __invoke(array|string $roleOrRoles): bool
     {
         return $this->roleService->matchIdentityRoles((array)$roleOrRoles);
     }

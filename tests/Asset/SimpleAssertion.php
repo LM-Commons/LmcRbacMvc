@@ -26,12 +26,12 @@ class SimpleAssertion implements AssertionInterface
     /**
      * @var bool
      */
-    protected $called = false;
+    protected bool $called = false;
 
     /**
      * {@inheritDoc}
      */
-    public function assert(AuthorizationService $authorization, $context = false)
+    public function assert(AuthorizationService $authorizationService, $context = false): bool
     {
         $this->called = true;
 
@@ -41,7 +41,7 @@ class SimpleAssertion implements AssertionInterface
     /**
      * @return bool
      */
-    public function getCalled()
+    public function getCalled(): bool
     {
         return $this->called;
     }

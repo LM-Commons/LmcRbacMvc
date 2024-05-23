@@ -18,6 +18,7 @@
 
 namespace LmcRbacMvcTest\Factory;
 
+use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
 use Laminas\ServiceManager\ServiceManager;
 use LmcRbacMvc\Factory\ModuleOptionsFactory;
 
@@ -34,8 +35,20 @@ class ModuleOptionsFactoryTest extends \PHPUnit\Framework\TestCase
         $serviceManager->setService('Config', $config);
 
         $factory = new ModuleOptionsFactory();
-        $options = $factory->createService($serviceManager);
+        $options = $factory($serviceManager, 'LmcRbacMvc\Options\ModuleOptions' );
 
         $this->assertInstanceOf('LmcRbacMvc\Options\ModuleOptions', $options);
+    }
+
+    public function testFactoryNotCreatedException()
+    {
+        $config = [];
+
+        $serviceManager = new ServiceManager();
+        $serviceManager->setService('Config', $config);
+
+        $this->expectException(ServiceNotCreatedException::class);
+        $factory = new ModuleOptionsFactory();
+        $options = $factory($serviceManager, 'LmcRbacMvc\Options\ModuleOptions' );
     }
 }

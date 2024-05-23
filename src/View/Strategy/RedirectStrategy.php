@@ -32,15 +32,9 @@ use LmcRbacMvc\Options\RedirectStrategyOptions;
  */
 class RedirectStrategy extends AbstractStrategy
 {
-    /**
-     * @var RedirectStrategyOptions
-     */
-    protected $options;
+    protected RedirectStrategyOptions $options;
 
-    /**
-     * @var AuthenticationServiceInterface
-     */
-    protected $authenticationService;
+    protected AuthenticationServiceInterface $authenticationService;
 
     /**
      * Constructor
@@ -59,7 +53,7 @@ class RedirectStrategy extends AbstractStrategy
      * @param  MvcEvent $event
      * @return void
      */
-    public function onError(MvcEvent $event)
+    public function onError(MvcEvent $event): void
     {
         // Do nothing if no error or if response is not HTTP response
         if (!($event->getParam('exception') instanceof UnauthorizedExceptionInterface)

@@ -57,12 +57,11 @@ class RecursiveRoleIterator extends ArrayIterator implements RecursiveIterator
         if (!$current instanceof RoleInterface) {
             return false;
         }
-        
-        return $current->hasChildren();
+        return !empty($current->getChildren());
     }
-    
+
     /**
-     * @return RecursiveRoleIterator
+     * @return RecursiveRoleIterator|null
      */
     public function getChildren() :? RecursiveRoleIterator
     {

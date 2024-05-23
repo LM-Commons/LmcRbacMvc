@@ -19,45 +19,49 @@
 namespace LmcRbacMvcTest\Asset;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Laminas\Permissions\Rbac\RoleInterface;
 use Doctrine\ORM\Mapping as ORM;
-use LmcRbacMvc\Permission\PermissionInterface;
-use LmcRbacMvc\Role\Role as BaseHierarchicalRole;
+
+/**
+ * There is no specific implementation of a flot role.
+ * A flot role is a simple utilization of the Laminas\Permission\Rbac\Role without children
+ */
+
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="hierarchical_roles")
+ * @ORM\Table(name="flat_roles")
  */
-class HierarchicalRole extends BaseHierarchicalRole
+#[ORM\Entity]
+#[ORM\Table(name:"flat_roles")]
+class FlatRole implements RoleInterface
 {
     /**
      * @var int|null
      *
      * @ORM\Id
      * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue
      */
-    protected $id;
+    #[ORM\Id]
+    #[ORM\Column(type:"integer")]
+    #[ORM\GeneratedValue]
+    private ?int $id;
 
     /**
      * @var string|null
-     *
      * @ORM\Column(type="string", length=32, unique=true)
      */
-    protected $name;
+    #[ORM\Column(type:"string", length:32, unique:true)]
+    protected ?string $name;
 
     /**
-     * @var \Laminas\Permissions\Rbac\RoleInterface[]|\Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="HierarchicalRole")
+     * @var Collection
+     * @ORM\ManyToMany(targetEntity="Permission", indexBy="name", cascade={"persist"}, fetch="EAGER")
      */
-    protected $children;
-
-    /**
-     * @var PermissionInterface[]|\Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Permission", indexBy="name", fetch="EAGER")
-     */
-    protected $permissions;
+    #[ORM\ManyToMany(targetEntity: "Permission", cascade: ["persist"], fetch: "EAGER", indexBy: "name")]
+    protected Collection $permissions;
 
     /**
      * Init the Doctrine collection
@@ -71,9 +75,9 @@ class HierarchicalRole extends BaseHierarchicalRole
     /**
      * Get the role identifier
      *
-     * @return int
+     * @return int|null
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -81,16 +85,43 @@ class HierarchicalRole extends BaseHierarchicalRole
     /**
      * Add a permission
      *
-     * @param  PermissionInterface|string $permission
+     * @param  string $name
      * @return void
      */
-    public function addPermission($permission):void
+    public function addPermission(string $name):void
     {
-        if (is_string($permission)) {
-            $name       = $permission;
-            $permission = new Permission($name);
-        }
+        $permission = new Permission($name);
 
-        $this->permissions[$permission->getName()] = $permission;
+        $this->permissions[$name] = $permission;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function hasPermission(string $name): bool
+    {
+        return isset($this->permissions[$name]);
+    }
+
+    public function addChild(RoleInterface $child): void
+    {
+        // Do nothing
+    }
+
+    public function getChildren(): iterable
+    {
+        return [];
+    }
+
+    public function addParent(RoleInterface $parent): void
+    {
+        // Do nothing
+    }
+
+    public function getParents(): iterable
+    {
+        return [];
     }
 }

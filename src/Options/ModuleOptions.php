@@ -32,59 +32,43 @@ class ModuleOptions extends AbstractOptions
 {
     /**
      * Key of the identity provider used to retrieve the identity
-     *
-     * @var string
      */
-    protected $identityProvider = 'LmcRbacMvc\Identity\AuthenticationIdentityProvider';
+    protected string $identityProvider = 'LmcRbacMvc\Identity\AuthenticationIdentityProvider';
 
     /**
      * Guest role (used when no identity is found)
-     *
-     * @var string
      */
-    protected $guestRole = 'guest';
+    protected string $guestRole = 'guest';
 
     /**
      * Guards
-     *
-     * @var array
      */
-    protected $guards = [];
+    protected array $guards = [];
 
     /**
      * Assertion map
-     *
-     * @var array
      */
-    protected $assertionMap = [];
+    protected array $assertionMap = [];
 
     /**
      * Protection policy for guards (can be "deny" or "allow")
-     *
-     * @var string
      */
-    protected $protectionPolicy = GuardInterface::POLICY_ALLOW;
+    protected string $protectionPolicy = GuardInterface::POLICY_ALLOW;
 
     /**
      * A configuration for role provider
-     *
-     * @var array
      */
-    protected $roleProvider = [];
+    protected array $roleProvider = [];
 
     /**
      * Options for the unauthorized strategy
-     *
-     * @var UnauthorizedStrategyOptions|null
      */
-    protected $unauthorizedStrategy;
+    protected ?UnauthorizedStrategyOptions $unauthorizedStrategy = null;
 
     /**
      * Options for the redirect strategy
-     *
-     * @var RedirectStrategyOptions|null
      */
-    protected $redirectStrategy;
+    protected ?RedirectStrategyOptions $redirectStrategy = null;
 
     /**
      * Constructor
@@ -100,12 +84,12 @@ class ModuleOptions extends AbstractOptions
     /**
      * Set the key of the identity provider used to retrieve the identity
      *
-     * @param  string $identityProvider
+     * @param string $identityProvider
      * @return void
      */
-    public function setIdentityProvider($identityProvider)
+    public function setIdentityProvider(string $identityProvider): void
     {
-        $this->identityProvider = (string) $identityProvider;
+        $this->identityProvider = $identityProvider;
     }
 
     /**
@@ -113,7 +97,7 @@ class ModuleOptions extends AbstractOptions
      *
      * @return string
      */
-    public function getIdentityProvider()
+    public function getIdentityProvider(): string
     {
         return $this->identityProvider;
     }
@@ -124,7 +108,7 @@ class ModuleOptions extends AbstractOptions
      * @param array $assertionMap
      * @return void
      */
-    public function setAssertionMap(array $assertionMap)
+    public function setAssertionMap(array $assertionMap): void
     {
         $this->assertionMap = $assertionMap;
     }
@@ -134,7 +118,7 @@ class ModuleOptions extends AbstractOptions
      *
      * @return array
      */
-    public function getAssertionMap()
+    public function getAssertionMap(): array
     {
         return $this->assertionMap;
     }
@@ -145,9 +129,9 @@ class ModuleOptions extends AbstractOptions
      * @param string $guestRole
      * @return void
      */
-    public function setGuestRole($guestRole)
+    public function setGuestRole(string $guestRole): void
     {
-        $this->guestRole = (string) $guestRole;
+        $this->guestRole = $guestRole;
     }
 
     /**
@@ -155,7 +139,7 @@ class ModuleOptions extends AbstractOptions
      *
      * @return string
      */
-    public function getGuestRole()
+    public function getGuestRole(): string
     {
         return $this->guestRole;
     }
@@ -166,7 +150,7 @@ class ModuleOptions extends AbstractOptions
      * @param  array $guards
      * @return void
      */
-    public function setGuards(array $guards)
+    public function setGuards(array $guards): void
     {
         $this->guards = $guards;
     }
@@ -176,7 +160,7 @@ class ModuleOptions extends AbstractOptions
      *
      * @return array
      */
-    public function getGuards()
+    public function getGuards(): array
     {
         return $this->guards;
     }
@@ -184,11 +168,11 @@ class ModuleOptions extends AbstractOptions
     /**
      * Set the protection policy for guards
      *
-     * @param  string $protectionPolicy
-     * @throws Exception\RuntimeException
+     * @param string $protectionPolicy
      * @return void
+     *@throws Exception\RuntimeException
      */
-    public function setProtectionPolicy($protectionPolicy)
+    public function setProtectionPolicy(string $protectionPolicy): void
     {
         if ($protectionPolicy !== GuardInterface::POLICY_ALLOW && $protectionPolicy !== GuardInterface::POLICY_DENY) {
             throw new Exception\RuntimeException(sprintf(
@@ -205,7 +189,7 @@ class ModuleOptions extends AbstractOptions
      *
      * @return string
      */
-    public function getProtectionPolicy()
+    public function getProtectionPolicy(): string
     {
         return $this->protectionPolicy;
     }
@@ -216,7 +200,7 @@ class ModuleOptions extends AbstractOptions
      * @param  array $roleProvider
      * @throws Exception\RuntimeException
      */
-    public function setRoleProvider(array $roleProvider)
+    public function setRoleProvider(array $roleProvider): void
     {
         if (count($roleProvider) > 1) {
             throw new Exception\RuntimeException(
@@ -232,7 +216,7 @@ class ModuleOptions extends AbstractOptions
      *
      * @return array
      */
-    public function getRoleProvider()
+    public function getRoleProvider(): array
     {
         return $this->roleProvider;
     }
@@ -242,7 +226,7 @@ class ModuleOptions extends AbstractOptions
      *
      * @param array $unauthorizedStrategy
      */
-    public function setUnauthorizedStrategy(array $unauthorizedStrategy)
+    public function setUnauthorizedStrategy(array $unauthorizedStrategy): void
     {
         $this->unauthorizedStrategy = new UnauthorizedStrategyOptions($unauthorizedStrategy);
     }
@@ -250,9 +234,9 @@ class ModuleOptions extends AbstractOptions
     /**
      * Get the unauthorized strategy options
      *
-     * @return UnauthorizedStrategyOptions
+     * @return UnauthorizedStrategyOptions|null
      */
-    public function getUnauthorizedStrategy()
+    public function getUnauthorizedStrategy(): ?UnauthorizedStrategyOptions
     {
         if (null === $this->unauthorizedStrategy) {
             $this->unauthorizedStrategy = new UnauthorizedStrategyOptions();
@@ -266,7 +250,7 @@ class ModuleOptions extends AbstractOptions
      *
      * @param array $redirectStrategy
      */
-    public function setRedirectStrategy(array $redirectStrategy)
+    public function setRedirectStrategy(array $redirectStrategy): void
     {
         $this->redirectStrategy = new RedirectStrategyOptions($redirectStrategy);
     }
@@ -274,9 +258,9 @@ class ModuleOptions extends AbstractOptions
     /**
      * Get the redirect strategy options
      *
-     * @return RedirectStrategyOptions
+     * @return RedirectStrategyOptions|null
      */
-    public function getRedirectStrategy()
+    public function getRedirectStrategy(): ?RedirectStrategyOptions
     {
         if (null === $this->redirectStrategy) {
             $this->redirectStrategy = new RedirectStrategyOptions();

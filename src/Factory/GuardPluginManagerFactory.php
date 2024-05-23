@@ -33,26 +33,12 @@ use LmcRbacMvc\Guard\GuardPluginManager;
 class GuardPluginManagerFactory implements FactoryInterface
 {
     /**
-     * @param ContainerInterface $container
-     * @param string $requestedName
-     * @param array|null $options
-     * @return GuardPluginManager
+     * {@inheritDoc}
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): GuardPluginManager
     {
         $config = $container->get('Config')['lmc_rbac']['guard_manager'];
 
-        $pluginManager = new GuardPluginManager($container, $config);
-
-        return $pluginManager;
-    }
-
-    /**
-     * {@inheritDoc}
-     * @return GuardPluginManager
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        return $this($serviceLocator, GuardPluginManager::class);
+        return new GuardPluginManager($container, $config);
     }
 }

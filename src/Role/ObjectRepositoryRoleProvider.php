@@ -29,28 +29,20 @@ use LmcRbacMvc\Exception\RoleNotFoundException;
  */
 class ObjectRepositoryRoleProvider implements RoleProviderInterface
 {
-    /**
-     * @var ObjectRepository
-     */
-    private $objectRepository;
 
-    /**
-     * @var string
-     */
-    private $roleNameProperty;
+    private ObjectRepository $objectRepository;
 
-    /**
-     * @var array
-     */
-    private $roleCache = [];
+    private string $roleNameProperty;
+
+    private array $roleCache = [];
 
     /**
      * Constructor
      *
      * @param ObjectRepository $objectRepository
-     * @param string           $roleNameProperty
+     * @param string $roleNameProperty
      */
-    public function __construct(ObjectRepository $objectRepository, $roleNameProperty)
+    public function __construct(ObjectRepository $objectRepository, string $roleNameProperty)
     {
         $this->objectRepository = $objectRepository;
         $this->roleNameProperty = $roleNameProperty;
@@ -61,7 +53,7 @@ class ObjectRepositoryRoleProvider implements RoleProviderInterface
      *
      * @return void
      */
-    public function clearRoleCache()
+    public function clearRoleCache(): void
     {
         $this->roleCache = [];
     }
@@ -69,7 +61,7 @@ class ObjectRepositoryRoleProvider implements RoleProviderInterface
     /**
      * {@inheritDoc}
      */
-    public function getRoles(array $roleNames)
+    public function getRoles(array $roleNames): array
     {
         $key = implode($roleNames);
 

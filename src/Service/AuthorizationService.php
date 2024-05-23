@@ -18,7 +18,7 @@
 
 namespace LmcRbacMvc\Service;
 
-use LmcRbacMvc\Rbac\Rbac;
+use Laminas\Permissions\Rbac\Rbac;
 use LmcRbacMvc\Permission\PermissionInterface;
 use LmcRbacMvc\Assertion\AssertionPluginManager;
 use LmcRbacMvc\Assertion\AssertionInterface;
@@ -35,35 +35,28 @@ use LmcRbacMvc\Identity\IdentityInterface;
 class AuthorizationService implements AuthorizationServiceInterface
 {
     /**
-     * @var Rbac
-     */
-    protected $rbac;
-
-    /**
      * @var RoleService
      */
-    protected $roleService;
+    protected RoleService $roleService;
 
     /**
      * @var AssertionPluginManager
      */
-    protected $assertionPluginManager;
+    protected AssertionPluginManager $assertionPluginManager;
 
     /**
      * @var array
      */
-    protected $assertions = [];
+    protected array $assertions = [];
 
     /**
      * Constructor
      *
-     * @param Rbac                   $rbac
      * @param RoleService            $roleService
      * @param AssertionPluginManager $assertionPluginManager
      */
-    public function __construct(Rbac $rbac, RoleService $roleService, AssertionPluginManager $assertionPluginManager)
+    public function __construct(RoleService $roleService, AssertionPluginManager $assertionPluginManager)
     {
-        $this->rbac                   = $rbac;
         $this->roleService            = $roleService;
         $this->assertionPluginManager = $assertionPluginManager;
     }
@@ -71,11 +64,11 @@ class AuthorizationService implements AuthorizationServiceInterface
     /**
      * Set an assertion
      *
-     * @param string|PermissionInterface         $permission
-     * @param string|callable|AssertionInterface $assertion
+     * @param string|PermissionInterface $permission
+     * @param callable|string|AssertionInterface $assertion
      * @return void
      */
-    public function setAssertion($permission, $assertion)
+    public function setAssertion(PermissionInterface|string $permission, callable|AssertionInterface|string $assertion): void
     {
         $this->assertions[(string) $permission] = $assertion;
     }
@@ -86,7 +79,7 @@ class AuthorizationService implements AuthorizationServiceInterface
      * @param array $assertions
      * @return void
      */
-    public function setAssertions(array $assertions)
+    public function setAssertions(array $assertions): void
     {
         $this->assertions = $assertions;
     }
@@ -97,7 +90,7 @@ class AuthorizationService implements AuthorizationServiceInterface
      * @param string|PermissionInterface $permission
      * @return bool
      */
-    public function hasAssertion($permission)
+    public function hasAssertion(PermissionInterface|string $permission): bool
     {
         return isset($this->assertions[(string) $permission]);
     }
@@ -107,7 +100,7 @@ class AuthorizationService implements AuthorizationServiceInterface
      *
      * @return IdentityInterface|null
      */
-    public function getIdentity()
+    public function getIdentity(): ?IdentityInterface
     {
         return $this->roleService->getIdentity();
     }
@@ -115,21 +108,32 @@ class AuthorizationService implements AuthorizationServiceInterface
     /**
      * Check if the permission is granted to the current identity
      *
-     * @param string|PermissionInterface $permission
-     * @param mixed                      $context
+     * @param string $permission
+     * @param mixed|null $context
      * @return bool
      */
-    public function isGranted($permission, $context = null)
+    public function isGranted(string $permission, mixed $context = null): bool
     {
         $roles = $this->roleService->getIdentityRoles();
-//         var_dump(__METHOD__,$roles);
+
         if (empty($roles)) {
             return false;
         }
-// var_dump('Checking IsGranted by Rbac class');
-        if (!$this->rbac->isGranted($roles, $permission)) {
-            return false;
+
+        // Create a RBAC container and populate with the identity's roles
+        $rbac = new Rbac();
+        foreach ($roles as $role) {
+            $rbac->addRole($role);
         }
+
+        // Iterate through roles
+        $allowed = false;
+        foreach ($roles as $role) {
+            if ($rbac->isGranted($role, $permission)) {
+                $allowed = true;
+            }
+        }
+        if (!$allowed) return false;
 
         if ($this->hasAssertion($permission)) {
             return $this->assert($this->assertions[(string) $permission], $context);
@@ -139,12 +143,12 @@ class AuthorizationService implements AuthorizationServiceInterface
     }
 
     /**
-     * @param  string|callable|AssertionInterface $assertion
-     * @param  mixed                              $context
+     * @param callable|string|AssertionInterface $assertion
+     * @param mixed|null $context
      * @return bool
      * @throws Exception\InvalidArgumentException If an invalid assertion is passed
      */
-    protected function assert($assertion, $context = null)
+    protected function assert(callable|AssertionInterface|string $assertion, mixed $context = null): bool
     {
         if (is_callable($assertion)) {
             return $assertion($this, $context);

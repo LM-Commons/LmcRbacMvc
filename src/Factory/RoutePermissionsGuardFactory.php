@@ -35,13 +35,10 @@ use LmcRbacMvc\Service\AuthorizationService;
  */
 class RoutePermissionsGuardFactory implements FactoryInterface
 {
-    /**
-     * @var array
-     */
-    protected $options = [];
+    protected array $options = [];
 
     /**
-     * {@inheritDoc}
+     * @param array $options
      */
     public function __construct(array $options = [])
     {
@@ -49,20 +46,17 @@ class RoutePermissionsGuardFactory implements FactoryInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @param array $options
      */
-    public function setCreationOptions(array $options)
+    public function setCreationOptions(array $options): void
     {
         $this->options = $options;
     }
 
     /**
-     * @param ContainerInterface $container
-     * @param string $requestedName
-     * @param array|null $options
-     * @return RoutePermissionsGuard
+     * {@inheritDoc}
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): RoutePermissionsGuard
     {
         if (null === $options) {
             $options = [];
@@ -78,14 +72,5 @@ class RoutePermissionsGuardFactory implements FactoryInterface
         $routeGuard->setProtectionPolicy($moduleOptions->getProtectionPolicy());
 
         return $routeGuard;
-    }
-
-    /**
-     * @param \Laminas\ServiceManager\AbstractPluginManager|ServiceLocatorInterface $serviceLocator
-     * @return RouteGuard
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        return $this($serviceLocator->getServiceLocator(), RoutePermissionsGuard::class, $this->options);
     }
 }

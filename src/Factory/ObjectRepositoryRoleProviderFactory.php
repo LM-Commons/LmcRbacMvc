@@ -34,13 +34,10 @@ use LmcRbacMvc\Role\ObjectRepositoryRoleProvider;
  */
 class ObjectRepositoryRoleProviderFactory implements FactoryInterface
 {
-    /**
-     * @var array
-     */
-    protected $options = [];
+    protected array $options = [];
 
     /**
-     * {@inheritDoc}
+     * @param array $options
      */
     public function __construct(array $options = [])
     {
@@ -48,20 +45,17 @@ class ObjectRepositoryRoleProviderFactory implements FactoryInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @param array $options
      */
-    public function setCreationOptions(array $options)
+    public function setCreationOptions(array $options): void
     {
         $this->options = $options;
     }
 
     /**
-     * @param ContainerInterface $container
-     * @param string $requestedName
-     * @param array|null $options
-     * @return ObjectRepositoryRoleProvider
+     * {@inheritDoc}
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): ObjectRepositoryRoleProvider
     {
         $objectRepository = null;
 
@@ -88,14 +82,5 @@ class ObjectRepositoryRoleProviderFactory implements FactoryInterface
             'No object repository was found while creating the LmcRbacMvc object repository role provider. Are
              you sure you specified either the "object_repository" option or "object_manager"/"class_name" options?'
         );
-    }
-
-    /**
-     * {@inheritDoc}
-     * @return ObjectRepositoryRoleProvider
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        return $this($serviceLocator->getServiceLocator(), ObjectRepositoryRoleProvider::class, $this->options);
     }
 }

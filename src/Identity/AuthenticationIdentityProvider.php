@@ -28,10 +28,7 @@ use Laminas\Authentication\AuthenticationServiceInterface;
  */
 class AuthenticationIdentityProvider implements IdentityProviderInterface
 {
-    /**
-     * @var AuthenticationServiceInterface
-     */
-    protected $authenticationService;
+    protected AuthenticationServiceInterface $authenticationService;
 
     /**
      * Constructor
@@ -46,7 +43,7 @@ class AuthenticationIdentityProvider implements IdentityProviderInterface
     /**
      * {@inheritDoc}
      */
-    public function getIdentity()
+    public function getIdentity(): ?IdentityInterface
     {
         return $this->authenticationService->getIdentity();
     }

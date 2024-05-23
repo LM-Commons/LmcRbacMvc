@@ -33,25 +33,13 @@ use LmcRbacMvc\Identity\AuthenticationIdentityProvider;
 class AuthenticationIdentityProviderFactory implements FactoryInterface
 {
     /**
-     * @param ContainerInterface $container
-     * @param string $requestedName
-     * @param array|null $options
-     * @return AuthenticationIdentityProvider
+     * {@inheritDoc}
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): AuthenticationIdentityProvider
     {
         /* @var AuthenticationService $authenticationProvider */
         $authenticationProvider = $container->get(AuthenticationService::class);
 
         return new AuthenticationIdentityProvider($authenticationProvider);
-    }
-
-    /**
-     * {@inheritDoc}
-     * @return AuthenticationIdentityProvider
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        return $this($serviceLocator, AuthenticationIdentityProvider::class);
     }
 }

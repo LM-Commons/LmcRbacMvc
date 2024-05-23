@@ -18,11 +18,14 @@
 
 namespace LmcRbacMvcTest\Role;
 
+use LmcRbacMvc\Exception\RoleNotFoundException;
 use LmcRbacMvc\Role\InMemoryRoleProvider;
+use PHPUnit\Framework\TestCase;
+
 /**
  * @covers \LmcRbacMvc\Role\InMemoryRoleProvider
  */
-class InMemoryRoleProviderTest extends \PHPUnit\Framework\TestCase
+class InMemoryRoleProviderTest extends TestCase
 {
     public function testInMemoryProvider()
     {

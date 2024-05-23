@@ -34,13 +34,10 @@ use LmcRbacMvc\Service\AuthorizationService;
  */
 class ControllerPermissionsGuardFactory implements FactoryInterface
 {
-    /**
-     * @var array
-     */
-    protected $options = [];
+    protected array $options = [];
 
     /**
-     * {@inheritDoc}
+     * @param array $options
      */
     public function __construct(array $options = [])
     {
@@ -48,43 +45,31 @@ class ControllerPermissionsGuardFactory implements FactoryInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @param array $options
      */
-    public function setCreationOptions(array $options)
+    public function setCreationOptions(array $options): void
     {
         $this->options = $options;
     }
 
     /**
-     * @param ContainerInterface $container
-     * @param string $resolvedName
-     * @param array|null $options
-     * @return ControllerPermissionsGuard
+     * {@inheritDoc}
      */
-    public function __invoke(ContainerInterface $container, $resolvedName, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): ControllerPermissionsGuard
     {
         if (null === $options) {
             $options = [];
         }
 
         /* @var ModuleOptions $moduleOptions */
-        $moduleOptions = $container->get('LmcRbacMvc\Options\ModuleOptions');
+        $moduleOptions = $container->get(\LmcRbacMvc\Options\ModuleOptions::class);
 
         /* @var AuthorizationService $authorizationService */
-        $authorizationService = $container->get('LmcRbacMvc\Service\AuthorizationService');
+        $authorizationService = $container->get(\LmcRbacMvc\Service\AuthorizationService::class);
 
         $guard = new ControllerPermissionsGuard($authorizationService, $options);
         $guard->setProtectionPolicy($moduleOptions->getProtectionPolicy());
 
         return $guard;
-    }
-
-    /**
-     * @param AbstractPluginManager|ServiceLocatorInterface $serviceLocator
-     * @return ControllerPermissionsGuard
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        return $this($serviceLocator->getServiceLocator(), ControllerPermissionsGuard::class, $this->options);
     }
 }

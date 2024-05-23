@@ -18,6 +18,7 @@
 
 namespace LmcRbacMvc\Factory;
 
+use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
 use Psr\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
@@ -39,12 +40,9 @@ use LmcRbacMvc\Role\TraversalStrategyInterface;
 class RoleServiceFactory implements FactoryInterface
 {
     /**
-     * @param ContainerInterface $container
-     * @param string $requestedName
-     * @param array|null $options
-     * @return RoleService
+     * {@inheritDoc}
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): RoleService
     {
         /* @var ModuleOptions $moduleOptions */
         $moduleOptions = $container->get(ModuleOptions::class);
@@ -55,13 +53,12 @@ class RoleServiceFactory implements FactoryInterface
         $roleProviderConfig = $moduleOptions->getRoleProvider();
 
         if (empty($roleProviderConfig)) {
-            throw new RuntimeException('No role provider has been set for LmcRbacMvc');
+            throw new ServiceNotCreatedException('No role provider has been set for LmcRbacMvc');
         }
 
         /* @var RoleProviderPluginManager $pluginManager */
         $pluginManager = $container->get(RoleProviderPluginManager::class);
 
-        /* @var RoleProviderInterface $roleProvider */
         reset($roleProviderConfig);
         $roleProvider = $pluginManager->get(key($roleProviderConfig), current($roleProviderConfig));
 
@@ -72,14 +69,5 @@ class RoleServiceFactory implements FactoryInterface
         $roleService->setGuestRole($moduleOptions->getGuestRole());
 
         return $roleService;
-    }
-
-    /**
-     * {@inheritDoc}
-     * @return RoleService
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        return $this($serviceLocator, RoleService::class);
     }
 }

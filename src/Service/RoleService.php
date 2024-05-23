@@ -34,25 +34,13 @@ use LmcRbacMvc\Role\TraversalStrategyInterface;
  */
 class RoleService
 {
-    /**
-     * @var IdentityProviderInterface
-     */
-    protected $identityProvider;
+    protected IdentityProviderInterface $identityProvider;
 
-    /**
-     * @var RoleProviderInterface
-     */
-    protected $roleProvider;
+    protected RoleProviderInterface $roleProvider;
 
-    /**
-     * @var TraversalStrategyInterface
-     */
-    protected $traversalStrategy;
+    protected TraversalStrategyInterface $traversalStrategy;
 
-    /**
-     * @var string
-     */
-    protected $guestRole = '';
+    protected string $guestRole = '';
 
     /**
      * Constructor
@@ -76,7 +64,7 @@ class RoleService
      *
      * @param IdentityProviderInterface $identityProvider
      */
-    public function setIdentityProvider(IdentityProviderInterface $identityProvider)
+    public function setIdentityProvider(IdentityProviderInterface $identityProvider): void
     {
         $this->identityProvider = $identityProvider;
     }
@@ -86,7 +74,7 @@ class RoleService
      *
      * @param RoleProviderInterface $roleProvider
      */
-    public function setRoleProvider(RoleProviderInterface $roleProvider)
+    public function setRoleProvider(RoleProviderInterface $roleProvider): void
     {
         $this->roleProvider = $roleProvider;
     }
@@ -94,10 +82,10 @@ class RoleService
     /**
      * Set the guest role
      *
-     * @param  string $guestRole
+     * @param string $guestRole
      * @return void
      */
-    public function setGuestRole($guestRole)
+    public function setGuestRole(string $guestRole): void
     {
         $this->guestRole = (string) $guestRole;
     }
@@ -107,7 +95,7 @@ class RoleService
      *
      * @return string
      */
-    public function getGuestRole()
+    public function getGuestRole(): string
     {
         return $this->guestRole;
     }
@@ -117,7 +105,7 @@ class RoleService
      *
      * @return IdentityInterface|null
      */
-    public function getIdentity()
+    public function getIdentity(): ?IdentityInterface
     {
         return $this->identityProvider->getIdentity();
     }
@@ -128,7 +116,7 @@ class RoleService
      * @return RoleInterface[]
      * @throws Exception\RuntimeException
      */
-    public function getIdentityRoles()
+    public function getIdentityRoles(): array
     {
         if (!$identity = $this->getIdentity()) {
             return $this->convertRoles([$this->guestRole]);
@@ -152,7 +140,7 @@ class RoleService
      * @param  string[]|RoleInterface[] $roles
      * @return bool
      */
-    public function matchIdentityRoles(array $roles)
+    public function matchIdentityRoles(array $roles): bool
     {
         $identityRoles = $this->getIdentityRoles();
 
@@ -178,7 +166,7 @@ class RoleService
      * @param  array|Traversable $roles
      * @return RoleInterface[]
      */
-    protected function convertRoles($roles)
+    protected function convertRoles($roles): array
     {
         if ($roles instanceof Traversable) {
             $roles = iterator_to_array($roles);
@@ -215,7 +203,7 @@ class RoleService
      * @param  array|RoleInterface[] $roles
      * @return string[]
      */
-    protected function flattenRoles(array $roles)
+    protected function flattenRoles(array $roles): array
     {
         $roleNames = [];
         $iterator  = $this->traversalStrategy->getRolesIterator($roles);

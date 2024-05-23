@@ -29,9 +29,9 @@ trait AuthorizationServiceAwareTrait
     /**
      * The AuthorizationService
      *
-     * @var AuthorizationService
+     * @var AuthorizationService|null
      */
-    protected $authorizationService;
+    protected ?AuthorizationService $authorizationService = null;
 
     /**
      * Set the AuthorizationService
@@ -41,7 +41,7 @@ trait AuthorizationServiceAwareTrait
      * @param AuthorizationService $authorizationService
      * @return void
      */
-    public function setAuthorizationService(AuthorizationService $authorizationService)
+    public function setAuthorizationService(AuthorizationService $authorizationService): void
     {
         $this->authorizationService = $authorizationService;
     }
@@ -49,9 +49,9 @@ trait AuthorizationServiceAwareTrait
     /**
      * Return the AuthorizationService
      *
-     * @return AuthorizationService
+     * @return AuthorizationService|null
      */
-    public function getAuthorizationService()
+    public function getAuthorizationService(): ?AuthorizationService
     {
         return $this->authorizationService;
     }

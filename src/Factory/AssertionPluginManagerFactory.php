@@ -33,24 +33,12 @@ use LmcRbacMvc\Assertion\AssertionPluginManager;
 class AssertionPluginManagerFactory implements FactoryInterface
 {
     /**
-     * @param ContainerInterface $container
-     * @param string $requestedName
-     * @param array|null $options
-     * @return AssertionPluginManager
+     * {@inheritDoc}
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): AssertionPluginManager
     {
         $config = $container->get('Config')['lmc_rbac']['assertion_manager'];
 
         return new AssertionPluginManager($container, $config);
-    }
-
-    /**
-     * {@inheritDoc}
-     * @return AssertionPluginManager
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        return $this($serviceLocator, AssertionPluginManager::class);
     }
 }

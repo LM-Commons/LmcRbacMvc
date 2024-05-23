@@ -32,10 +32,7 @@ use LmcRbacMvc\Factory\ObjectRepositoryRoleProviderFactory;
  */
 class RoleProviderPluginManager extends AbstractPluginManager
 {
-    /**
-     * @var array
-     */
-    protected $invokableClasses = [
+    protected array $invokableClasses = [
         'LmcRbacMvc\Role\InMemoryRoleProvider' => InMemoryRoleProvider::class,
     ];
 
@@ -49,32 +46,15 @@ class RoleProviderPluginManager extends AbstractPluginManager
     /**
      * {@inheritDoc}
      */
-    public function validate($plugin)
+    public function validate($instance): void
     {
-        if ($plugin instanceof RoleProviderInterface) {
+        if ($instance instanceof RoleProviderInterface) {
             return; // we're okay
         }
 
         throw new Exception\RuntimeException(sprintf(
             'Role provider must implement "LmcRbacMvc\Role\RoleProviderInterface", but "%s" was given',
-            is_object($plugin) ? get_class($plugin) : gettype($plugin)
+            is_object($instance) ? get_class($instance) : gettype($instance)
         ));
-    }
-
-    /**
-     * {@inheritDoc}
-     * @throws \Interop\Container\Exception\ContainerException
-     */
-    public function validatePlugin($plugin)
-    {
-        $this->validate($plugin);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    protected function canonicalizeName($name)
-    {
-        return $name;
     }
 }

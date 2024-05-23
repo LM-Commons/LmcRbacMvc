@@ -20,6 +20,7 @@ namespace LmcRbacMvc\Assertion;
 
 use Laminas\ServiceManager\AbstractPluginManager;
 use LmcRbacMvc\Exception;
+use Psr\Container\ContainerExceptionInterface;
 
 /**
  * Plugin manager to create assertions
@@ -34,24 +35,27 @@ class AssertionPluginManager extends AbstractPluginManager
     /**
      * {@inheritDoc}
      */
-    public function validate($plugin)
+    public function validate($instance): void
     {
-        if ($plugin instanceof AssertionInterface) {
+        if ($instance instanceof AssertionInterface) {
             return; // we're okay
         }
 
         throw new Exception\RuntimeException(sprintf(
             'Assertions must implement "LmcRbacMvc\Assertion\AssertionInterface", but "%s" was given',
-            is_object($plugin) ? get_class($plugin) : gettype($plugin)
+            is_object($instance) ? get_class($instance) : gettype($instance)
         ));
     }
 
     /**
-     * {@inheritDoc}
+     * @param $instance
+     * @return void
+     * @throws ContainerExceptionInterface
+     * @deprecated Use method validate instead
      */
-    public function validatePlugin($plugin)
+    public function validatePlugin($instance): void
     {
-        $this->validate($plugin);
+        $this->validate($instance);
     }
 
     /**

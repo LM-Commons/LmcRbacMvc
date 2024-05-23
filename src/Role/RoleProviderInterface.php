@@ -23,7 +23,7 @@ use Laminas\Permissions\Rbac\RoleInterface;
 /**
  * A role provider is an object that collect roles from string and convert them to RoleInterface instances
  *
- * Data can come from anywhere. ZfcRbac is bundled with two providers that allow to load roles from database
+ * Data can come from anywhere. LmcRbacMvc is bundled with two providers that allow to load roles from database
  * or from memory
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
@@ -37,5 +37,5 @@ interface RoleProviderInterface
      * @param  string[] $roleNames
      * @return RoleInterface[]
      */
-    public function getRoles(array $roleNames);
+    public function getRoles(array $roleNames): array;
 }
