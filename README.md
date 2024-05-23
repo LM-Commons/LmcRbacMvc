@@ -10,13 +10,6 @@
 
 Role-based access control module to provide additional features on top of Zend\Permissions\Rbac
 
-Based on [ZF-Commons/zfc-rbac](https://github.com/ZF-Commons/zfc-rbac) v2.6.x. If you are looking for the Laminas version of zfc-rbac v3, please use [LM-Commons/LmcRbac](https://github.com/LM-Commons/LmcRbac).
-
-### Important Notes:  
-<!-- [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/LM-Commons/LmcRbacMvc/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/LM-Commons/LmcRbacMvc/?branch=master) -->
-
-Role-based access control module to provide additional features on top of Laminas\Permissions\Rbac
-
 ## Requirements
 
 - PHP 8.1 or higher
