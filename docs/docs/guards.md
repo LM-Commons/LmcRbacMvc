@@ -1,3 +1,6 @@
+---
+sidebar_position: 5
+---
 # Guards
 
 In this section, you will learn:
@@ -13,11 +16,11 @@ the MVC workflow. They allow your application to quickly mark a request as unaut
 
 Here is a simple workflow without guards:
 
-![Zend Framework workflow without guards](images/workflow-without-guards.png?raw=true)
+![Laminas Framework workflow without guards](images/workflow-without-guards.png?raw=true)
 
 And here is a simple workflow with a route guard:
 
-![Zend Framework workflow with guards](images/workflow-with-guards.png?raw=true)
+![Laminas Framework workflow with guards](images/workflow-with-guards.png?raw=true)
 
 RouteGuard and ControllerGuard are not aware of permissions but rather only think about "roles". For
 instance, you may want to refuse access to each routes that begin by "admin/*" to all users that do not have the
@@ -38,7 +41,7 @@ that is not specified in the rules will be "granted" by default. Therefore, the 
 mechanism.
 
 However, you may want a more restrictive approach (also called "whitelist"). In this mode, once a guard is added,
-anything that is not explicitely added will be refused by default.
+anything that is not explicitly added will be refused by default.
 
 For instance, let's say you have two routes: "index" and "login". If you specify a route guard rule to allow "index"
 route to "member" role, your "login" route will become defacto unauthorized to anyone, unless you add a new rule for
@@ -80,7 +83,7 @@ return [
 ];
 ```
 
-Because of the way Zend Framework 2 handles config, you can without problem define some rules in one module, and
+Because of the way Laminas Framework handles config, you can without problem define some rules in one module, and
 more rules in another module. All the rules will be automatically merged.
 
 > For your mental health, I recommend you to use either the route guard OR the controller guard, but not both. If
@@ -419,7 +422,7 @@ following code in your config:
 
 ```php
 return [
-    'zfc_rbac' => [
+    'lmc_rbac' => [
         'guard_manager' => [
             'factories' => [
                 'Application\Guard\IpGuard' => 'Application\Factory\IpGuardFactory'
@@ -473,9 +476,3 @@ return [
 ];
 ```
 The array of IP addresses will be passed to `IpGuardFactory::__invoke` in the `$options` parameter.
-
-### Navigation
-
-* Continue to [the **Strategies**](05.%20Strategies.md)
-* Back to [the Role providers](03.%20Role%20providers.md)
-* Back to [the Index](README.md)

@@ -1,3 +1,6 @@
+---
+sidebar_position: 6
+---
 # Strategies
 
 In this section, you will learn:
@@ -147,9 +150,3 @@ public function onBootstrap(EventInterface $e)
       ->attach(new ApiProblemStrategy());
 }
 ```
-
-### Navigation
-
-* Continue to [the **Authorization Service**](06.%20Using%20the%20Authorization%20Service.md)
-* Back to [the Guards](04.%20Guards.md)
-* Back to [the Index](README.md)
