@@ -33,7 +33,7 @@
         "laminas/laminas-mvc": "^3.0",
         "laminas/laminas-servicemanager": "^3.0",
         "zfr/rbac": "~1.2",
-        "doctrine/persistence": "^2.1"
+        "doctrine/persistence": "^3.0"
     },
     "require-dev": {
         "laminas/laminas-authentication": "^2.2",
