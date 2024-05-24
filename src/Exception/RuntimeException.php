@@ -18,14 +18,13 @@
 
 namespace LmcRbacMvc\Exception;
 
-use RuntimeException as BaseRuntimeException;
-
 /**
  * RuntimeException
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @license MIT
+ * @deprecated Use LmcRbac\Exception\RuntimeException instead
  */
-class RuntimeException extends BaseRuntimeException implements ExceptionInterface
+class RuntimeException extends \LmcRbac\Exception\RuntimeException
 {
 }

@@ -360,7 +360,7 @@ check for the `deletePost` permission. We don't want others to delete our previo
 called `assertion_map`. In this map we glue `assertions` and `permissions` together.
 
 ```php
-// module.config.php or wherever you configure your RBAC stuff
+// config/autoload/lmc_rbac.global.php or wherever your LmcRbac configuration file is
 return [
     'lmc_rbac' => [
         'assertion_map' => [
@@ -376,7 +376,7 @@ However, some assertions may need dependencies. You can manually configure the a
 shown below:
 
 ```php
-// module.config.php or wherever you configure your RBAC stuff
+// config/autoload/lmc_rbac.global.php or wherever your LmcRbac configuration file is
 return [
     'lmc_rbac' => [
         // ... other rbac stuff

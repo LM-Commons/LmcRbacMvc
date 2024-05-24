@@ -224,7 +224,7 @@ class ObjectRepositoryRoleProviderTest extends \PHPUnit\Framework\TestCase
         $objectRepositoryRoleProvider = new ObjectRepositoryRoleProvider($objectRepository, 'name');
 
         $this->expectException(
-            \LmcRbacMvc\Exception\RoleNotFoundException::class,
+            \LmcRbac\Exception\RoleNotFoundException::class,
             'Some roles were asked but could not be loaded from database: guest, admin'
         );
 

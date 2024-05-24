@@ -90,7 +90,7 @@ class GuardPluginManagerTest extends \PHPUnit\Framework\TestCase
 
     public function testThrowExceptionForInvalidPlugin()
     {
-        $this->expectException('LmcRbacMvc\Exception\RuntimeException');
+        $this->expectException('LmcRbac\Exception\RuntimeException');
 
         $pluginManager = new GuardPluginManager(new ServiceManager());
         $pluginManager->get('stdClass');

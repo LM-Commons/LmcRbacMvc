@@ -18,14 +18,13 @@
 
 namespace LmcRbacMvc\Exception;
 
-use InvalidArgumentException as BaseInvalidArgumentException;
-
 /**
  * InvalidArgumentException
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @license MIT
+ * @deprecated Use LmcRbac\Exception\InvalidArgumentException instead
  */
-class InvalidArgumentException extends BaseInvalidArgumentException implements ExceptionInterface
+class InvalidArgumentException extends \LmcRbac\Exception\InvalidArgumentException
 {
 }

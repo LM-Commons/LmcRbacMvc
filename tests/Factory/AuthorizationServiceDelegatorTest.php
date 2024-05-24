@@ -145,7 +145,7 @@ class AuthorizationServiceDelegatorTest extends \PHPUnit\Framework\TestCase
             $thrown = true;
             $this->assertStringEndsWith('The service LmcRbacTest\AuthorizationAware must implement AuthorizationServiceAwareInterface.', $e->getMessage());
             if ($e->getPrevious()) {
-                $this->assertInstanceOf('LmcRbacMvc\Exception\RuntimeException', $e->getPrevious());
+                $this->assertInstanceOf('LmcRbac\Exception\RuntimeException', $e->getPrevious());
             }
         }
 

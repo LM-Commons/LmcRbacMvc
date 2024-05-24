@@ -18,7 +18,7 @@
 namespace LmcRbacMvc\Guard;
 
 use Laminas\Mvc\MvcEvent;
-use LmcRbacMvc\Exception\InvalidArgumentException;
+use LmcRbac\Exception\InvalidArgumentException;
 use LmcRbacMvc\Service\AuthorizationServiceInterface;
 
 /**

@@ -20,7 +20,7 @@ namespace LmcRbacMvcTest\Factory;
 
 use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
 use Laminas\ServiceManager\ServiceManager;
-use LmcRbacMvc\Exception\RuntimeException;
+use LmcRbac\Exception\RuntimeException;
 use LmcRbacMvc\Role\RoleProviderPluginManager;
 
 /**
@@ -88,7 +88,7 @@ class ObjectRepositoryRoleProviderFactoryTest extends \PHPUnit\Framework\TestCas
 
         $this->fail(
             'LmcRbacMvc\Factory\ObjectRepositoryRoleProviderFactory::createService() :: '
-            .'LmcRbacMvc\Exception\RuntimeException was not found in the previous Exceptions'
+            .'LmcRbac\Exception\RuntimeException was not found in the previous Exceptions'
         );
     }
 
@@ -115,7 +115,7 @@ class ObjectRepositoryRoleProviderFactoryTest extends \PHPUnit\Framework\TestCas
 
         $this->fail(
              'LmcRbacMvc\Factory\ObjectRepositoryRoleProviderFactory::createService() :: '
-            .'LmcRbacMvc\Exception\RuntimeException was not found in the previous Exceptions'
+            .'LmcRbac\Exception\RuntimeException was not found in the previous Exceptions'
         );
     }
 }

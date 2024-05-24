@@ -29,7 +29,7 @@ use Laminas\Mvc\MvcEvent;
 use Laminas\DeveloperTools\Collector\CollectorInterface;
 use LmcRbacMvc\Options\ModuleOptions;
 use LmcRbacMvc\Service\RoleService;
-use LmcRbacMvc\Exception\InvalidArgumentException;
+use LmcRbac\Exception\InvalidArgumentException;
 
 /**
  * RbacCollector
