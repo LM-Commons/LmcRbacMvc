@@ -18,7 +18,6 @@
 
 namespace LmcRbacMvcTest\Role;
 
-use LmcRbacMvc\Exception\RoleNotFoundException;
 use LmcRbacMvc\Role\InMemoryRoleProvider;
 use PHPUnit\Framework\TestCase;
 

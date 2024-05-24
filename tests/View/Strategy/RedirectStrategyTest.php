@@ -22,9 +22,9 @@ use Laminas\Authentication\AuthenticationService;
 use Laminas\Http\Request as HttpRequest;
 use Laminas\Http\Response as HttpResponse;
 use Laminas\Mvc\MvcEvent;
-use Laminas\Mvc\Router\Http\TreeRouteStack as V2TreeRouteStack;
+//use Laminas\Mvc\Router\Http\TreeRouteStack as V2TreeRouteStack;
 use Laminas\Router\Http\TreeRouteStack;
-use LmcRbacMvc\Exception\UnauthorizedException;
+use LmcRbac\Exception\UnauthorizedException;
 use LmcRbacMvc\Options\RedirectStrategyOptions;
 use LmcRbacMvc\View\Strategy\RedirectStrategy;
 
@@ -198,7 +198,10 @@ class RedirectStrategyTest extends \PHPUnit\Framework\TestCase
 
     public function createTreeRouteStack($routePluginManager = null)
     {
+        return new TreeRouteStack($routePluginManager);
+        /*
         $class = class_exists(V2TreeRouteStack::class) ? V2TreeRouteStack::class : TreeRouteStack::class;
         return new $class($routePluginManager);
+        */
     }
 }

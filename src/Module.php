@@ -35,10 +35,10 @@ class Module implements BootstrapListenerInterface, ConfigProviderInterface
     /**
      * {@inheritDoc}
      */
-    public function onBootstrap(EventInterface $event): void
+    public function onBootstrap(EventInterface $e): void
     {
         /* @var Application $application */
-        $application    = $event->getTarget();
+        $application    = $e->getTarget();
         $serviceManager = $application->getServiceManager();
         $eventManager   = $application->getEventManager();
 
@@ -54,8 +54,15 @@ class Module implements BootstrapListenerInterface, ConfigProviderInterface
     /**
      * {@inheritDoc}
      */
-    public function getConfig()
+    public function getConfig(): array
     {
-        return include __DIR__ . '/../config/module.config.php';
+        $configProvider = new ConfigProvider();
+        return [
+            'service_manager' => $configProvider->getDependencies(),
+            'view_helpers' => $configProvider->getViewHelperConfig(),
+            'controller_plugins' => $configProvider->getControllerPluginConfig(),
+            'view_manager' => $configProvider->getViewManagerConfig(),
+            'lmc_rbac' => $configProvider->getModuleConfig(),
+        ];
     }
 }

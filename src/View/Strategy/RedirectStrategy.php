@@ -21,7 +21,7 @@ namespace LmcRbacMvc\View\Strategy;
 use Laminas\Authentication\AuthenticationServiceInterface;
 use Laminas\Http\Response as HttpResponse;
 use Laminas\Mvc\MvcEvent;
-use LmcRbacMvc\Exception\UnauthorizedExceptionInterface;
+use LmcRbac\Exception\UnauthorizedExceptionInterface;
 use LmcRbacMvc\Options\RedirectStrategyOptions;
 
 /**

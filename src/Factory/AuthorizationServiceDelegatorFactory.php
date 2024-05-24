@@ -22,7 +22,7 @@ use Psr\Container\ContainerInterface;
 //use Laminas\ServiceManager\AbstractPluginManager;
 use Laminas\ServiceManager\Factory\DelegatorFactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
-use LmcRbacMvc\Exception\RuntimeException;
+use LmcRbac\Exception\RuntimeException;
 use LmcRbacMvc\Service\AuthorizationService;
 use LmcRbacMvc\Service\AuthorizationServiceAwareInterface;
 

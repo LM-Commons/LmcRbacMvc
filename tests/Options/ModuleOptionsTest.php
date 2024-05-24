@@ -73,7 +73,7 @@ class ModuleOptionsTest extends \PHPUnit\Framework\TestCase
 
     public function testThrowExceptionForInvalidProtectionPolicy()
     {
-        $this->expectException(\LmcRbacMvc\Exception\RuntimeException::class);
+        $this->expectException(\LmcRbac\Exception\RuntimeException::class);
 
         $moduleOptions = new ModuleOptions();
         $moduleOptions->setProtectionPolicy('invalid');
@@ -81,7 +81,7 @@ class ModuleOptionsTest extends \PHPUnit\Framework\TestCase
 
     public function testThrowExceptionIfMoreThanOneRoleProviderIsSet()
     {
-        $this->expectException(\LmcRbacMvc\Exception\RuntimeException::class);
+        $this->expectException(\LmcRbac\Exception\RuntimeException::class);
 
         $moduleOptions = new ModuleOptions();
         $moduleOptions->setRoleProvider(['foo', 'bar']);

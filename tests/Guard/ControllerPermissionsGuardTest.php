@@ -19,7 +19,7 @@
 namespace LmcRbacMvcTest\Guard;
 
 use Laminas\Mvc\MvcEvent;
-use Laminas\Mvc\Router\RouteMatch as V2RouteMatch;
+//use Laminas\Mvc\Router\RouteMatch as V2RouteMatch;
 use Laminas\Router\RouteMatch;
 use LmcRbacMvc\Guard\ControllerGuard;
 use LmcRbacMvc\Guard\ControllerPermissionsGuard;
@@ -512,12 +512,15 @@ class ControllerPermissionsGuardTest extends \PHPUnit\Framework\TestCase
 
         $this->assertTrue($event->propagationIsStopped());
         $this->assertEquals(ControllerGuard::GUARD_UNAUTHORIZED, $event->getError());
-        $this->assertInstanceOf('LmcRbacMvc\Exception\UnauthorizedException', $event->getParam('exception'));
+        $this->assertInstanceOf('LmcRbac\Exception\UnauthorizedException', $event->getParam('exception'));
     }
 
     public function createRouteMatch(array $params = [])
     {
+        return new RouteMatch($params);
+        /*
         $class = class_exists(V2RouteMatch::class) ? V2RouteMatch::class : RouteMatch::class;
         return new $class($params);
+        */
     }
 }

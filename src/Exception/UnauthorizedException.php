@@ -18,18 +18,14 @@
 
 namespace LmcRbacMvc\Exception;
 
-use RuntimeException as BaseRuntimeException;
 
 /**
  * Unauthorized exception
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @license MIT
+ * @deprecated Use LmcRbac\Exception\UnauthorizedException instead
  */
-class UnauthorizedException extends BaseRuntimeException implements UnauthorizedExceptionInterface
+class UnauthorizedException extends \LmcRbac\Exception\UnauthorizedException
 {
-    /**
-     * @var string
-     */
-    protected $message = 'You are not authorized to access this resource';
 }

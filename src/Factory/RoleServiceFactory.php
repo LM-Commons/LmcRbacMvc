@@ -22,7 +22,6 @@ use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
 use Psr\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
-use LmcRbacMvc\Exception\RuntimeException;
 use LmcRbacMvc\Identity\IdentityProviderInterface;
 use LmcRbacMvc\Options\ModuleOptions;
 use LmcRbacMvc\Role\RoleProviderInterface;

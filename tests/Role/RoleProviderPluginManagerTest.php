@@ -28,7 +28,7 @@ class RoleProviderPluginManagerTest extends \PHPUnit\Framework\TestCase
 {
     public function testValidationOfPluginFailsIfRoleProviderInterfaceIsNotImplemented()
     {
-        $this->expectException('LmcRbacMvc\Exception\RuntimeException');
+        $this->expectException('LmcRbac\Exception\RuntimeException');
 
         $pluginManager  = new RoleProviderPluginManager(new ServiceManager());
         $pluginManager->get('stdClass', []);
