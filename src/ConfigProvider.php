@@ -24,8 +24,6 @@ class ConfigProvider
 
                 /* Factories that map to a class */
                 \LmcRbacMvc\Assertion\AssertionPluginManager::class        => \LmcRbacMvc\Factory\AssertionPluginManagerFactory::class,
-                // TODO Remove RbacCollector once it is moved to a separate library
-                \LmcRbacMvc\Collector\RbacCollector::class                 => \Laminas\ServiceManager\Factory\InvokableFactory::class,
                 \LmcRbacMvc\Guard\GuardPluginManager::class                => \LmcRbacMvc\Factory\GuardPluginManagerFactory::class,
                 \LmcRbacMvc\Identity\AuthenticationIdentityProvider::class => \LmcRbacMvc\Factory\AuthenticationIdentityProviderFactory::class,
                 \LmcRbacMvc\Options\ModuleOptions::class                   => \LmcRbacMvc\Factory\ModuleOptionsFactory::class,
