@@ -18,26 +18,14 @@
 
 namespace LmcRbacMvc\Factory;
 
-use Psr\Container\ContainerInterface;
-use Laminas\ServiceManager\Factory\FactoryInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
-use LmcRbacMvc\Role\RoleProviderPluginManager;
 
 /**
  * Factory to create a role provider plugin manager
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @license MIT
+ * @deprecated Replaced by \LmcRbacMvc\Role\RoleProviderPluginManagerFactory
  */
-class RoleProviderPluginManagerFactory implements FactoryInterface
+class RoleProviderPluginManagerFactory extends \LmcRbacMvc\Role\RoleProviderPluginManagerFactory
 {
-    /**
-     * {@inheritDoc}
-     */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): RoleProviderPluginManager
-    {
-        $config = $container->get('Config')['lmc_rbac']['role_provider_manager'];
-
-        return new RoleProviderPluginManager($container, $config);
-    }
 }

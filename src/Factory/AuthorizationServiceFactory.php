@@ -18,42 +18,13 @@
 
 namespace LmcRbacMvc\Factory;
 
-use Laminas\Permissions\Rbac\Rbac;
-use Psr\Container\ContainerInterface;
-use Laminas\ServiceManager\Factory\FactoryInterface;
-use LmcRbacMvc\Assertion\AssertionPluginManager;
-use LmcRbacMvc\Options\ModuleOptions;
-use LmcRbacMvc\Service\AuthorizationService;
-use LmcRbacMvc\Service\RoleService;
-
 /**
  * Factory to create the authorization service
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @license MIT
+ * @deprecated Replaced by \LmcRbacMvc\Service\AuthorizationServiceFactory
  */
-class AuthorizationServiceFactory implements FactoryInterface
+class AuthorizationServiceFactory extends \LmcRbacMvc\Service\AuthorizationServiceFactory
 {
-    /**
-     * @param ContainerInterface $container
-     * @param string $requestedName
-     * @param array|null $options
-     * @return AuthorizationService
-     */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): AuthorizationService
-    {
-        /* @var RoleService $roleService */
-        $roleService = $container->get(RoleService::class);
-
-        /* @var AssertionPluginManager $assertionPluginManager */
-        $assertionPluginManager = $container->get(AssertionPluginManager::class);
-
-        /* @var ModuleOptions $moduleOptions */
-        $moduleOptions = $container->get(ModuleOptions::class);
-
-        $authorizationService = new AuthorizationService($roleService, $assertionPluginManager);
-        $authorizationService->setAssertions($moduleOptions->getAssertionMap());
-
-        return $authorizationService;
-    }
 }

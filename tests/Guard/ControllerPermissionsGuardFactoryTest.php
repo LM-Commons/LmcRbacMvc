@@ -16,16 +16,16 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\Factory;
+namespace LmcRbacMvcTest\Guard;
 
 use Laminas\ServiceManager\ServiceManager;
-use LmcRbacMvc\Factory\ControllerPermissionsGuardFactory;
+use LmcRbacMvc\Guard\ControllerPermissionsGuardFactory;
 use LmcRbacMvc\Guard\GuardInterface;
 use LmcRbacMvc\Guard\GuardPluginManager;
 use LmcRbacMvc\Options\ModuleOptions;
 
 /**
- * @covers \LmcRbacMvc\Factory\ControllerPermissionsGuardFactory
+ * @covers \LmcRbacMvc\Guard\ControllerPermissionsGuardFactory
  */
 class ControllerPermissionsGuardFactoryTest extends \PHPUnit\Framework\TestCase
 {
@@ -33,10 +33,6 @@ class ControllerPermissionsGuardFactoryTest extends \PHPUnit\Framework\TestCase
     public function testFactory()
     {
         $serviceManager = new ServiceManager();
-
-        if (!method_exists($serviceManager, 'build')) {
-            $this->markTestSkipped('this test is only vor zend-servicemanager v3');
-        }
 
         $creationOptions = [
             'route' => 'permission'

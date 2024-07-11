@@ -18,60 +18,13 @@
 
 namespace LmcRbacMvc\Factory;
 
-use Psr\Container\ContainerInterface;
-use Laminas\ServiceManager\Factory\FactoryInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
-use LmcRbacMvc\Guard\RouteGuard;
-use LmcRbacMvc\Options\ModuleOptions;
-use LmcRbacMvc\Service\RoleService;
-
 /**
  * Create a route guard
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @license MIT
+ * @deprecated Replaced by \LmcRbacMvc\Guard\RouteGuardFactory
  */
-class RouteGuardFactory implements FactoryInterface
+class RouteGuardFactory extends \LmcRbacMvc\Guard\RouteGuardFactory
 {
-    /**
-     * @var array
-     */
-    protected array $options = [];
-
-    /**
-     * @param array $options
-     */
-    public function __construct(array $options = [])
-    {
-        $this->setCreationOptions($options);
-    }
-
-    /**
-     * @param array $options
-     */
-    public function setCreationOptions(array $options): void
-    {
-        $this->options = $options;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): RouteGuard
-    {
-        if (null === $options) {
-            $options = [];
-        }
-
-        /* @var ModuleOptions $moduleOptions */
-        $moduleOptions = $container->get(ModuleOptions::class);
-
-        /* @var RoleService $roleService */
-        $roleService = $container->get(RoleService::class);
-
-        $routeGuard = new RouteGuard($roleService, $options);
-        $routeGuard->setProtectionPolicy($moduleOptions->getProtectionPolicy());
-
-        return $routeGuard;
-    }
 }

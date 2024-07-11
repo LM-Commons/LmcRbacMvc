@@ -16,16 +16,16 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\Factory;
+namespace LmcRbacMvcTest\Service;
 
 use Laminas\Permissions\Rbac\Rbac;
 use Laminas\ServiceManager\ServiceManager;
-use LmcRbacMvc\Factory\AuthorizationServiceFactory;
+use LmcRbacMvc\Service\AuthorizationServiceFactory;
 use LmcRbacMvc\Options\ModuleOptions;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \LmcRbacMvc\Factory\AuthorizationServiceFactory
+ * @covers \LmcRbacMvc\Service\AuthorizationServiceFactory
  */
 class AuthorizationServiceFactoryTest extends TestCase
 {

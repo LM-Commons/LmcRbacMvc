@@ -16,32 +16,26 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\Factory;
+namespace LmcRbacMvc\Guard;
 
-use Laminas\Mvc\Controller\PluginManager;
-use Laminas\ServiceManager\ServiceManager;
-use LmcRbacMvc\Factory\IsGrantedPluginFactory;
+use Psr\Container\ContainerInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 /**
- * @covers \LmcRbacMvc\Factory\IsGrantedPluginFactory
+ * Factory to create a guard plugin manager
+ *
+ * @author  Michaël Gallego <mic.gallego@gmail.com>
+ * @license MIT
  */
-class IsGrantedPluginFactoryTest extends \PHPUnit\Framework\TestCase
+class GuardPluginManagerFactory implements FactoryInterface
 {
-    public function testFactory()
+    /**
+     * {@inheritDoc}
+     */
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): GuardPluginManager
     {
-        $serviceManager = new ServiceManager();
+        $config = $container->get('Config')['lmc_rbac']['guard_manager'];
 
-        if (! method_exists($serviceManager, 'build')) {
-            $this->markTestSkipped('this test is only vor zend-servicemanager v3');
-        }
-        $serviceManager->setService(
-            'LmcRbacMvc\Service\AuthorizationService',
-            $this->createMock('LmcRbacMvc\Service\AuthorizationServiceInterface')
-        );
-
-        $factory   = new IsGrantedPluginFactory();
-        $isGranted = $factory($serviceManager, 'LmcRbacMvc\Mvc\Controller\Plugin\IsGranted');
-
-        $this->assertInstanceOf('LmcRbacMvc\Mvc\Controller\Plugin\IsGranted', $isGranted);
+        return new GuardPluginManager($container, $config);
     }
 }

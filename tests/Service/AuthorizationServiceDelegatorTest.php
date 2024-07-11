@@ -15,17 +15,19 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
-namespace LmcRbacMvcTest\Factory;
+namespace LmcRbacMvcTest\Service;
 
+use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
 use Psr\Container\ContainerInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
-use LmcRbacMvc\Factory\AuthorizationServiceDelegatorFactory;
+use LmcRbacMvc\Service\AuthorizationServiceDelegatorFactory;
 use LmcRbacMvcTest\Initializer\AuthorizationAwareFake;
 use LmcRbacMvcTest\Util\ServiceManagerFactory;
 use Prophecy\PhpUnit\ProphecyTrait;
+use stdClass;
 
 /**
- * @covers  \LmcRbacMvc\Factory\AuthorizationServiceDelegatorFactory
+ * @covers  \LmcRbacMvc\Service\AuthorizationServiceDelegatorFactory
  * @author  Jean-Marie Leroux <jmleroux.pro@gmail.com>
  * @license MIT License
  */
@@ -51,6 +53,7 @@ class AuthorizationServiceDelegatorTest extends \PHPUnit\Framework\TestCase
 
         $serviceLocator->get($authServiceClassName)->willReturn($authorizationService)->shouldBeCalled();
 
+        /** TODO replace this test */
         $decoratedInstance = $delegator->createDelegatorWithName($serviceLocator->reveal(), 'name', 'requestedName', $callback);
 
         $this->assertEquals($authorizationService, $decoratedInstance->getAuthorizationService());
@@ -104,7 +107,7 @@ class AuthorizationServiceDelegatorTest extends \PHPUnit\Framework\TestCase
 
         $serviceManager->addDelegator(
             'LmcRbacMvcTest\Initializer\AuthorizationAwareFake',
-            'LmcRbacMvc\Factory\AuthorizationServiceDelegatorFactory'
+            'LmcRbacMvc\Service\AuthorizationServiceDelegatorFactory'
         );
 
         $decoratedInstance = $serviceManager->get('LmcRbacMvcTest\AuthorizationAware');
@@ -116,7 +119,6 @@ class AuthorizationServiceDelegatorTest extends \PHPUnit\Framework\TestCase
         $serviceManager = ServiceManagerFactory::getServiceManager();
 
         $serviceManager->setAllowOverride(true);
-//        $authorizationService = $this->getMock('LmcRbacMvc\Service\AuthorizationService', [], [], '', false);
         $authorizationService = $this->getMockBuilder('LmcRbacMvc\Service\AuthorizationService')
             ->disableOriginalConstructor()
             ->getMock();
@@ -135,7 +137,7 @@ class AuthorizationServiceDelegatorTest extends \PHPUnit\Framework\TestCase
 
         $serviceManager->addDelegator(
             'LmcRbacTest\AuthorizationAware',
-            'LmcRbacMvc\Factory\AuthorizationServiceDelegatorFactory'
+            'LmcRbacMvc\Service\AuthorizationServiceDelegatorFactory'
         );
 
         $thrown = false;

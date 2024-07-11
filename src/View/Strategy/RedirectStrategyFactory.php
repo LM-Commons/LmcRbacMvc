@@ -16,15 +16,31 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvc\Factory;
+namespace LmcRbacMvc\View\Strategy;
+
+use Psr\Container\ContainerInterface;
+use Laminas\Authentication\AuthenticationService;
+use Laminas\ServiceManager\Factory\FactoryInterface;
+use LmcRbacMvc\Options\ModuleOptions;
 
 /**
- * Delegator factory for classes implementing AuthorizationServiceAwareInterface
+ * Factory to create a redirect strategy
  *
- * @author  Jean-Marie Leroux <jmleroux.pro@gmail.com>
- * @license MIT License
- * @deprecated Replaced by \LmcRbacMvc\Service\AuthorizationServiceDelegatorFactory
+ * @author  Michaël Gallego <mic.gallego@gmail.com>
+ * @license MIT
  */
-class AuthorizationServiceDelegatorFactory extends \LmcRbacMvc\Service\AuthorizationServiceDelegatorFactory
+class RedirectStrategyFactory implements FactoryInterface
 {
+    /**
+     * {@inheritDoc}
+     */
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): RedirectStrategy
+    {
+        /* @var ModuleOptions $moduleOptions */
+        $moduleOptions = $container->get(ModuleOptions::class);
+        /** @var AuthenticationService $authenticationService */
+        $authenticationService = $container->get(AuthenticationService::class);
+
+        return new RedirectStrategy($moduleOptions->getRedirectStrategy(), $authenticationService);
+    }
 }

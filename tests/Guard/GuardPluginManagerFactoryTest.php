@@ -16,15 +16,29 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvc\Factory;
+namespace LmcRbacMvcTest\Guard;
+
+use Laminas\ServiceManager\ServiceManager;
+use LmcRbacMvc\Guard\GuardPluginManagerFactory;
+use LmcRbacMvc\Guard\GuardPluginManager;
 
 /**
- * Delegator factory for classes implementing AuthorizationServiceAwareInterface
- *
- * @author  Jean-Marie Leroux <jmleroux.pro@gmail.com>
- * @license MIT License
- * @deprecated Replaced by \LmcRbacMvc\Service\AuthorizationServiceDelegatorFactory
+ * @covers \LmcRbacMvc\Guard\GuardPluginManagerFactory
  */
-class AuthorizationServiceDelegatorFactory extends \LmcRbacMvc\Service\AuthorizationServiceDelegatorFactory
+class GuardPluginManagerFactoryTest extends \PHPUnit\Framework\TestCase
 {
+    public function testFactory()
+    {
+        $serviceManager = new ServiceManager();
+        $serviceManager->setService('Config', [
+            'lmc_rbac' => [
+                'guard_manager' => []
+            ]
+        ]);
+
+        $factory       = new GuardPluginManagerFactory();
+        $pluginManager = $factory($serviceManager, GuardPluginManager::class);
+
+        $this->assertInstanceOf(GuardPluginManager::class, $pluginManager);
+    }
 }

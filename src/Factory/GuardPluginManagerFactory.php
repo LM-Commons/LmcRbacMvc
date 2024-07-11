@@ -18,6 +18,7 @@
 
 namespace LmcRbacMvc\Factory;
 
+use Laminas\Mvc\Service\AbstractPluginManagerFactory;
 use Psr\Container\ContainerInterface;
 use Laminas\ServiceManager\Config;
 use Laminas\ServiceManager\Factory\FactoryInterface;
@@ -29,16 +30,8 @@ use LmcRbacMvc\Guard\GuardPluginManager;
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @license MIT
+ * @deprecated Replaced by \LmcRbacMvc\Guard\GuardPluginManagerFactory
  */
-class GuardPluginManagerFactory implements FactoryInterface
+class GuardPluginManagerFactory extends \LmcRbacMvc\Guard\GuardPluginManagerFactory
 {
-    /**
-     * {@inheritDoc}
-     */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): GuardPluginManager
-    {
-        $config = $container->get('Config')['lmc_rbac']['guard_manager'];
-
-        return new GuardPluginManager($container, $config);
-    }
 }

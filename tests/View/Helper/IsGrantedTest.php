@@ -34,7 +34,7 @@ class IsGrantedTest extends \PHPUnit\Framework\TestCase
         $viewHelpersConfig = $config['view_helpers'];
         $this->assertEquals('LmcRbacMvc\View\Helper\IsGranted', $viewHelpersConfig['aliases']['isGranted']);
         $this->assertEquals(
-            'LmcRbacMvc\Factory\IsGrantedViewHelperFactory',
+            'LmcRbacMvc\View\Helper\IsGrantedViewHelperFactory',
             $viewHelpersConfig['factories']['LmcRbacMvc\View\Helper\IsGranted']
         );
     }

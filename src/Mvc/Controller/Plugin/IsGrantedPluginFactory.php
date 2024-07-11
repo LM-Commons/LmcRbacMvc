@@ -16,15 +16,28 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvc\Factory;
+namespace LmcRbacMvc\Mvc\Controller\Plugin;
+
+use Psr\Container\ContainerInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
+use LmcRbacMvc\Service\AuthorizationService;
 
 /**
- * Delegator factory for classes implementing AuthorizationServiceAwareInterface
+ * Create the IsGranted controller plugin
  *
- * @author  Jean-Marie Leroux <jmleroux.pro@gmail.com>
- * @license MIT License
- * @deprecated Replaced by \LmcRbacMvc\Service\AuthorizationServiceDelegatorFactory
+ * @author  Michaël Gallego <mic.gallego@gmail.com>
+ * @license MIT
  */
-class AuthorizationServiceDelegatorFactory extends \LmcRbacMvc\Service\AuthorizationServiceDelegatorFactory
+class IsGrantedPluginFactory implements FactoryInterface
 {
+    /**
+     * {@inheritDoc}
+     */
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): IsGranted
+    {
+        /* @var AuthorizationService $authorizationService */
+        $authorizationService = $container->get(AuthorizationService::class);
+
+        return new IsGranted($authorizationService);
+    }
 }

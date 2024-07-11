@@ -18,57 +18,13 @@
 
 namespace LmcRbacMvc\Factory;
 
-use Psr\Container\ContainerInterface;
-use Laminas\ServiceManager\Factory\FactoryInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
-use LmcRbacMvc\Guard\ControllerGuard;
-use LmcRbacMvc\Options\ModuleOptions;
-use LmcRbacMvc\Service\RoleService;
-
 /**
  * Create a controller guard
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @license MIT
+ * @deprecated Replaced by \LmcRbacMvc\Guard\ControllerGuardFactory
  */
-class ControllerGuardFactory implements FactoryInterface
+class ControllerGuardFactory extends \LmcRbacMvc\Guard\ControllerGuardFactory
 {
-    protected array $options = [];
-
-    /**
-     * @param array $options
-     */
-    public function __construct(array $options = [])
-    {
-        $this->setCreationOptions($options);
-    }
-
-    /**
-     * @param array $options
-     */
-    public function setCreationOptions(array $options): void
-    {
-        $this->options = $options;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): ControllerGuard
-    {
-        if (null === $options) {
-            $options = [];
-        }
-
-        /* @var ModuleOptions $moduleOptions */
-        $moduleOptions = $container->get(\LmcRbacMvc\Options\ModuleOptions::class);
-
-        /* @var RoleService $roleService */
-        $roleService = $container->get(\LmcRbacMvc\Service\RoleService::class);
-
-        $controllerGuard = new ControllerGuard($roleService, $options);
-        $controllerGuard->setProtectionPolicy($moduleOptions->getProtectionPolicy());
-
-        return $controllerGuard;
-    }
 }

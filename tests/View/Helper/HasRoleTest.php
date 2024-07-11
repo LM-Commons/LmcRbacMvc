@@ -34,7 +34,7 @@ class HasRoleTest extends \PHPUnit\Framework\TestCase
         $viewHelpersConfig = $config['view_helpers'];
         $this->assertEquals('LmcRbacMvc\View\Helper\HasRole', $viewHelpersConfig['aliases']['hasRole']);
         $this->assertEquals(
-            'LmcRbacMvc\Factory\HasRoleViewHelperFactory',
+            'LmcRbacMvc\View\Helper\HasRoleViewHelperFactory',
             $viewHelpersConfig['factories']['LmcRbacMvc\View\Helper\HasRole']
         );
     }

@@ -16,15 +16,41 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvc\Factory;
+namespace LmcRbacMvc\Guard;
+
+use Psr\Container\ContainerInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
+use LmcRbacMvc\Options\ModuleOptions;
 
 /**
- * Factory to create an unauthorized strategy
+ * Create a list of guards
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @license MIT
- * @deprecated Replaced by \LmcRbacMvc\View\Strategy\UnauthorizedStrategyFactory
  */
-class UnauthorizedStrategyFactory extends \LmcRbacMvc\View\Strategy\UnauthorizedStrategyFactory
+class GuardsFactory implements FactoryInterface
 {
+    /**
+     * {@inheritDoc}
+     */
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): object|array
+    {
+        /* @var ModuleOptions $options */
+        $options       = $container->get(ModuleOptions::class);
+        $guardsOptions = $options->getGuards();
+
+        if (empty($guardsOptions)) {
+            return [];
+        }
+
+        /* @var GuardPluginManager $pluginManager */
+        $pluginManager = $container->get(GuardPluginManager::class);
+        $guards        = [];
+
+        foreach ($guardsOptions as $type => $options) {
+            $guards[] = $pluginManager->get($type, $options);
+        }
+
+        return $guards;
+    }
 }

@@ -16,15 +16,15 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\Factory;
+namespace LmcRbacMvcTest\View\Strategy;
 
-use Psr\Container\ContainerInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
-use LmcRbacMvc\Factory\RedirectStrategyFactory;
+use LmcRbacMvc\View\Strategy\RedirectStrategyFactory;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Psr\Container\ContainerInterface;
 
 /**
- * @covers \LmcRbacMvc\Factory\RedirectStrategyFactory
+ * @covers \LmcRbacMvc\View\Strategy\RedirectStrategyFactory
  */
 class RedirectStrategyFactoryTest extends \PHPUnit\Framework\TestCase
 {

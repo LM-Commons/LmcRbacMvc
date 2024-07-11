@@ -16,15 +16,29 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvc\Factory;
+namespace LmcRbacMvcTest\View\Helper;
+
+use Laminas\ServiceManager\ServiceManager;
+use Laminas\View\HelperPluginManager;
+use LmcRbacMvc\View\Helper\HasRoleViewHelperFactory;
 
 /**
- * Delegator factory for classes implementing AuthorizationServiceAwareInterface
- *
- * @author  Jean-Marie Leroux <jmleroux.pro@gmail.com>
- * @license MIT License
- * @deprecated Replaced by \LmcRbacMvc\Service\AuthorizationServiceDelegatorFactory
+ * @covers \LmcRbacMvc\View\Helper\HasRoleViewHelperFactory
  */
-class AuthorizationServiceDelegatorFactory extends \LmcRbacMvc\Service\AuthorizationServiceDelegatorFactory
+class HasRoleViewHelperFactoryTest extends \PHPUnit\Framework\TestCase
 {
+    public function testFactory()
+    {
+        $serviceManager = new ServiceManager();
+
+        $serviceManager->setService(
+            'LmcRbacMvc\Service\RoleService',
+            $this->getMockBuilder('LmcRbacMvc\Service\RoleService')->disableOriginalConstructor()->getMock()
+        );
+
+        $factory   = new HasRoleViewHelperFactory();
+        $viewHelper = $factory($serviceManager, 'LmcRbacMvc\View\Helper\HasRole');
+
+        $this->assertInstanceOf('LmcRbacMvc\View\Helper\HasRole', $viewHelper);
+    }
 }

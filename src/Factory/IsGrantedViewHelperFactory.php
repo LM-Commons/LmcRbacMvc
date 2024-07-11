@@ -29,17 +29,8 @@ use LmcRbacMvc\View\Helper\IsGranted;
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @license MIT
+ * @deprecated Replaced by \LmcRbacMvc\View\Helper\IsGrantedViewHelperFactory
  */
-class IsGrantedViewHelperFactory implements FactoryInterface
+class IsGrantedViewHelperFactory extends \LmcRbacMvc\View\Helper\IsGrantedViewHelperFactory
 {
-    /**
-     * {@inheritDoc}
-     */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): IsGranted
-    {
-        /* @var AuthorizationService $authorizationService */
-        $authorizationService = $container->get(AuthorizationService::class);
-
-        return new IsGranted($authorizationService);
-    }
 }

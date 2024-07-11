@@ -16,26 +16,21 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\Factory;
+namespace LmcRbacMvcTest\Guard;
 
 use Laminas\ServiceManager\ServiceManager;
-use LmcRbacMvc\Factory\RouteGuardFactory;
+use LmcRbacMvc\Guard\RouteGuardFactory;
 use LmcRbacMvc\Guard\GuardInterface;
-use LmcRbacMvc\Guard\GuardPluginManager;
 use LmcRbacMvc\Options\ModuleOptions;
 
 /**
- * @covers \LmcRbacMvc\Factory\RouteGuardFactory
+ * @covers \LmcRbacMvc\Guard\RouteGuardFactory
  */
 class RouteGuardFactoryTest extends \PHPUnit\Framework\TestCase
 {
     public function testFactory()
     {
         $serviceManager = new ServiceManager();
-
-        if (!method_exists($serviceManager, 'build')) {
-            $this->markTestSkipped('this test is only vor zend-servicemanager v3');
-        }
 
         $creationOptions = [
             'route' => 'role'

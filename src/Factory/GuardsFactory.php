@@ -18,42 +18,13 @@
 
 namespace LmcRbacMvc\Factory;
 
-use Psr\Container\ContainerInterface;
-use Laminas\ServiceManager\Factory\FactoryInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
-use LmcRbacMvc\Guard\GuardInterface;
-use LmcRbacMvc\Guard\GuardPluginManager;
-use LmcRbacMvc\Options\ModuleOptions;
-
 /**
  * Create a list of guards
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @license MIT
+ * @deprecated Replaced by \LmcRbacMvc\Guard\GuardsFactory
  */
-class GuardsFactory implements FactoryInterface
+class GuardsFactory extends \LmcRbacMvc\Guard\GuardsFactory
 {
-    /**
-     * {@inheritDoc}
-     */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): object|array
-    {
-        /* @var ModuleOptions $options */
-        $options       = $container->get(ModuleOptions::class);
-        $guardsOptions = $options->getGuards();
-
-        if (empty($guardsOptions)) {
-            return [];
-        }
-
-        /* @var GuardPluginManager $pluginManager */
-        $pluginManager = $container->get(GuardPluginManager::class);
-        $guards        = [];
-
-        foreach ($guardsOptions as $type => $options) {
-            $guards[] = $pluginManager->get($type, $options);
-        }
-
-        return $guards;
-    }
 }

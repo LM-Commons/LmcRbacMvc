@@ -16,15 +16,14 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\Factory;
+namespace LmcRbacMvcTest\Service;
 
 use Laminas\ServiceManager\ServiceManager;
-use LmcRbacMvc\Factory\RoleServiceFactory;
+use LmcRbacMvc\Service\RoleServiceFactory;
 use LmcRbacMvc\Options\ModuleOptions;
-use LmcRbacMvc\Role\RoleProviderPluginManager;
 
 /**
- * @covers \LmcRbacMvc\Factory\RoleServiceFactory
+ * @covers \LmcRbacMvc\Service\RoleServiceFactory
  */
 class RoleServiceFactoryTest extends \PHPUnit\Framework\TestCase
 {

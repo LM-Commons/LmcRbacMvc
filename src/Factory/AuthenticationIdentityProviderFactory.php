@@ -18,28 +18,13 @@
 
 namespace LmcRbacMvc\Factory;
 
-use Psr\Container\ContainerInterface;
-use Laminas\Authentication\AuthenticationService;
-use Laminas\ServiceManager\Factory\FactoryInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
-use LmcRbacMvc\Identity\AuthenticationIdentityProvider;
-
 /**
  * Factory to create the authentication identity provider
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @license MIT
+ * @deprecated Replaced by \LmcRbacMvc\Identity\AuthenticationIdentityProvider
  */
-class AuthenticationIdentityProviderFactory implements FactoryInterface
+class AuthenticationIdentityProviderFactory extends \LmcRbacMvc\Identity\AuthenticationIdentityProvider
 {
-    /**
-     * {@inheritDoc}
-     */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): AuthenticationIdentityProvider
-    {
-        /* @var AuthenticationService $authenticationProvider */
-        $authenticationProvider = $container->get(AuthenticationService::class);
-
-        return new AuthenticationIdentityProvider($authenticationProvider);
-    }
 }

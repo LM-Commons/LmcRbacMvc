@@ -16,27 +16,26 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\Factory;
+namespace LmcRbacMvc\Role;
 
-use Laminas\ServiceManager\ServiceManager;
-use LmcRbacMvc\Factory\AuthenticationIdentityProviderFactory;
+use Psr\Container\ContainerInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 /**
- * @covers \LmcRbacMvc\Factory\AuthenticationIdentityProviderFactory
+ * Factory to create a role provider plugin manager
+ *
+ * @author  Michaël Gallego <mic.gallego@gmail.com>
+ * @license MIT
  */
-class AuthenticationIdentityProviderFactoryTest extends \PHPUnit\Framework\TestCase
+class RoleProviderPluginManagerFactory implements FactoryInterface
 {
-    public function testFactory()
+    /**
+     * {@inheritDoc}
+     */
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): RoleProviderPluginManager
     {
-        $serviceManager = new ServiceManager();
-        $serviceManager->setService(
-            'Laminas\Authentication\AuthenticationService',
-            $this->createMock('Laminas\Authentication\AuthenticationService')
-        );
+        $config = $container->get('Config')['lmc_rbac']['role_provider_manager'];
 
-        $factory                = new AuthenticationIdentityProviderFactory();
-        $authenticationProvider = $factory($serviceManager, 'LmcRbacMvc\Identity\AuthenticationIdentityProvider');
-
-        $this->assertInstanceOf('LmcRbacMvc\Identity\AuthenticationIdentityProvider', $authenticationProvider);
+        return new RoleProviderPluginManager($container, $config);
     }
 }

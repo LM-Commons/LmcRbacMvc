@@ -16,7 +16,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\Factory;
+namespace LmcRbacMvcTest\Role;
 
 use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
 use Laminas\ServiceManager\ServiceManager;
@@ -24,7 +24,7 @@ use LmcRbac\Exception\RuntimeException;
 use LmcRbacMvc\Role\RoleProviderPluginManager;
 
 /**
- * @covers \LmcRbacMvc\Factory\ObjectRepositoryRoleProviderFactory
+ * @covers \LmcRbacMvc\Role\ObjectRepositoryRoleProviderFactory
  */
 class ObjectRepositoryRoleProviderFactoryTest extends \PHPUnit\Framework\TestCase
 {
@@ -87,7 +87,7 @@ class ObjectRepositoryRoleProviderFactoryTest extends \PHPUnit\Framework\TestCas
         }
 
         $this->fail(
-            'LmcRbacMvc\Factory\ObjectRepositoryRoleProviderFactory::createService() :: '
+            'LmcRbacMvc\Role\ObjectRepositoryRoleProviderFactory::createService() :: '
             .'LmcRbac\Exception\RuntimeException was not found in the previous Exceptions'
         );
     }
@@ -114,7 +114,7 @@ class ObjectRepositoryRoleProviderFactoryTest extends \PHPUnit\Framework\TestCas
         }
 
         $this->fail(
-             'LmcRbacMvc\Factory\ObjectRepositoryRoleProviderFactory::createService() :: '
+             'LmcRbacMvc\Role\ObjectRepositoryRoleProviderFactory::createService() :: '
             .'LmcRbac\Exception\RuntimeException was not found in the previous Exceptions'
         );
     }

@@ -18,55 +18,13 @@
 
 namespace LmcRbacMvc\Factory;
 
-use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
-use Psr\Container\ContainerInterface;
-use Laminas\ServiceManager\Factory\FactoryInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
-use LmcRbacMvc\Identity\IdentityProviderInterface;
-use LmcRbacMvc\Options\ModuleOptions;
-use LmcRbacMvc\Role\RoleProviderInterface;
-use LmcRbacMvc\Role\RoleProviderPluginManager;
-use LmcRbacMvc\Service\RoleService;
-use LmcRbacMvc\Role\RecursiveRoleIteratorStrategy;
-use LmcRbacMvc\Role\TraversalStrategyInterface;
-
 /**
  * Factory to create the role service
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @license MIT
+ * @deprecated Replaced by \LmcRbacMvc\Service\RoleServiceFactory
  */
-class RoleServiceFactory implements FactoryInterface
+class RoleServiceFactory extends \LmcRbacMvc\Service\RoleServiceFactory
 {
-    /**
-     * {@inheritDoc}
-     */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): RoleService
-    {
-        /* @var ModuleOptions $moduleOptions */
-        $moduleOptions = $container->get(ModuleOptions::class);
-
-        /* @var IdentityProviderInterface $identityProvider */
-        $identityProvider = $container->get($moduleOptions->getIdentityProvider());
-
-        $roleProviderConfig = $moduleOptions->getRoleProvider();
-
-        if (empty($roleProviderConfig)) {
-            throw new ServiceNotCreatedException('No role provider has been set for LmcRbacMvc');
-        }
-
-        /* @var RoleProviderPluginManager $pluginManager */
-        $pluginManager = $container->get(RoleProviderPluginManager::class);
-
-        reset($roleProviderConfig);
-        $roleProvider = $pluginManager->get(key($roleProviderConfig), current($roleProviderConfig));
-
-        /* @var TraversalStrategyInterface $traversalStrategy */
-        $traversalStrategy = new RecursiveRoleIteratorStrategy();//$container->get(Rbac::class)->getTraversalStrategy();
-
-        $roleService = new RoleService($identityProvider, $roleProvider, $traversalStrategy);
-        $roleService->setGuestRole($moduleOptions->getGuestRole());
-
-        return $roleService;
-    }
 }

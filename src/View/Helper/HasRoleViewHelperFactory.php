@@ -16,32 +16,28 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\Factory;
+namespace LmcRbacMvc\View\Helper;
 
-use Laminas\ServiceManager\ServiceManager;
-use Laminas\View\HelperPluginManager;
-use LmcRbacMvc\Factory\IsGrantedViewHelperFactory;
+use Psr\Container\ContainerInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
+use LmcRbacMvc\Service\RoleService;
 
 /**
- * @covers \LmcRbacMvc\Factory\IsGrantedViewHelperFactory
+ * Create the HasRole view helper
+ *
+ * @author  JM Leroux <jmleroux.pro@gmail.com>
+ * @license MIT
  */
-class IsGrantedViewHelperFactoryTest extends \PHPUnit\Framework\TestCase
+class HasRoleViewHelperFactory implements FactoryInterface
 {
-    public function testFactory()
+    /**
+     * {@inheritDoc}
+     */
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): HasRole
     {
-        $serviceManager = new ServiceManager();
+        /* @var RoleService $roleService */
+        $roleService = $container->get(RoleService::class);
 
-        if (! method_exists($serviceManager, 'build')) {
-            $this->markTestSkipped('this test is only vor zend-servicemanager v3');
-        }
-        $serviceManager->setService(
-            'LmcRbacMvc\Service\AuthorizationService',
-            $this->createMock('LmcRbacMvc\Service\AuthorizationServiceInterface')
-        );
-
-        $factory   = new IsGrantedViewHelperFactory();
-        $isGranted = $factory($serviceManager, 'LmcRbacMvc\View\Helper\IsGranted');
-
-        $this->assertInstanceOf('LmcRbacMvc\View\Helper\IsGranted', $isGranted);
+        return new HasRole($roleService);
     }
 }

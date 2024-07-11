@@ -18,28 +18,13 @@
 
 namespace LmcRbacMvc\Factory;
 
-use Psr\Container\ContainerInterface;
-use Laminas\ServiceManager\Factory\FactoryInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
-use LmcRbacMvc\Mvc\Controller\Plugin\IsGranted;
-use LmcRbacMvc\Service\AuthorizationService;
-
 /**
  * Create the IsGranted controller plugin
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @license MIT
+ * @deprecated Replaced by \LmcRbacMvc\Mvc\Controller\Plugin\IsGrantedPluginFactory
  */
-class IsGrantedPluginFactory implements FactoryInterface
+class IsGrantedPluginFactory extends \LmcRbacMvc\Mvc\Controller\Plugin\IsGrantedPluginFactory
 {
-    /**
-     * {@inheritDoc}
-     */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): IsGranted
-    {
-        /* @var AuthorizationService $authorizationService */
-        $authorizationService = $container->get(AuthorizationService::class);
-
-        return new IsGranted($authorizationService);
-    }
 }

@@ -16,29 +16,30 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\Factory;
+namespace LmcRbacMvc\Identity;
 
-use Laminas\ServiceManager\ServiceManager;
-use LmcRbacMvc\Factory\GuardPluginManagerFactory;
-use LmcRbacMvc\Guard\GuardPluginManager;
+use Psr\Container\ContainerInterface;
+use Laminas\Authentication\AuthenticationService;
+use Laminas\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
+use LmcRbacMvc\Identity\AuthenticationIdentityProvider;
 
 /**
- * @covers \LmcRbacMvc\Factory\GuardPluginManagerFactory
+ * Factory to create the authentication identity provider
+ *
+ * @author  Michaël Gallego <mic.gallego@gmail.com>
+ * @license MIT
  */
-class GuardPluginManagerFactoryTest extends \PHPUnit\Framework\TestCase
+class AuthenticationIdentityProviderFactory implements FactoryInterface
 {
-    public function testFactory()
+    /**
+     * {@inheritDoc}
+     */
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): AuthenticationIdentityProvider
     {
-        $serviceManager = new ServiceManager();
-        $serviceManager->setService('Config', [
-            'lmc_rbac' => [
-                'guard_manager' => []
-            ]
-        ]);
+        /* @var AuthenticationService $authenticationProvider */
+        $authenticationProvider = $container->get(AuthenticationService::class);
 
-        $factory       = new GuardPluginManagerFactory();
-        $pluginManager = $factory($serviceManager, GuardPluginManager::class);
-
-        $this->assertInstanceOf(GuardPluginManager::class, $pluginManager);
+        return new AuthenticationIdentityProvider($authenticationProvider);
     }
 }

@@ -16,13 +16,10 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvc\Factory;
+namespace LmcRbacMvc\Guard;
 
 use Psr\Container\ContainerInterface;
-use Laminas\ServiceManager\AbstractPluginManager;
 use Laminas\ServiceManager\Factory\FactoryInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
-use LmcRbacMvc\Guard\ControllerPermissionsGuard;
 use LmcRbacMvc\Options\ModuleOptions;
 use LmcRbacMvc\Service\AuthorizationService;
 
@@ -31,8 +28,45 @@ use LmcRbacMvc\Service\AuthorizationService;
  *
  * @author  JM Lerouxw <jmleroux.pro@gmail.com>
  * @license MIT
- * @deprecated Replaced by \LmcRbacMvc\Guard\ControllerPermissionsGuardFactory
  */
-class ControllerPermissionsGuardFactory extends \LmcRbacMvc\Guard\ControllerPermissionsGuardFactory
+class ControllerPermissionsGuardFactory implements FactoryInterface
 {
+    protected array $options = [];
+
+    /**
+     * @param array $options
+     */
+    public function __construct(array $options = [])
+    {
+        $this->setCreationOptions($options);
+    }
+
+    /**
+     * @param array $options
+     */
+    public function setCreationOptions(array $options): void
+    {
+        $this->options = $options;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): ControllerPermissionsGuard
+    {
+        if (null === $options) {
+            $options = [];
+        }
+
+        /* @var ModuleOptions $moduleOptions */
+        $moduleOptions = $container->get(ModuleOptions::class);
+
+        /* @var AuthorizationService $authorizationService */
+        $authorizationService = $container->get(AuthorizationService::class);
+
+        $guard = new ControllerPermissionsGuard($authorizationService, $options);
+        $guard->setProtectionPolicy($moduleOptions->getProtectionPolicy());
+
+        return $guard;
+    }
 }

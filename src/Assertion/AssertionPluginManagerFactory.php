@@ -16,15 +16,29 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvc\Factory;
+namespace LmcRbacMvc\Assertion;
+
+use Psr\Container\ContainerInterface;
+use Laminas\ServiceManager\Config;
+use Laminas\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
+use LmcRbacMvc\Assertion\AssertionPluginManager;
 
 /**
- * Delegator factory for classes implementing AuthorizationServiceAwareInterface
+ * Factory to create a assertion plugin manager
  *
- * @author  Jean-Marie Leroux <jmleroux.pro@gmail.com>
- * @license MIT License
- * @deprecated Replaced by \LmcRbacMvc\Service\AuthorizationServiceDelegatorFactory
+ * @author  Aeneas Rekkas
+ * @license MIT
  */
-class AuthorizationServiceDelegatorFactory extends \LmcRbacMvc\Service\AuthorizationServiceDelegatorFactory
+class AssertionPluginManagerFactory implements FactoryInterface
 {
+    /**
+     * {@inheritDoc}
+     */
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): AssertionPluginManager
+    {
+        $config = $container->get('Config')['lmc_rbac']['assertion_manager'];
+
+        return new AssertionPluginManager($container, $config);
+    }
 }

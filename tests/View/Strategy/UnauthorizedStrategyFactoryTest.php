@@ -16,14 +16,14 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\Factory;
+namespace LmcRbacMvcTest\View\Strategy;
 
-use Psr\Container\ContainerInterface;
-use LmcRbacMvc\Factory\UnauthorizedStrategyFactory;
+use LmcRbacMvc\View\Strategy\UnauthorizedStrategyFactory;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Psr\Container\ContainerInterface;
 
 /**
- * @covers \LmcRbacMvc\Factory\UnauthorizedStrategyFactory
+ * @covers \LmcRbacMvc\View\Strategy\UnauthorizedStrategyFactory
  */
 class UnauthorizedStrategyFactoryTest extends \PHPUnit\Framework\TestCase
 {

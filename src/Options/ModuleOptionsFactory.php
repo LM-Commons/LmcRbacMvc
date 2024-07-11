@@ -16,33 +16,29 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\Factory;
+namespace LmcRbacMvc\Options;
 
-use Laminas\ServiceManager\ServiceManager;
-use Laminas\View\HelperPluginManager;
-use LmcRbacMvc\Factory\HasRoleViewHelperFactory;
+use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
+use Psr\Container\ContainerInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 /**
- * @covers \LmcRbacMvc\Factory\HasRoleViewHelperFactory
+ * Factory for the module options
+ *
+ * @author  Michaël Gallego <mic.gallego@gmail.com>
+ * @license MIT
  */
-class HasRoleViewHelperFactoryTest extends \PHPUnit\Framework\TestCase
+class ModuleOptionsFactory implements FactoryInterface
 {
-    public function testFactory()
+    /**
+     * {@inheritDoc}
+     */
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): ModuleOptions
     {
-        $serviceManager = new ServiceManager();
-
-        if (!method_exists($serviceManager, 'build')) {
-            $this->markTestSkipped('this test is only vor zend-servicemanager v3');
+        $config = $container->get('Config');
+        if (!isset($config['lmc_rbac'])) {
+            throw new ServiceNotCreatedException("Could not find the `lmc_rbac' configuration array ");
         }
-
-        $serviceManager->setService(
-            'LmcRbacMvc\Service\RoleService',
-            $this->getMockBuilder('LmcRbacMvc\Service\RoleService')->disableOriginalConstructor()->getMock()
-        );
-
-        $factory   = new HasRoleViewHelperFactory();
-        $viewHelper = $factory($serviceManager, 'LmcRbacMvc\View\Helper\HasRole');
-
-        $this->assertInstanceOf('LmcRbacMvc\View\Helper\HasRole', $viewHelper);
+        return new ModuleOptions($container->get('Config')['lmc_rbac']);
     }
 }

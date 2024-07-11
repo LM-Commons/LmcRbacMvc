@@ -16,43 +16,29 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\Factory;
+namespace LmcRbacMvcTest\Role;
 
 use Laminas\ServiceManager\ServiceManager;
-use LmcRbacMvc\Factory\AssertionPluginManagerFactory;
+use LmcRbacMvc\Role\RoleProviderPluginManagerFactory;
+use LmcRbacMvc\Role\RoleProviderPluginManager;
 
 /**
- * @covers \LmcRbacMvc\Factory\AssertionPluginManagerFactory
+ * @covers \LmcRbacMvc\Role\RoleProviderPluginManagerFactory
  */
-class AssertionPluginManagerFactoryTest extends \PHPUnit\Framework\TestCase
+class RoleProviderPluginManagerFactoryTest extends \PHPUnit\Framework\TestCase
 {
     public function testFactory()
     {
         $serviceManager = new ServiceManager();
         $serviceManager->setService('Config', [
             'lmc_rbac' => [
-                'assertion_manager' => []
+                'role_provider_manager' => []
             ]
         ]);
 
-        $factory       = new AssertionPluginManagerFactory();
-        $pluginManager = $factory($serviceManager, 'LmcRbacMvc\Assertion\AssertionPluginManager');
+        $factory       = new RoleProviderPluginManagerFactory();
+        $pluginManager = $factory($serviceManager,RoleProviderPluginManager::class);
 
-        $this->assertInstanceOf('LmcRbacMvc\Assertion\AssertionPluginManager', $pluginManager);
-    }
-
-    public function testFactoryInvokable()
-    {
-        $serviceManager = new ServiceManager();
-        $serviceManager->setService('Config', [
-            'lmc_rbac' => [
-                'assertion_manager' => []
-            ]
-        ]);
-
-        $factory       = new AssertionPluginManagerFactory();
-        $pluginManager = $factory($serviceManager, 'notused');
-
-        $this->assertInstanceOf('LmcRbacMvc\Assertion\AssertionPluginManager', $pluginManager);
+        $this->assertInstanceOf(RoleProviderPluginManager::class, $pluginManager);
     }
 }

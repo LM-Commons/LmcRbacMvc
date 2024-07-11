@@ -18,28 +18,13 @@
 
 namespace LmcRbacMvc\Factory;
 
-use Psr\Container\ContainerInterface;
-use Laminas\ServiceManager\Factory\FactoryInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
-use LmcRbacMvc\Service\RoleService;
-use LmcRbacMvc\View\Helper\HasRole;
-
 /**
  * Create the HasRole view helper
  *
  * @author  JM Leroux <jmleroux.pro@gmail.com>
  * @license MIT
+ * @deprecated Replaced by \LmcRbacMvc\View\Helper\HasRoleViewHelperFactory
  */
-class HasRoleViewHelperFactory implements FactoryInterface
+class HasRoleViewHelperFactory extends \LmcRbacMvc\View\Helper\HasRoleViewHelperFactory
 {
-    /**
-     * {@inheritDoc}
-     */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): HasRole
-    {
-        /* @var RoleService $roleService */
-        $roleService = $container->get(RoleService::class);
-
-        return new HasRole($roleService);
-    }
 }

@@ -16,39 +16,28 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\Factory;
+namespace LmcRbacMvcTest\View\Helper;
 
-use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
 use Laminas\ServiceManager\ServiceManager;
-use LmcRbacMvc\Factory\ModuleOptionsFactory;
+use LmcRbacMvc\View\Helper\IsGrantedViewHelperFactory;
 
 /**
- * @covers \LmcRbacMvc\Factory\ModuleOptionsFactory
+ * @covers \LmcRbacMvc\View\Helper\IsGrantedViewHelperFactory
  */
-class ModuleOptionsFactoryTest extends \PHPUnit\Framework\TestCase
+class IsGrantedViewHelperFactoryTest extends \PHPUnit\Framework\TestCase
 {
     public function testFactory()
     {
-        $config = ['lmc_rbac' => []];
-
         $serviceManager = new ServiceManager();
-        $serviceManager->setService('Config', $config);
 
-        $factory = new ModuleOptionsFactory();
-        $options = $factory($serviceManager, 'LmcRbacMvc\Options\ModuleOptions' );
+        $serviceManager->setService(
+            'LmcRbacMvc\Service\AuthorizationService',
+            $this->createMock('LmcRbacMvc\Service\AuthorizationServiceInterface')
+        );
 
-        $this->assertInstanceOf('LmcRbacMvc\Options\ModuleOptions', $options);
-    }
+        $factory   = new IsGrantedViewHelperFactory();
+        $isGranted = $factory($serviceManager, 'LmcRbacMvc\View\Helper\IsGranted');
 
-    public function testFactoryNotCreatedException()
-    {
-        $config = [];
-
-        $serviceManager = new ServiceManager();
-        $serviceManager->setService('Config', $config);
-
-        $this->expectException(ServiceNotCreatedException::class);
-        $factory = new ModuleOptionsFactory();
-        $options = $factory($serviceManager, 'LmcRbacMvc\Options\ModuleOptions' );
+        $this->assertInstanceOf('LmcRbacMvc\View\Helper\IsGranted', $isGranted);
     }
 }

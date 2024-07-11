@@ -18,31 +18,13 @@
 
 namespace LmcRbacMvc\Factory;
 
-use Psr\Container\ContainerInterface;
-use Laminas\Authentication\AuthenticationService;
-use Laminas\ServiceManager\Factory\FactoryInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
-use LmcRbacMvc\Options\ModuleOptions;
-use LmcRbacMvc\View\Strategy\RedirectStrategy;
-
 /**
  * Factory to create a redirect strategy
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @license MIT
+ * @deprecated Replaced by \LmcRbacMvc\View\Strategy\RedirectStrategyFactory
  */
-class RedirectStrategyFactory implements FactoryInterface
+class RedirectStrategyFactory extends \LmcRbacMvc\View\Strategy\RedirectStrategyFactory
 {
-    /**
-     * {@inheritDoc}
-     */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): RedirectStrategy
-    {
-        /* @var ModuleOptions $moduleOptions */
-        $moduleOptions = $container->get(ModuleOptions::class);
-        /** @var AuthenticationService $authenticationService */
-        $authenticationService = $container->get(AuthenticationService::class);
-
-        return new RedirectStrategy($moduleOptions->getRedirectStrategy(), $authenticationService);
-    }
 }

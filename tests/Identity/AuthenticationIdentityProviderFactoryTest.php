@@ -16,15 +16,27 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvc\Factory;
+namespace LmcRbacMvcTest\Identity;
+
+use Laminas\ServiceManager\ServiceManager;
+use LmcRbacMvc\Identity\AuthenticationIdentityProviderFactory;
 
 /**
- * Delegator factory for classes implementing AuthorizationServiceAwareInterface
- *
- * @author  Jean-Marie Leroux <jmleroux.pro@gmail.com>
- * @license MIT License
- * @deprecated Replaced by \LmcRbacMvc\Service\AuthorizationServiceDelegatorFactory
+ * @covers \LmcRbacMvc\Identity\AuthenticationIdentityProviderFactory
  */
-class AuthorizationServiceDelegatorFactory extends \LmcRbacMvc\Service\AuthorizationServiceDelegatorFactory
+class AuthenticationIdentityProviderFactoryTest extends \PHPUnit\Framework\TestCase
 {
+    public function testFactory()
+    {
+        $serviceManager = new ServiceManager();
+        $serviceManager->setService(
+            'Laminas\Authentication\AuthenticationService',
+            $this->createMock('Laminas\Authentication\AuthenticationService')
+        );
+
+        $factory                = new AuthenticationIdentityProviderFactory();
+        $authenticationProvider = $factory($serviceManager, 'LmcRbacMvc\Identity\AuthenticationIdentityProvider');
+
+        $this->assertInstanceOf('LmcRbacMvc\Identity\AuthenticationIdentityProvider', $authenticationProvider);
+    }
 }

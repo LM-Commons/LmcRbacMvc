@@ -18,27 +18,13 @@
 
 namespace LmcRbacMvc\Factory;
 
-use Psr\Container\ContainerInterface;
-use Laminas\ServiceManager\Config;
-use Laminas\ServiceManager\Factory\FactoryInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
-use LmcRbacMvc\Assertion\AssertionPluginManager;
-
 /**
  * Factory to create a assertion plugin manager
  *
  * @author  Aeneas Rekkas
  * @license MIT
+ * @deprecated Replaced by \LmcRbacMvc\Assertion\AssertionPluginManagerFactory
  */
-class AssertionPluginManagerFactory implements FactoryInterface
+class AssertionPluginManagerFactory extends \LmcRbacMvc\Assertion\AssertionPluginManagerFactory
 {
-    /**
-     * {@inheritDoc}
-     */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): AssertionPluginManager
-    {
-        $config = $container->get('Config')['lmc_rbac']['assertion_manager'];
-
-        return new AssertionPluginManager($container, $config);
-    }
 }

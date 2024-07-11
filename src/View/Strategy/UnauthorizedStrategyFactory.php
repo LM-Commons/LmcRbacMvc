@@ -16,29 +16,28 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\Factory;
+namespace LmcRbacMvc\View\Strategy;
 
-use Laminas\ServiceManager\ServiceManager;
-use LmcRbacMvc\Factory\RoleProviderPluginManagerFactory;
-use LmcRbacMvc\Role\RoleProviderPluginManager;
+use Psr\Container\ContainerInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
+use LmcRbacMvc\Options\ModuleOptions;
 
 /**
- * @covers \LmcRbacMvc\Factory\RoleProviderPluginManagerFactory
+ * Factory to create an unauthorized strategy
+ *
+ * @author  Michaël Gallego <mic.gallego@gmail.com>
+ * @license MIT
  */
-class RoleProviderPluginManagerFactoryTest extends \PHPUnit\Framework\TestCase
+class UnauthorizedStrategyFactory implements FactoryInterface
 {
-    public function testFactory()
+    /**
+     * {@inheritDoc}
+     */
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): UnauthorizedStrategy
     {
-        $serviceManager = new ServiceManager();
-        $serviceManager->setService('Config', [
-            'lmc_rbac' => [
-                'role_provider_manager' => []
-            ]
-        ]);
+        /* @var ModuleOptions $moduleOptions */
+        $moduleOptions = $container->get(ModuleOptions::class);
 
-        $factory       = new RoleProviderPluginManagerFactory();
-        $pluginManager = $factory($serviceManager,RoleProviderPluginManager::class);
-
-        $this->assertInstanceOf(RoleProviderPluginManager::class, $pluginManager);
+        return new UnauthorizedStrategy($moduleOptions->getUnauthorizedStrategy());
     }
 }
