@@ -23,8 +23,8 @@ namespace LmcRbacMvc\Exception;
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @license MIT
- * @deprecated Use LmcRbac\Exception\RuntimeException instead
+ * @deprecated Use Lmc\Rbac\Exception\RuntimeException instead
  */
-class RuntimeException extends \LmcRbac\Exception\RuntimeException
+class RuntimeException extends \Lmc\Rbac\Exception\RuntimeException
 {
 }

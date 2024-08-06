@@ -24,8 +24,8 @@ namespace LmcRbacMvc\Exception;
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @license MIT
- * @deprecated Use LmcRbac\Exception\UnauthorizedException instead
+ * @deprecated Use Lmc\Rbac\Exception\UnauthorizedException instead
  */
-class UnauthorizedException extends \LmcRbac\Exception\UnauthorizedException
+class UnauthorizedException extends \Lmc\Rbac\Exception\UnauthorizedException
 {
 }
