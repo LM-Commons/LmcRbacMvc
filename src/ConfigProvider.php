@@ -81,7 +81,6 @@ class ConfigProvider
         return [
             'template_map' => [
                 'error/403'                             => __DIR__ . '/../view/error/403.phtml',
-                'laminas-developer-tools/toolbar/lmc-rbac' => __DIR__ . '/../view/laminas-developer-tools/toolbar/lmc-rbac.phtml'
             ],
         ];
     }
