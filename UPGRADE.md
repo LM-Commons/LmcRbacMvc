@@ -1,5 +1,31 @@
 # Upgrade guide
 
+## From LmcRbacMvc v3 to LmcRbacMvc v4
+
+LmcRbacMvc v4 is a major upgrade with many breaking changes that prevent
+straightforward upgrading.
+
+LmcRbacMvc v3 and LmcRbac v1 shared a lot of code. LmcRbacMvc v2 is now based
+on LmcRbac v2 which was augmented such that common code is now part of LmcRbac.
+This has rendered many components of LmcRbacMvc unnecessary and they are deprecated
+
+### Namespace change
+
+In an effort to In an effort to normalize LM-Commons components into a common Lmc namespace, the namespace will 
+be refactored to Lmc\Rbac\Mvc.
+
+Please update your code to replace `LmcRbacMvc` by `Lmc\Rbac\Mvc`.
+
+### Deprecations
+
+The following components that were shared with LmcRbac are deprecated in LmcRbacMvc and should be replaced by their 
+LmcRbac equivalent:
+
+- detail the Exception classes
+
+The factory classes were refactored from the `src/Factory` folder to be colocated with
+with the service that the factory is creating. All the factories in `src/Factory` are deprecated.
+
 ## From zfc-rbac v2.x to LmcRbacMvc v3.0
 
 - [BC] The namespace has been changed to `LmcRbacMvc`

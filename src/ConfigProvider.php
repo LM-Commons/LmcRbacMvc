@@ -23,11 +23,9 @@ class ConfigProvider
                 'LmcRbacMvc\Guards' => \LmcRbacMvc\Guard\GuardsFactory::class,
 
                 /* Factories that map to a class */
-                \LmcRbacMvc\Assertion\AssertionPluginManager::class        => \LmcRbacMvc\Assertion\AssertionPluginManagerFactory::class,
                 \LmcRbacMvc\Guard\GuardPluginManager::class                => \LmcRbacMvc\Guard\GuardPluginManagerFactory::class,
                 \LmcRbacMvc\Identity\AuthenticationIdentityProvider::class => \LmcRbacMvc\Identity\AuthenticationIdentityProviderFactory::class,
                 \LmcRbacMvc\Options\ModuleOptions::class                   => \LmcRbacMvc\Options\ModuleOptionsFactory::class,
-                \LmcRbacMvc\Role\RoleProviderPluginManager::class          => \LmcRbacMvc\Role\RoleProviderPluginManagerFactory::class,
                 \LmcRbacMvc\Service\AuthorizationService::class            => \LmcRbacMvc\Service\AuthorizationServiceFactory::class,
                 \LmcRbacMvc\Service\RoleService::class                     => \LmcRbacMvc\Service\RoleServiceFactory::class,
                 \LmcRbacMvc\View\Strategy\RedirectStrategy::class          => \LmcRbacMvc\View\Strategy\RedirectStrategyFactory::class,

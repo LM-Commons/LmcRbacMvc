@@ -19,10 +19,9 @@
 namespace LmcRbacMvcTest\Mvc\Controller\Plugin;
 
 use LmcRbacMvc\Mvc\Controller\Plugin\IsGranted;
+use PHPUnit\Framework\Attributes\CoversClass;
 
-/**
- * @covers \LmcRbacMvc\Mvc\Controller\Plugin\IsGranted
- */
+#[CoversClass('\LmcRbacMvc\Mvc\Controller\Plugin\IsGranted')]
 class IsGrantedTest extends \PHPUnit\Framework\TestCase
 {
     public function testCallAuthorizationService()
@@ -32,7 +31,7 @@ class IsGrantedTest extends \PHPUnit\Framework\TestCase
         $authorizationService->expects($this->once())
                              ->method('isGranted')
                              ->with('edit')
-                             ->will($this->returnValue(true));
+                             ->willReturn(true);
 
         $helper = new IsGranted($authorizationService);
 

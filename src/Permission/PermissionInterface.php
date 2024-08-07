@@ -23,18 +23,9 @@ namespace LmcRbacMvc\Permission;
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @license MIT
- *
+ * @deprecated use \Lmc\Rbac\Permission\PermissionInterface
  *
  */
-interface PermissionInterface
+interface PermissionInterface extends \Lmc\Rbac\Permission\PermissionInterface
 {
-    /**
-     * Get the permission name
-     *
-     * You really must return the name of the permission as internally, the casting to string is used
-     * as an optimization to avoid type checking
-     *
-     * @return string
-     */
-    public function __toString();
 }

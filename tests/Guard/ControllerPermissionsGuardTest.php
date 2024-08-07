@@ -19,7 +19,6 @@
 namespace LmcRbacMvcTest\Guard;
 
 use Laminas\Mvc\MvcEvent;
-//use Laminas\Mvc\Router\RouteMatch as V2RouteMatch;
 use Laminas\Router\RouteMatch;
 use LmcRbacMvc\Guard\ControllerGuard;
 use LmcRbacMvc\Guard\ControllerPermissionsGuard;
@@ -27,6 +26,7 @@ use LmcRbacMvc\Guard\GuardInterface;
 use LmcRbacMvc\Role\InMemoryRoleProvider;
 use LmcRbacMvc\Service\RoleService;
 use LmcRbacMvc\Role\RecursiveRoleIteratorStrategy;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 /**
  * @covers \LmcRbacMvc\Guard\AbstractGuard
@@ -46,9 +46,7 @@ class ControllerPermissionsGuardTest extends \PHPUnit\Framework\TestCase
         $guard = new ControllerPermissionsGuard($this->getMockAuthorizationService());
 
         $eventManager = $this->createMock('Laminas\EventManager\EventManagerInterface');
-        $eventManager->expects($this->once())
-            ->method('attach')
-            ->with(ControllerGuard::EVENT_NAME);
+        $eventManager->expects($this->once())->method('attach')->with(ControllerGuard::EVENT_NAME);
 
         $guard->attach($eventManager);
     }
@@ -158,15 +156,12 @@ class ControllerPermissionsGuardTest extends \PHPUnit\Framework\TestCase
         ];
     }
 
-    /**
-     * @dataProvider rulesConversionProvider
-     */
+    #[DataProvider('rulesConversionProvider')]
     public function testRulesConversions(array $rules, array $expected)
     {
         $controllerGuard = new ControllerPermissionsGuard($this->getMockAuthorizationService(), $rules);
 
         $reflProperty = new \ReflectionProperty($controllerGuard, 'rules');
-        $reflProperty->setAccessible(true);
 
         $this->assertEquals($expected, $reflProperty->getValue($controllerGuard));
     }
@@ -390,9 +385,7 @@ class ControllerPermissionsGuardTest extends \PHPUnit\Framework\TestCase
         ];
     }
 
-    /**
-     * @dataProvider controllerDataProvider
-     */
+    #[DataProvider('controllerDataProvider')]
     public function testControllerGranted(
         array $rules,
         $controller,
@@ -407,9 +400,7 @@ class ControllerPermissionsGuardTest extends \PHPUnit\Framework\TestCase
         ]);
 
         $authorizationService = $this->getMockAuthorizationService();
-        $authorizationService->expects($this->any())
-            ->method('isGranted')
-            ->will($this->returnValueMap($identityPermissions));
+        $authorizationService->expects($this->any())->method('isGranted')->willReturnMap($identityPermissions);
 
         $controllerGuard = new ControllerPermissionsGuard($authorizationService, $rules);
         $controllerGuard->setProtectionPolicy($protectionPolicy);
@@ -431,26 +422,25 @@ class ControllerPermissionsGuardTest extends \PHPUnit\Framework\TestCase
         $application = $this->createMock('Laminas\Mvc\Application');
         $eventManager = $this->createMock('Laminas\EventManager\EventManagerInterface');
 
-        $application->expects($this->never())
-            ->method('getEventManager')
-            ->will($this->returnValue($eventManager));
+        $application->expects($this->never())->method('getEventManager')->willReturn($eventManager);
 
         $event->setRouteMatch($routeMatch);
         $event->setApplication($application);
 
-        $identity = $this->createMock('LmcRbacMvc\Identity\IdentityInterface');
-        $identity->expects($this->any())->method('getRoles')->will($this->returnValue(['member']));
+        $identity = $this->createMock('Lmc\Rbac\Identity\IdentityInterface');
+        $identity->expects($this->any())->method('getRoles')->willReturn(['member']);
 
         $identityProvider = $this->createMock('LmcRbacMvc\Identity\IdentityProviderInterface');
-        $identityProvider->expects($this->any())
-            ->method('getIdentity')
-            ->will($this->returnValue($identity));
+        $identityProvider->expects($this->any())->method('getIdentity')->willReturn($identity);
 
-        $roleProvider = new InMemoryRoleProvider([
+        $roleProvider = new \Lmc\Rbac\Role\InMemoryRoleProvider([
             'member'
         ]);
 
-        $roleService = new RoleService($identityProvider, $roleProvider, new RecursiveRoleIteratorStrategy());
+        $roleService = new RoleService(
+            $identityProvider,
+            new \Lmc\Rbac\Service\RoleService($roleProvider, ''),
+            new RecursiveRoleIteratorStrategy());
 
         $routeGuard = new ControllerGuard($roleService, [
             [
@@ -466,7 +456,7 @@ class ControllerPermissionsGuardTest extends \PHPUnit\Framework\TestCase
         $this->assertNull($event->getParam('exception'));
     }
 
-    public function testProperlySetUnauthorizedAndTriggerEventOnUnauthorization()
+    public function testProperlySetUnauthorizedAndTriggerEventOnUnauthorized()
     {
         $event      = new MvcEvent();
         $routeMatch = $this->createRouteMatch([
@@ -477,28 +467,27 @@ class ControllerPermissionsGuardTest extends \PHPUnit\Framework\TestCase
         $application  = $this->createMock('Laminas\Mvc\Application');
         $eventManager = $this->createMock('Laminas\EventManager\EventManager');
 
-        $application->expects($this->once())
-            ->method('getEventManager')
-            ->will($this->returnValue($eventManager));
+        $application->expects($this->once())->method('getEventManager')->willReturn($eventManager);
 
-        $eventManager->expects($this->once())
-            ->method('triggerEvent')
-            ->with($event);
+        $eventManager->expects($this->once())->method('triggerEvent')->with($event);
 
         $event->setRouteMatch($routeMatch);
         $event->setApplication($application);
 
-        $identityProvider = $this->createMock('LmcRbacMvc\Identity\IdentityProviderInterface');
-        $identityProvider->expects($this->any())
-//            ->method('getIdentityRoles')
-            ->method('getIdentity')
-            ->will($this->returnValue('member'));
+        $identity = $this->createMock('Lmc\Rbac\Identity\IdentityInterface');
+        $identity->expects($this->any())->method('getRoles')->willReturn(['member']);
 
-        $roleProvider = new InMemoryRoleProvider([
+        $identityProvider = $this->createMock('LmcRbacMvc\Identity\IdentityProviderInterface');
+        $identityProvider->expects($this->any())->method('getIdentity')->willReturn($identity);
+
+        $roleProvider = new \Lmc\Rbac\Role\InMemoryRoleProvider([
             'member'
         ]);
 
-        $roleService = new RoleService($identityProvider, $roleProvider, new RecursiveRoleIteratorStrategy());
+        $roleService = new RoleService(
+            $identityProvider,
+            new \Lmc\Rbac\Service\RoleService($roleProvider, ''),
+            new RecursiveRoleIteratorStrategy());
 
         $routeGuard = new ControllerGuard($roleService, [
             [
@@ -512,7 +501,7 @@ class ControllerPermissionsGuardTest extends \PHPUnit\Framework\TestCase
 
         $this->assertTrue($event->propagationIsStopped());
         $this->assertEquals(ControllerGuard::GUARD_UNAUTHORIZED, $event->getError());
-        $this->assertInstanceOf('LmcRbac\Exception\UnauthorizedException', $event->getParam('exception'));
+        $this->assertInstanceOf('Lmc\Rbac\Exception\UnauthorizedException', $event->getParam('exception'));
     }
 
     public function createRouteMatch(array $params = [])

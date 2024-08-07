@@ -33,10 +33,6 @@ class ControllerGuardFactoryTest extends \PHPUnit\Framework\TestCase
     {
         $serviceManager = new ServiceManager();
 
-        if (! method_exists($serviceManager, 'build')) {
-            $this->markTestSkipped('this test is only vor zend-servicemanager v3');
-        }
-
         $options = new ModuleOptions([
             'identity_provider' => 'LmcRbacMvc\Identity\AuthenticationProvider',
             'guards'            => [

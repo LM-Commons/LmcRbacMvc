@@ -18,22 +18,25 @@
 
 namespace LmcRbacMvcTest\Identity;
 
+use Laminas\Authentication\AuthenticationService;
 use LmcRbacMvc\Identity\AuthenticationIdentityProvider;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \LmcRbacMvc\Identity\AuthenticationIdentityProvider
  */
-class AuthenticationIdentityProviderTest extends \PHPUnit\Framework\TestCase
+class AuthenticationIdentityProviderTest extends TestCase
 {
     /**
      * @var AuthenticationIdentityProvider
      */
-    protected $identityProvider;
+    protected AuthenticationIdentityProvider $identityProvider;
 
     /**
-     * @var \Laminas\Authentication\AuthenticationService|\PHPUnit\Framework\MockObject\MockObject
+     * @var AuthenticationService|MockObject
      */
-    protected $authenticationService;
+    protected AuthenticationService|MockObject $authenticationService;
 
     public function setUp() :void
     {
@@ -43,11 +46,11 @@ class AuthenticationIdentityProviderTest extends \PHPUnit\Framework\TestCase
 
     public function testCanReturnIdentity()
     {
-        $identity = $this->createMock('LmcRbacMvc\Identity\IdentityInterface');
+        $identity = $this->createMock('Lmc\Rbac\Identity\IdentityInterface');
 
         $this->authenticationService->expects($this->once())
                                     ->method('getIdentity')
-                                    ->will($this->returnValue($identity));
+                                    ->willReturn($identity);
 
         $this->assertSame($identity, $this->identityProvider->getIdentity());
     }

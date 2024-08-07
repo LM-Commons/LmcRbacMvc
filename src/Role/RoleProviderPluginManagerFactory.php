@@ -26,6 +26,7 @@ use Laminas\ServiceManager\Factory\FactoryInterface;
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @license MIT
+ * @deprecated No longer used.
  */
 class RoleProviderPluginManagerFactory implements FactoryInterface
 {
@@ -34,8 +35,7 @@ class RoleProviderPluginManagerFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null): RoleProviderPluginManager
     {
-        $config = $container->get('Config')['lmc_rbac']['role_provider_manager'];
-
-        return new RoleProviderPluginManager($container, $config);
+        trigger_error('LmcRbacMvc\Role\RoleProviderPluginManager is no longer used.', E_USER_NOTICE);
+        return new RoleProviderPluginManager($container, []);
     }
 }

@@ -18,35 +18,4 @@
 
 return [
     'lmc_rbac' => [],
-    'doctrine' => [
-        'driver' => [
-            'application_driver' => [
-                'class' => 'Doctrine\ORM\Mapping\Driver\AttributeDriver',
-                'cache' => 'array',
-                'paths' => [__DIR__ . '/Asset']
-            ],
-            'orm_default' => [
-                'drivers' => [
-                    'LmcRbacMvcTest\Asset' => 'application_driver'
-                ]
-            ]
-        ],
-
-        'connection' => [
-            'orm_default' => [
-                'driverClass'       => 'Doctrine\DBAL\Driver\PDO\SQLite\Driver',
-                'params' => [
-                    'host'          => null,
-                    'port'          => null,
-                    'user'          => null,
-                    'password'      => null,
-                    'dbname'        => 'test',
-                    'driver'        => 'pdo_sqlite',
-//                    'path'          => __DIR__ . "/../build/db.sqlite",
-                    'path'          => null,
-                    'memory'        => true,
-                ],
-            ],
-        ],
-    ],
 ];

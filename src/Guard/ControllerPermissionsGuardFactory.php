@@ -31,24 +31,6 @@ use LmcRbacMvc\Service\AuthorizationService;
  */
 class ControllerPermissionsGuardFactory implements FactoryInterface
 {
-    protected array $options = [];
-
-    /**
-     * @param array $options
-     */
-    public function __construct(array $options = [])
-    {
-        $this->setCreationOptions($options);
-    }
-
-    /**
-     * @param array $options
-     */
-    public function setCreationOptions(array $options): void
-    {
-        $this->options = $options;
-    }
-
     /**
      * {@inheritDoc}
      */

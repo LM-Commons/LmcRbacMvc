@@ -19,6 +19,7 @@
 namespace LmcRbacMvc\Service;
 
 use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
+use Lmc\Rbac\Service\RoleServiceInterface;
 use Psr\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use LmcRbacMvc\Identity\IdentityProviderInterface;
@@ -46,24 +47,12 @@ class RoleServiceFactory implements FactoryInterface
         /* @var IdentityProviderInterface $identityProvider */
         $identityProvider = $container->get($moduleOptions->getIdentityProvider());
 
-        $roleProviderConfig = $moduleOptions->getRoleProvider();
-
-        if (empty($roleProviderConfig)) {
-            throw new ServiceNotCreatedException('No role provider has been set for LmcRbacMvc');
-        }
-
-        /* @var RoleProviderPluginManager $pluginManager */
-        $pluginManager = $container->get(RoleProviderPluginManager::class);
-
-        reset($roleProviderConfig);
-        $roleProvider = $pluginManager->get(key($roleProviderConfig), current($roleProviderConfig));
-
         /* @var TraversalStrategyInterface $traversalStrategy */
-        $traversalStrategy = new RecursiveRoleIteratorStrategy();//$container->get(Rbac::class)->getTraversalStrategy();
+        $traversalStrategy = new RecursiveRoleIteratorStrategy();
 
-        $roleService = new RoleService($identityProvider, $roleProvider, $traversalStrategy);
-        $roleService->setGuestRole($moduleOptions->getGuestRole());
+        /* @var RoleServiceInterface $baseRoleService */
+        $baseRoleService = $container->get(RoleServiceInterface::class);
 
-        return $roleService;
+        return new RoleService($identityProvider, $baseRoleService, $traversalStrategy);
     }
 }

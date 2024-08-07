@@ -19,9 +19,10 @@
 namespace LmcRbacMvc\Service;
 
 use Laminas\Permissions\Rbac\RoleInterface;
+use Lmc\Rbac\Service\RoleServiceInterface;
 use Traversable;
-use LmcRbacMvc\Exception;
-use LmcRbacMvc\Identity\IdentityInterface;
+use Lmc\Rbac\Exception;
+use Lmc\Rbac\Identity\IdentityInterface;
 use LmcRbacMvc\Identity\IdentityProviderInterface;
 use LmcRbacMvc\Role\RoleProviderInterface;
 use LmcRbacMvc\Role\TraversalStrategyInterface;
@@ -36,26 +37,24 @@ class RoleService
 {
     protected IdentityProviderInterface $identityProvider;
 
-    protected RoleProviderInterface $roleProvider;
-
     protected TraversalStrategyInterface $traversalStrategy;
 
-    protected string $guestRole = '';
+    protected RoleServiceInterface $baseRoleService;
 
     /**
      * Constructor
      *
-     * @param IdentityProviderInterface  $identityProvider
-     * @param RoleProviderInterface      $roleProvider
+     * @param IdentityProviderInterface $identityProvider
+     * @param RoleServiceInterface $baseRoleService
      * @param TraversalStrategyInterface $traversalStrategy
      */
     public function __construct(
         IdentityProviderInterface $identityProvider,
-        RoleProviderInterface $roleProvider,
+        RoleServiceInterface $baseRoleService,
         TraversalStrategyInterface $traversalStrategy
     ) {
         $this->identityProvider  = $identityProvider;
-        $this->roleProvider      = $roleProvider;
+        $this->baseRoleService   = $baseRoleService;
         $this->traversalStrategy = $traversalStrategy;
     }
 
@@ -70,37 +69,6 @@ class RoleService
     }
 
     /**
-     * Set the role provider
-     *
-     * @param RoleProviderInterface $roleProvider
-     */
-    public function setRoleProvider(RoleProviderInterface $roleProvider): void
-    {
-        $this->roleProvider = $roleProvider;
-    }
-
-    /**
-     * Set the guest role
-     *
-     * @param string $guestRole
-     * @return void
-     */
-    public function setGuestRole(string $guestRole): void
-    {
-        $this->guestRole = (string) $guestRole;
-    }
-
-    /**
-     * Get the guest role
-     *
-     * @return string
-     */
-    public function getGuestRole(): string
-    {
-        return $this->guestRole;
-    }
-
-    /**
      * Get the current identity from the identity provider
      *
      * @return IdentityInterface|null
@@ -111,6 +79,16 @@ class RoleService
     }
 
     /**
+     * Set the base role service
+     *
+     * @return RoleServiceInterface
+     */
+    public function getRoleService(): RoleServiceInterface
+    {
+        return $this->baseRoleService;
+    }
+
+    /**
      * Get the identity roles from the current identity, applying some more logic
      *
      * @return RoleInterface[]
@@ -118,18 +96,9 @@ class RoleService
      */
     public function getIdentityRoles(): array
     {
-        if (!$identity = $this->getIdentity()) {
-            return $this->convertRoles([$this->guestRole]);
-        }
+        $identity = $this->getIdentity();
 
-        if (!$identity instanceof IdentityInterface) {
-            throw new Exception\RuntimeException(sprintf(
-                'LmcRbacMvc expects your identity to implement LmcRbacMvc\Identity\IdentityInterface, "%s" given',
-                is_object($identity) ? get_class($identity) : gettype($identity)
-            ));
-        }
-
-        return $this->convertRoles($identity->getRoles());
+        return $this->baseRoleService->getIdentityRoles($identity);
     }
 
     /**
@@ -161,41 +130,7 @@ class RoleService
     }
 
     /**
-     * Convert the roles (potentially strings) to concrete RoleInterface objects using role provider
-     *
-     * @param  array|Traversable $roles
-     * @return RoleInterface[]
-     */
-    protected function convertRoles($roles): array
-    {
-        if ($roles instanceof Traversable) {
-            $roles = iterator_to_array($roles);
-        }
-
-        $collectedRoles = [];
-        $toCollect      = [];
-
-        foreach ((array) $roles as $role) {
-            // If it's already a RoleInterface, nothing to do as a RoleInterface contains everything already
-            if ($role instanceof RoleInterface) {
-                $collectedRoles[] = $role;
-                continue;
-            }
-
-            // Otherwise, it's a string and hence we need to collect it
-            $toCollect[] = (string) $role;
-        }
-
-        // Nothing to collect, we don't even need to hit the (potentially) costly role provider
-        if (empty($toCollect)) {
-            return $collectedRoles;
-        }
-
-        return array_merge($collectedRoles, $this->roleProvider->getRoles($toCollect));
-    }
-
-    /**
-     * Flatten an array of role with role names
+     * Flatten an array of roles with role names
      *
      * This method iterates through the list of roles, and convert any RoleInterface to a string. For any
      * role, it also extracts all the children

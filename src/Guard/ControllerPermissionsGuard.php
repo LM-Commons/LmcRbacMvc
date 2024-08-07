@@ -24,9 +24,6 @@ use LmcRbacMvc\Service\AuthorizationServiceInterface;
 /**
  * A controller guard can protect a controller and a set of actions
  *
- * @author  Michaël Gallego <mic.gallego@gmail.com>
- * @author  JM Leroux <jmleroux.pro@gmail.com>
- * @license MIT
  */
 class ControllerPermissionsGuard extends AbstractGuard
 {
@@ -40,14 +37,14 @@ class ControllerPermissionsGuard extends AbstractGuard
     /**
      * @var AuthorizationServiceInterface
      */
-    protected $authorizationService;
+    protected AuthorizationServiceInterface $authorizationService;
 
     /**
      * Controller guard rules
      *
      * @var array
      */
-    protected $rules = [];
+    protected array $rules = [];
 
     /**
      * Constructor
@@ -75,7 +72,7 @@ class ControllerPermissionsGuard extends AbstractGuard
      * @param  array $rules
      * @return void
      */
-    public function setRules(array $rules)
+    public function setRules(array $rules): void
     {
         $this->rules = [];
 
@@ -98,7 +95,7 @@ class ControllerPermissionsGuard extends AbstractGuard
     /**
      * {@inheritDoc}
      */
-    public function isGranted(MvcEvent $event)
+    public function isGranted(MvcEvent $event): bool
     {
         $routeMatch = $event->getRouteMatch();
         $controller = strtolower($routeMatch->getParam('controller'));

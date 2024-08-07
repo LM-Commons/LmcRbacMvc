@@ -19,15 +19,14 @@
 namespace LmcRbacMvcTest\Guard;
 
 use Laminas\Mvc\MvcEvent;
-//use Laminas\Mvc\Router\RouteMatch as V2RouteMatch;
 use Laminas\Router\RouteMatch;
 use LmcRbacMvc\Guard\ControllerGuard;
 use LmcRbacMvc\Guard\GuardInterface;
 use LmcRbacMvc\Guard\RouteGuard;
 use LmcRbacMvc\Guard\RoutePermissionsGuard;
-use LmcRbacMvc\Role\InMemoryRoleProvider;
 use LmcRbacMvc\Service\RoleService;
 use LmcRbacMvc\Role\RecursiveRoleIteratorStrategy;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 /**
  * @covers \LmcRbacMvc\Guard\AbstractGuard
@@ -141,7 +140,7 @@ class RouteGuardTest extends \PHPUnit\Framework\TestCase
                 'rules'            => ['route' => 'member'],
                 'matchedRouteName' => 'anotherRoute',
                 'rolesConfig'      => ['member'],
-                'identityRole'     => 'member',
+                'identityRole'     => ['member'],
                 'isGranted'        => true,
                 'policy'           => GuardInterface::POLICY_ALLOW
             ],
@@ -149,7 +148,7 @@ class RouteGuardTest extends \PHPUnit\Framework\TestCase
                 'rules'            => ['route' => 'member'],
                 'matchedRouteName' => 'anotherRoute',
                 'rolesConfig'      => ['member'],
-                'identityRole'     => 'member',
+                'identityRole'     => ['member'],
                 'isGranted'        => false,
                 'policy'           => GuardInterface::POLICY_DENY
             ],
@@ -359,6 +358,7 @@ class RouteGuardTest extends \PHPUnit\Framework\TestCase
     /**
      * @dataProvider routeDataProvider
      */
+    #[DataProvider('routeDataProvider')]
     public function testRouteGranted(
         array $rules,
         $matchedRouteName,
@@ -373,16 +373,16 @@ class RouteGuardTest extends \PHPUnit\Framework\TestCase
 
         $event->setRouteMatch($routeMatch);
 
-        $identity = $this->createMock('LmcRbacMvc\Identity\IdentityInterface');
-        $identity->expects($this->any())->method('getRoles')->will($this->returnValue($identityRole));
+        $identity = $this->createMock('Lmc\Rbac\Identity\IdentityInterface');
+        $identity->expects($this->any())->method('getRoles')->willReturn($identityRole);
 
         $identityProvider = $this->createMock('LmcRbacMvc\Identity\IdentityProviderInterface');
-        $identityProvider->expects($this->any())
-                         ->method('getIdentity')
-                         ->will($this->returnValue($identity));
+        $identityProvider->expects($this->any())->method('getIdentity')->willReturn($identity);
 
-        $roleProvider = new InMemoryRoleProvider($rolesConfig);
-        $roleService  = new RoleService($identityProvider, $roleProvider, new RecursiveRoleIteratorStrategy());
+        $roleProvider = new \Lmc\Rbac\Role\InMemoryRoleProvider($rolesConfig);
+        $roleService  = new RoleService(
+            $identityProvider,
+            new \Lmc\Rbac\Service\RoleService($roleProvider, 'guest'), new RecursiveRoleIteratorStrategy());
 
         $routeGuard = new RouteGuard($roleService, $rules);
         $routeGuard->setProtectionPolicy($protectionPolicy);
@@ -398,24 +398,23 @@ class RouteGuardTest extends \PHPUnit\Framework\TestCase
         $application  = $this->createMock('Laminas\Mvc\Application');
         $eventManager = $this->createMock('Laminas\EventManager\EventManagerInterface');
 
-        $application->expects($this->never())
-                    ->method('getEventManager')
-                    ->will($this->returnValue($eventManager));
+        $application->expects($this->never())->method('getEventManager')->willReturn($eventManager);
 
         $routeMatch->setMatchedRouteName('adminRoute');
         $event->setRouteMatch($routeMatch);
         $event->setApplication($application);
 
-        $identity = $this->createMock('LmcRbacMvc\Identity\IdentityInterface');
-        $identity->expects($this->any())->method('getRoles')->will($this->returnValue(['member']));
+        $identity = $this->createMock('Lmc\Rbac\Identity\IdentityInterface');
+        $identity->expects($this->any())->method('getRoles')->willReturn(['member']);
 
         $identityProvider = $this->createMock('LmcRbacMvc\Identity\IdentityProviderInterface');
-        $identityProvider->expects($this->any())
-                         ->method('getIdentity')
-                         ->will($this->returnValue($identity));
+        $identityProvider->expects($this->any())->method('getIdentity')->willReturn($identity);
 
-        $roleProvider = new InMemoryRoleProvider(['member']);
-        $roleService  = new RoleService($identityProvider, $roleProvider, new RecursiveRoleIteratorStrategy());
+        $roleProvider = new \Lmc\Rbac\Role\InMemoryRoleProvider(['member']);
+        $roleService  = new RoleService(
+            $identityProvider,
+            new \Lmc\Rbac\Service\RoleService($roleProvider, 'guest'),
+            new RecursiveRoleIteratorStrategy());
 
         $routeGuard = new RouteGuard($roleService, [
             'adminRoute' => 'member'
@@ -427,7 +426,7 @@ class RouteGuardTest extends \PHPUnit\Framework\TestCase
         $this->assertNull($event->getParam('exception'));
     }
 
-    public function testProperlySetUnauthorizedAndTriggerEventOnUnauthorization()
+    public function testProperlySetUnauthorizedAndTriggerEventOnUnauthorized()
     {
         $event      = new MvcEvent();
         $routeMatch = $this->createRouteMatch();
@@ -435,28 +434,25 @@ class RouteGuardTest extends \PHPUnit\Framework\TestCase
         $application  = $this->createMock('Laminas\Mvc\Application');
         $eventManager = $this->createMock('Laminas\EventManager\EventManager');
 
-        $application->expects($this->once())
-                    ->method('getEventManager')
-                    ->will($this->returnValue($eventManager));
+        $application->expects($this->once())->method('getEventManager')->willReturn($eventManager);
 
-        $eventManager->expects($this->once())
-            ->method('triggerEvent')
-            ->with($event);
+        $eventManager->expects($this->once())->method('triggerEvent')->with($event);
 
         $routeMatch->setMatchedRouteName('adminRoute');
         $event->setRouteMatch($routeMatch);
         $event->setApplication($application);
 
-        $identity = $this->createMock('LmcRbacMvc\Identity\IdentityInterface');
-        $identity->expects($this->any())->method('getRoles')->will($this->returnValue(['member']));
+        $identity = $this->createMock('Lmc\Rbac\Identity\IdentityInterface');
+        $identity->expects($this->any())->method('getRoles')->willReturn(['member']);
 
         $identityProvider = $this->createMock('LmcRbacMvc\Identity\IdentityProviderInterface');
-        $identityProvider->expects($this->any())
-                         ->method('getIdentity')
-                         ->will($this->returnValue($identity));
+        $identityProvider->expects($this->any())->method('getIdentity')->willReturn($identity);
 
-        $roleProvider = new InMemoryRoleProvider(['member', 'guest']);
-        $roleService  = new RoleService($identityProvider, $roleProvider, new RecursiveRoleIteratorStrategy());
+        $roleProvider = new \Lmc\Rbac\Role\InMemoryRoleProvider(['member', 'guest']);
+        $roleService  = new RoleService(
+            $identityProvider,
+            new \Lmc\Rbac\Service\RoleService($roleProvider, 'guest'),
+            new RecursiveRoleIteratorStrategy());
 
         $routeGuard = new RouteGuard($roleService, [
             'adminRoute' => 'guest'
@@ -466,15 +462,11 @@ class RouteGuardTest extends \PHPUnit\Framework\TestCase
 
         $this->assertTrue($event->propagationIsStopped());
         $this->assertEquals(RouteGuard::GUARD_UNAUTHORIZED, $event->getError());
-        $this->assertInstanceOf('LmcRbac\Exception\UnauthorizedException', $event->getParam('exception'));
+        $this->assertInstanceOf('Lmc\Rbac\Exception\UnauthorizedException', $event->getParam('exception'));
     }
 
-    public function createRouteMatch(array $params = [])
+    public function createRouteMatch(array $params = []): RouteMatch
     {
         return new RouteMatch($params);
-        /*
-        $class = class_exists(V2RouteMatch::class) ? V2RouteMatch::class : RouteMatch::class;
-        return new $class($params);
-        */
     }
 }

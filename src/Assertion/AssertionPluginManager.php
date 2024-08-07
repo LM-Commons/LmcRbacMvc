@@ -19,8 +19,6 @@
 namespace LmcRbacMvc\Assertion;
 
 use Laminas\ServiceManager\AbstractPluginManager;
-use LmcRbacMvc\Exception;
-use Psr\Container\ContainerExceptionInterface;
 
 /**
  * Plugin manager to create assertions
@@ -28,41 +26,10 @@ use Psr\Container\ContainerExceptionInterface;
  * @author  Aeneas Rekkas
  * @license MIT
  *
- * @method AssertionInterface get($name, $options=null)
+ * @method AssertionInterface get($name, ?array $options = null)
+ * @deprecated No longer used
  */
 class AssertionPluginManager extends AbstractPluginManager
 {
-    /**
-     * {@inheritDoc}
-     */
-    public function validate($instance): void
-    {
-        if ($instance instanceof AssertionInterface) {
-            return; // we're okay
-        }
-
-        throw new Exception\RuntimeException(sprintf(
-            'Assertions must implement "LmcRbacMvc\Assertion\AssertionInterface", but "%s" was given',
-            is_object($instance) ? get_class($instance) : gettype($instance)
-        ));
-    }
-
-    /**
-     * @param $instance
-     * @return void
-     * @throws ContainerExceptionInterface
-     * @deprecated Use method validate instead
-     */
-    public function validatePlugin($instance): void
-    {
-        $this->validate($instance);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    protected function canonicalizeName($name)
-    {
-        return $name;
-    }
+    public $instanceOf = AssertionInterface::class;
 }

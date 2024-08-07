@@ -26,32 +26,9 @@ use LmcRbacMvc\Service\RoleService;
 /**
  * Create a route guard
  *
- * @author  Michaël Gallego <mic.gallego@gmail.com>
- * @license MIT
  */
 class RouteGuardFactory implements FactoryInterface
 {
-    /**
-     * @var array
-     */
-    protected array $options = [];
-
-    /**
-     * @param array $options
-     */
-    public function __construct(array $options = [])
-    {
-        $this->setCreationOptions($options);
-    }
-
-    /**
-     * @param array $options
-     */
-    public function setCreationOptions(array $options): void
-    {
-        $this->options = $options;
-    }
-
     /**
      * {@inheritDoc}
      */

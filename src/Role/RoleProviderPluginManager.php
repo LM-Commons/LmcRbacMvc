@@ -19,8 +19,7 @@
 namespace LmcRbacMvc\Role;
 
 use Laminas\ServiceManager\AbstractPluginManager;
-use LmcRbacMvc\Exception;
-use LmcRbacMvc\Factory\ObjectRepositoryRoleProviderFactory;
+use Lmc\Rbac\Exception;
 
 /**
  * Plugin manager to create role providers
@@ -29,6 +28,7 @@ use LmcRbacMvc\Factory\ObjectRepositoryRoleProviderFactory;
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @license MIT
+ * @deprecated No longer used.
  */
 class RoleProviderPluginManager extends AbstractPluginManager
 {

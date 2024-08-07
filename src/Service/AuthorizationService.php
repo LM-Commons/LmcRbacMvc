@@ -18,12 +18,9 @@
 
 namespace LmcRbacMvc\Service;
 
-use Laminas\Permissions\Rbac\Rbac;
-use LmcRbacMvc\Permission\PermissionInterface;
-use LmcRbacMvc\Assertion\AssertionPluginManager;
-use LmcRbacMvc\Assertion\AssertionInterface;
-use LmcRbacMvc\Exception;
-use LmcRbacMvc\Identity\IdentityInterface;
+use Lmc\Rbac\Identity\IdentityInterface;
+use Lmc\Rbac\Permission\PermissionInterface;
+use Lmc\Rbac\Service\AuthorizationServiceInterface as BaseAuthorizationServiceInterface;
 
 /**
  * Authorization service is a simple service that internally uses Rbac to check if identity is
@@ -40,59 +37,20 @@ class AuthorizationService implements AuthorizationServiceInterface
     protected RoleService $roleService;
 
     /**
-     * @var AssertionPluginManager
+     * @var BaseAuthorizationServiceInterface
      */
-    protected AssertionPluginManager $assertionPluginManager;
-
-    /**
-     * @var array
-     */
-    protected array $assertions = [];
+    protected BaseAuthorizationServiceInterface $baseAuthorizationService;
 
     /**
      * Constructor
      *
-     * @param RoleService            $roleService
-     * @param AssertionPluginManager $assertionPluginManager
+     * @param RoleService $roleService
+     * @param BaseAuthorizationServiceInterface $baseAuthorizationService
      */
-    public function __construct(RoleService $roleService, AssertionPluginManager $assertionPluginManager)
+    public function __construct(RoleService $roleService, BaseAuthorizationServiceInterface $baseAuthorizationService)
     {
         $this->roleService            = $roleService;
-        $this->assertionPluginManager = $assertionPluginManager;
-    }
-
-    /**
-     * Set an assertion
-     *
-     * @param string|PermissionInterface $permission
-     * @param callable|string|AssertionInterface $assertion
-     * @return void
-     */
-    public function setAssertion(PermissionInterface|string $permission, callable|AssertionInterface|string $assertion): void
-    {
-        $this->assertions[(string) $permission] = $assertion;
-    }
-
-    /**
-     * Set assertions
-     *
-     * @param array $assertions
-     * @return void
-     */
-    public function setAssertions(array $assertions): void
-    {
-        $this->assertions = $assertions;
-    }
-
-    /**
-     * Checks if a assertion exists
-     *
-     * @param string|PermissionInterface $permission
-     * @return bool
-     */
-    public function hasAssertion(PermissionInterface|string $permission): bool
-    {
-        return isset($this->assertions[(string) $permission]);
+        $this->baseAuthorizationService = $baseAuthorizationService;
     }
 
     /**
@@ -114,55 +72,31 @@ class AuthorizationService implements AuthorizationServiceInterface
      */
     public function isGranted(string $permission, mixed $context = null): bool
     {
-        $roles = $this->roleService->getIdentityRoles();
-
-        if (empty($roles)) {
-            return false;
-        }
-
-        // Create a RBAC container and populate with the identity's roles
-        $rbac = new Rbac();
-        foreach ($roles as $role) {
-            $rbac->addRole($role);
-        }
-
-        // Iterate through roles
-        $allowed = false;
-        foreach ($roles as $role) {
-            if ($rbac->isGranted($role, $permission)) {
-                $allowed = true;
-            }
-        }
-        if (!$allowed) return false;
-
-        if ($this->hasAssertion($permission)) {
-            return $this->assert($this->assertions[(string) $permission], $context);
-        }
-
-        return true;
+        return $this->baseAuthorizationService->isGranted($this->getIdentity(), $permission, $context);
     }
 
-    /**
-     * @param callable|string|AssertionInterface $assertion
-     * @param mixed|null $context
-     * @return bool
-     * @throws Exception\InvalidArgumentException If an invalid assertion is passed
-     */
-    protected function assert(callable|AssertionInterface|string $assertion, mixed $context = null): bool
+    public function getAssertions(): array
     {
-        if (is_callable($assertion)) {
-            return $assertion($this, $context);
-        } elseif ($assertion instanceof AssertionInterface) {
-            return $assertion->assert($this, $context);
-        } elseif (is_string($assertion)) {
-            $assertion = $this->assertionPluginManager->get($assertion);
+        return $this->baseAuthorizationService->getAssertions();
+    }
 
-            return $assertion->assert($this, $context);
-        }
+    public function getAssertion(PermissionInterface|string $permission): \Lmc\Rbac\Assertion\AssertionInterface|callable|string|null
+    {
+        return $this->baseAuthorizationService->getAssertion($permission);
+    }
 
-        throw new Exception\InvalidArgumentException(sprintf(
-            'Assertion must be callable, string or implement ZfcRbac\Assertion\AssertionInterface, "%s" given',
-            is_object($assertion) ? get_class($assertion) : gettype($assertion)
-        ));
+    public function setAssertions(array $assertions, bool $merge = false): void
+    {
+        $this->baseAuthorizationService->setAssertions($assertions, $merge);
+    }
+
+    public function setAssertion(PermissionInterface|string $permission, callable|\Lmc\Rbac\Assertion\AssertionInterface|string $assertion): void
+    {
+        $this->baseAuthorizationService->setAssertion($permission, $assertion);
+    }
+
+    public function hasAssertion(PermissionInterface|string $permission): bool
+    {
+        return $this->baseAuthorizationService->hasAssertion($permission);
     }
 }

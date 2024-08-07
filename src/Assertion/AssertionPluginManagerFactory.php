@@ -29,6 +29,7 @@ use LmcRbacMvc\Assertion\AssertionPluginManager;
  *
  * @author  Aeneas Rekkas
  * @license MIT
+ * @deprecated No longer used
  */
 class AssertionPluginManagerFactory implements FactoryInterface
 {
@@ -37,8 +38,7 @@ class AssertionPluginManagerFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null): AssertionPluginManager
     {
-        $config = $container->get('Config')['lmc_rbac']['assertion_manager'];
-
-        return new AssertionPluginManager($container, $config);
+        trigger_error('LmcRbacMvc\Assertion\AssertionPluginManager is no longer used.', E_USER_NOTICE);
+        return new AssertionPluginManager($container, []);
     }
 }

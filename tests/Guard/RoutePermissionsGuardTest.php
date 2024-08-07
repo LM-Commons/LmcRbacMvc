@@ -18,12 +18,12 @@
 namespace LmcRbacMvcTest\Guard;
 
 use Laminas\Mvc\MvcEvent;
-//use Laminas\Mvc\Router\RouteMatch as V2RouteMatch;
 use Laminas\Router\RouteMatch;
 use LmcRbacMvc\Guard\ControllerGuard;
 use LmcRbacMvc\Guard\GuardInterface;
 use LmcRbacMvc\Guard\RouteGuard;
 use LmcRbacMvc\Guard\RoutePermissionsGuard;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 /**
  * @covers \LmcRbacMvc\Guard\AbstractGuard
@@ -34,9 +34,7 @@ class RoutePermissionsGuardTest extends \PHPUnit\Framework\TestCase
     public function testAttachToRightEvent()
     {
         $eventManager = $this->createMock('Laminas\EventManager\EventManagerInterface');
-        $eventManager->expects($this->once())
-            ->method('attach')
-            ->with(RouteGuard::EVENT_NAME);
+        $eventManager->expects($this->once())->method('attach')->with(RouteGuard::EVENT_NAME);
 
         $guard = new RoutePermissionsGuard($this->createMock('LmcRbacMvc\Service\AuthorizationService'));
         $guard->attach($eventManager);
@@ -93,16 +91,13 @@ class RoutePermissionsGuardTest extends \PHPUnit\Framework\TestCase
         ];
     }
 
-    /**
-     * @dataProvider rulesConversionProvider
-     */
+    #[DataProvider('rulesConversionProvider')]
     public function testRulesConversions(array $rules, array $expected)
     {
         $roleService  = $this->createMock('LmcRbacMvc\Service\AuthorizationService');
         $routeGuard   = new RoutePermissionsGuard($roleService, $rules);
-        $reflProperty = new \ReflectionProperty($routeGuard, 'rules');
-        $reflProperty->setAccessible(true);
-        $this->assertEquals($expected, $reflProperty->getValue($routeGuard));
+        $reflexionProperty = new \ReflectionProperty($routeGuard, 'rules');
+        $this->assertEquals($expected, $reflexionProperty->getValue($routeGuard));
     }
 
     public static function routeDataProvider(): array
@@ -370,9 +365,7 @@ class RoutePermissionsGuardTest extends \PHPUnit\Framework\TestCase
         ];
     }
 
-    /**
-     * @dataProvider routeDataProvider
-     */
+    #[DataProvider('routeDataProvider')]
     public function testRoutePermissionGranted(
         array $rules,
         $matchedRouteName,
@@ -387,9 +380,7 @@ class RoutePermissionsGuardTest extends \PHPUnit\Framework\TestCase
         $event->setRouteMatch($routeMatch);
 
         $authorizationService = $this->createMock('LmcRbacMvc\Service\AuthorizationServiceInterface');
-        $authorizationService->expects($this->any())
-            ->method('isGranted')
-            ->will($this->returnValueMap($identityPermissions));
+        $authorizationService->expects($this->any())->method('isGranted')->willReturnMap($identityPermissions);
 
         $routeGuard = new RoutePermissionsGuard($authorizationService, $rules);
         $routeGuard->setProtectionPolicy($protectionPolicy);
@@ -402,9 +393,7 @@ class RoutePermissionsGuardTest extends \PHPUnit\Framework\TestCase
         $eventManager = $this->createMock('Laminas\EventManager\EventManagerInterface');
 
         $application = $this->createMock('Laminas\Mvc\Application');
-        $application->expects($this->never())
-            ->method('getEventManager')
-            ->will($this->returnValue($eventManager));
+        $application->expects($this->never())->method('getEventManager')->willReturn($eventManager);
 
         $routeMatch = $this->createRouteMatch();
         $routeMatch->setMatchedRouteName('adminRoute');
@@ -414,10 +403,7 @@ class RoutePermissionsGuardTest extends \PHPUnit\Framework\TestCase
         $event->setApplication($application);
 
         $authorizationService = $this->createMock('LmcRbacMvc\Service\AuthorizationServiceInterface');
-        $authorizationService->expects($this->once())
-            ->method('isGranted')
-            ->with('post.edit')
-            ->will($this->returnValue(true));
+        $authorizationService->expects($this->once())->method('isGranted')->with('post.edit')->willReturn(true);
 
         $routeGuard = new RoutePermissionsGuard($authorizationService, [
             'adminRoute' => 'post.edit'
@@ -428,14 +414,12 @@ class RoutePermissionsGuardTest extends \PHPUnit\Framework\TestCase
         $this->assertNull($event->getParam('exception'));
     }
 
-    public function testProperlySetUnauthorizedAndTriggerEventOnUnauthorization()
+    public function testProperlySetUnauthorizedAndTriggerEventOnUnauthorized()
     {
         $eventManager = $this->createMock('Laminas\EventManager\EventManager');
 
         $application = $this->createMock('Laminas\Mvc\Application');
-        $application->expects($this->once())
-            ->method('getEventManager')
-            ->will($this->returnValue($eventManager));
+        $application->expects($this->once())->method('getEventManager')->willReturn($eventManager);
 
         $routeMatch = $this->createRouteMatch();
         $routeMatch->setMatchedRouteName('adminRoute');
@@ -444,15 +428,11 @@ class RoutePermissionsGuardTest extends \PHPUnit\Framework\TestCase
         $event->setRouteMatch($routeMatch);
         $event->setApplication($application);
 
-        $eventManager->expects($this->once())
-            ->method('triggerEvent')
-            ->with($event);
+        $eventManager->expects($this->once())->method('triggerEvent')->with($event);
 
         $authorizationService = $this->createMock('LmcRbacMvc\Service\AuthorizationServiceInterface');
-        $authorizationService->expects($this->once())
-            ->method('isGranted')
-            ->with('post.edit')
-            ->will($this->returnValue(false));
+        $authorizationService->expects($this->once())->method('isGranted')->with('post.edit')
+            ->willReturn(false);
 
         $routeGuard = new RoutePermissionsGuard($authorizationService, [
             'adminRoute' => 'post.edit'
@@ -461,13 +441,11 @@ class RoutePermissionsGuardTest extends \PHPUnit\Framework\TestCase
 
         $this->assertTrue($event->propagationIsStopped());
         $this->assertEquals(RouteGuard::GUARD_UNAUTHORIZED, $event->getError());
-        $this->assertInstanceOf('LmcRbac\Exception\UnauthorizedException', $event->getParam('exception'));
+        $this->assertInstanceOf('Lmc\Rbac\Exception\UnauthorizedException', $event->getParam('exception'));
     }
 
     public function createRouteMatch(array $params = []): RouteMatch
     {
         return new RouteMatch($params);
-//        $class = class_exists(V2RouteMatch::class) ? V2RouteMatch::class : RouteMatch::class;
-//        return new $class($params);
     }
 }

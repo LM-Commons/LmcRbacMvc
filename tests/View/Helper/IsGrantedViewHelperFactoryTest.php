@@ -20,10 +20,9 @@ namespace LmcRbacMvcTest\View\Helper;
 
 use Laminas\ServiceManager\ServiceManager;
 use LmcRbacMvc\View\Helper\IsGrantedViewHelperFactory;
+use PHPUnit\Framework\Attributes\CoversClass;
 
-/**
- * @covers \LmcRbacMvc\View\Helper\IsGrantedViewHelperFactory
- */
+#[CoversClass('\LmcRbacMvc\View\Helper\IsGrantedViewHelperFactory')]
 class IsGrantedViewHelperFactoryTest extends \PHPUnit\Framework\TestCase
 {
     public function testFactory()

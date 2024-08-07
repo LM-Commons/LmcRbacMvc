@@ -21,15 +21,13 @@ namespace LmcRbacMvc\Guard;
 /**
  * Trait that is can be used for any guard that uses the protection policy pattern
  *
- * @author  Michaël Gallego <mic.gallego@gmail.com>
- * @license MIT
  */
 trait ProtectionPolicyTrait
 {
     /**
      * @var string
      */
-    protected $protectionPolicy = GuardInterface::POLICY_DENY;
+    protected string $protectionPolicy = GuardInterface::POLICY_DENY;
 
     /**
      * Set the protection policy
@@ -37,9 +35,9 @@ trait ProtectionPolicyTrait
      * @param  string $protectionPolicy
      * @return void
      */
-    public function setProtectionPolicy($protectionPolicy)
+    public function setProtectionPolicy(string $protectionPolicy): void
     {
-        $this->protectionPolicy = (string) $protectionPolicy;
+        $this->protectionPolicy = $protectionPolicy;
     }
 
     /**
@@ -47,7 +45,7 @@ trait ProtectionPolicyTrait
      *
      * @return string
      */
-    public function getProtectionPolicy()
+    public function getProtectionPolicy(): string
     {
         return $this->protectionPolicy;
     }

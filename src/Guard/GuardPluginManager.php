@@ -18,22 +18,14 @@
 
 namespace LmcRbacMvc\Guard;
 
-use Interop\Container\Exception\ContainerException;
 use Laminas\ServiceManager\AbstractPluginManager;
-use LmcRbacMvc\Exception;
-use LmcRbacMvc\Factory\ControllerGuardFactory;
-use LmcRbacMvc\Factory\ControllerPermissionsGuardFactory;
-use LmcRbacMvc\Factory\RouteGuardFactory;
-use LmcRbacMvc\Factory\RoutePermissionsGuardFactory;
+use Lmc\Rbac\Exception;
 
 /**
  * Plugin manager to create guards
  *
  * @method GuardInterface get($name)
  *
- * @author  Michaël Gallego <mic.gallego@gmail.com>
- * @author  JM Leroux <jmleroux.pro@gmail.com>
- * @license MIT
  */
 class GuardPluginManager extends AbstractPluginManager
 {
@@ -50,32 +42,15 @@ class GuardPluginManager extends AbstractPluginManager
     /**
      * {@inheritDoc}
      */
-    public function validate($plugin)
+    public function validate($instance): void
     {
-        if ($plugin instanceof GuardInterface) {
+        if ($instance instanceof GuardInterface) {
             return; // we're okay
         }
 
         throw new Exception\RuntimeException(sprintf(
             'Guards must implement "LmcRbacMvc\Guard\GuardInterface", but "%s" was given',
-            is_object($plugin) ? get_class($plugin) : gettype($plugin)
+            is_object($instance) ? get_class($instance) : gettype($instance)
         ));
-    }
-
-    /**
-     * {@inheritDoc}
-     * @throws ContainerException
-     */
-    public function validatePlugin($plugin)
-    {
-        $this->validate($plugin);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    protected function canonicalizeName($name)
-    {
-        return $name;
     }
 }

@@ -22,7 +22,7 @@ use Doctrine\Persistence\ObjectManager;
 use Doctrine\Persistence\ObjectRepository;
 use Psr\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
-use LmcRbac\Exception;
+use Lmc\Rbac\Exception;
 
 /**
  * Factory used to create an object repository role provider

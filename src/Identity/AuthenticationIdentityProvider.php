@@ -19,6 +19,7 @@
 namespace LmcRbacMvc\Identity;
 
 use Laminas\Authentication\AuthenticationServiceInterface;
+use Lmc\Rbac\Identity\IdentityInterface;
 
 /**
  * This provider uses the Laminas authentication service to fetch the identity

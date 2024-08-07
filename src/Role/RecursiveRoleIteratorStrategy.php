@@ -18,7 +18,7 @@
 
 namespace LmcRbacMvc\Role;
 
-use Laminas\Permissions\Rbac\RoleInterface;
+use Lmc\Rbac\Role\RoleInterface;
 use RecursiveIteratorIterator;
 use Traversable;
 
@@ -31,7 +31,7 @@ class RecursiveRoleIteratorStrategy implements TraversalStrategyInterface
      * @param RoleInterface[]|Traversable $roles
      * @return RecursiveIteratorIterator
      */
-    public function getRolesIterator(Traversable|array $roles): Traversable
+    public function getRolesIterator(iterable $roles): Traversable
     {
         return new RecursiveIteratorIterator(
             new RecursiveRoleIterator($roles),

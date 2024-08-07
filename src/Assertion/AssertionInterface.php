@@ -27,6 +27,7 @@ use LmcRbacMvc\Service\AuthorizationService;
  * @author  Aeneas Rekkas
  * @author  Daniel Gimenes  <daniel@danielgimenes.com.br>
  * @license MIT
+ * @deprecated No longer used. Use Lmc\Rbac\Assertion\AssertionInterface instead
  */
 interface AssertionInterface
 {

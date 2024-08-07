@@ -21,6 +21,7 @@ namespace LmcRbacMvcTest\Guard;
 use Laminas\ServiceManager\ServiceManager;
 use LmcRbacMvc\Guard\GuardPluginManagerFactory;
 use LmcRbacMvc\Guard\GuardPluginManager;
+use LmcRbacMvc\Options\ModuleOptions;
 
 /**
  * @covers \LmcRbacMvc\Guard\GuardPluginManagerFactory
@@ -29,12 +30,9 @@ class GuardPluginManagerFactoryTest extends \PHPUnit\Framework\TestCase
 {
     public function testFactory()
     {
+        $moduleOptions = new ModuleOptions(['guard_manager' => []]);
         $serviceManager = new ServiceManager();
-        $serviceManager->setService('Config', [
-            'lmc_rbac' => [
-                'guard_manager' => []
-            ]
-        ]);
+        $serviceManager->setService(ModuleOptions::class, $moduleOptions);
 
         $factory       = new GuardPluginManagerFactory();
         $pluginManager = $factory($serviceManager, GuardPluginManager::class);

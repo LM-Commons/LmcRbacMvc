@@ -30,5 +30,5 @@ interface TraversalStrategyInterface
      * @param Traversable|RoleInterface[] $roles
      * @return Traversable
      */
-    public function getRolesIterator(Traversable|array $roles): Traversable;
+    public function getRolesIterator(iterable $roles): Traversable;
 }

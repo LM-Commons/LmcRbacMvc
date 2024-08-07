@@ -83,5 +83,11 @@
         "cs-check": "phpcs -n --standard=PSR2 ./src/",
         "cs-fix": "phpcbf ./src/",
         "test-coverage-html": "phpunit --coverage-html ./build/html"
-    }
+    },
+    "repositories": [
+        {
+            "type": "github",
+            "url": "https://github.com/visto9259/LmcRbac.git"
+        }
+    ]
 }

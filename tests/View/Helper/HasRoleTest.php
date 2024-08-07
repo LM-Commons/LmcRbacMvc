@@ -20,10 +20,9 @@ namespace LmcRbacMvcTest\View\Helper;
 
 use LmcRbacMvc\View\Helper\HasRole;
 use LmcRbacMvcTest\Util\ServiceManagerFactory;
+use PHPUnit\Framework\Attributes\CoversClass;
 
-/**
- * @covers \LmcRbacMvc\View\Helper\HasRole
- */
+#[CoversClass('\LmcRbacMvc\View\Helper\HasRole')]
 class HasRoleTest extends \PHPUnit\Framework\TestCase
 {
     public function testHelperIsRegistered()
@@ -49,7 +48,7 @@ class HasRoleTest extends \PHPUnit\Framework\TestCase
         $authorizationService = $this->createMock('LmcRbacMvc\Service\RoleService');
         $authorizationService->expects($this->any())
             ->method('matchIdentityRoles')
-            ->will($this->returnValueMap($rolesConfig));
+            ->willReturnMap($rolesConfig);
 
         $helper = new HasRole($authorizationService);
 

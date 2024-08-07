@@ -21,10 +21,9 @@ namespace LmcRbacMvcTest\View\Helper;
 use Laminas\ServiceManager\ServiceManager;
 use Laminas\View\HelperPluginManager;
 use LmcRbacMvc\View\Helper\HasRoleViewHelperFactory;
+use PHPUnit\Framework\Attributes\CoversClass;
 
-/**
- * @covers \LmcRbacMvc\View\Helper\HasRoleViewHelperFactory
- */
+#[CoversClass('\LmcRbacMvc\View\Helper\HasRoleViewHelperFactory')]
 class HasRoleViewHelperFactoryTest extends \PHPUnit\Framework\TestCase
 {
     public function testFactory()

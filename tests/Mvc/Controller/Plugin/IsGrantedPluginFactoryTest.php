@@ -20,19 +20,15 @@ namespace LmcRbacMvcTest\Mvc\Controller\Plugin;
 
 use Laminas\ServiceManager\ServiceManager;
 use LmcRbacMvc\Mvc\Controller\Plugin\IsGrantedPluginFactory;
+use PHPUnit\Framework\Attributes\CoversClass;
 
-/**
- * @covers \LmcRbacMvc\Mvc\Controller\Plugin\IsGrantedPluginFactory
- */
+#[CoversClass('\LmcRbacMvc\Mvc\Controller\Plugin\IsGrantedPluginFactory')]
 class IsGrantedPluginFactoryTest extends \PHPUnit\Framework\TestCase
 {
     public function testFactory()
     {
         $serviceManager = new ServiceManager();
 
-        if (! method_exists($serviceManager, 'build')) {
-            $this->markTestSkipped('this test is only vor zend-servicemanager v3');
-        }
         $serviceManager->setService(
             'LmcRbacMvc\Service\AuthorizationService',
             $this->createMock('LmcRbacMvc\Service\AuthorizationServiceInterface')

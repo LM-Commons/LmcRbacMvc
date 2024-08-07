@@ -31,108 +31,25 @@ class RoleServiceFactoryTest extends \PHPUnit\Framework\TestCase
     {
         $options = new ModuleOptions([
             'identity_provider'    => 'LmcRbacMvc\Identity\AuthenticationProvider',
-            'guest_role'           => 'guest',
-            'role_provider'        => [
-                'LmcRbacMvc\Role\InMemoryRoleProvider' => [
-                    'foo'
-                ]
-            ]
         ]);
 
-        $traversalStrategy = $this->createMock('LmcRbacMvc\Role\RecursiveRoleIteratorStrategy');
-        $roleProvider = $this->createMock('\LmcRbacMvc\Role\RoleProviderInterface');
+        $identityProvider = $this->createMock('LmcRbacMvc\Identity\AuthenticationIdentityProvider');
 
-        $rbac = $this->createMock('Laminas\Permissions\Rbac\Rbac');
-//         $rbac->expects($this->once())
-//             ->method('getTraversalStrategy')
-//             ->will($this->returnValue(
-//                 $traversalStrategy
-//             ));
+        $baseRoleService = $this->createMock('Lmc\Rbac\Service\RoleServiceInterface');
 
-        $pluginManager = $this->createMock('\LmcRbacMvc\Role\RoleProviderPluginManager');
-        $pluginManager->expects($this->once())
+        $container = $this->createMock('Psr\Container\ContainerInterface');
+
+        $container->expects($this->exactly(3))
             ->method('get')
-            ->with('LmcRbacMvc\Role\InMemoryRoleProvider', ['foo'])
-            ->will($this->returnValue(
-                $roleProvider
-            ));
-
-        $serviceManager = new ServiceManager();
-        $serviceManager->setService('LmcRbacMvc\Options\ModuleOptions', $options);
-        $serviceManager->setService('Rbac\Rbac', $rbac);
-        $serviceManager->setService('LmcRbacMvc\Role\RoleProviderPluginManager', $pluginManager);
-        $serviceManager->setService('LmcRbacMvc\Identity\AuthenticationProvider', $this->createMock('LmcRbacMvc\Identity\IdentityProviderInterface'));
+            ->willReturnCallback(function ($name) use ($options, $identityProvider, $baseRoleService) {
+                return match ($name) {
+                    ModuleOptions::class => $options,
+                    $options->getIdentityProvider() => $identityProvider,
+                    'Lmc\Rbac\Service\RoleServiceInterface' => $baseRoleService,
+                };
+            });
 
         $factory = new RoleServiceFactory();
-        $roleService = $factory($serviceManager, 'LmcRbacMvc\Service\RoleService');
-
-        $this->assertInstanceOf('LmcRbacMvc\Service\RoleService', $roleService);
-        $this->assertEquals('guest', $roleService->getGuestRole());
-        //$this->assertAttributeSame($traversalStrategy, 'traversalStrategy', $roleService);
-
-    }
-
-    /** TODO what are we testing here? */
-    public function testIfRoleArrayPointerBeyondArrayEnd()
-    {
-        $options = new ModuleOptions([
-            'identity_provider'    => 'LmcRbacMvc\Identity\AuthenticationProvider',
-            'guest_role'           => 'guest',
-            'role_provider'        => [
-                'LmcRbacMvc\Role\InMemoryRoleProvider' => [
-                    'foo'
-                ]
-            ]
-        ]);
-
-        // Simulate if array pointer beyond end of array. E.g after 'while(next($roleProvider)) { //do }'
-        $roleProvider = $options->getRoleProvider();
-        next($roleProvider);
-        $options->setRoleProvider($roleProvider);
-
-        $traversalStrategy = $this->createMock('LmcRbacMvc\Role\RecursiveRoleIteratorStrategy');
-        $roleProvider = $this->createMock('\LmcRbacMvc\Role\RoleProviderInterface');
-
-        $rbac = $this->createMock('Laminas\Permissions\Rbac\Rbac');
-
-        $pluginManager = $this->createMock('\LmcRbacMvc\Role\RoleProviderPluginManager');
-        $pluginManager->expects($this->once())
-            ->method('get')
-            ->with('LmcRbacMvc\Role\InMemoryRoleProvider', ['foo'])
-            ->will($this->returnValue(
-                $roleProvider
-            ));
-
-        $serviceManager = new ServiceManager();
-        $serviceManager->setService('LmcRbacMvc\Options\ModuleOptions', $options);
-        $serviceManager->setService('Rbac\Rbac', $rbac);
-        $serviceManager->setService('LmcRbacMvc\Role\RoleProviderPluginManager', $pluginManager);
-        $serviceManager->setService('LmcRbacMvc\Identity\AuthenticationProvider', $this->createMock('LmcRbacMvc\Identity\IdentityProviderInterface'));
-
-        /* TODO what are we testing here? */
-        $factory = new RoleServiceFactory();
-        $factory($serviceManager, '');
-    }
-
-    public function testThrowExceptionIfNoRoleProvider()
-    {
-        $this->expectException(\Laminas\ServiceManager\Exception\ServiceNotCreatedException::class);
-
-        $options = new ModuleOptions([
-            'identity_provider' => 'LmcRbacMvc\Identity\AuthenticationProvider',
-            'guest_role'        => 'guest',
-            'role_provider'     => []
-        ]);
-
-        $serviceManager = new ServiceManager();
-        $serviceManager->setService('LmcRbacMvc\Options\ModuleOptions', $options);
-        $serviceManager->setService(
-            'LmcRbacMvc\Identity\AuthenticationProvider',
-            $this->createMock('LmcRbacMvc\Identity\IdentityProviderInterface')
-        );
-
-        /** TODO what are we testing here since there are no assertion? */
-        $factory     = new RoleServiceFactory();
-        $factory($serviceManager, '');
+        $roleService = $factory($container, 'LmcRbacMvc\Service\RoleService');
     }
 }

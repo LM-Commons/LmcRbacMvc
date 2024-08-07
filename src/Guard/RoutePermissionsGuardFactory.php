@@ -26,30 +26,9 @@ use LmcRbacMvc\Service\AuthorizationService;
 /**
  * Create a route guard for checking permissions
  *
- * @author  Michaël Gallego <mic.gallego@gmail.com>
- * @author  JM Lerouxw <jmleroux.pro@gmail.com>
- * @license MIT
  */
 class RoutePermissionsGuardFactory implements FactoryInterface
 {
-    protected array $options = [];
-
-    /**
-     * @param array $options
-     */
-    public function __construct(array $options = [])
-    {
-        $this->setCreationOptions($options);
-    }
-
-    /**
-     * @param array $options
-     */
-    public function setCreationOptions(array $options): void
-    {
-        $this->options = $options;
-    }
-
     /**
      * {@inheritDoc}
      */

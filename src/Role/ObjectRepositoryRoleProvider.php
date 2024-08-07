@@ -19,7 +19,7 @@
 namespace LmcRbacMvc\Role;
 
 use Doctrine\Persistence\ObjectRepository;
-use LmcRbac\Exception\RoleNotFoundException;
+use Lmc\Rbac\Exception\RoleNotFoundException;
 
 /**
  * Role provider that uses Doctrine object repository to fetch roles

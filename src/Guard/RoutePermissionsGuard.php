@@ -18,15 +18,12 @@
 namespace LmcRbacMvc\Guard;
 
 use Laminas\Mvc\MvcEvent;
-use LmcRbac\Exception\InvalidArgumentException;
+use Lmc\Rbac\Exception\InvalidArgumentException;
 use LmcRbacMvc\Service\AuthorizationServiceInterface;
 
 /**
  * A route guard can protect a route or a hierarchy of routes (using simple wildcard pattern)
  *
- * @author  Michaël Gallego <mic.gallego@gmail.com>
- * @author  JM Leroux <jmleroux.pro@gmail.com>
- * @license MIT
  */
 class RoutePermissionsGuard extends AbstractGuard
 {
@@ -37,14 +34,14 @@ class RoutePermissionsGuard extends AbstractGuard
     /**
      * @var AuthorizationServiceInterface
      */
-    protected $authorizationService;
+    protected AuthorizationServiceInterface $authorizationService;
 
     /**
      * Route guard rules
      * Those rules are an associative array that map a rule with one or multiple permissions
      * @var array
      */
-    protected $rules = [];
+    protected array $rules = [];
 
     /**
      * @param AuthorizationServiceInterface $authorizationService
@@ -62,7 +59,7 @@ class RoutePermissionsGuard extends AbstractGuard
      * @param  array $rules
      * @return void
      */
-    public function setRules(array $rules)
+    public function setRules(array $rules): void
     {
         $this->rules = [];
         foreach ($rules as $key => $value) {
@@ -80,7 +77,7 @@ class RoutePermissionsGuard extends AbstractGuard
     /**
      * {@inheritDoc}
      */
-    public function isGranted(MvcEvent $event)
+    public function isGranted(MvcEvent $event): bool
     {
         $matchedRouteName = $event->getRouteMatch()->getMatchedRouteName();
         $allowedPermissions = null;
@@ -101,13 +98,9 @@ class RoutePermissionsGuard extends AbstractGuard
             return true;
         }
 
-        $permissions = isset($allowedPermissions['permissions'])
-            ? $allowedPermissions['permissions']
-            : $allowedPermissions;
+        $permissions = $allowedPermissions['permissions'] ?? $allowedPermissions;
 
-        $condition   = isset($allowedPermissions['condition'])
-            ? $allowedPermissions['condition']
-            : GuardInterface::CONDITION_AND;
+        $condition   = $allowedPermissions['condition'] ?? GuardInterface::CONDITION_AND;
 
         if (GuardInterface::CONDITION_AND === $condition) {
             foreach ($permissions as $permission) {

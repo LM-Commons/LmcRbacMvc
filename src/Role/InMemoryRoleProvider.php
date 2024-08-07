@@ -38,6 +38,7 @@ use Laminas\Permissions\Rbac\Role;
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @license MIT
+ * @deprecated No longer used. Use Lmc\Rbac\InMemoryRoleProvider instead
  */
 class InMemoryRoleProvider implements RoleProviderInterface
 {
@@ -62,7 +63,7 @@ class InMemoryRoleProvider implements RoleProviderInterface
     /**
      * {@inheritDoc}
      */
-    public function getRoles(array $roleNames): array
+    public function getRoles(iterable $roleNames): array
     {
         $roles = [];
 

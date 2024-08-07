@@ -18,42 +18,31 @@
 
 namespace LmcRbacMvc\Service;
 
-use Laminas\Permissions\Rbac\Rbac;
-use Psr\Container\ContainerInterface;
+use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
 use Laminas\ServiceManager\Factory\FactoryInterface;
-use LmcRbacMvc\Assertion\AssertionPluginManager;
-use LmcRbacMvc\Options\ModuleOptions;
-use LmcRbacMvc\Service\AuthorizationService;
-use LmcRbacMvc\Service\RoleService;
+use Lmc\Rbac\Service\AuthorizationServiceInterface as BaseAuthorizationService;
+use Psr\Container\ContainerInterface;
 
 /**
  * Factory to create the authorization service
  *
- * @author  Michaël Gallego <mic.gallego@gmail.com>
- * @license MIT
  */
 class AuthorizationServiceFactory implements FactoryInterface
 {
     /**
-     * @param ContainerInterface $container
-     * @param string $requestedName
-     * @param array|null $options
-     * @return AuthorizationService
+     * @inheritDoc
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null): AuthorizationService
     {
+        if (!$container->has(BaseAuthorizationService::class)) {
+            throw new ServiceNotCreatedException('The service \Lmc\Rbac\Service\AuthorizationServiceInterface is not defined. Make sure that LmcRbac is configured correctly.');
+        }
         /* @var RoleService $roleService */
         $roleService = $container->get(RoleService::class);
 
-        /* @var AssertionPluginManager $assertionPluginManager */
-        $assertionPluginManager = $container->get(AssertionPluginManager::class);
+        /** @var BaseAuthorizationService $baseAuthorizationService */
+        $baseAuthorizationService = $container->get(BaseAuthorizationService::class);
 
-        /* @var ModuleOptions $moduleOptions */
-        $moduleOptions = $container->get(ModuleOptions::class);
-
-        $authorizationService = new AuthorizationService($roleService, $assertionPluginManager);
-        $authorizationService->setAssertions($moduleOptions->getAssertionMap());
-
-        return $authorizationService;
+        return new AuthorizationService($roleService, $baseAuthorizationService);
     }
 }

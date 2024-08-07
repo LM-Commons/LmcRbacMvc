@@ -19,7 +19,7 @@
 namespace LmcRbacMvc\Role;
 
 use ArrayIterator;
-use Laminas\Permissions\Rbac\RoleInterface;
+use Lmc\Rbac\Role\RoleInterface;
 use RecursiveIterator;
 use Traversable;
 
@@ -30,7 +30,7 @@ class RecursiveRoleIterator extends ArrayIterator implements RecursiveIterator
      *
      * @param RoleInterface[]|Traversable $roles
      */
-    public function __construct($roles)
+    public function __construct(iterable $roles)
     {
         if ($roles instanceof Traversable) {
             $roles = iterator_to_array($roles);

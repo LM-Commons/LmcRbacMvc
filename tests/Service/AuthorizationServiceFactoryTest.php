@@ -19,9 +19,11 @@
 namespace LmcRbacMvcTest\Service;
 
 use Laminas\Permissions\Rbac\Rbac;
+use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
 use Laminas\ServiceManager\ServiceManager;
 use LmcRbacMvc\Service\AuthorizationServiceFactory;
 use LmcRbacMvc\Options\ModuleOptions;
+use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -29,29 +31,48 @@ use PHPUnit\Framework\TestCase;
  */
 class AuthorizationServiceFactoryTest extends TestCase
 {
+    /**
+     * Test the default case
+     */
     public function testFactory()
     {
-        $serviceManager = new ServiceManager();
-
-        $serviceManager->setService('rbac', new Rbac());
-
-        $serviceManager->setService(
-            'LmcRbacMvc\Service\RoleService',
-            $this->getMockBuilder('LmcRbacMvc\Service\RoleService')->disableOriginalConstructor()->getMock()
+        $container = $this->createMock('Psr\Container\ContainerInterface');
+        $container->expects($this->exactly(2))
+            ->method('get')
+            ->willReturnCallback(function ($className) {
+                return match($className) {
+                    'LmcRbacMvc\Service\RoleService' => $this->createMock('LmcRbacMvc\Service\RoleService'),
+                    'Lmc\Rbac\Service\AuthorizationServiceInterface' => $this->createMock('Lmc\Rbac\Service\AuthorizationService'),
+                };
+            }
         );
-        $serviceManager->setService(
-            'LmcRbacMvc\Assertion\AssertionPluginManager',
-            $this->getMockBuilder('LmcRbacMvc\Assertion\AssertionPluginManager')->disableOriginalConstructor()->getMock()
 
-        );
-        $serviceManager->setService(
-            'LmcRbacMvc\Options\ModuleOptions',
-            new ModuleOptions([])
-        );
+        $container->expects($this->once())
+            ->method('has')
+            ->with('Lmc\Rbac\Service\AuthorizationServiceInterface')
+            ->willReturn(true);
 
         $factory              = new AuthorizationServiceFactory();
-        $authorizationService = $factory($serviceManager, 'LmcRbacMvc\Service\AuthorizationService');
+        $authorizationService = $factory($container, 'LmcRbacMvc\Service\AuthorizationService');
+    }
 
-        $this->assertInstanceOf(\LmcRbacMvc\Service\AuthorizationService::class, $authorizationService);
+    /**
+     * Test the case where Lmc\Rbac\Service\Authorization service is not ser
+     */
+    public function testMissingBaseAuthorizationService()
+    {
+        $container = $this->createMock('Psr\Container\ContainerInterface');
+        $container->expects($this->never())
+            ->method('get');
+
+        $container->expects($this->once())
+            ->method('has')
+            ->with('Lmc\Rbac\Service\AuthorizationServiceInterface')
+            ->willReturn(false);
+
+        $this->expectException(ServiceNotCreatedException::class);
+
+        $factory              = new AuthorizationServiceFactory();
+        $authorizationService = $factory($container, 'LmcRbacMvc\Service\AuthorizationService');
     }
 }
