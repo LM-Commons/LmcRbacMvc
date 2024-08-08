@@ -30,6 +30,12 @@ use LmcRbacMvc\Guard\GuardInterface;
  */
 class ModuleOptions extends BaseModuleOptions
 {
+
+    /**
+     * Key of the identity provider used to retrieve the identity
+     */
+    protected string $identityProvider = 'LmcRbacMvc\Identity\AuthenticationIdentityProvider';
+
     /**
      * Guards
      */
@@ -158,4 +164,26 @@ class ModuleOptions extends BaseModuleOptions
 
         return $this->redirectStrategyOptions;
     }
+
+    /**
+     * Set the key of the identity provider used to retrieve the identity
+     *
+     * @param string $identityProvider
+     * @return void
+     */
+    public function setIdentityProvider(string $identityProvider): void
+    {
+        $this->identityProvider = $identityProvider;
+    }
+
+    /**
+     * Get the key of the identity provider used to retrieve the identity
+     *
+     * @return string
+     */
+    public function getIdentityProvider(): string
+    {
+        return $this->identityProvider;
+    }
+
 }

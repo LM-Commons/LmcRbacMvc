@@ -35,11 +35,13 @@ class ModuleOptionsTest extends \PHPUnit\Framework\TestCase
         $this->assertIsArray($moduleOptions->getGuards());
         $this->assertInstanceOf('LmcRbacMvc\Options\UnauthorizedStrategyOptions', $moduleOptions->getUnauthorizedStrategy());
         $this->assertInstanceOf('LmcRbacMvc\Options\RedirectStrategyOptions', $moduleOptions->getRedirectStrategy());
+        $this->assertEquals('LmcRbacMvc\Identity\AuthenticationIdentityProvider', $moduleOptions->getIdentityProvider());
     }
 
     public function testSettersAndGetters()
     {
         $moduleOptions = new ModuleOptions([
+            'identity_provider' => 'foo',
             'guards'                => [],
             'protection_policy'     => 'deny',
             'unauthorized_strategy' => [
@@ -52,6 +54,7 @@ class ModuleOptionsTest extends \PHPUnit\Framework\TestCase
         ]);
 
         $this->assertEquals([], $moduleOptions->getGuards());
+        $this->assertEquals('foo', $moduleOptions->getIdentityProvider());
         $this->assertEquals('deny', $moduleOptions->getProtectionPolicy());
         $this->assertInstanceOf('LmcRbacMvc\Options\UnauthorizedStrategyOptions', $moduleOptions->getUnauthorizedStrategy());
         $this->assertInstanceOf('LmcRbacMvc\Options\RedirectStrategyOptions', $moduleOptions->getRedirectStrategy());
