@@ -13,11 +13,11 @@ class MockRoleWithPermissionTraversable implements RoleInterface
         return new \ArrayObject(['permission-method-a', 'permission-method-b']);
     }
 
-    public function getName()
+    public function getName(): string
     {
         return 'role-with-permission-traversable';
     }
-    public function hasPermission($permission)
+    public function hasPermission($permission): bool
     {
         return false;
     }
