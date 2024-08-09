@@ -84,7 +84,7 @@ class HierarchicalRole extends BaseHierarchicalRole
      * @param  PermissionInterface|string $permission
      * @return void
      */
-    public function addPermission($permission)
+    public function addPermission($permission): void
     {
         if (is_string($permission)) {
             $name       = $permission;

@@ -66,7 +66,7 @@ class FlatRole extends Role
      *
      * @return int
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -77,7 +77,7 @@ class FlatRole extends Role
      * @param  PermissionInterface|string $permission
      * @return void
      */
-    public function addPermission($permission)
+    public function addPermission($permission): void
     {
         if (is_string($permission)) {
             $name       = $permission;
