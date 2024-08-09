@@ -5,8 +5,8 @@ sidebar_label: Requirements and Installation
 # Requirements and Installation
 ## Requirements
 
-- PHP 7.4 or higher
-- [Zf-fr/Rbac component v1](https://github.com/zf-fr/rbac): this is actually a prototype for the ZF3 Rbac component.
+- PHP 8.0 or higher
+- [lm-commons/rbac component v1](https://github.com/zf-fr/rbac): this is actually a prototype for the ZF3 Rbac component.
 - [Laminas Components 2.x | 3.x or higher](http://www.github.com/laminas)
 
 
@@ -37,6 +37,6 @@ LmcRbacMvc introduces breaking changes from zfcrbac v2:
 - [BC] The namespace has been changed from `ZfcRbac` to `LmcRbacMvc`.
 - [BC] The key `zfc_rbac` in autoload and module config files has been replaced
   by the `lmc_rbac` key.
-- Requires PHP 7.4 or later
+- Requires PHP 8.0 or later
 - Requires Laminas MVC components 3.x or later
 - Uses PSR-4 autoload
