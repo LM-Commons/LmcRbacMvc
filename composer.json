@@ -42,7 +42,7 @@
     },
     "require-dev": {
         "laminas/laminas-authentication": "^2.2",
-        "laminas/laminas-cache-storage-adapter-filesystem": "^2.0",
+        "laminas/laminas-cache-storage-adapter-filesystem": "^3.0",
         "laminas/laminas-cache-storage-adapter-memory": "^2.0",
         "laminas/laminas-developer-tools": "^2.1",
         "laminas/laminas-log": "^2.2",
