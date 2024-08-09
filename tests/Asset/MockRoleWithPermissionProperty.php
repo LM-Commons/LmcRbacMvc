@@ -8,11 +8,11 @@ class MockRoleWithPermissionProperty implements RoleInterface
 {
     private $permissions = ['permission-property-a', 'permission-property-b'];
 
-    public function getName()
+    public function getName(): string
     {
         return 'role-with-permission-property';
     }
-    public function hasPermission($permission)
+    public function hasPermission($permission): bool
     {
         return false;
     }
