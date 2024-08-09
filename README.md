@@ -14,13 +14,13 @@ Based on [ZF-Commons/zfc-rbac](https://github.com/ZF-Commons/zfc-rbac) v2.6.x. I
 
 ### Important Notes:  
 
-This version has breaking changes with respect to ZfcRbac v2. See the [Upgrade](#upgrade) section for details.
+This version has breaking changes with respect to ZfcRbac v2. See the [Upgrade](#upgrade-from-zfcrbac-v2) section for details.
 
 
 ## Requirements
 
-- PHP 7.2 or higher
-- [Zf-fr/Rbac component v1](https://github.com/zf-fr/rbac): this is actually a prototype for the ZF3 Rbac component.
+- PHP 8.0 or higher
+- [laminas/Rbac component v1](https://github.com/lm-commons/rbac)
 - [Laminas Components 2.x | 3.x or higher](http://www.github.com/laminas)
 
 > 
@@ -31,9 +31,9 @@ This version has breaking changes with respect to ZfcRbac v2. See the [Upgrade](
 - [Laminas\DeveloperTools](https://github.com/laminas/Laminas\DeveloperTools): if you want to have useful stats added to
 the Laminas Developer toolbar.
 
-## Upgrade
+## Upgrade from ZfcRbac v2
 
-LmcRbac introduces breaking changes from zfcrbac v2:
+LmcRbacMVC introduces breaking changes from zfcrbac v2:
 - The namespace has been changed from `ZfcRbac` to `LmcRbacMvc`. 
 - The key `zfc_rbac` in autoload and module config files has been replaced
 by the `lmc_rbac` key.
@@ -50,7 +50,6 @@ Install the module:
 ```sh
 $ php composer.phar require lm-commons/lmc-rbac-mvc:^3.0
 ```
-This will install a Laminas MVC equivalent of zfc-rbac 2.6.3.
 
 Enable the module by adding `LmcRbacMvc` key to your `application.config.php` or `modules.config.php` file. Customize the module by copy-pasting
 the `lmc_rbac.global.php.dist` file to your `config/autoload` folder.
