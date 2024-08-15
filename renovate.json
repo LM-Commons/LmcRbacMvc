@@ -3,15 +3,7 @@
   "extends": [
     "config:recommended"
   ],
-  "baseBranches": ["master", "4.x"],
-  "packageRules": [
-    {
-      "matchPackageNames": ["phpunit/phpunit"],
-      "allowedVersions": "<11.0"
-    },
-    {
-      "matchPackageNames": ["zfr/rbac"],
-      "allowedVersions": "<2.0"
-    }
-  ]
+  "major": {
+    "dependencyDashboardApproval": true
+  }
 }
