@@ -21,10 +21,21 @@ Please update your code to replace `LmcRbacMvc` by `Lmc\Rbac\Mvc`.
 The following components that were shared with LmcRbac are deprecated in LmcRbacMvc and should be replaced by their 
 LmcRbac equivalent:
 
-- detail the Exception classes
+- Lmc\Rbac\Mvc\Exception\ExceptionInterface
+- Lmc\Rbac\Mvc\Exception\InvalidArgumentException
+- Lmc\Rbac\Mvc\Exception\RoleNotFoundException
+- Lmc\Rbac\Mvc\Exception\RuntimeException
+- Lmc\Rbac\Mvc\Permission\PermissionInterface
+- Lmc\Rbac\Mvc\Identity\IdentityInterface
 
-The factory classes were refactored from the `src/Factory` folder to be colocated with
-with the service that the factory is creating. All the factories in `src/Factory` are deprecated.
+### Refactored and removed classes
+
+- The factory classes were refactored from the `LmcRbacMvc\Factory` namespace to be colocated with
+with the service that the factory is creating. All the factories that were in `LmcRbacMvc\Factory` namespace have been
+deleted.
+- LmcRbacMvc\UnauthorizedExceptionInterface  *not used*
+- LmcRbacMvc\UnauthorizedException  *not used*
+- LmcRbacMvc\Role\RoleProviderPluginManager *no longer used*
 
 ## From zfc-rbac v2.x to LmcRbacMvc v3.0
 
