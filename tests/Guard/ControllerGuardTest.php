@@ -524,7 +524,7 @@ class ControllerGuardTest extends \PHPUnit\Framework\TestCase
 
         $this->assertTrue($event->propagationIsStopped());
         $this->assertEquals(ControllerGuard::GUARD_UNAUTHORIZED, $event->getError());
-        $this->assertInstanceOf('Lmc\Rbac\Exception\UnauthorizedException', $event->getParam('exception'));
+        $this->assertInstanceOf('LmcRbacMvc\Exception\UnauthorizedException', $event->getParam('exception'));
     }
 
     public function createRouteMatch(array $params = [])

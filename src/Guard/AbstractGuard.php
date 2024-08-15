@@ -21,7 +21,7 @@ namespace LmcRbacMvc\Guard;
 use Laminas\EventManager\EventManagerInterface;
 use Laminas\EventManager\ListenerAggregateTrait;
 use Laminas\Mvc\MvcEvent;
-use Lmc\Rbac\Exception;
+use LmcRbacMvc\Exception;
 
 /**
  * Abstract guard that hook on the MVC workflow

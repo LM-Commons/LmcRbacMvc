@@ -23,7 +23,7 @@ use Laminas\Http\Request as HttpRequest;
 use Laminas\Http\Response as HttpResponse;
 use Laminas\Mvc\MvcEvent;
 use Laminas\Router\Http\TreeRouteStack;
-use Lmc\Rbac\Exception\UnauthorizedException;
+use LmcRbacMvc\Exception\UnauthorizedException;
 use LmcRbacMvc\Options\RedirectStrategyOptions;
 use LmcRbacMvc\View\Strategy\RedirectStrategy;
 
