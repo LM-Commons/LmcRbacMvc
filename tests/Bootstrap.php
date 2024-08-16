@@ -16,8 +16,7 @@
  * and is licensed under the MIT license.
  */
 
-use Laminas\Mvc\Application;
-use LmcRbacMvcTest\Util\ServiceManagerFactory;
+use LmcTest\Rbac\Mvc\Util\ServiceManagerFactory;
 
 ini_set('error_reporting', E_ALL);
 
@@ -38,7 +37,7 @@ if (! isset($loader)) {
     throw new RuntimeException('vendor/autoload.php could not be found. Did you install via composer?');
 }
 
-$loader->add('LmcRbacMvcTest\\', __DIR__);
+$loader->add('LmcTest\Rbac\Mvc\\', __DIR__);
 
 $config = require __DIR__ . '/TestConfiguration.php.dist';
 ServiceManagerFactory::setApplicationConfig($config);

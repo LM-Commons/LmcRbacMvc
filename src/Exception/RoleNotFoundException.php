@@ -16,7 +16,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvc\Exception;
+namespace Lmc\Rbac\Mvc\Exception;
 
 use RuntimeException as BaseRuntimeException;
 

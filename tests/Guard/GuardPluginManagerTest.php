@@ -16,15 +16,15 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\Guard;
+namespace LmcTest\Rbac\Mvc\Guard;
 
 use Laminas\ServiceManager\ServiceManager;
-use LmcRbacMvc\Guard\GuardPluginManager;
-use LmcRbacMvc\Options\ModuleOptions;
+use Lmc\Rbac\Mvc\Guard\GuardPluginManager;
+use Lmc\Rbac\Mvc\Options\ModuleOptions;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 /**
- * @covers \LmcRbacMvc\Guard\GuardPluginManager
+ * @covers \Lmc\Rbac\Mvc\Guard\GuardPluginManager
  */
 class GuardPluginManagerTest extends \PHPUnit\Framework\TestCase
 {
@@ -32,19 +32,19 @@ class GuardPluginManagerTest extends \PHPUnit\Framework\TestCase
     {
         return [
             [
-                'LmcRbacMvc\Guard\RouteGuard',
+                'Lmc\Rbac\Mvc\Guard\RouteGuard',
                 [
                     'admin/*' => 'foo'
                 ]
             ],
             [
-                'LmcRbacMvc\Guard\RoutePermissionsGuard',
+                'Lmc\Rbac\Mvc\Guard\RoutePermissionsGuard',
                 [
                     'post/delete' => 'post.delete'
                 ]
             ],
             [
-                'LmcRbacMvc\Guard\ControllerGuard',
+                'Lmc\Rbac\Mvc\Guard\ControllerGuard',
                 [
                     [
                         'controller' => 'Foo',
@@ -54,7 +54,7 @@ class GuardPluginManagerTest extends \PHPUnit\Framework\TestCase
                 ]
             ],
             [
-                'LmcRbacMvc\Guard\ControllerPermissionsGuard',
+                'Lmc\Rbac\Mvc\Guard\ControllerPermissionsGuard',
                 [
                     [
                         'controller'  => 'Foo',
@@ -70,14 +70,14 @@ class GuardPluginManagerTest extends \PHPUnit\Framework\TestCase
     public function testCanCreateDefaultGuards($type, $options)
     {
         $serviceManager = new ServiceManager();
-        $serviceManager->setService('LmcRbacMvc\Options\ModuleOptions', new ModuleOptions());
+        $serviceManager->setService('Lmc\Rbac\Mvc\Options\ModuleOptions', new ModuleOptions());
         $serviceManager->setService(
-            'LmcRbacMvc\Service\RoleService',
-            $this->createMock('LmcRbacMvc\Service\RoleService')
+            'Lmc\Rbac\Mvc\Service\RoleService',
+            $this->createMock('Lmc\Rbac\Mvc\Service\RoleService')
         );
         $serviceManager->setService(
-            'LmcRbacMvc\Service\AuthorizationService',
-            $this->createMock('LmcRbacMvc\Service\AuthorizationService')
+            'Lmc\Rbac\Mvc\Service\AuthorizationService',
+            $this->createMock('Lmc\Rbac\Mvc\Service\AuthorizationService')
         );
 
         $pluginManager = new GuardPluginManager($serviceManager);

@@ -16,15 +16,15 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\Identity;
+namespace LmcTest\Rbac\Mvc\Identity;
 
 use Laminas\Authentication\AuthenticationService;
-use LmcRbacMvc\Identity\AuthenticationIdentityProvider;
+use Lmc\Rbac\Mvc\Identity\AuthenticationIdentityProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \LmcRbacMvc\Identity\AuthenticationIdentityProvider
+ * @covers \Lmc\Rbac\Mvc\Identity\AuthenticationIdentityProvider
  */
 class AuthenticationIdentityProviderTest extends TestCase
 {

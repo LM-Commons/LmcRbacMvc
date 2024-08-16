@@ -16,24 +16,24 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\Service;
+namespace LmcTest\Rbac\Mvc\Service;
 
 use Laminas\ServiceManager\ServiceManager;
-use LmcRbacMvc\Service\RoleServiceFactory;
-use LmcRbacMvc\Options\ModuleOptions;
+use Lmc\Rbac\Mvc\Service\RoleServiceFactory;
+use Lmc\Rbac\Mvc\Options\ModuleOptions;
 
 /**
- * @covers \LmcRbacMvc\Service\RoleServiceFactory
+ * @covers \Lmc\Rbac\Mvc\Service\RoleServiceFactory
  */
 class RoleServiceFactoryTest extends \PHPUnit\Framework\TestCase
 {
     public function testFactory()
     {
         $options = new ModuleOptions([
-            'identity_provider'    => 'LmcRbacMvc\Identity\AuthenticationProvider',
+            'identity_provider'    => 'Lmc\Rbac\Mvc\Identity\AuthenticationProvider',
         ]);
 
-        $identityProvider = $this->createMock('LmcRbacMvc\Identity\AuthenticationIdentityProvider');
+        $identityProvider = $this->createMock('Lmc\Rbac\Mvc\Identity\AuthenticationIdentityProvider');
 
         $baseRoleService = $this->createMock('Lmc\Rbac\Service\RoleServiceInterface');
 
@@ -50,6 +50,6 @@ class RoleServiceFactoryTest extends \PHPUnit\Framework\TestCase
             });
 
         $factory = new RoleServiceFactory();
-        $roleService = $factory($container, 'LmcRbacMvc\Service\RoleService');
+        $roleService = $factory($container, 'Lmc\Rbac\Mvc\Service\RoleService');
     }
 }

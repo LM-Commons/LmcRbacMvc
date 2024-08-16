@@ -16,15 +16,15 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\Guard;
+namespace LmcTest\Rbac\Mvc\Guard;
 
 use Laminas\ServiceManager\ServiceManager;
-use LmcRbacMvc\Guard\GuardPluginManagerFactory;
-use LmcRbacMvc\Guard\GuardPluginManager;
-use LmcRbacMvc\Options\ModuleOptions;
+use Lmc\Rbac\Mvc\Guard\GuardPluginManagerFactory;
+use Lmc\Rbac\Mvc\Guard\GuardPluginManager;
+use Lmc\Rbac\Mvc\Options\ModuleOptions;
 
 /**
- * @covers \LmcRbacMvc\Guard\GuardPluginManagerFactory
+ * @covers \Lmc\Rbac\Mvc\Guard\GuardPluginManagerFactory
  */
 class GuardPluginManagerFactoryTest extends \PHPUnit\Framework\TestCase
 {

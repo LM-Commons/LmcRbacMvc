@@ -16,18 +16,18 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\Service;
+namespace LmcTest\Rbac\Mvc\Service;
 
 use Laminas\Permissions\Rbac\Rbac;
 use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
 use Laminas\ServiceManager\ServiceManager;
-use LmcRbacMvc\Service\AuthorizationServiceFactory;
-use LmcRbacMvc\Options\ModuleOptions;
+use Lmc\Rbac\Mvc\Service\AuthorizationServiceFactory;
+use Lmc\Rbac\Mvc\Options\ModuleOptions;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \LmcRbacMvc\Service\AuthorizationServiceFactory
+ * @covers \Lmc\Rbac\Mvc\Service\AuthorizationServiceFactory
  */
 class AuthorizationServiceFactoryTest extends TestCase
 {
@@ -41,7 +41,7 @@ class AuthorizationServiceFactoryTest extends TestCase
             ->method('get')
             ->willReturnCallback(function ($className) {
                 return match($className) {
-                    'LmcRbacMvc\Service\RoleService' => $this->createMock('LmcRbacMvc\Service\RoleService'),
+                    'Lmc\Rbac\Mvc\Service\RoleService' => $this->createMock('Lmc\Rbac\Mvc\Service\RoleService'),
                     'Lmc\Rbac\Service\AuthorizationServiceInterface' => $this->createMock('Lmc\Rbac\Service\AuthorizationService'),
                 };
             }
@@ -53,7 +53,7 @@ class AuthorizationServiceFactoryTest extends TestCase
             ->willReturn(true);
 
         $factory              = new AuthorizationServiceFactory();
-        $authorizationService = $factory($container, 'LmcRbacMvc\Service\AuthorizationService');
+        $authorizationService = $factory($container, 'Lmc\Rbac\Mvc\Service\AuthorizationService');
     }
 
     /**
@@ -73,6 +73,6 @@ class AuthorizationServiceFactoryTest extends TestCase
         $this->expectException(ServiceNotCreatedException::class);
 
         $factory              = new AuthorizationServiceFactory();
-        $authorizationService = $factory($container, 'LmcRbacMvc\Service\AuthorizationService');
+        $authorizationService = $factory($container, 'Lmc\Rbac\Mvc\Service\AuthorizationService');
     }
 }

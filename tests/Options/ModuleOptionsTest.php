@@ -16,26 +16,26 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\Options;
+namespace LmcTest\Rbac\Mvc\Options;
 
-use LmcRbacMvc\Options\ModuleOptions;
-use LmcRbacMvcTest\Util\ServiceManagerFactory;
+use Lmc\Rbac\Mvc\Options\ModuleOptions;
+use LmcTest\Rbac\Mvc\Util\ServiceManagerFactory;
 
 /**
- * @covers \LmcRbacMvc\Options\ModuleOptions
+ * @covers \Lmc\Rbac\Mvc\Options\ModuleOptions
  */
 class ModuleOptionsTest extends \PHPUnit\Framework\TestCase
 {
     public function testAssertModuleDefaultOptions()
     {
         /** @var ModuleOptions $moduleOptions */
-        $moduleOptions = ServiceManagerFactory::getServiceManager()->get('LmcRbacMvc\Options\ModuleOptions');
+        $moduleOptions = ServiceManagerFactory::getServiceManager()->get('Lmc\Rbac\Mvc\Options\ModuleOptions');
 
         $this->assertEquals('allow', $moduleOptions->getProtectionPolicy());
         $this->assertIsArray($moduleOptions->getGuards());
-        $this->assertInstanceOf('LmcRbacMvc\Options\UnauthorizedStrategyOptions', $moduleOptions->getUnauthorizedStrategy());
-        $this->assertInstanceOf('LmcRbacMvc\Options\RedirectStrategyOptions', $moduleOptions->getRedirectStrategy());
-        $this->assertEquals('LmcRbacMvc\Identity\AuthenticationIdentityProvider', $moduleOptions->getIdentityProvider());
+        $this->assertInstanceOf('Lmc\Rbac\Mvc\Options\UnauthorizedStrategyOptions', $moduleOptions->getUnauthorizedStrategy());
+        $this->assertInstanceOf('Lmc\Rbac\Mvc\Options\RedirectStrategyOptions', $moduleOptions->getRedirectStrategy());
+        $this->assertEquals('Lmc\Rbac\Mvc\Identity\AuthenticationIdentityProvider', $moduleOptions->getIdentityProvider());
     }
 
     public function testSettersAndGetters()
@@ -56,8 +56,8 @@ class ModuleOptionsTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals([], $moduleOptions->getGuards());
         $this->assertEquals('foo', $moduleOptions->getIdentityProvider());
         $this->assertEquals('deny', $moduleOptions->getProtectionPolicy());
-        $this->assertInstanceOf('LmcRbacMvc\Options\UnauthorizedStrategyOptions', $moduleOptions->getUnauthorizedStrategy());
-        $this->assertInstanceOf('LmcRbacMvc\Options\RedirectStrategyOptions', $moduleOptions->getRedirectStrategy());
+        $this->assertInstanceOf('Lmc\Rbac\Mvc\Options\UnauthorizedStrategyOptions', $moduleOptions->getUnauthorizedStrategy());
+        $this->assertInstanceOf('Lmc\Rbac\Mvc\Options\RedirectStrategyOptions', $moduleOptions->getRedirectStrategy());
     }
 
     public function testThrowExceptionForInvalidProtectionPolicy()

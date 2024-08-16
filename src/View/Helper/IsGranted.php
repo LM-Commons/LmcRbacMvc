@@ -16,10 +16,10 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvc\View\Helper;
+namespace Lmc\Rbac\Mvc\View\Helper;
 
 use Laminas\View\Helper\AbstractHelper;
-use LmcRbacMvc\Service\AuthorizationServiceInterface;
+use Lmc\Rbac\Mvc\Service\AuthorizationServiceInterface;
 
 /**
  * View helper that allows to test a permission in a view

@@ -16,12 +16,12 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvc\View\Strategy;
+namespace Lmc\Rbac\Mvc\View\Strategy;
 
 use Psr\Container\ContainerInterface;
 use Laminas\Authentication\AuthenticationService;
 use Laminas\ServiceManager\Factory\FactoryInterface;
-use LmcRbacMvc\Options\ModuleOptions;
+use Lmc\Rbac\Mvc\Options\ModuleOptions;
 
 /**
  * Factory to create a redirect strategy

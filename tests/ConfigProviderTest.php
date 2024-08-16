@@ -2,11 +2,11 @@
 
 namespace LmcRbacMvcTest;
 
-use LmcRbacMvc\ConfigProvider;
+use Lmc\Rbac\Mvc\ConfigProvider;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \LmcRbacMvc\ConfigProvider
+ * @covers \Lmc\Rbac\Mvc\ConfigProvider
  */
 class ConfigProviderTest extends TestCase
 {

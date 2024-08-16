@@ -16,7 +16,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvc\Role;
+namespace Lmc\Rbac\Mvc\Role;
 
 use ArrayIterator;
 use Lmc\Rbac\Role\RoleInterface;

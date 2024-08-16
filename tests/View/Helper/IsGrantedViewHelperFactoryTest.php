@@ -16,13 +16,13 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\View\Helper;
+namespace LmcTest\Rbac\Mvc\View\Helper;
 
 use Laminas\ServiceManager\ServiceManager;
-use LmcRbacMvc\View\Helper\IsGrantedViewHelperFactory;
+use Lmc\Rbac\Mvc\View\Helper\IsGrantedViewHelperFactory;
 use PHPUnit\Framework\Attributes\CoversClass;
 
-#[CoversClass('\LmcRbacMvc\View\Helper\IsGrantedViewHelperFactory')]
+#[CoversClass('\Lmc\Rbac\Mvc\View\Helper\IsGrantedViewHelperFactory')]
 class IsGrantedViewHelperFactoryTest extends \PHPUnit\Framework\TestCase
 {
     public function testFactory()
@@ -30,13 +30,13 @@ class IsGrantedViewHelperFactoryTest extends \PHPUnit\Framework\TestCase
         $serviceManager = new ServiceManager();
 
         $serviceManager->setService(
-            'LmcRbacMvc\Service\AuthorizationService',
-            $this->createMock('LmcRbacMvc\Service\AuthorizationServiceInterface')
+            'Lmc\Rbac\Mvc\Service\AuthorizationService',
+            $this->createMock('Lmc\Rbac\Mvc\Service\AuthorizationServiceInterface')
         );
 
         $factory   = new IsGrantedViewHelperFactory();
-        $isGranted = $factory($serviceManager, 'LmcRbacMvc\View\Helper\IsGranted');
+        $isGranted = $factory($serviceManager, 'Lmc\Rbac\Mvc\View\Helper\IsGranted');
 
-        $this->assertInstanceOf('LmcRbacMvc\View\Helper\IsGranted', $isGranted);
+        $this->assertInstanceOf('Lmc\Rbac\Mvc\View\Helper\IsGranted', $isGranted);
     }
 }

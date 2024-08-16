@@ -16,12 +16,12 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvc\Guard;
+namespace Lmc\Rbac\Mvc\Guard;
 
 use Psr\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
-use LmcRbacMvc\Options\ModuleOptions;
-use LmcRbacMvc\Service\AuthorizationService;
+use Lmc\Rbac\Mvc\Options\ModuleOptions;
+use Lmc\Rbac\Mvc\Service\AuthorizationService;
 
 /**
  * Create a route guard for checking permissions

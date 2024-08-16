@@ -1,6 +1,6 @@
 <?php
 
-namespace LmcRbacMvc;
+namespace Lmc\Rbac\Mvc;
 
 class ConfigProvider
 {
@@ -20,16 +20,16 @@ class ConfigProvider
         return [
             'factories' => [
                 /* Factories that do not map to a class */
-                'LmcRbacMvc\Guards' => \LmcRbacMvc\Guard\GuardsFactory::class,
+                'Lmc\Rbac\Mvc\Guards' => \Lmc\Rbac\Mvc\Guard\GuardsFactory::class,
 
                 /* Factories that map to a class */
-                \LmcRbacMvc\Guard\GuardPluginManager::class                => \LmcRbacMvc\Guard\GuardPluginManagerFactory::class,
-                \LmcRbacMvc\Identity\AuthenticationIdentityProvider::class => \LmcRbacMvc\Identity\AuthenticationIdentityProviderFactory::class,
-                \LmcRbacMvc\Options\ModuleOptions::class                   => \LmcRbacMvc\Options\ModuleOptionsFactory::class,
-                \LmcRbacMvc\Service\AuthorizationService::class            => \LmcRbacMvc\Service\AuthorizationServiceFactory::class,
-                \LmcRbacMvc\Service\RoleService::class                     => \LmcRbacMvc\Service\RoleServiceFactory::class,
-                \LmcRbacMvc\View\Strategy\RedirectStrategy::class          => \LmcRbacMvc\View\Strategy\RedirectStrategyFactory::class,
-                \LmcRbacMvc\View\Strategy\UnauthorizedStrategy::class      => \LmcRbacMvc\View\Strategy\UnauthorizedStrategyFactory::class,
+                \Lmc\Rbac\Mvc\Guard\GuardPluginManager::class                => \Lmc\Rbac\Mvc\Guard\GuardPluginManagerFactory::class,
+                \Lmc\Rbac\Mvc\Identity\AuthenticationIdentityProvider::class => \Lmc\Rbac\Mvc\Identity\AuthenticationIdentityProviderFactory::class,
+                \Lmc\Rbac\Mvc\Options\ModuleOptions::class                   => \Lmc\Rbac\Mvc\Options\ModuleOptionsFactory::class,
+                \Lmc\Rbac\Mvc\Service\AuthorizationService::class            => \Lmc\Rbac\Mvc\Service\AuthorizationServiceFactory::class,
+                \Lmc\Rbac\Mvc\Service\RoleService::class                     => \Lmc\Rbac\Mvc\Service\RoleServiceFactory::class,
+                \Lmc\Rbac\Mvc\View\Strategy\RedirectStrategy::class          => \Lmc\Rbac\Mvc\View\Strategy\RedirectStrategyFactory::class,
+                \Lmc\Rbac\Mvc\View\Strategy\UnauthorizedStrategy::class      => \Lmc\Rbac\Mvc\View\Strategy\UnauthorizedStrategyFactory::class,
             ],
         ];
     }
@@ -46,10 +46,10 @@ class ConfigProvider
     {
         return [
             'factories' => [
-                \LmcRbacMvc\Mvc\Controller\Plugin\IsGranted::class => \LmcRbacMvc\Mvc\Controller\Plugin\IsGrantedPluginFactory::class,
+                \Lmc\Rbac\Mvc\Mvc\Controller\Plugin\IsGranted::class => \Lmc\Rbac\Mvc\Mvc\Controller\Plugin\IsGrantedPluginFactory::class,
             ],
             'aliases' => [
-                'isGranted' => \LmcRbacMvc\Mvc\Controller\Plugin\IsGranted::class,
+                'isGranted' => \Lmc\Rbac\Mvc\Mvc\Controller\Plugin\IsGranted::class,
             ],
         ];
     }
@@ -58,12 +58,12 @@ class ConfigProvider
     {
         return [
             'factories' => [
-                \LmcRbacMvc\View\Helper\IsGranted::class => \LmcRbacMvc\View\Helper\IsGrantedViewHelperFactory::class,
-                \LmcRbacMvc\View\Helper\HasRole::class   => \LmcRbacMvc\View\Helper\HasRoleViewHelperFactory::class,
+                \Lmc\Rbac\Mvc\View\Helper\IsGranted::class => \Lmc\Rbac\Mvc\View\Helper\IsGrantedViewHelperFactory::class,
+                \Lmc\Rbac\Mvc\View\Helper\HasRole::class   => \Lmc\Rbac\Mvc\View\Helper\HasRoleViewHelperFactory::class,
             ],
             'aliases' => [
-                'isGranted' => \LmcRbacMvc\View\Helper\IsGranted::class,
-                'hasRole'   => \LmcRbacMvc\View\Helper\HasRole::class,
+                'isGranted' => \Lmc\Rbac\Mvc\View\Helper\IsGranted::class,
+                'hasRole'   => \Lmc\Rbac\Mvc\View\Helper\HasRole::class,
             ],
         ];
     }

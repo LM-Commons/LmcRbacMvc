@@ -16,12 +16,12 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvc\Guard;
+namespace Lmc\Rbac\Mvc\Guard;
 
 use Laminas\EventManager\EventManagerInterface;
 use Laminas\EventManager\ListenerAggregateTrait;
 use Laminas\Mvc\MvcEvent;
-use LmcRbacMvc\Exception;
+use Lmc\Rbac\Mvc\Exception;
 
 /**
  * Abstract guard that hook on the MVC workflow

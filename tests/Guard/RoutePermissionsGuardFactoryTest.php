@@ -16,15 +16,15 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\Guard;
+namespace LmcTest\Rbac\Mvc\Guard;
 
 use Laminas\ServiceManager\ServiceManager;
-use LmcRbacMvc\Guard\RoutePermissionsGuardFactory;
-use LmcRbacMvc\Guard\GuardInterface;
-use LmcRbacMvc\Options\ModuleOptions;
+use Lmc\Rbac\Mvc\Guard\RoutePermissionsGuardFactory;
+use Lmc\Rbac\Mvc\Guard\GuardInterface;
+use Lmc\Rbac\Mvc\Options\ModuleOptions;
 
 /**
- * @covers \LmcRbacMvc\Guard\RoutePermissionsGuardFactory
+ * @covers \Lmc\Rbac\Mvc\Guard\RoutePermissionsGuardFactory
  */
 class RoutePermissionsGuardFactoryTest extends \PHPUnit\Framework\TestCase
 {
@@ -37,23 +37,23 @@ class RoutePermissionsGuardFactoryTest extends \PHPUnit\Framework\TestCase
         ];
 
         $options = new ModuleOptions([
-            'identity_provider' => 'LmcRbacMvc\Identity\AuthenticationProvider',
+            'identity_provider' => 'Lmc\Rbac\Mvc\Identity\AuthenticationProvider',
             'guards'            => [
-                'LmcRbacMvc\Guard\RoutePermissionsGuard' => $creationOptions
+                'Lmc\Rbac\Mvc\Guard\RoutePermissionsGuard' => $creationOptions
             ],
             'protection_policy' => GuardInterface::POLICY_ALLOW,
         ]);
 
-        $serviceManager->setService('LmcRbacMvc\Options\ModuleOptions', $options);
+        $serviceManager->setService('Lmc\Rbac\Mvc\Options\ModuleOptions', $options);
         $serviceManager->setService(
-            'LmcRbacMvc\Service\AuthorizationService',
-            $this->getMockBuilder('LmcRbacMvc\Service\AuthorizationService')->disableOriginalConstructor()->getMock()
+            'Lmc\Rbac\Mvc\Service\AuthorizationService',
+            $this->getMockBuilder('Lmc\Rbac\Mvc\Service\AuthorizationService')->disableOriginalConstructor()->getMock()
         );
 
         $factory    = new RoutePermissionsGuardFactory();
-        $routeGuard = $factory($serviceManager, 'LmcRbacMvc\Guard\RoutePermissionsGuard');
+        $routeGuard = $factory($serviceManager, 'Lmc\Rbac\Mvc\Guard\RoutePermissionsGuard');
 
-        $this->assertInstanceOf('LmcRbacMvc\Guard\RoutePermissionsGuard', $routeGuard);
+        $this->assertInstanceOf('Lmc\Rbac\Mvc\Guard\RoutePermissionsGuard', $routeGuard);
         $this->assertEquals(GuardInterface::POLICY_ALLOW, $routeGuard->getProtectionPolicy());
     }
 }

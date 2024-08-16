@@ -16,12 +16,12 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\Options;
+namespace LmcTest\Rbac\Mvc\Options;
 
-use LmcRbacMvc\Options\UnauthorizedStrategyOptions;
+use Lmc\Rbac\Mvc\Options\UnauthorizedStrategyOptions;
 
 /**
- * @covers \LmcRbacMvc\Options\UnauthorizedStrategyOptions
+ * @covers \Lmc\Rbac\Mvc\Options\UnauthorizedStrategyOptions
  */
 class UnauthorizedStrategyOptionsTest extends \PHPUnit\Framework\TestCase
 {

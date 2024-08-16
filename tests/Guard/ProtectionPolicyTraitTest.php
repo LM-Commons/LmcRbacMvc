@@ -16,12 +16,12 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\Guard;
+namespace LmcTest\Rbac\Mvc\Guard;
 
-use LmcRbacMvc\Guard\GuardInterface;
+use Lmc\Rbac\Mvc\Guard\GuardInterface;
 
 /**
- * @covers \LmcRbacMvc\Guard\ProtectionPolicyTrait
+ * @covers \Lmc\Rbac\Mvc\Guard\ProtectionPolicyTrait
  */
 class ProtectionPolicyTraitTest extends \PHPUnit\Framework\TestCase
 {

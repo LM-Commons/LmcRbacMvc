@@ -16,10 +16,10 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvc\View\Helper;
+namespace Lmc\Rbac\Mvc\View\Helper;
 
 use Laminas\View\Helper\AbstractHelper;
-use LmcRbacMvc\Service\RoleService;
+use Lmc\Rbac\Mvc\Service\RoleService;
 
 /**
  * View helper that allows to test a role in a view
