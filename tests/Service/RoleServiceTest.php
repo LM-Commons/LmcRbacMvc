@@ -18,11 +18,13 @@
 
 namespace LmcRbacMvcTest\Service;
 
+use Lmc\Rbac\Role\Role;
 use LmcRbacMvc\Identity\IdentityInterface;
 use LmcRbacMvc\Identity\IdentityProviderInterface;
 use LmcRbacMvc\Role\InMemoryRoleProvider;
 use LmcRbacMvc\Role\RoleProviderInterface;
 use LmcRbacMvc\Service\RoleService;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use LmcRbacMvc\Role\RecursiveRoleIteratorStrategy;
 use LmcRbacMvc\Role\TraversalStrategyInterface;
@@ -178,13 +180,25 @@ class RoleServiceTest extends TestCase
                     'member'
                 ],
                 'doesMatch' => true
+            ],
+            // With Role objects
+            [
+                'rolesConfig' => [
+                    'member',
+                    'guest'
+                ],
+                'identityRoles' => [
+                    'member'
+                ],
+                'rolesToCheck' => [
+                    new Role('member'),
+                ],
+                'doesMatch' => true
             ]
         ];
     }
 
-    /**
-     * @dataProvider roleProvider
-     */
+    #[DataProvider('roleProvider')]
     public function testMatchIdentityRoles(array $rolesConfig, array $identityRoles, array $rolesToCheck, $doesMatch)
     {
         $identity = $this->createMock('Lmc\Rbac\Identity\IdentityInterface');
