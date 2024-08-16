@@ -1,8 +1,8 @@
 <?php
 
-namespace LmcRbacMvcTest\Guard;
+namespace LmcTest\Rbac\Mvc\Guard;
 
-use LmcRbacMvc\Guard\ProtectionPolicyTrait;
+use Lmc\Rbac\Mvc\Guard\ProtectionPolicyTrait;
 
 class DummyProtectionPolicyTestClass
 {

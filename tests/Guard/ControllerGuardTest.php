@@ -16,27 +16,27 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\Guard;
+namespace LmcTest\Rbac\Mvc\Guard;
 
 use Laminas\Mvc\MvcEvent;
 //use Laminas\Mvc\Router\RouteMatch as V2RouteMatch;
 use Laminas\Router\RouteMatch;
-use LmcRbacMvc\Guard\ControllerGuard;
-use LmcRbacMvc\Guard\GuardInterface;
-use LmcRbacMvc\Role\InMemoryRoleProvider;
-use LmcRbacMvc\Service\RoleService;
-use LmcRbacMvc\Role\RecursiveRoleIteratorStrategy;
+use Lmc\Rbac\Mvc\Guard\ControllerGuard;
+use Lmc\Rbac\Mvc\Guard\GuardInterface;
+use Lmc\Rbac\Mvc\Role\InMemoryRoleProvider;
+use Lmc\Rbac\Mvc\Service\RoleService;
+use Lmc\Rbac\Mvc\Role\RecursiveRoleIteratorStrategy;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 /**
- * @covers \LmcRbacMvc\Guard\AbstractGuard
- * @covers \LmcRbacMvc\Guard\ControllerGuard
+ * @covers \Lmc\Rbac\Mvc\Guard\AbstractGuard
+ * @covers \Lmc\Rbac\Mvc\Guard\ControllerGuard
  */
 class ControllerGuardTest extends \PHPUnit\Framework\TestCase
 {
     public function testAttachToRightEvent()
     {
-        $guard = new ControllerGuard($this->getMockBuilder('LmcRbacMvc\Service\RoleService')->disableOriginalConstructor()->getMock());
+        $guard = new ControllerGuard($this->getMockBuilder('Lmc\Rbac\Mvc\Service\RoleService')->disableOriginalConstructor()->getMock());
 
         $eventManager = $this->createMock('Laminas\EventManager\EventManagerInterface');
         $eventManager->expects($this->once())
@@ -159,7 +159,7 @@ class ControllerGuardTest extends \PHPUnit\Framework\TestCase
      */
     public function testRulesConversions(array $rules, array $expected)
     {
-        $roleService     = $this->getMockBuilder('LmcRbacMvc\Service\RoleService')->disableOriginalConstructor()->getMock();
+        $roleService     = $this->getMockBuilder('Lmc\Rbac\Mvc\Service\RoleService')->disableOriginalConstructor()->getMock();
         $controllerGuard = new ControllerGuard($roleService, $rules);
 
         $reflProperty = new \ReflectionProperty($controllerGuard, 'rules');
@@ -420,7 +420,7 @@ class ControllerGuardTest extends \PHPUnit\Framework\TestCase
         $identity = $this->createMock('Lmc\Rbac\Identity\IdentityInterface');
         $identity->expects($this->any())->method('getRoles')->willReturn($identityRole);
 
-        $identityProvider = $this->createMock('LmcRbacMvc\Identity\IdentityProviderInterface');
+        $identityProvider = $this->createMock('Lmc\Rbac\Mvc\Identity\IdentityProviderInterface');
         $identityProvider->expects($this->any())->method('getIdentity')->willReturn($identity);
 
         $roleProvider = new \Lmc\Rbac\Role\InMemoryRoleProvider($rolesConfig);
@@ -454,7 +454,7 @@ class ControllerGuardTest extends \PHPUnit\Framework\TestCase
         $identity = $this->createMock('Lmc\Rbac\Identity\IdentityInterface');
         $identity->expects($this->any())->method('getRoles')->willReturn(['member']);
 
-        $identityProvider = $this->createMock('LmcRbacMvc\Identity\IdentityProviderInterface');
+        $identityProvider = $this->createMock('Lmc\Rbac\Mvc\Identity\IdentityProviderInterface');
         $identityProvider->expects($this->any())->method('getIdentity')->willReturn($identity);
 
         $roleProvider = new \Lmc\Rbac\Role\InMemoryRoleProvider([
@@ -502,7 +502,7 @@ class ControllerGuardTest extends \PHPUnit\Framework\TestCase
         $identity = $this->createMock('Lmc\Rbac\Identity\IdentityInterface');
         $identity->expects($this->any())->method('getRoles')->willReturn(['member']);
 
-        $identityProvider = $this->createMock('LmcRbacMvc\Identity\IdentityProviderInterface');
+        $identityProvider = $this->createMock('Lmc\Rbac\Mvc\Identity\IdentityProviderInterface');
         $identityProvider->expects($this->any())->method('getIdentity')->willReturn($identity);
 
         $roleProvider = new \Lmc\Rbac\Role\InMemoryRoleProvider([
@@ -524,7 +524,7 @@ class ControllerGuardTest extends \PHPUnit\Framework\TestCase
 
         $this->assertTrue($event->propagationIsStopped());
         $this->assertEquals(ControllerGuard::GUARD_UNAUTHORIZED, $event->getError());
-        $this->assertInstanceOf('LmcRbacMvc\Exception\UnauthorizedException', $event->getParam('exception'));
+        $this->assertInstanceOf('Lmc\Rbac\Mvc\Exception\UnauthorizedException', $event->getParam('exception'));
     }
 
     public function createRouteMatch(array $params = [])

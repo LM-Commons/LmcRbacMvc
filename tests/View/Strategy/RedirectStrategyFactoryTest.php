@@ -16,15 +16,15 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\View\Strategy;
+namespace LmcTest\Rbac\Mvc\View\Strategy;
 
 use Laminas\ServiceManager\ServiceLocatorInterface;
-use LmcRbacMvc\View\Strategy\RedirectStrategyFactory;
+use Lmc\Rbac\Mvc\View\Strategy\RedirectStrategyFactory;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Container\ContainerInterface;
 
 /**
- * @covers \LmcRbacMvc\View\Strategy\RedirectStrategyFactory
+ * @covers \Lmc\Rbac\Mvc\View\Strategy\RedirectStrategyFactory
  */
 class RedirectStrategyFactoryTest extends \PHPUnit\Framework\TestCase
 {
@@ -32,9 +32,9 @@ class RedirectStrategyFactoryTest extends \PHPUnit\Framework\TestCase
 
     public function testFactory()
     {
-        $redirectStrategyOptions = $this->createMock('LmcRbacMvc\Options\RedirectStrategyOptions');
+        $redirectStrategyOptions = $this->createMock('Lmc\Rbac\Mvc\Options\RedirectStrategyOptions');
 
-        $moduleOptionsMock = $this->createMock('LmcRbacMvc\Options\ModuleOptions');
+        $moduleOptionsMock = $this->createMock('Lmc\Rbac\Mvc\Options\ModuleOptions');
         $moduleOptionsMock->expects($this->once())
                           ->method('getRedirectStrategy')
                           ->will($this->returnValue($redirectStrategyOptions));
@@ -43,7 +43,7 @@ class RedirectStrategyFactoryTest extends \PHPUnit\Framework\TestCase
 
         $serviceLocatorMock = $this->prophesize(ServiceLocatorInterface::class);
         $serviceLocatorMock->willImplement(ContainerInterface::class);
-        $serviceLocatorMock->get('LmcRbacMvc\Options\ModuleOptions')
+        $serviceLocatorMock->get('Lmc\Rbac\Mvc\Options\ModuleOptions')
                            ->willReturn($moduleOptionsMock)
                            ->shouldBeCalled();
         $serviceLocatorMock->get('Laminas\Authentication\AuthenticationService')
@@ -51,8 +51,8 @@ class RedirectStrategyFactoryTest extends \PHPUnit\Framework\TestCase
                            ->shouldBeCalled();
 
         $factory          = new RedirectStrategyFactory();
-        $redirectStrategy = $factory($serviceLocatorMock->reveal(), 'LmcRbacMvc\View\Strategy\RedirectStrategy');
+        $redirectStrategy = $factory($serviceLocatorMock->reveal(), 'Lmc\Rbac\Mvc\View\Strategy\RedirectStrategy');
 
-        $this->assertInstanceOf('LmcRbacMvc\View\Strategy\RedirectStrategy', $redirectStrategy);
+        $this->assertInstanceOf('Lmc\Rbac\Mvc\View\Strategy\RedirectStrategy', $redirectStrategy);
     }
 }

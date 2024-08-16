@@ -16,13 +16,13 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvc\Identity;
+namespace Lmc\Rbac\Mvc\Identity;
 
 use Psr\Container\ContainerInterface;
 use Laminas\Authentication\AuthenticationService;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
-use LmcRbacMvc\Identity\AuthenticationIdentityProvider;
+use Lmc\Rbac\Mvc\Identity\AuthenticationIdentityProvider;
 
 /**
  * Factory to create the authentication identity provider

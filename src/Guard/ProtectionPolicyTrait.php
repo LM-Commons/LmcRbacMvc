@@ -16,7 +16,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvc\Guard;
+namespace Lmc\Rbac\Mvc\Guard;
 
 /**
  * Trait that is can be used for any guard that uses the protection policy pattern

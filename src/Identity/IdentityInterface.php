@@ -16,7 +16,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvc\Identity;
+namespace Lmc\Rbac\Mvc\Identity;
 
 use Lmc\Rbac\Identity\IdentityInterface as BaseIdentityInterface;
 

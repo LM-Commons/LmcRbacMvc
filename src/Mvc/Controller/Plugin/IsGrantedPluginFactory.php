@@ -16,11 +16,11 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvc\Mvc\Controller\Plugin;
+namespace Lmc\Rbac\Mvc\Mvc\Controller\Plugin;
 
 use Psr\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
-use LmcRbacMvc\Service\AuthorizationService;
+use Lmc\Rbac\Mvc\Service\AuthorizationService;
 
 /**
  * Create the IsGranted controller plugin

@@ -53,17 +53,18 @@
     },
     "autoload": {
         "psr-4": {
-            "LmcRbacMvc\\": "src"
+            "Lmc\\Rbac\\Mvc\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "LmcRbacMvcTest\\": "tests"
+            "LmcTest\\Rbac\\Mvc\\": "tests"
         }
     },
     "extra": {
         "laminas": {
-            "module": "LmcRbacMvc"
+            "module": "Lmc\\Rbac\\Mvc",
+            "config-provider": "Lmc\\Rbac\\Mvc\\ConfigProvider"
         }
     },
     "scripts": {

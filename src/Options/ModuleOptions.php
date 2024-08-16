@@ -16,11 +16,11 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvc\Options;
+namespace Lmc\Rbac\Mvc\Options;
 
 use Lmc\Rbac\Exception;
 use Lmc\Rbac\Options\ModuleOptions as BaseModuleOptions;
-use LmcRbacMvc\Guard\GuardInterface;
+use Lmc\Rbac\Mvc\Guard\GuardInterface;
 
 /**
  * Options for LmcRbacMvc module
@@ -34,7 +34,7 @@ class ModuleOptions extends BaseModuleOptions
     /**
      * Key of the identity provider used to retrieve the identity
      */
-    protected string $identityProvider = 'LmcRbacMvc\Identity\AuthenticationIdentityProvider';
+    protected string $identityProvider = 'Lmc\Rbac\Mvc\Identity\AuthenticationIdentityProvider';
 
     /**
      * Guards

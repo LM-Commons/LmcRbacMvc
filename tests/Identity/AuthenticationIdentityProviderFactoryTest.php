@@ -16,13 +16,13 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\Identity;
+namespace LmcTest\Rbac\Mvc\Identity;
 
 use Laminas\ServiceManager\ServiceManager;
-use LmcRbacMvc\Identity\AuthenticationIdentityProviderFactory;
+use Lmc\Rbac\Mvc\Identity\AuthenticationIdentityProviderFactory;
 
 /**
- * @covers \LmcRbacMvc\Identity\AuthenticationIdentityProviderFactory
+ * @covers \Lmc\Rbac\Mvc\Identity\AuthenticationIdentityProviderFactory
  */
 class AuthenticationIdentityProviderFactoryTest extends \PHPUnit\Framework\TestCase
 {
@@ -35,8 +35,8 @@ class AuthenticationIdentityProviderFactoryTest extends \PHPUnit\Framework\TestC
         );
 
         $factory                = new AuthenticationIdentityProviderFactory();
-        $authenticationProvider = $factory($serviceManager, 'LmcRbacMvc\Identity\AuthenticationIdentityProvider');
+        $authenticationProvider = $factory($serviceManager, 'Lmc\Rbac\Mvc\Identity\AuthenticationIdentityProvider');
 
-        $this->assertInstanceOf('LmcRbacMvc\Identity\AuthenticationIdentityProvider', $authenticationProvider);
+        $this->assertInstanceOf('Lmc\Rbac\Mvc\Identity\AuthenticationIdentityProvider', $authenticationProvider);
     }
 }

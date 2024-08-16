@@ -16,10 +16,10 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvc\Guard;
+namespace Lmc\Rbac\Mvc\Guard;
 
 use Laminas\Mvc\MvcEvent;
-use LmcRbacMvc\Service\RoleService;
+use Lmc\Rbac\Mvc\Service\RoleService;
 
 /**
  * A controller guard can protect a controller and a set of actions

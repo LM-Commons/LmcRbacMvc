@@ -16,7 +16,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvc\Service;
+namespace Lmc\Rbac\Mvc\Service;
 
 use Lmc\Rbac\Assertion\AssertionInterface;
 use Lmc\Rbac\Identity\IdentityInterface;

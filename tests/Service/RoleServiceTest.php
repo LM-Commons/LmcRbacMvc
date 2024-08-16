@@ -16,21 +16,21 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\Service;
+namespace LmcTest\Rbac\Mvc\Service;
 
 use Lmc\Rbac\Role\Role;
-use LmcRbacMvc\Identity\IdentityInterface;
-use LmcRbacMvc\Identity\IdentityProviderInterface;
-use LmcRbacMvc\Role\InMemoryRoleProvider;
-use LmcRbacMvc\Role\RoleProviderInterface;
-use LmcRbacMvc\Service\RoleService;
+use Lmc\Rbac\Mvc\Identity\IdentityInterface;
+use Lmc\Rbac\Mvc\Identity\IdentityProviderInterface;
+use Lmc\Rbac\Mvc\Role\InMemoryRoleProvider;
+use Lmc\Rbac\Mvc\Role\RoleProviderInterface;
+use Lmc\Rbac\Mvc\Service\RoleService;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use LmcRbacMvc\Role\RecursiveRoleIteratorStrategy;
-use LmcRbacMvc\Role\TraversalStrategyInterface;
+use Lmc\Rbac\Mvc\Role\RecursiveRoleIteratorStrategy;
+use Lmc\Rbac\Mvc\Role\TraversalStrategyInterface;
 
 /**
- * @covers \LmcRbacMvc\Service\RoleService
+ * @covers \Lmc\Rbac\Mvc\Service\RoleService
  */
 class RoleServiceTest extends TestCase
 {
@@ -204,7 +204,7 @@ class RoleServiceTest extends TestCase
         $identity = $this->createMock('Lmc\Rbac\Identity\IdentityInterface');
         $identity->expects($this->any())->method('getRoles')->willReturn($identityRoles);
 
-        $identityProvider = $this->createMock('LmcRbacMvc\Identity\IdentityProviderInterface');
+        $identityProvider = $this->createMock('Lmc\Rbac\Mvc\Identity\IdentityProviderInterface');
         $identityProvider->expects($this->any())
                          ->method('getIdentity')
                          ->willReturn($identity);

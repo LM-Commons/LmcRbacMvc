@@ -16,17 +16,17 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvc\Service;
+namespace Lmc\Rbac\Mvc\Service;
 
 use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
 use Lmc\Rbac\Service\RoleServiceInterface;
 use Psr\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
-use LmcRbacMvc\Identity\IdentityProviderInterface;
-use LmcRbacMvc\Options\ModuleOptions;
-use LmcRbacMvc\Role\RoleProviderPluginManager;
-use LmcRbacMvc\Role\RecursiveRoleIteratorStrategy;
-use LmcRbacMvc\Role\TraversalStrategyInterface;
+use Lmc\Rbac\Mvc\Identity\IdentityProviderInterface;
+use Lmc\Rbac\Mvc\Options\ModuleOptions;
+use Lmc\Rbac\Mvc\Role\RoleProviderPluginManager;
+use Lmc\Rbac\Mvc\Role\RecursiveRoleIteratorStrategy;
+use Lmc\Rbac\Mvc\Role\TraversalStrategyInterface;
 
 /**
  * Factory to create the role service

@@ -15,17 +15,17 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
-namespace LmcRbacMvcTest\Initializer;
+namespace LmcTest\Rbac\Mvc\Initializer;
 
 use Laminas\ServiceManager\ServiceManager;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
-use LmcRbacMvc\Initializer\AuthorizationServiceInitializer;
+use Lmc\Rbac\Mvc\Initializer\AuthorizationServiceInitializer;
 use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
- * @covers  \LmcRbacMvc\Initializer\AuthorizationServiceInitializer
+ * @covers  \Lmc\Rbac\Mvc\Initializer\AuthorizationServiceInitializer
  * @author  Aeneas Rekkas
  * @license MIT License
  */
@@ -35,14 +35,14 @@ class AuthorizationServiceInitializerTest extends TestCase
 
     public function testInitializer()
     {
-        $authServiceClassName = 'LmcRbacMvc\Service\AuthorizationService';
+        $authServiceClassName = 'Lmc\Rbac\Mvc\Service\AuthorizationService';
         $initializer          = new AuthorizationServiceInitializer();
         $instance             = new AuthorizationAwareFake();
 
-        $authorizationService = $this->createMock('LmcRbacMvc\Service\AuthorizationService');
+        $authorizationService = $this->createMock('Lmc\Rbac\Mvc\Service\AuthorizationService');
 
         $serviceManager = new ServiceManager();
-        $serviceManager->setService(\LmcRbacMvc\Service\AuthorizationService::class, $authorizationService);
+        $serviceManager->setService(\Lmc\Rbac\Mvc\Service\AuthorizationService::class, $authorizationService);
 
         $initializer($serviceManager, $instance);
 

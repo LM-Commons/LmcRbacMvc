@@ -16,10 +16,10 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\Asset;
+namespace LmcTest\Rbac\Mvc\Asset;
 
 use Laminas\Mvc\MvcEvent;
-use LmcRbacMvc\Guard\AbstractGuard;
+use Lmc\Rbac\Mvc\Guard\AbstractGuard;
 
 class DummyGuard extends AbstractGuard
 {

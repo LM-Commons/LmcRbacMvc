@@ -16,11 +16,11 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvc\View\Helper;
+namespace Lmc\Rbac\Mvc\View\Helper;
 
 use Psr\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
-use LmcRbacMvc\Service\RoleService;
+use Lmc\Rbac\Mvc\Service\RoleService;
 
 /**
  * Create the HasRole view helper

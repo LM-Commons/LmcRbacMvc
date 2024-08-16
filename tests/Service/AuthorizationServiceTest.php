@@ -16,18 +16,18 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\Service;
+namespace LmcTest\Rbac\Mvc\Service;
 
-use LmcRbacMvc\Service\AuthorizationService;
+use Lmc\Rbac\Mvc\Service\AuthorizationService;
 use PHPUnit\Framework\Attributes\CoversClass;
 
-#[CoversClass('\LmcRbacMvc\Service\AuthorizationService')]
+#[CoversClass('\Lmc\Rbac\Mvc\Service\AuthorizationService')]
 class AuthorizationServiceTest extends \PHPUnit\Framework\TestCase
 {
     public function testGetIdentity()
     {
-        $identity         = $this->createMock('LmcRbacMvc\Identity\IdentityInterface');
-        $roleService      = $this->createMock('LmcRbacMvc\Service\RoleService');
+        $identity         = $this->createMock('Lmc\Rbac\Mvc\Identity\IdentityInterface');
+        $roleService      = $this->createMock('Lmc\Rbac\Mvc\Service\RoleService');
         $roleService->expects($this->once())->method('getIdentity')->willReturn($identity);
         $authorizationService    = new AuthorizationService(
             $roleService,
@@ -40,7 +40,7 @@ class AuthorizationServiceTest extends \PHPUnit\Framework\TestCase
     {
         $baseAuthorizationService = $this->createMock('\Lmc\Rbac\Service\AuthorizationServiceInterface');
         $authorizationService = new AuthorizationService(
-            $this->createMock('LmcRbacMvc\Service\RoleService'),
+            $this->createMock('Lmc\Rbac\Mvc\Service\RoleService'),
             $baseAuthorizationService
         );
 
@@ -60,7 +60,7 @@ class AuthorizationServiceTest extends \PHPUnit\Framework\TestCase
     public function testIsGranted(): void
     {
         $identity         = $this->createMock('Lmc\Rbac\Identity\IdentityInterface');
-        $roleService      = $this->createMock('LmcRbacMvc\Service\RoleService');
+        $roleService      = $this->createMock('Lmc\Rbac\Mvc\Service\RoleService');
         $roleService->expects($this->once())->method('getIdentity')->willReturn($identity);
         $baseAuthorizationService = $this->createMock('\Lmc\Rbac\Service\AuthorizationServiceInterface');
         $baseAuthorizationService->expects($this->once())->method('isGranted')->with($identity);

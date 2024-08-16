@@ -16,14 +16,14 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\View\Strategy;
+namespace LmcTest\Rbac\Mvc\View\Strategy;
 
-use LmcRbacMvc\View\Strategy\UnauthorizedStrategyFactory;
+use Lmc\Rbac\Mvc\View\Strategy\UnauthorizedStrategyFactory;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Container\ContainerInterface;
 
 /**
- * @covers \LmcRbacMvc\View\Strategy\UnauthorizedStrategyFactory
+ * @covers \Lmc\Rbac\Mvc\View\Strategy\UnauthorizedStrategyFactory
  */
 class UnauthorizedStrategyFactoryTest extends \PHPUnit\Framework\TestCase
 {
@@ -31,20 +31,20 @@ class UnauthorizedStrategyFactoryTest extends \PHPUnit\Framework\TestCase
 
     public function testFactory()
     {
-        $unauthorizedStrategyOptions = $this->createMock('LmcRbacMvc\Options\UnauthorizedStrategyOptions');
+        $unauthorizedStrategyOptions = $this->createMock('Lmc\Rbac\Mvc\Options\UnauthorizedStrategyOptions');
 
-        $moduleOptionsMock = $this->createMock('LmcRbacMvc\Options\ModuleOptions');
+        $moduleOptionsMock = $this->createMock('Lmc\Rbac\Mvc\Options\ModuleOptions');
         $moduleOptionsMock->expects($this->once())
                           ->method('getUnauthorizedStrategy')
                           ->will($this->returnValue($unauthorizedStrategyOptions));
 
         $serviceLocatorMock = $this->prophesize('Laminas\ServiceManager\ServiceLocatorInterface');
         $serviceLocatorMock->willImplement(ContainerInterface::class);
-        $serviceLocatorMock->get('LmcRbacMvc\Options\ModuleOptions')->willReturn($moduleOptionsMock)->shouldBeCalled();
+        $serviceLocatorMock->get('Lmc\Rbac\Mvc\Options\ModuleOptions')->willReturn($moduleOptionsMock)->shouldBeCalled();
 
         $factory              = new UnauthorizedStrategyFactory();
-        $unauthorizedStrategy = $factory($serviceLocatorMock->reveal(),'LmcRbacMvc\View\Strategy\UnauthorizedStrategy');
+        $unauthorizedStrategy = $factory($serviceLocatorMock->reveal(),'Lmc\Rbac\Mvc\View\Strategy\UnauthorizedStrategy');
 
-        $this->assertInstanceOf('LmcRbacMvc\View\Strategy\UnauthorizedStrategy', $unauthorizedStrategy);
+        $this->assertInstanceOf('Lmc\Rbac\Mvc\View\Strategy\UnauthorizedStrategy', $unauthorizedStrategy);
     }
 }

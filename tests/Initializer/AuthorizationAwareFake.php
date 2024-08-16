@@ -15,9 +15,9 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
-namespace LmcRbacMvcTest\Initializer;
+namespace LmcTest\Rbac\Mvc\Initializer;
 
-use LmcRbacMvc\Service\AuthorizationServiceAwareInterface;
+use Lmc\Rbac\Mvc\Service\AuthorizationServiceAwareInterface;
 
 /**
  * A fake implementation for AuthorizationServiceAwareInterface
@@ -28,5 +28,5 @@ use LmcRbacMvc\Service\AuthorizationServiceAwareInterface;
 class AuthorizationAwareFake implements AuthorizationServiceAwareInterface
 {
 
-    use \LmcRbacMvc\Service\AuthorizationServiceAwareTrait;
+    use \Lmc\Rbac\Mvc\Service\AuthorizationServiceAwareTrait;
 }
