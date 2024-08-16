@@ -23,8 +23,7 @@ namespace LmcRbacMvc\Exception;
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @license MIT
- * @deprecated Use LmcRbac\Exception\UnauthorizedExceptionInterface instead
  */
-interface UnauthorizedExceptionInterface extends ExceptionInterface
+interface UnauthorizedExceptionInterface extends \Lmc\Rbac\Exception\ExceptionInterface
 {
 }

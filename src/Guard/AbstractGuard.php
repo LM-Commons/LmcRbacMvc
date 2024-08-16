@@ -26,8 +26,6 @@ use LmcRbacMvc\Exception;
 /**
  * Abstract guard that hook on the MVC workflow
  *
- * @author  Michaël Gallego <mic.gallego@gmail.com>
- * @license MIT
  */
 abstract class AbstractGuard implements GuardInterface
 {
@@ -46,7 +44,7 @@ abstract class AbstractGuard implements GuardInterface
     /**
      * {@inheritDoc}
      */
-    public function attach(EventManagerInterface $events, $priority = AbstractGuard::EVENT_PRIORITY)
+    public function attach(EventManagerInterface $events, $priority = AbstractGuard::EVENT_PRIORITY): void
     {
         $this->listeners[] = $events->attach(static::EVENT_NAME, [$this, 'onResult'], $priority);
     }
@@ -56,7 +54,7 @@ abstract class AbstractGuard implements GuardInterface
      * @param  MvcEvent $event
      * @return void
      */
-    public function onResult(MvcEvent $event)
+    public function onResult(MvcEvent $event): void
     {
         if ($this->isGranted($event)) {
             return;

@@ -23,8 +23,8 @@ namespace LmcRbacMvc\Exception;
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @license MIT
- * @deprecated Use LmcRbac\Exception\InvalidArgumentException instead
+ * @deprecated Use Lmc\Rbac\Exception\InvalidArgumentException instead
  */
-class InvalidArgumentException extends \LmcRbac\Exception\InvalidArgumentException
+class InvalidArgumentException extends \Lmc\Rbac\Exception\InvalidArgumentException
 {
 }

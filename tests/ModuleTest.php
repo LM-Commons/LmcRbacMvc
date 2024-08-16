@@ -39,18 +39,19 @@ class ModuleTest extends \PHPUnit\Framework\TestCase
         $eventManager   = $this->createMock('Laminas\EventManager\EventManagerInterface');
         $serviceManager = $this->createMock('Laminas\ServiceManager\ServiceManager');
 
-        $mvcEvent->expects($this->once())->method('getTarget')->will($this->returnValue($application));
-        $application->expects($this->once())->method('getEventManager')->will($this->returnValue($eventManager));
-        $application->expects($this->once())->method('getServiceManager')->will($this->returnValue($serviceManager));
+        $mvcEvent->expects($this->once())->method('getTarget')->willReturn($application);
+        $application->expects($this->once())->method('getEventManager')->willReturn($eventManager);
+        $application->expects($this->once())->method('getServiceManager')->willReturn($serviceManager);
 
-        $guards = [
-            $this->createMock('LmcRbacMvc\Guard\GuardInterface')
-        ];
+        $guard = $this->createMock('LmcRbacMvc\Guard\GuardInterface');
+        $guard->expects($this->once())->method('attach')->with($eventManager);
+
+        $guards = [$guard];
 
         $serviceManager->expects($this->once())
                        ->method('get')
                        ->with('LmcRbacMvc\Guards')
-                       ->will($this->returnValue($guards));
+                       ->willReturn($guards);
 
         $module->onBootstrap($mvcEvent);
     }

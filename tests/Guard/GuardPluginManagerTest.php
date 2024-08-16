@@ -21,6 +21,7 @@ namespace LmcRbacMvcTest\Guard;
 use Laminas\ServiceManager\ServiceManager;
 use LmcRbacMvc\Guard\GuardPluginManager;
 use LmcRbacMvc\Options\ModuleOptions;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 /**
  * @covers \LmcRbacMvc\Guard\GuardPluginManager
@@ -65,9 +66,7 @@ class GuardPluginManagerTest extends \PHPUnit\Framework\TestCase
         ];
     }
 
-    /**
-     * @dataProvider guardProvider
-     */
+    #[DataProvider('guardProvider')]
     public function testCanCreateDefaultGuards($type, $options)
     {
         $serviceManager = new ServiceManager();
@@ -90,9 +89,9 @@ class GuardPluginManagerTest extends \PHPUnit\Framework\TestCase
 
     public function testThrowExceptionForInvalidPlugin()
     {
-        $this->expectException('LmcRbac\Exception\RuntimeException');
+        $this->expectException('Lmc\Rbac\Exception\RuntimeException');
 
         $pluginManager = new GuardPluginManager(new ServiceManager());
-        $pluginManager->get('stdClass');
+        $pluginManager->setService('foo', new \stdClass());
     }
 }

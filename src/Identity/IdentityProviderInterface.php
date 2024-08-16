@@ -18,6 +18,8 @@
 
 namespace LmcRbacMvc\Identity;
 
+use Lmc\Rbac\Identity\IdentityInterface;
+
 /**
  * An identity provider is an object that returns an object that implement LmcRbacMvc\Identity\IdentityInterface
  *

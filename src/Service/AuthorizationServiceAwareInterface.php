@@ -26,10 +26,8 @@ interface AuthorizationServiceAwareInterface
     /**
      * Set the AuthorizationService
      *
-     * @TODO: for v3, update the interface to typehint to AuthorizationServiceInterface instead
-     *
-     * @param   AuthorizationService $authorizationService
+     * @param   AuthorizationServiceInterface $authorizationService
      * @return  void
      */
-    public function setAuthorizationService(AuthorizationService $authorizationService): void;
+    public function setAuthorizationService(AuthorizationServiceInterface $authorizationService): void;
 }

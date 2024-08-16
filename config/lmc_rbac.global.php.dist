@@ -22,20 +22,6 @@
 
 return [
     'lmc_rbac' => [
-        /**
-         * Key that is used to fetch the identity provider
-         *
-         * Please note that when an identity is found, it MUST implements the LmcRbacMvc\Identity\IdentityProviderInterface
-         * interface, otherwise it will throw an exception.
-         */
-        // 'identity_provider' => 'LmcRbacMvc\Identity\AuthenticationIdentityProvider',
-
-        /**
-         * Set the guest role
-         *
-         * This role is used by the authorization service when the authentication service returns no identity
-         */
-        // 'guest_role' => 'guest',
 
         /**
          * Set the guards
@@ -63,30 +49,13 @@ return [
         // 'protection_policy' => \LmcRbacMvc\Guard\GuardInterface::POLICY_ALLOW,
 
         /**
-         * Configuration for role provider
-         *
-         * It must be an array that contains configuration for the role provider. The provider config
-         * must follow the following format:
-         *
-         *      'LmcRbacMvc\Role\InMemoryRoleProvider' => [
-         *          'role1' => [
-         *              'children'    => ['children1', 'children2'], // OPTIONAL
-         *              'permissions' => ['edit', 'read'] // OPTIONAL
-         *          ]
-         *      ]
-         *
-         * Supported options depend of the role provider, so please refer to the official documentation
-         */
-        'role_provider' => [],
-
-        /**
          * Configure the unauthorized strategy. It is used to render a template whenever a user is unauthorized
          */
         'unauthorized_strategy' => [
             /**
              * Set the template name to render
              */
-            // 'template' => 'error/403'
+            // 'template' => 'lmcrbacmvc/error/403'
         ],
 
         /**
@@ -127,6 +96,5 @@ return [
          * plugin manager config format, and can be used to create your custom objects
          */
         // 'guard_manager'               => [],
-        // 'role_provider_manager'       => []
     ]
 ];

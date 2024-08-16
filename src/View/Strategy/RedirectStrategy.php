@@ -21,14 +21,11 @@ namespace LmcRbacMvc\View\Strategy;
 use Laminas\Authentication\AuthenticationServiceInterface;
 use Laminas\Http\Response as HttpResponse;
 use Laminas\Mvc\MvcEvent;
-use LmcRbac\Exception\UnauthorizedExceptionInterface;
+use LmcRbacMvc\Exception\UnauthorizedExceptionInterface;
 use LmcRbacMvc\Options\RedirectStrategyOptions;
 
 /**
  * This strategy redirects to another route when a user is unauthorized
- *
- * @author  Michaël Gallego <mic.gallego@gmail.com>
- * @license MIT
  */
 class RedirectStrategy extends AbstractStrategy
 {

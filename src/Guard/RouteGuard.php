@@ -23,9 +23,6 @@ use LmcRbacMvc\Service\RoleService;
 
 /**
  * A route guard can protect a route or a hierarchy of routes (using simple wildcard pattern)
- *
- * @author  Michaël Gallego <mic.gallego@gmail.com>
- * @license MIT
  */
 class RouteGuard extends AbstractGuard
 {
@@ -34,7 +31,7 @@ class RouteGuard extends AbstractGuard
     /**
      * @var RoleService
      */
-    protected $roleService;
+    protected RoleService $roleService;
 
     /**
      * Route guard rules
@@ -43,7 +40,7 @@ class RouteGuard extends AbstractGuard
      *
      * @var array
      */
-    protected $rules = [];
+    protected array $rules = [];
 
     /**
      * Constructor
@@ -63,7 +60,7 @@ class RouteGuard extends AbstractGuard
      * @param  array $rules
      * @return void
      */
-    public function setRules(array $rules)
+    public function setRules(array $rules): void
     {
         $this->rules = [];
 
@@ -83,7 +80,7 @@ class RouteGuard extends AbstractGuard
     /**
      * {@inheritDoc}
      */
-    public function isGranted(MvcEvent $event)
+    public function isGranted(MvcEvent $event): bool
     {
         $matchedRouteName = $event->getRouteMatch()->getMatchedRouteName();
         $allowedRoles     = null;

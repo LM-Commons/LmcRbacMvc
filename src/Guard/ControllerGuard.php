@@ -24,8 +24,6 @@ use LmcRbacMvc\Service\RoleService;
 /**
  * A controller guard can protect a controller and a set of actions
  *
- * @author  Michaël Gallego <mic.gallego@gmail.com>
- * @license MIT
  */
 class ControllerGuard extends AbstractGuard
 {
@@ -39,14 +37,14 @@ class ControllerGuard extends AbstractGuard
     /**
      * @var RoleService
      */
-    protected $roleService;
+    protected RoleService $roleService;
 
     /**
      * Controller guard rules
      *
      * @var array
      */
-    protected $rules = [];
+    protected array $rules = [];
 
     /**
      * Constructor
@@ -74,7 +72,7 @@ class ControllerGuard extends AbstractGuard
      * @param  array $rules
      * @return void
      */
-    public function setRules(array $rules)
+    public function setRules(array $rules): void
     {
         $this->rules = [];
 
@@ -97,7 +95,7 @@ class ControllerGuard extends AbstractGuard
     /**
      * {@inheritDoc}
      */
-    public function isGranted(MvcEvent $event)
+    public function isGranted(MvcEvent $event): bool
     {
         $routeMatch = $event->getRouteMatch();
         $controller = strtolower($routeMatch->getParam('controller'));

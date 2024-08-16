@@ -18,27 +18,23 @@
 
 namespace LmcRbacMvc\Options;
 
-use Laminas\Stdlib\AbstractOptions;
-use LmcRbacMvc\Exception;
+use Lmc\Rbac\Exception;
+use Lmc\Rbac\Options\ModuleOptions as BaseModuleOptions;
 use LmcRbacMvc\Guard\GuardInterface;
 
 /**
- * Options for ZfcRbac module
+ * Options for LmcRbacMvc module
  *
- * @author  Michaël Gallego <mic.gallego@gmail.com>
+ * @author  Eric Richer <eric.richer@vistoconsulting.com>
  * @license MIT
  */
-class ModuleOptions extends AbstractOptions
+class ModuleOptions extends BaseModuleOptions
 {
+
     /**
      * Key of the identity provider used to retrieve the identity
      */
     protected string $identityProvider = 'LmcRbacMvc\Identity\AuthenticationIdentityProvider';
-
-    /**
-     * Guest role (used when no identity is found)
-     */
-    protected string $guestRole = 'guest';
 
     /**
      * Guards
@@ -46,29 +42,19 @@ class ModuleOptions extends AbstractOptions
     protected array $guards = [];
 
     /**
-     * Assertion map
-     */
-    protected array $assertionMap = [];
-
-    /**
      * Protection policy for guards (can be "deny" or "allow")
      */
     protected string $protectionPolicy = GuardInterface::POLICY_ALLOW;
 
     /**
-     * A configuration for role provider
-     */
-    protected array $roleProvider = [];
-
-    /**
      * Options for the unauthorized strategy
      */
-    protected ?UnauthorizedStrategyOptions $unauthorizedStrategy = null;
+    protected ?UnauthorizedStrategyOptions $unauthorizedStrategyOptions = null;
 
     /**
      * Options for the redirect strategy
      */
-    protected ?RedirectStrategyOptions $redirectStrategy = null;
+    protected ?RedirectStrategyOptions $redirectStrategyOptions = null;
 
     /**
      * Constructor
@@ -79,69 +65,6 @@ class ModuleOptions extends AbstractOptions
     {
         $this->__strictMode__ = false;
         parent::__construct($options);
-    }
-
-    /**
-     * Set the key of the identity provider used to retrieve the identity
-     *
-     * @param string $identityProvider
-     * @return void
-     */
-    public function setIdentityProvider(string $identityProvider): void
-    {
-        $this->identityProvider = $identityProvider;
-    }
-
-    /**
-     * Get the key of the identity provider used to retrieve the identity
-     *
-     * @return string
-     */
-    public function getIdentityProvider(): string
-    {
-        return $this->identityProvider;
-    }
-
-    /**
-     * Set the assertions options
-     *
-     * @param array $assertionMap
-     * @return void
-     */
-    public function setAssertionMap(array $assertionMap): void
-    {
-        $this->assertionMap = $assertionMap;
-    }
-
-    /**
-     * Get the assertions options
-     *
-     * @return array
-     */
-    public function getAssertionMap(): array
-    {
-        return $this->assertionMap;
-    }
-
-    /**
-     * Set the guest role (used when no identity is found)
-     *
-     * @param string $guestRole
-     * @return void
-     */
-    public function setGuestRole(string $guestRole): void
-    {
-        $this->guestRole = $guestRole;
-    }
-
-    /**
-     * Get the guest role (used when no identity is found)
-     *
-     * @return string
-     */
-    public function getGuestRole(): string
-    {
-        return $this->guestRole;
     }
 
     /**
@@ -181,7 +104,7 @@ class ModuleOptions extends AbstractOptions
             ));
         }
 
-        $this->protectionPolicy = (string) $protectionPolicy;
+        $this->protectionPolicy = $protectionPolicy;
     }
 
     /**
@@ -195,40 +118,13 @@ class ModuleOptions extends AbstractOptions
     }
 
     /**
-     * Set the configuration for the role provider
-     *
-     * @param  array $roleProvider
-     * @throws Exception\RuntimeException
-     */
-    public function setRoleProvider(array $roleProvider): void
-    {
-        if (count($roleProvider) > 1) {
-            throw new Exception\RuntimeException(
-                'You can only have one role provider'
-            );
-        }
-
-        $this->roleProvider = $roleProvider;
-    }
-
-    /**
-     * Get the configuration for the role provider
-     *
-     * @return array
-     */
-    public function getRoleProvider(): array
-    {
-        return $this->roleProvider;
-    }
-
-    /**
      * Set the unauthorized strategy options
      *
-     * @param array $unauthorizedStrategy
+     * @param array $unauthorizedStrategyOptions
      */
-    public function setUnauthorizedStrategy(array $unauthorizedStrategy): void
+    public function setUnauthorizedStrategy(array $unauthorizedStrategyOptions): void
     {
-        $this->unauthorizedStrategy = new UnauthorizedStrategyOptions($unauthorizedStrategy);
+        $this->unauthorizedStrategyOptions = new UnauthorizedStrategyOptions($unauthorizedStrategyOptions);
     }
 
     /**
@@ -238,21 +134,21 @@ class ModuleOptions extends AbstractOptions
      */
     public function getUnauthorizedStrategy(): ?UnauthorizedStrategyOptions
     {
-        if (null === $this->unauthorizedStrategy) {
-            $this->unauthorizedStrategy = new UnauthorizedStrategyOptions();
+        if (null === $this->unauthorizedStrategyOptions) {
+            $this->unauthorizedStrategyOptions = new UnauthorizedStrategyOptions();
         }
 
-        return $this->unauthorizedStrategy;
+        return $this->unauthorizedStrategyOptions;
     }
 
     /**
      * Set the redirect strategy options
      *
-     * @param array $redirectStrategy
+     * @param array $redirectStrategyOptions
      */
-    public function setRedirectStrategy(array $redirectStrategy): void
+    public function setRedirectStrategy(array $redirectStrategyOptions): void
     {
-        $this->redirectStrategy = new RedirectStrategyOptions($redirectStrategy);
+        $this->redirectStrategyOptions = new RedirectStrategyOptions($redirectStrategyOptions);
     }
 
     /**
@@ -262,10 +158,32 @@ class ModuleOptions extends AbstractOptions
      */
     public function getRedirectStrategy(): ?RedirectStrategyOptions
     {
-        if (null === $this->redirectStrategy) {
-            $this->redirectStrategy = new RedirectStrategyOptions();
+        if (null === $this->redirectStrategyOptions) {
+            $this->redirectStrategyOptions = new RedirectStrategyOptions();
         }
 
-        return $this->redirectStrategy;
+        return $this->redirectStrategyOptions;
     }
+
+    /**
+     * Set the key of the identity provider used to retrieve the identity
+     *
+     * @param string $identityProvider
+     * @return void
+     */
+    public function setIdentityProvider(string $identityProvider): void
+    {
+        $this->identityProvider = $identityProvider;
+    }
+
+    /**
+     * Get the key of the identity provider used to retrieve the identity
+     *
+     * @return string
+     */
+    public function getIdentityProvider(): string
+    {
+        return $this->identityProvider;
+    }
+
 }

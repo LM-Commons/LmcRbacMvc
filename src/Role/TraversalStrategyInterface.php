@@ -18,7 +18,7 @@
 
 namespace LmcRbacMvc\Role;
 
-use Laminas\Permissions\Rbac\RoleInterface;
+use Lmc\Rbac\Role\RoleInterface;
 use Traversable;
 
 /**
@@ -30,5 +30,5 @@ interface TraversalStrategyInterface
      * @param Traversable|RoleInterface[] $roles
      * @return Traversable
      */
-    public function getRolesIterator(Traversable|array $roles): Traversable;
+    public function getRolesIterator(iterable $roles): Traversable;
 }

@@ -23,7 +23,7 @@ namespace LmcRbacMvc\Exception;
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @license MIT
- * @deprecated Use LmcRbac\Exception\ExceptionInterface instead
+ * @deprecated Use Lmc\Rbac\Exception\ExceptionInterface instead
  */
 interface ExceptionInterface
 {

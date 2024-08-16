@@ -29,19 +29,17 @@ trait AuthorizationServiceAwareTrait
     /**
      * The AuthorizationService
      *
-     * @var AuthorizationService|null
+     * @var AuthorizationServiceInterface|null
      */
-    protected ?AuthorizationService $authorizationService = null;
+    protected ?AuthorizationServiceInterface $authorizationService = null;
 
     /**
      * Set the AuthorizationService
      *
-     * @TODO: for v3, update the interface to typehint to AuthorizationServiceInterface instead
-     *
-     * @param AuthorizationService $authorizationService
+     * @param AuthorizationServiceInterface $authorizationService
      * @return void
      */
-    public function setAuthorizationService(AuthorizationService $authorizationService): void
+    public function setAuthorizationService(AuthorizationServiceInterface $authorizationService): void
     {
         $this->authorizationService = $authorizationService;
     }
@@ -49,9 +47,9 @@ trait AuthorizationServiceAwareTrait
     /**
      * Return the AuthorizationService
      *
-     * @return AuthorizationService|null
+     * @return AuthorizationServiceInterface|null
      */
-    public function getAuthorizationService(): ?AuthorizationService
+    public function getAuthorizationService(): ?AuthorizationServiceInterface
     {
         return $this->authorizationService;
     }

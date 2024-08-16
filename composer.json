@@ -33,33 +33,22 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "^8.1.0 | ^8.2.0",
+        "php": "~8.1.0 || ~8.2.0 || ~8.3.0",
         "laminas/laminas-config": "^3.1",
         "laminas/laminas-eventmanager": "^3.0",
         "laminas/laminas-mvc": "^3.0",
         "laminas/laminas-servicemanager": "^3.0",
-        "laminas/laminas-permissions-rbac": "^3.0",
-        "doctrine/persistence": "^2.1",
-        "lm-commons/lmc-rbac": "2.x-dev"
+        "lm-commons/lmc-rbac": "2.0.x-dev"
     },
     "require-dev": {
         "laminas/laminas-authentication": "^2.2",
         "laminas/laminas-developer-tools": "^2.1",
-        "laminas/laminas-log": "^2.2",
-        "laminas/laminas-http": "^2.2",
-        "laminas/laminas-i18n": "^2.7",
-        "laminas/laminas-serializer": "^2.2",
-        "laminas/laminas-view": "^2.12",
         "phpunit/phpunit": "10.5.11",
         "squizlabs/php_codesniffer": "^3.5.5",
-        "php-coveralls/php-coveralls": "^2.2",
-        "phpspec/prophecy-phpunit": "^2.0",
-        "doctrine/doctrine-orm-module": "^5.3",
-        "ext-mbstring": "*"
+        "phpspec/prophecy-phpunit": "^2.0"
     },
     "suggest": {
-        "laminas/laminas-developer-tools": "if you want to show information about the roles",
-        "doctrine/doctrine-module": "if you want to use Doctrine role provider"
+        "laminas/laminas-developer-tools": "if you want to show information about the roles"
     },
     "autoload": {
         "psr-4": {
@@ -79,8 +68,14 @@
     "scripts": {
         "test": "phpunit",
         "test-coverage": "phpunit --coverage-clover ./build/logs/clover.xml --exclude-group Functional",
-        "upload-coverage": "php-coveralls -v",
         "cs-check": "phpcs -n --standard=PSR2 ./src/",
-        "cs-fix": "phpcbf ./src/"
-    }
+        "cs-fix": "phpcbf ./src/",
+        "test-coverage-html": "phpunit --coverage-html ./build/html"
+    },
+    "repositories": [
+        {
+            "type": "github",
+            "url": "https://github.com/visto9259/LmcRbac.git"
+        }
+    ]
 }

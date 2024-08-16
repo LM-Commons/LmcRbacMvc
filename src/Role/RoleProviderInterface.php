@@ -18,7 +18,7 @@
 
 namespace LmcRbacMvc\Role;
 
-use Laminas\Permissions\Rbac\RoleInterface;
+use Lmc\Rbac\Role\RoleProviderInterface as BaseRoleProviderInterface;
 
 /**
  * A role provider is an object that collect roles from string and convert them to RoleInterface instances
@@ -28,14 +28,8 @@ use Laminas\Permissions\Rbac\RoleInterface;
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @license MIT
+ * @deprecated Use Lmc\Rbac\Role\RoleProviderInterface instead
  */
-interface RoleProviderInterface
+interface RoleProviderInterface extends BaseRoleProviderInterface
 {
-    /**
-     * Get the roles from the provider
-     *
-     * @param  string[] $roleNames
-     * @return RoleInterface[]
-     */
-    public function getRoles(array $roleNames): array;
 }

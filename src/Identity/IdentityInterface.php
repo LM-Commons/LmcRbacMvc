@@ -18,20 +18,15 @@
 
 namespace LmcRbacMvc\Identity;
 
-use Laminas\Permissions\Rbac\RoleInterface;
+use Lmc\Rbac\Identity\IdentityInterface as BaseIdentityInterface;
 
 /**
  * Interface for an identity
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @license MIT
+ * @deprecated
  */
-interface IdentityInterface
+interface IdentityInterface extends BaseIdentityInterface
 {
-    /**
-     * Get the list of roles of this identity
-     *
-     * @return string[]|RoleInterface[]
-     */
-    public function getRoles(): array;
 }

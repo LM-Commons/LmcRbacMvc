@@ -25,9 +25,9 @@ use RuntimeException as BaseRuntimeException;
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @license MIT
- * @deprecated Use LmcRbac\Exception\RoleNotFoundException instead
+ * @deprecated Use Lmc\Rbac\Exception\RoleNotFoundException instead
  */
-class RoleNotFoundException extends \LmcRbac\Exception\RoleNotFoundException
+class RoleNotFoundException extends \Lmc\Rbac\Exception\RoleNotFoundException
 {
     /**
      * @var string

@@ -27,9 +27,9 @@ class ProtectionPolicyTraitTest extends \PHPUnit\Framework\TestCase
 {
     public function testTrait()
     {
-        $trait = $this->getObjectForTrait('LmcRbacMvc\Guard\ProtectionPolicyTrait');
-        $trait->setProtectionPolicy(GuardInterface::POLICY_DENY);
+        $dummyClass = new DummyProtectionPolicyTestClass();
+        $dummyClass->setProtectionPolicy(GuardInterface::POLICY_DENY);
 
-        $this->assertEquals(GuardInterface::POLICY_DENY, $trait->getProtectionPolicy());
+        $this->assertEquals(GuardInterface::POLICY_DENY, $dummyClass->getProtectionPolicy());
     }
 }

@@ -20,10 +20,9 @@ namespace LmcRbacMvcTest\View\Helper;
 
 use LmcRbacMvc\View\Helper\IsGranted;
 use LmcRbacMvcTest\Util\ServiceManagerFactory;
+use PHPUnit\Framework\Attributes\CoversClass;
 
-/**
- * @covers \LmcRbacMvc\View\Helper\IsGranted
- */
+#[CoversClass('\LmcRbacMvc\View\Helper\IsGranted')]
 class IsGrantedTest extends \PHPUnit\Framework\TestCase
 {
     public function testHelperIsRegistered()
@@ -34,7 +33,7 @@ class IsGrantedTest extends \PHPUnit\Framework\TestCase
         $viewHelpersConfig = $config['view_helpers'];
         $this->assertEquals('LmcRbacMvc\View\Helper\IsGranted', $viewHelpersConfig['aliases']['isGranted']);
         $this->assertEquals(
-            'LmcRbacMvc\Factory\IsGrantedViewHelperFactory',
+            'LmcRbacMvc\View\Helper\IsGrantedViewHelperFactory',
             $viewHelpersConfig['factories']['LmcRbacMvc\View\Helper\IsGranted']
         );
     }
@@ -46,7 +45,7 @@ class IsGrantedTest extends \PHPUnit\Framework\TestCase
         $authorizationService->expects($this->once())
                              ->method('isGranted')
                              ->with('edit')
-                             ->will($this->returnValue(true));
+                             ->willReturn(true);
 
         $helper = new IsGranted($authorizationService);
 
