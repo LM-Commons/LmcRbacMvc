@@ -2,7 +2,6 @@ vendor
 .idea
 build
 .phpunit*
-composer.lock
 #ignoring PHPEclipse project files and directories
 /.settings
 /.project
