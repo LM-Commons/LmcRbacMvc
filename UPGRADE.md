@@ -27,15 +27,38 @@ LmcRbac equivalent:
 - Lmc\Rbac\Mvc\Exception\RuntimeException
 - Lmc\Rbac\Mvc\Permission\PermissionInterface
 - Lmc\Rbac\Mvc\Identity\IdentityInterface
+- Lmc\Rbac\Mvc\Role\RoleProviderInterface
 
 ### Refactored and removed classes
 
+#### Factories
 - The factory classes were refactored from the `LmcRbacMvc\Factory` namespace to be colocated with
-with the service that the factory is creating. All the factories that were in `LmcRbacMvc\Factory` namespace have been
+the service that the factory is creating. All the factories that were in `LmcRbacMvc\Factory` namespace have been
 deleted.
-- LmcRbacMvc\UnauthorizedExceptionInterface  *not used*
-- LmcRbacMvc\UnauthorizedException  *not used*
+
+#### Role providers
+The former LmcRbacMvc v3 role providers are no longer available and replaced by LmcRbac equivalent. LmcRbac will throw
+an exception if your config file still refers to them. In addition, the role provider plugin manager
+was removed as it was not necessary.
 - LmcRbacMvc\Role\RoleProviderPluginManager *no longer used*
+- LmcRbacMvc\Role\InMemoryRoleProvider *replaced by a LmcRbac equivalent*
+- LmcRbacMvc\Role\ObjectRepositoryRoleProvider *replaced by a LmcRbac equivalent*
+
+#### Assertion
+- LMcRbacMvc\Assertion\AssertionPluginManagerFactory *no longer used*
+- LMcRbacMvc\Assertion\AssertionPluginManager *no longer used*
+
+### Assertions refactoring
+LmcRbacMvc is now using LmcRbac assertions and assertion plugin manager instead of its own.
+
+Therefore all previous assertions in LmcRbacMvc v3 must now implement the `\Lmc\Rbac\Assertion\AssertionInterface` 
+otherwise LmcRbac will throw an exception.
+
+`\Lmc\Rbac\Assertion\AssertionInterface` is a more generic interface for asserting permissions. An assertion under this 
+interface will be passed the permission, identity and context whereas in LmcRbacMvc v3, the assertion is
+passed the AuthorizationService from which one had to get the identity. Having the permission as a parameter allows to 
+reuse the same assertion to handle multiple permissions.
+
 
 ## From zfc-rbac v2.x to LmcRbacMvc v3.0
 
