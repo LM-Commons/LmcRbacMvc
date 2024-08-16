@@ -42,12 +42,14 @@
     },
     "require-dev": {
         "laminas/laminas-authentication": "^2.2",
+        "laminas/laminas-coding-standard": "^2.5.0",
         "phpunit/phpunit": "10.5.11",
-        "squizlabs/php_codesniffer": "^3.5.5",
-        "phpspec/prophecy-phpunit": "^2.0"
+        "phpspec/prophecy-phpunit": "^2.0",
+        "psalm/plugin-phpunit": "^0.19.0",
+        "vimeo/psalm": "^5.25"
     },
     "suggest": {
-        "laminas/laminas-developer-tools": "if you want to show information about the roles"
+        "lm-commons/lmc-rbac-mvc-devtools": "if you want to show information about the roles"
     },
     "autoload": {
         "psr-4": {
@@ -65,16 +67,26 @@
         }
     },
     "scripts": {
+        "check": [
+            "@cs-check",
+            "@test"
+        ],
         "test": "phpunit",
-        "test-coverage": "phpunit --coverage-clover ./build/logs/clover.xml --exclude-group Functional",
-        "cs-check": "phpcs -n --standard=PSR2 ./src/",
-        "cs-fix": "phpcbf ./src/",
-        "test-coverage-html": "phpunit --coverage-html ./build/html"
+        "test-coverage": "phpunit --coverage-clover ./build/logs/clover.xml",
+        "cs-check": "phpcs",
+        "cs-fix": "phpcbf",
+        "test-coverage-html": "phpunit --coverage-html ./build/html",
+        "static-analysis": "psalm --shepherd --stats"
     },
     "repositories": [
         {
             "type": "github",
             "url": "https://github.com/visto9259/LmcRbac.git"
         }
-    ]
+    ],
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    }
 }
