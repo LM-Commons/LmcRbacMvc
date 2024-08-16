@@ -18,13 +18,12 @@
 
 namespace LmcRbacMvc\Service;
 
-use Laminas\Permissions\Rbac\RoleInterface;
+use Lmc\Rbac\Role\RoleInterface;
 use Lmc\Rbac\Service\RoleServiceInterface;
 use Traversable;
 use Lmc\Rbac\Exception;
 use Lmc\Rbac\Identity\IdentityInterface;
 use LmcRbacMvc\Identity\IdentityProviderInterface;
-use LmcRbacMvc\Role\RoleProviderInterface;
 use LmcRbacMvc\Role\TraversalStrategyInterface;
 
 /**

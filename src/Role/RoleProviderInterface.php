@@ -18,7 +18,6 @@
 
 namespace LmcRbacMvc\Role;
 
-use Laminas\Permissions\Rbac\RoleInterface;
 use Lmc\Rbac\Role\RoleProviderInterface as BaseRoleProviderInterface;
 
 /**
