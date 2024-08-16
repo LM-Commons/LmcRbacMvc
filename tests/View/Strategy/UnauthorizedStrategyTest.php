@@ -16,19 +16,19 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\View\Strategy;
+namespace LmcTest\Rbac\Mvc\View\Strategy;
 
 use Laminas\Http\Response as HttpResponse;
 use Laminas\Mvc\MvcEvent;
 use Laminas\View\Model\ViewModel;
-use LmcRbacMvc\Exception\UnauthorizedException;
-use LmcRbacMvc\Guard\GuardInterface;
-use LmcRbacMvc\Options\UnauthorizedStrategyOptions;
-use LmcRbacMvc\View\Strategy\UnauthorizedStrategy;
+use Lmc\Rbac\Mvc\Exception\UnauthorizedException;
+use Lmc\Rbac\Mvc\Guard\GuardInterface;
+use Lmc\Rbac\Mvc\Options\UnauthorizedStrategyOptions;
+use Lmc\Rbac\Mvc\View\Strategy\UnauthorizedStrategy;
 
 /**
- * @covers \LmcRbacMvc\View\Strategy\UnauthorizedStrategy
- * @covers \LmcRbacMvc\View\Strategy\AbstractStrategy
+ * @covers \Lmc\Rbac\Mvc\View\Strategy\UnauthorizedStrategy
+ * @covers \Lmc\Rbac\Mvc\View\Strategy\AbstractStrategy
  */
 class UnauthorizedStrategyTest extends \PHPUnit\Framework\TestCase
 {

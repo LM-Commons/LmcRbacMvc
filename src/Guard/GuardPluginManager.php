@@ -16,7 +16,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvc\Guard;
+namespace Lmc\Rbac\Mvc\Guard;
 
 use Laminas\ServiceManager\AbstractPluginManager;
 use Lmc\Rbac\Exception;
@@ -49,7 +49,7 @@ class GuardPluginManager extends AbstractPluginManager
         }
 
         throw new Exception\RuntimeException(sprintf(
-            'Guards must implement "LmcRbacMvc\Guard\GuardInterface", but "%s" was given',
+            'Guards must implement "Lmc\Rbac\Mvc\Guard\GuardInterface", but "%s" was given',
             is_object($instance) ? get_class($instance) : gettype($instance)
         ));
     }

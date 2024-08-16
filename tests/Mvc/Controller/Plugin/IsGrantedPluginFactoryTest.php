@@ -16,13 +16,13 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\Mvc\Controller\Plugin;
+namespace LmcTest\Rbac\Mvc\Mvc\Controller\Plugin;
 
 use Laminas\ServiceManager\ServiceManager;
-use LmcRbacMvc\Mvc\Controller\Plugin\IsGrantedPluginFactory;
+use Lmc\Rbac\Mvc\Mvc\Controller\Plugin\IsGrantedPluginFactory;
 use PHPUnit\Framework\Attributes\CoversClass;
 
-#[CoversClass('\LmcRbacMvc\Mvc\Controller\Plugin\IsGrantedPluginFactory')]
+#[CoversClass('\Lmc\Rbac\Mvc\Mvc\Controller\Plugin\IsGrantedPluginFactory')]
 class IsGrantedPluginFactoryTest extends \PHPUnit\Framework\TestCase
 {
     public function testFactory()
@@ -30,13 +30,13 @@ class IsGrantedPluginFactoryTest extends \PHPUnit\Framework\TestCase
         $serviceManager = new ServiceManager();
 
         $serviceManager->setService(
-            'LmcRbacMvc\Service\AuthorizationService',
-            $this->createMock('LmcRbacMvc\Service\AuthorizationServiceInterface')
+            'Lmc\Rbac\Mvc\Service\AuthorizationService',
+            $this->createMock('Lmc\Rbac\Mvc\Service\AuthorizationServiceInterface')
         );
 
         $factory   = new IsGrantedPluginFactory();
-        $isGranted = $factory($serviceManager, 'LmcRbacMvc\Mvc\Controller\Plugin\IsGranted');
+        $isGranted = $factory($serviceManager, 'Lmc\Rbac\Mvc\Mvc\Controller\Plugin\IsGranted');
 
-        $this->assertInstanceOf('LmcRbacMvc\Mvc\Controller\Plugin\IsGranted', $isGranted);
+        $this->assertInstanceOf('Lmc\Rbac\Mvc\Mvc\Controller\Plugin\IsGranted', $isGranted);
     }
 }

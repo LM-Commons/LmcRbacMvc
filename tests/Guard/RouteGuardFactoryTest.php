@@ -16,15 +16,15 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\Guard;
+namespace LmcTest\Rbac\Mvc\Guard;
 
 use Laminas\ServiceManager\ServiceManager;
-use LmcRbacMvc\Guard\RouteGuardFactory;
-use LmcRbacMvc\Guard\GuardInterface;
-use LmcRbacMvc\Options\ModuleOptions;
+use Lmc\Rbac\Mvc\Guard\RouteGuardFactory;
+use Lmc\Rbac\Mvc\Guard\GuardInterface;
+use Lmc\Rbac\Mvc\Options\ModuleOptions;
 
 /**
- * @covers \LmcRbacMvc\Guard\RouteGuardFactory
+ * @covers \Lmc\Rbac\Mvc\Guard\RouteGuardFactory
  */
 class RouteGuardFactoryTest extends \PHPUnit\Framework\TestCase
 {
@@ -37,23 +37,23 @@ class RouteGuardFactoryTest extends \PHPUnit\Framework\TestCase
         ];
 
         $options = new ModuleOptions([
-            'identity_provider' => 'LmcRbacMvc\Identity\AuthenticationProvider',
+            'identity_provider' => 'Lmc\Rbac\Mvc\Identity\AuthenticationProvider',
             'guards'            => [
-                'LmcRbacMvc\Guard\RouteGuard' => $creationOptions
+                'Lmc\Rbac\Mvc\Guard\RouteGuard' => $creationOptions
             ],
             'protection_policy' => GuardInterface::POLICY_ALLOW,
         ]);
 
-        $serviceManager->setService('LmcRbacMvc\Options\ModuleOptions', $options);
+        $serviceManager->setService('Lmc\Rbac\Mvc\Options\ModuleOptions', $options);
         $serviceManager->setService(
-            'LmcRbacMvc\Service\RoleService',
-            $this->getMockBuilder('LmcRbacMvc\Service\RoleService')->disableOriginalConstructor()->getMock()
+            'Lmc\Rbac\Mvc\Service\RoleService',
+            $this->getMockBuilder('Lmc\Rbac\Mvc\Service\RoleService')->disableOriginalConstructor()->getMock()
         );
 
         $factory    = new RouteGuardFactory();
-        $routeGuard = $factory($serviceManager, 'LmcRbacMvc\Guard\RouteGuard');
+        $routeGuard = $factory($serviceManager, 'Lmc\Rbac\Mvc\Guard\RouteGuard');
 
-        $this->assertInstanceOf('LmcRbacMvc\Guard\RouteGuard', $routeGuard);
+        $this->assertInstanceOf('Lmc\Rbac\Mvc\Guard\RouteGuard', $routeGuard);
         $this->assertEquals(GuardInterface::POLICY_ALLOW, $routeGuard->getProtectionPolicy());
     }
 }

@@ -29,7 +29,7 @@ return [
          * You must comply with the various options of guards. The format must be of the following format:
          *
          *      'guards' => [
-         *          'LmcRbacMvc\Guard\RouteGuard' => [
+         *          'Lmc\Rbac\Mvc\Guard\RouteGuard' => [
          *              // options
          *          ]
          *      ]
@@ -46,7 +46,7 @@ return [
          *
          * DENY is the most secure way, but it is more work for the developer
          */
-        // 'protection_policy' => \LmcRbacMvc\Guard\GuardInterface::POLICY_ALLOW,
+        // 'protection_policy' => \Lmc\Rbac\Mvc\Guard\GuardInterface::POLICY_ALLOW,
 
         /**
          * Configure the unauthorized strategy. It is used to render a template whenever a user is unauthorized

@@ -16,7 +16,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvc\Permission;
+namespace Lmc\Rbac\Mvc\Permission;
 
 /**
  * Interface that permissions must implement to be used with the AuthorizationService

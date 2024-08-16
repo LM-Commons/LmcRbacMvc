@@ -16,12 +16,12 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\Options;
+namespace LmcTest\Rbac\Mvc\Options;
 
-use LmcRbacMvc\Options\RedirectStrategyOptions;
+use Lmc\Rbac\Mvc\Options\RedirectStrategyOptions;
 
 /**
- * @covers \LmcRbacMvc\Options\RedirectStrategyOptions
+ * @covers \Lmc\Rbac\Mvc\Options\RedirectStrategyOptions
  */
 class RedirectStrategyOptionsTest extends \PHPUnit\Framework\TestCase
 {

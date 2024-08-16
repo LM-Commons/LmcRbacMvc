@@ -16,10 +16,10 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvc\Mvc\Controller\Plugin;
+namespace Lmc\Rbac\Mvc\Mvc\Controller\Plugin;
 
 use Laminas\Mvc\Controller\Plugin\AbstractPlugin;
-use LmcRbacMvc\Service\AuthorizationServiceInterface;
+use Lmc\Rbac\Mvc\Service\AuthorizationServiceInterface;
 
 /**
  * Controller plugin that allows to test a permission in a controller

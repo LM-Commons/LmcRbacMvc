@@ -19,7 +19,7 @@
 return [
     'modules' => [
         'Laminas\Router',
-        'LmcRbacMvc',
+        'Lmc\Rbac\Mvc',
     ],
     'module_listener_options' => [
         'config_glob_paths' => [

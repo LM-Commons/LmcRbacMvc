@@ -16,14 +16,14 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvc\View\Strategy;
+namespace Lmc\Rbac\Mvc\View\Strategy;
 
 use Laminas\Http\Response as HttpResponse;
 use Laminas\Mvc\MvcEvent;
 use Laminas\View\Model\ViewModel;
-use LmcRbacMvc\Exception\UnauthorizedExceptionInterface;
-use LmcRbacMvc\Guard\GuardInterface;
-use LmcRbacMvc\Options\UnauthorizedStrategyOptions;
+use Lmc\Rbac\Mvc\Exception\UnauthorizedExceptionInterface;
+use Lmc\Rbac\Mvc\Guard\GuardInterface;
+use Lmc\Rbac\Mvc\Options\UnauthorizedStrategyOptions;
 
 /**
  * This strategy renders a specific template when a user is unauthorized

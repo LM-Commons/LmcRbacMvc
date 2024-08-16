@@ -16,15 +16,15 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvc\Service;
+namespace Lmc\Rbac\Mvc\Service;
 
 use Psr\Container\ContainerInterface;
 //use Laminas\ServiceManager\AbstractPluginManager;
 use Laminas\ServiceManager\Factory\DelegatorFactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 use Lmc\Rbac\Exception\RuntimeException;
-use LmcRbacMvc\Service\AuthorizationService;
-use LmcRbacMvc\Service\AuthorizationServiceAwareInterface;
+use Lmc\Rbac\Mvc\Service\AuthorizationService;
+use Lmc\Rbac\Mvc\Service\AuthorizationServiceAwareInterface;
 
 /**
  * Delegator factory for classes implementing AuthorizationServiceAwareInterface

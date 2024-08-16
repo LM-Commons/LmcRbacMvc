@@ -16,17 +16,17 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\Guard;
+namespace LmcTest\Rbac\Mvc\Guard;
 
 use Laminas\EventManager\EventManager;
 use Laminas\Mvc\Application;
 use Laminas\Mvc\MvcEvent;
-use LmcRbacMvcTest\Asset\DummyGuard;
+use LmcTest\Rbac\Mvc\Asset\DummyGuard;
 use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
- * @covers \LmcRbacMvc\Guard\AbstractGuard
- * @covers \LmcRbacMvc\Guard\ControllerGuard
+ * @covers \Lmc\Rbac\Mvc\Guard\AbstractGuard
+ * @covers \Lmc\Rbac\Mvc\Guard\ControllerGuard
  */
 class AbstractGuardTest extends \PHPUnit\Framework\TestCase
 {

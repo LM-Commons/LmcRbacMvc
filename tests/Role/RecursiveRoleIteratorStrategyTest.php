@@ -1,13 +1,13 @@
 <?php
 
-namespace LmcRbacMvcTest\Role;
+namespace LmcTest\Rbac\Mvc\Role;
 
-use LmcRbacMvc\Role\RecursiveRoleIterator;
-use LmcRbacMvc\Role\RecursiveRoleIteratorStrategy;
+use Lmc\Rbac\Mvc\Role\RecursiveRoleIterator;
+use Lmc\Rbac\Mvc\Role\RecursiveRoleIteratorStrategy;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-#[CoversClass('LmcRbacMvc\Role\RecursiveRoleIteratorStrategy')]
+#[CoversClass('Lmc\Rbac\Mvc\Role\RecursiveRoleIteratorStrategy')]
 class RecursiveRoleIteratorStrategyTest extends TestCase
 {
     public function testGetRecursiveRoleIterator(): void

@@ -16,12 +16,12 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvc\Identity;
+namespace Lmc\Rbac\Mvc\Identity;
 
 use Lmc\Rbac\Identity\IdentityInterface;
 
 /**
- * An identity provider is an object that returns an object that implement LmcRbacMvc\Identity\IdentityInterface
+ * An identity provider is an object that returns an object that implement Lmc\Rbac\Mvc\Identity\IdentityInterface
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @license MIT

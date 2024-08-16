@@ -1244,12 +1244,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/visto9259/LmcRbac.git",
-                "reference": "e32a75a41fe3987e00cce371c9771c65d21ee315"
+                "reference": "f5a3735281dea22ec30e834dfca2983b5235709a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/visto9259/LmcRbac/zipball/e32a75a41fe3987e00cce371c9771c65d21ee315",
-                "reference": "e32a75a41fe3987e00cce371c9771c65d21ee315",
+                "url": "https://api.github.com/repos/visto9259/LmcRbac/zipball/f5a3735281dea22ec30e834dfca2983b5235709a",
+                "reference": "f5a3735281dea22ec30e834dfca2983b5235709a",
                 "shasum": ""
             },
             "require": {
@@ -1260,14 +1260,15 @@
             },
             "require-dev": {
                 "doctrine/orm": "^2.13 || ^3.0",
-                "friendsofphp/php-cs-fixer": "^3.43",
-                "malukenho/docheader": "^1.0.0",
-                "php-coveralls/php-coveralls": "^2.0",
+                "laminas/laminas-coding-standard": "^2.5.0",
                 "phpspec/prophecy": "^1.10",
                 "phpspec/prophecy-phpunit": "^2.0",
                 "phpunit/phpunit": "^10.0 || ^11.0",
-                "symfony/cache": "^4.0 || ^5.0 || ^6.0"
+                "psalm/plugin-phpunit": "^0.19.0",
+                "symfony/cache": "^4.0 || ^5.0 || ^6.0",
+                "vimeo/psalm": "^5.25"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1290,27 +1291,26 @@
             },
             "scripts": {
                 "check": [
-                    "@cs",
-                    "@test",
-                    "@header"
+                    "@cs-check",
+                    "@test"
                 ],
-                "cs": [
-                    "php-cs-fixer fix -v --diff --dry-run"
+                "cs-check": [
+                    "phpcs"
                 ],
                 "cs-fix": [
-                    "php-cs-fixer fix -v --diff"
+                    "phpcbf"
                 ],
                 "test": [
                     "phpunit --colors=always"
                 ],
-                "header": [
-                    "docheader check src test"
-                ],
                 "test-coverage": [
-                    "phpunit --colors=always --coverage-clover clover.xml"
+                    "phpunit --coverage-clover ./build/logs/clover.xml"
                 ],
                 "test-coverage-html": [
                     "phpunit --colors=always --coverage-html ./build/html"
+                ],
+                "static-analysis": [
+                    "psalm --shepherd --stats"
                 ]
             },
             "license": [
@@ -1355,7 +1355,7 @@
             "support": {
                 "source": "https://github.com/visto9259/LmcRbac/tree/2.0.x"
             },
-            "time": "2024-08-16T13:34:32+00:00"
+            "time": "2024-08-16T18:16:03+00:00"
         },
         {
             "name": "nikic/php-parser",

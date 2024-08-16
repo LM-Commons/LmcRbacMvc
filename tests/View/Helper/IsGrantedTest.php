@@ -16,13 +16,13 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest\View\Helper;
+namespace LmcTest\Rbac\Mvc\View\Helper;
 
-use LmcRbacMvc\View\Helper\IsGranted;
-use LmcRbacMvcTest\Util\ServiceManagerFactory;
+use Lmc\Rbac\Mvc\View\Helper\IsGranted;
+use LmcTest\Rbac\Mvc\Util\ServiceManagerFactory;
 use PHPUnit\Framework\Attributes\CoversClass;
 
-#[CoversClass('\LmcRbacMvc\View\Helper\IsGranted')]
+#[CoversClass('\Lmc\Rbac\Mvc\View\Helper\IsGranted')]
 class IsGrantedTest extends \PHPUnit\Framework\TestCase
 {
     public function testHelperIsRegistered()
@@ -31,16 +31,16 @@ class IsGrantedTest extends \PHPUnit\Framework\TestCase
         $config = $serviceManager->get('Config');
         $this->assertArrayHasKey('view_helpers', $config);
         $viewHelpersConfig = $config['view_helpers'];
-        $this->assertEquals('LmcRbacMvc\View\Helper\IsGranted', $viewHelpersConfig['aliases']['isGranted']);
+        $this->assertEquals('Lmc\Rbac\Mvc\View\Helper\IsGranted', $viewHelpersConfig['aliases']['isGranted']);
         $this->assertEquals(
-            'LmcRbacMvc\View\Helper\IsGrantedViewHelperFactory',
-            $viewHelpersConfig['factories']['LmcRbacMvc\View\Helper\IsGranted']
+            'Lmc\Rbac\Mvc\View\Helper\IsGrantedViewHelperFactory',
+            $viewHelpersConfig['factories']['Lmc\Rbac\Mvc\View\Helper\IsGranted']
         );
     }
 
     public function testCallAuthorizationService()
     {
-        $authorizationService = $this->createMock('LmcRbacMvc\Service\AuthorizationServiceInterface');
+        $authorizationService = $this->createMock('Lmc\Rbac\Mvc\Service\AuthorizationServiceInterface');
 
         $authorizationService->expects($this->once())
                              ->method('isGranted')

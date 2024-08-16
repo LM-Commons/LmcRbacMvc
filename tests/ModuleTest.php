@@ -18,10 +18,10 @@
 
 namespace LmcRbacMvcTest;
 
-use LmcRbacMvc\Module;
+use Lmc\Rbac\Mvc\Module;
 
 /**
- * @covers \LmcRbacMvc\Module
+ * @covers \Lmc\Rbac\Mvc\Module
  */
 class ModuleTest extends \PHPUnit\Framework\TestCase
 {
@@ -43,14 +43,14 @@ class ModuleTest extends \PHPUnit\Framework\TestCase
         $application->expects($this->once())->method('getEventManager')->willReturn($eventManager);
         $application->expects($this->once())->method('getServiceManager')->willReturn($serviceManager);
 
-        $guard = $this->createMock('LmcRbacMvc\Guard\GuardInterface');
+        $guard = $this->createMock('Lmc\Rbac\Mvc\Guard\GuardInterface');
         $guard->expects($this->once())->method('attach')->with($eventManager);
 
         $guards = [$guard];
 
         $serviceManager->expects($this->once())
                        ->method('get')
-                       ->with('LmcRbacMvc\Guards')
+                       ->with('Lmc\Rbac\Mvc\Guards')
                        ->willReturn($guards);
 
         $module->onBootstrap($mvcEvent);

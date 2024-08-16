@@ -16,15 +16,15 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvc\Service;
+namespace Lmc\Rbac\Mvc\Service;
 
 use Lmc\Rbac\Role\RoleInterface;
 use Lmc\Rbac\Service\RoleServiceInterface;
 use Traversable;
 use Lmc\Rbac\Exception;
 use Lmc\Rbac\Identity\IdentityInterface;
-use LmcRbacMvc\Identity\IdentityProviderInterface;
-use LmcRbacMvc\Role\TraversalStrategyInterface;
+use Lmc\Rbac\Mvc\Identity\IdentityProviderInterface;
+use Lmc\Rbac\Mvc\Role\TraversalStrategyInterface;
 
 /**
  * Role service
