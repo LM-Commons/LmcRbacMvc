@@ -16,7 +16,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace LmcRbacMvcTest;
+namespace LmcTest\Rbac\Mvc;
 
 use Lmc\Rbac\Mvc\Module;
 

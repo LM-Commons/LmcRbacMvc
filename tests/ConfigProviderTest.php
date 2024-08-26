@@ -1,6 +1,6 @@
 <?php
 
-namespace LmcRbacMvcTest;
+namespace LmcTest\Rbac\Mvc;
 
 use Lmc\Rbac\Mvc\ConfigProvider;
 use PHPUnit\Framework\TestCase;
