@@ -18,7 +18,7 @@
 
 namespace Lmc\Rbac\Mvc\Service;
 
-use Lmc\Rbac\Role\RoleInterface;
+use Laminas\Permissions\Rbac\RoleInterface;
 use Lmc\Rbac\Service\RoleServiceInterface;
 use Traversable;
 use Lmc\Rbac\Exception;

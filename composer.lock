@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7c27d38206a2e8d262aeb4deafdf86a0",
+    "content-hash": "672c90786c8fcc5247eaa6f4fdb2d1ab",
     "packages": [
         {
             "name": "brick/varexporter",
@@ -777,6 +777,66 @@
             "time": "2023-11-14T09:44:53+00:00"
         },
         {
+            "name": "laminas/laminas-permissions-rbac",
+            "version": "3.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laminas/laminas-permissions-rbac.git",
+                "reference": "6699e9b95fb360b921b2e6d655977d4786da0443"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laminas/laminas-permissions-rbac/zipball/6699e9b95fb360b921b2e6d655977d4786da0443",
+                "reference": "6699e9b95fb360b921b2e6d655977d4786da0443",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~8.1.0 || ~8.2.0 || ~8.3.0"
+            },
+            "conflict": {
+                "zendframework/zend-permissions-rbac": "*"
+            },
+            "require-dev": {
+                "laminas/laminas-coding-standard": "~2.5.0",
+                "phpunit/phpunit": "^10.1.2",
+                "psalm/plugin-phpunit": "^0.18.4",
+                "vimeo/psalm": "^5.10"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Laminas\\Permissions\\Rbac\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Provides a role-based access control management",
+            "homepage": "https://laminas.dev",
+            "keywords": [
+                "authorization",
+                "laminas",
+                "laminas-permissions-rbac",
+                "rbac"
+            ],
+            "support": {
+                "chat": "https://laminas.dev/chat",
+                "docs": "https://docs.laminas.dev/laminas-permissions-rbac/",
+                "forum": "https://discourse.laminas.dev",
+                "issues": "https://github.com/laminas/laminas-permissions-rbac/issues",
+                "rss": "https://github.com/laminas/laminas-permissions-rbac/releases.atom",
+                "source": "https://github.com/laminas/laminas-permissions-rbac"
+            },
+            "funding": [
+                {
+                    "url": "https://funding.communitybridge.org/projects/laminas-project",
+                    "type": "community_bridge"
+                }
+            ],
+            "time": "2023-11-27T21:55:58+00:00"
+        },
+        {
             "name": "laminas/laminas-router",
             "version": "3.13.0",
             "source": {
@@ -1240,20 +1300,15 @@
         },
         {
             "name": "lm-commons/lmc-rbac",
-            "version": "2.0.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/visto9259/LmcRbac.git",
-                "reference": "98bbb70a881ddcb819f02ec3ecf421006e871f71"
-            },
+            "version": "dev-2.0.x-laminas-rbac",
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/visto9259/LmcRbac/zipball/98bbb70a881ddcb819f02ec3ecf421006e871f71",
-                "reference": "98bbb70a881ddcb819f02ec3ecf421006e871f71",
-                "shasum": ""
+                "type": "path",
+                "url": "../LmcRbac",
+                "reference": "f0b4d5171c528a1e26ea857af5cd61de32ddd2c0"
             },
             "require": {
                 "doctrine/persistence": "^2.0 || ^3.0",
+                "laminas/laminas-permissions-rbac": "^3.0",
                 "laminas/laminas-servicemanager": "^3.3",
                 "laminas/laminas-stdlib": "^3.1",
                 "php": "^8.1 || ^8.2 || ^8.3"
@@ -1268,7 +1323,6 @@
                 "symfony/cache": "^4.0 || ^5.0 || ^6.0",
                 "vimeo/psalm": "^5.25"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1352,10 +1406,9 @@
                 "permissions",
                 "rbac"
             ],
-            "support": {
-                "source": "https://github.com/visto9259/LmcRbac/tree/2.0.x"
-            },
-            "time": "2024-08-20T13:54:24+00:00"
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "nikic/php-parser",
@@ -3119,32 +3172,32 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "10.1.15",
+            "version": "10.1.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "5da8b1728acd1e6ffdf2ff32ffbdfd04307f26ae"
+                "reference": "7e308268858ed6baedc8704a304727d20bc07c77"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/5da8b1728acd1e6ffdf2ff32ffbdfd04307f26ae",
-                "reference": "5da8b1728acd1e6ffdf2ff32ffbdfd04307f26ae",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/7e308268858ed6baedc8704a304727d20bc07c77",
+                "reference": "7e308268858ed6baedc8704a304727d20bc07c77",
                 "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
                 "ext-libxml": "*",
                 "ext-xmlwriter": "*",
-                "nikic/php-parser": "^4.18 || ^5.0",
+                "nikic/php-parser": "^4.19.1 || ^5.1.0",
                 "php": ">=8.1",
-                "phpunit/php-file-iterator": "^4.0",
-                "phpunit/php-text-template": "^3.0",
-                "sebastian/code-unit-reverse-lookup": "^3.0",
-                "sebastian/complexity": "^3.0",
-                "sebastian/environment": "^6.0",
-                "sebastian/lines-of-code": "^2.0",
-                "sebastian/version": "^4.0",
-                "theseer/tokenizer": "^1.2.0"
+                "phpunit/php-file-iterator": "^4.1.0",
+                "phpunit/php-text-template": "^3.0.1",
+                "sebastian/code-unit-reverse-lookup": "^3.0.0",
+                "sebastian/complexity": "^3.2.0",
+                "sebastian/environment": "^6.1.0",
+                "sebastian/lines-of-code": "^2.0.2",
+                "sebastian/version": "^4.0.1",
+                "theseer/tokenizer": "^1.2.3"
             },
             "require-dev": {
                 "phpunit/phpunit": "^10.1"
@@ -3156,7 +3209,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "10.1-dev"
+                    "dev-main": "10.1.x-dev"
                 }
             },
             "autoload": {
@@ -3185,7 +3238,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/php-code-coverage/issues",
                 "security": "https://github.com/sebastianbergmann/php-code-coverage/security/policy",
-                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/10.1.15"
+                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/10.1.16"
             },
             "funding": [
                 {
@@ -3193,7 +3246,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-06-29T08:25:15+00:00"
+            "time": "2024-08-22T04:31:57+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -3601,16 +3654,16 @@
         },
         {
             "name": "psr/log",
-            "version": "3.0.0",
+            "version": "3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "fe5ea303b0887d5caefd3d431c3e61ad47037001"
+                "reference": "79dff0b268932c640297f5208d6298f71855c03e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/fe5ea303b0887d5caefd3d431c3e61ad47037001",
-                "reference": "fe5ea303b0887d5caefd3d431c3e61ad47037001",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/79dff0b268932c640297f5208d6298f71855c03e",
+                "reference": "79dff0b268932c640297f5208d6298f71855c03e",
                 "shasum": ""
             },
             "require": {
@@ -3645,9 +3698,9 @@
                 "psr-3"
             ],
             "support": {
-                "source": "https://github.com/php-fig/log/tree/3.0.0"
+                "source": "https://github.com/php-fig/log/tree/3.0.1"
             },
-            "time": "2021-07-14T16:46:02+00:00"
+            "time": "2024-08-21T13:31:24+00:00"
         },
         {
             "name": "sebastian/cli-parser",
