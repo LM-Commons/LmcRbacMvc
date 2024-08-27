@@ -15,31 +15,18 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
+namespace LmcTest\Rbac\Mvc\Asset;
 
-namespace Lmc\Rbac\Mvc\Initializer;
-
-use Psr\Container\ContainerInterface;
-use Laminas\ServiceManager\AbstractPluginManager;
-use Laminas\ServiceManager\Initializer\InitializerInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
 use Lmc\Rbac\Mvc\Service\AuthorizationServiceAwareInterface;
 
 /**
- * Initializer for classes implementing AuthorizationServiceAwareInterface
- *
+ * A fake implementation for AuthorizationServiceAwareInterface
+ * 
  * @author  Aeneas Rekkas
  * @license MIT License
  */
-class AuthorizationServiceInitializer implements InitializerInterface
+class AuthorizationAwareFake implements AuthorizationServiceAwareInterface
 {
-    /**
-     * {@inheritDoc}
-     */
-    public function __invoke(ContainerInterface $container, $instance): void
-    {
-        if ($instance instanceof AuthorizationServiceAwareInterface) {
-            $authorizationService = $container->get(\Lmc\Rbac\Mvc\Service\AuthorizationService::class);
-            $instance->setAuthorizationService($authorizationService);
-        }
-    }
+
+    use \Lmc\Rbac\Mvc\Service\AuthorizationServiceAwareTrait;
 }

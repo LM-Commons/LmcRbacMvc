@@ -17,14 +17,12 @@
  */
 namespace LmcTest\Rbac\Mvc\Service;
 
-use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
-use Psr\Container\ContainerInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 use Lmc\Rbac\Mvc\Service\AuthorizationServiceDelegatorFactory;
-use LmcTest\Rbac\Mvc\Initializer\AuthorizationAwareFake;
+use LmcTest\Rbac\Mvc\Asset\AuthorizationAwareFake;
 use LmcTest\Rbac\Mvc\Util\ServiceManagerFactory;
 use Prophecy\PhpUnit\ProphecyTrait;
-use stdClass;
+use Psr\Container\ContainerInterface;
 
 /**
  * @covers  \Lmc\Rbac\Mvc\Service\AuthorizationServiceDelegatorFactory
@@ -75,7 +73,7 @@ class AuthorizationServiceDelegatorTest extends \PHPUnit\Framework\TestCase
 
         $serviceManager->setInvokableClass(
             'LmcTest\Rbac\Mvc\AuthorizationAware',
-            'LmcTest\Rbac\Mvc\Initializer\AuthorizationAwareFake'
+            'LmcTest\Rbac\Mvc\Asset\AuthorizationAwareFake'
         );
         $decoratedInstance = $serviceManager->get('LmcTest\Rbac\Mvc\AuthorizationAware');
         $this->assertNull($decoratedInstance->getAuthorizationService());
@@ -102,11 +100,11 @@ class AuthorizationServiceDelegatorTest extends \PHPUnit\Framework\TestCase
 
         $serviceManager->setInvokableClass(
             'LmcTest\Rbac\Mvc\AuthorizationAware',
-            'LmcTest\Rbac\Mvc\Initializer\AuthorizationAwareFake'
+            'LmcTest\Rbac\Mvc\Asset\AuthorizationAwareFake'
         );
 
         $serviceManager->addDelegator(
-            'LmcTest\Rbac\Mvc\Initializer\AuthorizationAwareFake',
+            'LmcTest\Rbac\Mvc\Asset\AuthorizationAwareFake',
             'Lmc\Rbac\Mvc\Service\AuthorizationServiceDelegatorFactory'
         );
 
