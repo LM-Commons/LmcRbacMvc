@@ -38,7 +38,7 @@
         "laminas/laminas-eventmanager": "^3.0",
         "laminas/laminas-mvc": "^3.0",
         "laminas/laminas-servicemanager": "^3.0",
-        "lm-commons/lmc-rbac": "dev-2.0.x-laminas-rbac"
+        "lm-commons/lmc-rbac": "2.0.x-dev"
     },
     "require-dev": {
         "laminas/laminas-authentication": "^2.2",
