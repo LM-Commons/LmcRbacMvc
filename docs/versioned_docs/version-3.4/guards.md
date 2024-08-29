@@ -1,7 +1,8 @@
 ---
-sidebar_position: 2
-title: Guards
+sidebar_position: 5
 ---
+# Guards
+
 In this section, you will learn:
 
 * What guards are

@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
+import Link from "@docusaurus/core/lib/client/exports/Link";
 
 const FeatureList = [
   {
@@ -33,13 +34,12 @@ export default function HomepageFeatures() {
   return (
     <section className={styles.features}>
       <div className="container">
-          {/*}
-        <div className="row">
-          {FeatureList.map((props, idx) => (
-            <Feature key={idx} {...props} />
-          ))}
+        <div className={clsx('row')}>
+            <div className={clsx('col col--8')}>
+                <Heading as='h1'>Introduction</Heading>
+                <p>LmcRbacMvc is a companion component that extends the functionality of <Link href="https://lm-commons.github.io/LmcRbac">LmcRbac</Link> to provide Role-based Access Control (RBAC) for Laminas MVC applications.</p>
+            </div>
         </div>
-        {*/}
       </div>
     </section>
   );
