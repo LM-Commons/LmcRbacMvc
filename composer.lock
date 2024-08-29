@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "13e6f1403620fedb29f0a01fdaa74d79",
+    "content-hash": "0a86fa909357e9e86820f5a9cb2f0f93",
     "packages": [
         {
             "name": "brick/varexporter",
@@ -1301,10 +1301,16 @@
         {
             "name": "lm-commons/lmc-rbac",
             "version": "2.0.x-dev",
-            "dist": {
-                "type": "path",
-                "url": "../LmcRbac",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LM-Commons/LmcRbac.git",
                 "reference": "ae7b1c67126d5c7a1c8da7fb17ec209b5ac70164"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LM-Commons/LmcRbac/zipball/ae7b1c67126d5c7a1c8da7fb17ec209b5ac70164",
+                "reference": "ae7b1c67126d5c7a1c8da7fb17ec209b5ac70164",
+                "shasum": ""
             },
             "require": {
                 "doctrine/persistence": "^2.0 || ^3.0",
@@ -1338,35 +1344,7 @@
                     "Lmc\\Rbac\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "LmcTest\\Rbac\\": "test/"
-                }
-            },
-            "scripts": {
-                "check": [
-                    "@cs-check",
-                    "@test"
-                ],
-                "cs-check": [
-                    "phpcs"
-                ],
-                "cs-fix": [
-                    "phpcbf"
-                ],
-                "test": [
-                    "phpunit --colors=always"
-                ],
-                "test-coverage": [
-                    "phpunit --coverage-clover ./build/logs/clover.xml"
-                ],
-                "test-coverage-html": [
-                    "phpunit --colors=always --coverage-html ./build/html"
-                ],
-                "static-analysis": [
-                    "psalm --shepherd --stats"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1406,9 +1384,11 @@
                 "permissions",
                 "rbac"
             ],
-            "transport-options": {
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/LM-Commons/LmcRbac/issues",
+                "source": "https://github.com/LM-Commons/LmcRbac/tree/2.0.x"
+            },
+            "time": "2024-08-27T20:02:07+00:00"
         },
         {
             "name": "nikic/php-parser",
