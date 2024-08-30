@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[1868],{9772:t=>{t.exports=JSON.parse('{"authors":[{"name":"Eric Richer","title":"LM-Commons Administrator","url":"https://github.com/visto9259","imageURL":"https://github.com/visto9259.png","key":"ericr","page":null,"count":2}]}')}}]);
