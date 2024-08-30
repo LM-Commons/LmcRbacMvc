@@ -23,31 +23,6 @@ to LmcRbacMvc using the equivalent wrapper classes and trait:
 
 Refer to this section in LmcRbac on how to inject the Authorization Service.
 
-## Using controller and view plugins
-
-LmcRbacMvc provides both a controller plugin and a view helper to check authorization.
-
-In a controller :
-
-```php
-    public function doSomethingAction()
-    {
-        if (!$this->isGranted('myPermission', $context)) {
-            // redirect if not granted for example
-        }
-    }
-```
-
-#### In a view :
-
-```php
-    <?php if ($this->isGranted('myPermission', $myContext)): ?>
-    <div>
-        <p>Display only if granted</p>
-    </div>
-    <?php endif ?>
-```
-
 ## Permissions and Assertions
 
 Assertions are provided by LmcRbac.  Refer to the Assertion section in LmcRbac on how to configure assertions.

@@ -1,7 +1,7 @@
 ---
 title: Using LmcRbacMvc and LmcUser
 sidebar_label: Using LmcRbacMvc and LmcUser
-sidebar_pos: 3
+sidebar_position: 3
 ---
 
 To use the authentication service from LmcUser, there are a few actions to take:

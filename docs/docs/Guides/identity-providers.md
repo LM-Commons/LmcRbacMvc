@@ -1,6 +1,7 @@
 ---
 title: Create a custom identity provider
 sidebar_label: Custom Identity Providers
+sidebar_position: 2
 ---
 
 Identity providers return the current identity. Most of the time, this means the logged in user. LmcRbacMvc comes with a
