@@ -18,11 +18,9 @@
 
 namespace LmcTest\Rbac\Mvc\Service;
 
-use Lmc\Rbac\Role\Role;
-use Lmc\Rbac\Mvc\Identity\IdentityInterface;
+use Laminas\Permissions\Rbac\Role;
 use Lmc\Rbac\Mvc\Identity\IdentityProviderInterface;
-use Lmc\Rbac\Mvc\Role\InMemoryRoleProvider;
-use Lmc\Rbac\Mvc\Role\RoleProviderInterface;
+use Lmc\Rbac\Role\InMemoryRoleProvider;
 use Lmc\Rbac\Mvc\Service\RoleService;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
@@ -209,7 +207,7 @@ class RoleServiceTest extends TestCase
                          ->method('getIdentity')
                          ->willReturn($identity);
 
-        $roleProvider = new \Lmc\Rbac\Role\InMemoryRoleProvider($rolesConfig);
+        $roleProvider = new InMemoryRoleProvider($rolesConfig);
         $baseRoleService = new \Lmc\Rbac\Service\RoleService($roleProvider, 'guest');
 
         $roleService = new RoleService($identityProvider, $baseRoleService, new RecursiveRoleIteratorStrategy());

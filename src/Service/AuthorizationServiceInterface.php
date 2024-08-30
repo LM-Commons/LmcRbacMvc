@@ -48,7 +48,7 @@ interface AuthorizationServiceInterface
 
     /**
      * Set assertions, either merging or replacing (default)
-     * @param array $assertions
+     * @param array<string|callable|AssertionInterface> $assertions
      * @param bool $merge
      * @return void
      */
@@ -56,18 +56,18 @@ interface AuthorizationServiceInterface
 
     /**
      * Set assertion for a given permission
-     * @param PermissionInterface|string $permission
+     * @param string $permission
      * @param AssertionInterface|callable|string $assertion
      * @return void
      */
-    public function setAssertion(PermissionInterface|string $permission, AssertionInterface|callable|string $assertion): void;
+    public function setAssertion(string $permission, AssertionInterface|callable|string $assertion): void;
 
     /**
      * Check if there are assertions for the permission
-     * @param PermissionInterface|string $permission
+     * @param string $permission
      * @return bool
      */
-    public function hasAssertion(PermissionInterface|string $permission): bool;
+    public function hasAssertion(string $permission): bool;
 
     /**
      * Get the assertions
@@ -77,9 +77,9 @@ interface AuthorizationServiceInterface
 
     /**
      * Get the assertions for the given permission
-     * @param PermissionInterface|string $permission
+     * @param string $permission
      * @return AssertionInterface|callable|string|null
      */
-    public function getAssertion(PermissionInterface|string $permission): AssertionInterface|callable|string|null;
+    public function getAssertion(string $permission): AssertionInterface|callable|string|null;
 
 }

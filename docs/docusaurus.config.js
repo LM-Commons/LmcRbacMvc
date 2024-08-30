@@ -75,9 +75,13 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'Documentation',
+            label: 'Docs',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+//          {to: '/blog', label: 'Blog', position: 'left'},
+          {
+            type: "docsVersionDropdown",
+            position: "right",
+          },
           {
             href: 'https://lm-commons.github.io',
             label: 'LM-Commons',
@@ -85,14 +89,16 @@ const config = {
           },
           {
             href: 'https://github.com/lm-commons/lmcrbacmvc',
-            label: 'GitHub',
+            //label: 'GitHub',
             position: 'right',
+            className: 'header-github-link',
           },
         ],
       },
       footer: {
         style: 'dark',
         links: [
+/*
           {
             title: 'Docs',
             items: [
@@ -102,6 +108,8 @@ const config = {
               },
             ],
           },
+
+ */
           {
             title: 'Community',
             items: [
@@ -114,10 +122,12 @@ const config = {
           {
             title: 'More',
             items: [
+                /*
               {
                 label: 'Blog',
                 to: '/blog',
               },
+              */
               {
                 label: 'GitHub',
                 href: 'https://github.com/lm-commons/lmcrbacmvc',

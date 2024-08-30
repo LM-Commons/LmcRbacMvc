@@ -18,16 +18,15 @@
 
 namespace Lmc\Rbac\Mvc\Service;
 
+use Lmc\Rbac\Assertion\AssertionInterface;
 use Lmc\Rbac\Identity\IdentityInterface;
-use Lmc\Rbac\Permission\PermissionInterface;
 use Lmc\Rbac\Service\AuthorizationServiceInterface as BaseAuthorizationServiceInterface;
+
 
 /**
  * Authorization service is a simple service that internally uses Rbac to check if identity is
  * granted a permission
  *
- * @author  Michaël Gallego <mic.gallego@gmail.com>
- * @license MIT
  */
 class AuthorizationService implements AuthorizationServiceInterface
 {
@@ -64,38 +63,43 @@ class AuthorizationService implements AuthorizationServiceInterface
     }
 
     /**
-     * Check if the permission is granted to the current identity
-     *
-     * @param string $permission
-     * @param mixed|null $context
-     * @return bool
+     * @inheritDoc
      */
     public function isGranted(string $permission, mixed $context = null): bool
     {
         return $this->baseAuthorizationService->isGranted($this->getIdentity(), $permission, $context);
     }
 
+    /**
+     * @inheritDoc
+     */
     public function getAssertions(): array
     {
         return $this->baseAuthorizationService->getAssertions();
     }
 
-    public function getAssertion(PermissionInterface|string $permission): \Lmc\Rbac\Assertion\AssertionInterface|callable|string|null
+    /**
+     * @inheritDoc
+     */
+    public function getAssertion(string $permission): \Lmc\Rbac\Assertion\AssertionInterface|callable|string|null
     {
         return $this->baseAuthorizationService->getAssertion($permission);
     }
 
+    /**
+     * @inheritDoc
+     */
     public function setAssertions(array $assertions, bool $merge = false): void
     {
         $this->baseAuthorizationService->setAssertions($assertions, $merge);
     }
 
-    public function setAssertion(PermissionInterface|string $permission, callable|\Lmc\Rbac\Assertion\AssertionInterface|string $assertion): void
+    public function setAssertion(string $permission, AssertionInterface|callable|string $assertion): void
     {
         $this->baseAuthorizationService->setAssertion($permission, $assertion);
     }
 
-    public function hasAssertion(PermissionInterface|string $permission): bool
+    public function hasAssertion(string $permission): bool
     {
         return $this->baseAuthorizationService->hasAssertion($permission);
     }

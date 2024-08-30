@@ -2,8 +2,8 @@
 
 namespace LmcTest\Rbac\Mvc\Role;
 
-use Lmc\Rbac\Role\Role;
-use Lmc\Rbac\Role\RoleInterface;
+use Laminas\Permissions\Rbac\Role;
+use Laminas\Permissions\Rbac\RoleInterface;
 use Lmc\Rbac\Mvc\Role\RecursiveRoleIterator;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;

@@ -6,7 +6,9 @@ import HomepageFeatures from '@site/src/components/HomepageFeatures';
 
 import Heading from '@theme/Heading';
 import styles from './index.module.css';
+import {HomepageHeader} from "../components/HomepageHeader";
 
+/*
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
@@ -17,7 +19,7 @@ function HomepageHeader() {
             </Heading>
             <p className="hero__subtitle">{siteConfig.tagline}</p>
             <p>Part of the LM-Commons series of community developed packages for Laminas</p>
-            {/*}
+
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
@@ -25,11 +27,12 @@ function HomepageHeader() {
             Docusaurus Tutorial - 5min ⏱️
           </Link>
         </div>
-        {*/}
+
         </div>
     </header>
   );
 }
+*/
 
 export default function Home() {
     const {siteConfig} = useDocusaurusContext();

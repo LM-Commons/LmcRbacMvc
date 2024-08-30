@@ -21,11 +21,9 @@ namespace Lmc\Rbac\Mvc\Permission;
 /**
  * Interface that permissions must implement to be used with the AuthorizationService
  *
- * @author  Michaël Gallego <mic.gallego@gmail.com>
- * @license MIT
- * @deprecated use \Lmc\Rbac\Permission\PermissionInterface
+ * @deprecated
  *
  */
-interface PermissionInterface extends \Lmc\Rbac\Permission\PermissionInterface
+interface PermissionInterface
 {
 }

@@ -79,12 +79,6 @@
         "test-coverage-html": "phpunit --coverage-html ./build/html",
         "static-analysis": "psalm --shepherd --stats"
     },
-    "repositories": [
-        {
-            "type": "github",
-            "url": "https://github.com/visto9259/LmcRbac.git"
-        }
-    ],
     "config": {
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true

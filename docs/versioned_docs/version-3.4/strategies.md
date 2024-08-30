@@ -1,48 +1,57 @@
 ---
-title: Strategies
-sidebar_position: 3
+sidebar_position: 6
 ---
+# Strategies
+
+In this section, you will learn:
+
+* What strategies are
+* How to use built-in strategies
+* How to create custom strategies
 
 ## What are strategies?
 
 A strategy is an object that listens to the `MvcEvent::EVENT_DISPATCH_ERROR` event. It is used to describe what
 happens when access to a resource is unauthorized by LmcRbacMvc.
 
-LmcRbacMvc strategies all check if an `Lmc\Rbac\Mvc\Exception\UnauthorizedExceptionInterface` has been thrown.
+LmcRbacMvc strategies all check if an `LmcRbacMvc\Exception\UnauthorizedExceptionInterface` has been thrown.
 
-By default, LmcRbacMvc does not register any strategy for you. The best place to register it in a config file under the
-`'listeners'` key:
+By default, LmcRbacMvc does not register any strategy for you. The best place to register it is in your `onBootstrap`
+method of the `Module.php` class:
 
 ```php
-return [
-    // other configs...
+public function onBootstrap(MvcEvent $e)
+{
+    $app = $e->getApplication();
+    $sm = $app->getServiceManager();
+    $em = $app->getEventManager();
     
-    'listeners' => [
-        \Lmc\Rbac\Mvc\View\Strategy\UnauthorizedStrategy::class
-    ],
-];
+    $listener = $sm->get(\LmcRbacMvc\View\Strategy\UnauthorizedStrategy::class);
+    $listener->attach($em);
+}
 ```
+
 ## Built-in strategies
 
-LmcRbacMvc comes with two built-in strategies: 
-- `\Lmc\Rbac\Mvc\View\Strategy\RedirectStrategy` 
-- `\Lmc\Rbac\Mvc\View\Strategy\UnauthorizedStrategy`.
+LmcRbacMvc comes with two built-in strategies: `RedirectStrategy` and `UnauthorizedStrategy`.
 
 ### RedirectStrategy
 
 This strategy allows your application to redirect any unauthorized request to another route by optionally appending the previous
 URL as a query parameter.
 
-To register it, copy-paste this code into a configuration file:
+To register it, copy-paste this code into your Module.php class:
 
 ```php
-return [
-    // other configs...
+public function onBootstrap(MvcEvent $e)
+{
+    $app = $e->getApplication();
+    $sm = $app->getServiceManager();
+    $em = $app->getEventManager();
     
-    'listeners' => [
-        \Lmc\Rbac\Mvc\View\Strategy\RedirectStrategy::class
-    ],
-];
+    $listener = $sm->get(\LmcRbacMvc\View\Strategy\RedirectStrategy::class);
+    $listener->attach($em);
+}
 ```
 
 You can configure the strategy using the `redirect_strategy` subkey:
@@ -62,9 +71,8 @@ return [
 ```
 
 If users try to access an unauthorized resource (eg.: http://www.example.com/delete), they will be
-redirected to the "login" route if is not connected and to the "home" route otherwise with the previous URL appended:
-
-> http://www.example.com/login?redirectTo=http://www.example.com/delete
+redirected to the "login" route if is not connected and to the "home" route otherwise (it must exist in your route configuration
+of course) with the previous URL appended : http://www.example.com/login?redirectTo=http://www.example.com/delete
 
 You can prevent redirection when a user is connected (i.e. so that the user gets a 403 page) by setting `redirect_when_connected` to `false`.
 
@@ -75,13 +83,15 @@ This strategy allows your application to render a template on any unauthorized r
 To register it, copy-paste this code into your Module.php class:
 
 ```php
-return [
-    // other configs...
+public function onBootstrap(MvcEvent $e)
+{
+    $app = $e->getApplication();
+    $sm = $app->getServiceManager();
+    $em = $app->getEventManager();
     
-    'listeners' => [
-        \Lmc\Rbac\Mvc\View\Strategy\UnauthorizedStrategy::class
-    ],
-];
+    $listener = $sm->get(\LmcRbacMvc\View\Strategy\UnauthorizedStrategy::class);
+    $listener->attach($em);
+}
 ```
 
 You can configure the strategy using the `unauthorized_strategy` subkey:
@@ -110,8 +120,8 @@ use Laminas\Http\Response as HttpResponse;
 use Laminas\Mvc\MvcEvent;
 use Laminas\ApiTools\ApiProblem\ApiProblem;
 use Laminas\ApiTools\ApiProblem\ApiProblemResponse;
-use Lmc\Rbac\Mvc\View\Strategy\AbstractStrategy;
-use Lmc\Rbac\Mvc\Exception\UnauthorizedExceptionInterface;
+use LmcRbacMvc\View\Strategy\AbstractStrategy;
+use LmcRbacMvc\Exception\UnauthorizedExceptionInterface;
 
 class ApiProblemStrategy extends AbstractStrategy
 {
@@ -133,11 +143,10 @@ class ApiProblemStrategy extends AbstractStrategy
 Register your strategy:
 
 ```php
-return [
-    // other configs...
-    
-    'listeners' => [
-        Application\View\Strategy\ApiProblemStrategy::class,
-    ],
-];
+public function onBootstrap(EventInterface $e)
+{
+    $e->getTarget()
+      ->getEventManager()
+      ->attach(new ApiProblemStrategy());
+}
 ```

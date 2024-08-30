@@ -19,7 +19,7 @@
 namespace Lmc\Rbac\Mvc\Role;
 
 use ArrayIterator;
-use Lmc\Rbac\Role\RoleInterface;
+use Laminas\Permissions\Rbac\RoleInterface;
 use RecursiveIterator;
 use Traversable;
 
