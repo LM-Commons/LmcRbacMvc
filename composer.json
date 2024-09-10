@@ -38,7 +38,7 @@
         "laminas/laminas-eventmanager": "^3.0",
         "laminas/laminas-mvc": "^3.0",
         "laminas/laminas-servicemanager": "^3.0",
-        "lm-commons/lmc-rbac": "2.0.x-dev"
+        "lm-commons/lmc-rbac": "^2.0"
     },
     "require-dev": {
         "laminas/laminas-authentication": "^2.2",
@@ -49,7 +49,7 @@
         "vimeo/psalm": "^5.25"
     },
     "suggest": {
-        "lm-commons/lmc-rbac-mvc-devtools": "if you want to show information about the roles"
+        "lm-commons/lmc-rbac-mvc-devtools": "if you want to collect and show information about roles and guards in Laminas Developer Tools"
     },
     "autoload": {
         "psr-4": {
