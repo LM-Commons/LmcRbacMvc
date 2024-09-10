@@ -56,6 +56,11 @@
         "phpspec/prophecy-phpunit": "^2.0",
         "doctrine/doctrine-orm-module": "^5.0 || ^6.0"
     },
+    "extra": {
+        "laminas": {
+            "component": "LmcRbacMvc"
+        }
+    },
     "suggest": {
         "laminas/laminas-developer-tools": "if you want to show information about the roles",
         "doctrine/doctrine-module": "if you want to use Doctrine role provider"
