@@ -1,8 +1,13 @@
-name: Build
+name: Continuous Integration
 
 on:
-    push:
-    pull_request:
+  push:
+    # Avoid running tests on changes to documentation
+    paths-ignore:
+      - 'docs/**'
+  pull_request:
+    paths-ignore:
+      - 'docs/**'
 
 env:
   COMPOSER_ARGS: '--no-progress'
