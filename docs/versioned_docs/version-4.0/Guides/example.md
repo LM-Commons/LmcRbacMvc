@@ -1,12 +1,7 @@
 ---
-sidebar_position: 8
+title: A Real World Example
+sidebar_position: 1
 ---
-# Cookbook
-
-This section will help you further understand how LmcRbacMvc works by providing more concrete examples. If you have
-any other recipe you'd like to add, please open an issue!
-
-## A Real World Application
 
 In this example we are going to create a very little real world application. We will create a controller
 `PostController` that interacts with a service called `PostService`. For the sake of simplicity we will only
@@ -15,9 +10,9 @@ cover the `delete`-methods of both parts.
 Let's start by creating a controller that has the `PostService` as dependency:
 
 ```php
-class PostController
+class PostController extends \Laminas\Mvc\Controller\AbstractActionController
 {
-    protected $postService;
+    protected PostService $postService;
 
     public function __construct(PostService $postService)
     {
@@ -28,7 +23,7 @@ class PostController
 
     public function deleteAction()
     {
-        $id = $this->params()->fromQuery('id');
+        $id = $this->params()->fromRoute('id');
 
         $this->postService->deletePost($id);
 
@@ -47,10 +42,9 @@ class Module
         return [
             'controllers' => [
                 'factories' => [
-                    'PostController' => function ($cpm) {
-                        // We assume a Service key 'PostService' here that returns the PostService Class
+                    'PostController' => function ($container) {
                         return new PostController(
-                            $cpm->getServiceLocator()->get('PostService')
+                            $container->get('PostService')
                         );
                     },
                 ],
@@ -95,9 +89,9 @@ class Module
     {
         return [
             'factories' => [
-                 'PostService' => function($sm) {
+                 'PostService' => function($container) {
                      return new PostService(
-                         $sm->get('doctrine.entitymanager.orm_default')
+                         $container->get('doctrine.entitymanager.orm_default')
                      );
                  }
             ]
@@ -121,7 +115,7 @@ Assuming the application example above we can easily use LmcRbacMvc to protect o
 return [
     'lmc_rbac' => [
         'guards' => [
-            'LmcRbacMvc\Guard\RouteGuard' => [
+            \Lmc\Rbac\Mvc\Guard\RouteGuard::class => [
                 'post/delete' => ['admin']
             ]
         ]
@@ -153,7 +147,7 @@ permissions before doing anything wrong. So let's modify our previously created 
 
 ```php
 use Doctrine\Persistence\ObjectManager;
-use LmcRbacMvc\Service\AuthorizationService;
+use Lmc\Rbac\Mvc\Service\AuthorizationService;
 
 class PostService
 {
@@ -163,10 +157,10 @@ class PostService
 
     public function __construct(
         ObjectManager        $objectManager,
-        AuthorizationService $autorizationService
+        AuthorizationService $authorizationService
     ) {
         $this->objectManager        = $objectManager;
-        $this->authorizationService = $autorizationService;
+        $this->authorizationService = $authorizationService;
     }
 
     public function deletePost($id)
@@ -197,7 +191,7 @@ class Module
                  'PostService' => function($sm) {
                      return new PostService(
                          $sm->get('doctrine.entitymanager.orm_default'),
-                         $sm->get('LmcRbacMvc\Service\AuthorizationService') // This is new!
+                         $sm->get('Lmc\Rbac\Mvc\Service\AuthorizationService') // This is new!
                      );
                  }
             ]
@@ -270,7 +264,7 @@ You can quickly reject access to all admin routes using the following guard:
 return [
     'lmc_rbac' => [
         'guards' => [
-            'LmcRbacMvc\Guard\RouteGuard' => [
+            'Lmc\Rbac\Mvc\Guard\RouteGuard' => [
                 'admin*' => ['admin']
             ]
         ]
@@ -295,10 +289,10 @@ class PostService
 
     public function __construct(
         ObjectManager        $objectManager,
-        AuthorizationService $autorizationService
+        AuthorizationService $authorizationService
     ) {
         $this->objectManager        = $objectManager;
-        $this->authorizationService = $autorizationService;
+        $this->authorizationService = $authorizationService;
     }
 
     public function deletePost($id)
@@ -319,7 +313,7 @@ As we can see, we check within our Service if the User of our Application is all
 against the `deletePost` permission. Now how can we achieve that only a user who is the owner of the Post to be able to
 delete his own post, but other users can't? We do not want to change our Service with more complex logic because this
 is not the task of such service. The Permission-System should handle this. And we can, for this we have the
- `AssertionPluginManager` and here is how to do it:
+`AssertionPluginManager` and here is how to do it:
 
 First of all we need to write an Assertion. The Assertion will return a boolean statement about the current
 identity being the owner of the post.
@@ -327,8 +321,8 @@ identity being the owner of the post.
 ```php
 namespace Your\Namespace;
 
-use LmcRbacMvc\Assertion\AssertionInterface;
-use LmcRbacMvc\Service\AuthorizationService;
+use Lmc\Rbac\Mvc\Assertion\AssertionInterface;
+use Lmc\Rbac\Mvc\Service\AuthorizationService;
 
 class MustBeAuthorAssertion implements AssertionInterface
 {
@@ -448,8 +442,8 @@ The assertion must therefore be modified like this:
 ```php
 namespace Your\Namespace;
 
-use LmcRbacMvc\Assertion\AssertionInterface;
-use LmcRbacMvc\Service\AuthorizationService;
+use Lmc\Rbac\Mvc\Assertion\AssertionInterface;
+use Lmc\Rbac\Mvc\Service\AuthorizationService;
 
 class MustBeAuthorAssertion implements AssertionInterface
 {
@@ -507,11 +501,11 @@ In this last example, the menu item will be hidden for users who don't have the 
 
 ## Using LmcRbacMvc with Doctrine ORM
 
-First your User entity class must implement `LmcRbacMvc\Identity\IdentityInterface` :
+First your User entity class must implement `Lmc\Rbac\Mvc\Identity\IdentityInterface` :
 
 ```php
 use LmccUser\Entity\User as LmcUserEntity;
-use LmcRbacMvc\Identity\IdentityInterface;
+use Lmc\Rbac\Mvc\Identity\IdentityInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -721,47 +715,4 @@ public function hasPermission($permission)
 
 > NOTE: This is only supported starting from Doctrine ORM 2.5!
 
-## Using LmcRbacMvc and ZF2 Assetic
 
-To use [Assetic](https://github.com/widmogrod/zf2-assetic-module) with LmcRbacMvc guards, you should modify your
-`module.config.php` using the following configuration:
-
-```php
-return [
-    'assetic_configuration' => [
-        'acceptableErrors' => [
-            \LmcRbacMvc\Guard\GuardInterface::GUARD_UNAUTHORIZED
-        ]
-    ]
-];
-```
-
-## Using LmcRbacMvc and LmcUser
-
-To use the authentication service from LmcUser, just add the following alias in your application.config.php:
-
-```php
-return [
-    'service_manager' => [
-        'aliases' => [
-            'Laminas\Authentication\AuthenticationService' => 'lmcuser_auth_service'
-        ]
-    ]
-];
-```
-
-Finally add the LmcUser routes to your `guards`:
-
-```php
-return [
-    'lmc_rbac' => [
-        'guards' => [
-            'LmcRbac\Guard\RouteGuard' => [
-                'lmcuser/login'    => ['guest'],
-                'lmcuser/register' => ['guest'], // required if registration is enabled
-                'lmcuser*'         => ['user'] // includes logout, changepassword and changeemail
-            ]
-        ]
-    ]
-];
-```

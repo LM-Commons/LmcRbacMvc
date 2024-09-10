@@ -14,6 +14,7 @@
     <file>config</file>
     <file>src</file>
     <file>tests</file>
+    <exclude-pattern>docs/*</exclude-pattern>
 
     <!-- Include all rules from the Laminas Coding Standard -->
     <rule ref="LaminasCodingStandard"/>
