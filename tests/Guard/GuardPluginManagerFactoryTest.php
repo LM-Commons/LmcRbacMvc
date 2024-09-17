@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -19,18 +22,23 @@
 namespace LmcTest\Rbac\Mvc\Guard;
 
 use Laminas\ServiceManager\ServiceManager;
-use Lmc\Rbac\Mvc\Guard\GuardPluginManagerFactory;
 use Lmc\Rbac\Mvc\Guard\GuardPluginManager;
+use Lmc\Rbac\Mvc\Guard\GuardPluginManagerFactory;
 use Lmc\Rbac\Mvc\Options\ModuleOptions;
+use PHPUnit\Framework\TestCase;
+use Psr\Container\ContainerExceptionInterface;
 
 /**
  * @covers \Lmc\Rbac\Mvc\Guard\GuardPluginManagerFactory
  */
-class GuardPluginManagerFactoryTest extends \PHPUnit\Framework\TestCase
+class GuardPluginManagerFactoryTest extends TestCase
 {
-    public function testFactory()
+    /**
+     * @throws ContainerExceptionInterface
+     */
+    public function testFactory(): void
     {
-        $moduleOptions = new ModuleOptions(['guard_manager' => []]);
+        $moduleOptions  = new ModuleOptions();
         $serviceManager = new ServiceManager();
         $serviceManager->setService(ModuleOptions::class, $moduleOptions);
 
