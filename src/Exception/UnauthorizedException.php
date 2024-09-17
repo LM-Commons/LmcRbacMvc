@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -18,12 +21,13 @@
 
 namespace Lmc\Rbac\Mvc\Exception;
 
+use Lmc\Rbac\Exception\RuntimeException;
+
 /**
  * Unauthorized exception
- *
- * @author  Michaël Gallego <mic.gallego@gmail.com>
- * @license MIT
  */
-class UnauthorizedException implements UnauthorizedExceptionInterface
+class UnauthorizedException extends RuntimeException implements UnauthorizedExceptionInterface
 {
+    /** @var string */
+    protected $message = 'You are not authorized to access this resource';
 }
