@@ -19,8 +19,8 @@
 namespace Lmc\Rbac\Mvc\Options;
 
 use Lmc\Rbac\Exception;
-use Lmc\Rbac\Options\ModuleOptions as BaseModuleOptions;
 use Lmc\Rbac\Mvc\Guard\GuardInterface;
+use Lmc\Rbac\Options\ModuleOptions as BaseModuleOptions;
 
 /**
  * Options for LmcRbacMvc module
@@ -57,6 +57,11 @@ class ModuleOptions extends BaseModuleOptions
     protected ?RedirectStrategyOptions $redirectStrategyOptions = null;
 
     /**
+     * Guard Plugin Manager configuration
+     */
+    protected array $guardManager = [];
+
+    /**
      * Constructor
      *
      * {@inheritDoc}
@@ -71,7 +76,6 @@ class ModuleOptions extends BaseModuleOptions
      * Set the guards options
      *
      * @param  array $guards
-     * @return void
      */
     public function setGuards(array $guards): void
     {
@@ -91,9 +95,7 @@ class ModuleOptions extends BaseModuleOptions
     /**
      * Set the protection policy for guards
      *
-     * @param string $protectionPolicy
-     * @return void
-     *@throws Exception\RuntimeException
+     * @throws Exception\RuntimeException
      */
     public function setProtectionPolicy(string $protectionPolicy): void
     {
@@ -110,7 +112,6 @@ class ModuleOptions extends BaseModuleOptions
     /**
      * Get the protection policy for guards
      *
-     * @return string
      */
     public function getProtectionPolicy(): string
     {
@@ -186,4 +187,13 @@ class ModuleOptions extends BaseModuleOptions
         return $this->identityProvider;
     }
 
+    public function setGuardManager(array $config = []): void
+    {
+        $this->guardManager = $config;
+    }
+
+    public function getGuardManager(): array
+    {
+        return $this->guardManager;
+    }
 }
