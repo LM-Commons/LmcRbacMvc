@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -19,65 +22,75 @@
 namespace LmcTest\Rbac\Mvc\Guard;
 
 use Laminas\ServiceManager\ServiceManager;
+use Lmc\Rbac\Exception\RuntimeException;
+use Lmc\Rbac\Mvc\Guard\ControllerGuard;
+use Lmc\Rbac\Mvc\Guard\ControllerPermissionsGuard;
 use Lmc\Rbac\Mvc\Guard\GuardPluginManager;
+use Lmc\Rbac\Mvc\Guard\RouteGuard;
+use Lmc\Rbac\Mvc\Guard\RoutePermissionsGuard;
 use Lmc\Rbac\Mvc\Options\ModuleOptions;
+use Lmc\Rbac\Mvc\Service\AuthorizationService;
+use Lmc\Rbac\Mvc\Service\RoleService;
+use LmcTest\Rbac\Mvc\Asset\TestGuard;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\TestCase;
+use stdClass;
 
 /**
  * @covers \Lmc\Rbac\Mvc\Guard\GuardPluginManager
  */
-class GuardPluginManagerTest extends \PHPUnit\Framework\TestCase
+class GuardPluginManagerTest extends TestCase
 {
     public static function guardProvider(): array
     {
         return [
             [
-                'Lmc\Rbac\Mvc\Guard\RouteGuard',
+                RouteGuard::class,
                 [
-                    'admin/*' => 'foo'
-                ]
+                    'admin/*' => 'foo',
+                ],
             ],
             [
-                'Lmc\Rbac\Mvc\Guard\RoutePermissionsGuard',
+                RoutePermissionsGuard::class,
                 [
-                    'post/delete' => 'post.delete'
-                ]
+                    'post/delete' => 'post.delete',
+                ],
             ],
             [
-                'Lmc\Rbac\Mvc\Guard\ControllerGuard',
+                ControllerGuard::class,
                 [
                     [
                         'controller' => 'Foo',
                         'actions'    => 'bar',
-                        'roles'      => 'baz'
-                    ]
-                ]
+                        'roles'      => 'baz',
+                    ],
+                ],
             ],
             [
-                'Lmc\Rbac\Mvc\Guard\ControllerPermissionsGuard',
+                ControllerPermissionsGuard::class,
                 [
                     [
                         'controller'  => 'Foo',
                         'actions'     => 'bar',
-                        'permissions' => 'baz'
-                    ]
-                ]
+                        'permissions' => 'baz',
+                    ],
+                ],
             ],
         ];
     }
 
     #[DataProvider('guardProvider')]
-    public function testCanCreateDefaultGuards($type, $options)
+    public function testCanCreateDefaultGuards(string $type, array $options): void
     {
         $serviceManager = new ServiceManager();
-        $serviceManager->setService('Lmc\Rbac\Mvc\Options\ModuleOptions', new ModuleOptions());
+        $serviceManager->setService(ModuleOptions::class, new ModuleOptions());
         $serviceManager->setService(
-            'Lmc\Rbac\Mvc\Service\RoleService',
-            $this->createMock('Lmc\Rbac\Mvc\Service\RoleService')
+            RoleService::class,
+            $this->createMock(RoleService::class)
         );
         $serviceManager->setService(
-            'Lmc\Rbac\Mvc\Service\AuthorizationService',
-            $this->createMock('Lmc\Rbac\Mvc\Service\AuthorizationService')
+            AuthorizationService::class,
+            $this->createMock(AuthorizationService::class)
         );
 
         $pluginManager = new GuardPluginManager($serviceManager);
@@ -87,11 +100,43 @@ class GuardPluginManagerTest extends \PHPUnit\Framework\TestCase
         $this->assertInstanceOf($type, $guard);
     }
 
-    public function testThrowExceptionForInvalidPlugin()
+    public function testThrowExceptionForInvalidPlugin(): void
     {
-        $this->expectException('Lmc\Rbac\Exception\RuntimeException');
+        $this->expectException(RuntimeException::class);
 
         $pluginManager = new GuardPluginManager(new ServiceManager());
-        $pluginManager->setService('foo', new \stdClass());
+        $pluginManager->setService('foo', new stdClass());
+    }
+
+    public function testCanCreateNewGuard(): void
+    {
+        $moduleOptions  = new ModuleOptions([
+            'guards'        => [
+                TestGuard::class => [],
+            ],
+            'guard_manager' => [
+                'factories' => [
+                    TestGuard::class => function () {
+                        return new TestGuard();
+                    },
+                ],
+            ],
+        ]);
+        $serviceManager = new ServiceManager();
+        $serviceManager->setService(ModuleOptions::class, $moduleOptions);
+        $serviceManager->setService(
+            RoleService::class,
+            $this->createMock(RoleService::class)
+        );
+        $serviceManager->setService(
+            AuthorizationService::class,
+            $this->createMock(AuthorizationService::class)
+        );
+
+        $pluginManager = new GuardPluginManager($serviceManager, $moduleOptions->getGuardManager());
+
+        $guard = $pluginManager->get(TestGuard::class);
+
+        $this->assertInstanceOf(TestGuard::class, $guard);
     }
 }

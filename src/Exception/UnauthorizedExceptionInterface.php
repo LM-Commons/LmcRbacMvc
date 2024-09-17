@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -18,12 +21,11 @@
 
 namespace Lmc\Rbac\Mvc\Exception;
 
+use Lmc\Rbac\Exception\ExceptionInterface;
+
 /**
  * Interface for an unauthorized exception
- *
- * @author  Michaël Gallego <mic.gallego@gmail.com>
- * @license MIT
  */
-interface UnauthorizedExceptionInterface extends \Lmc\Rbac\Exception\ExceptionInterface
+interface UnauthorizedExceptionInterface extends ExceptionInterface
 {
 }

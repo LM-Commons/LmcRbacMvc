@@ -36,6 +36,6 @@ class GuardPluginManagerFactory implements FactoryInterface
         /** @var ModuleOptions $options */
         $options = $container->get(ModuleOptions::class);
 
-        return new GuardPluginManager($container, $options->getGuards());
+        return new GuardPluginManager($container, $options->getGuardManager());
     }
 }

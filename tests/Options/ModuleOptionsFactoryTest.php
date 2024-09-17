@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -20,14 +23,16 @@ namespace LmcTest\Rbac\Mvc\Options;
 
 use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
 use Laminas\ServiceManager\ServiceManager;
+use Lmc\Rbac\Mvc\Options\ModuleOptions;
 use Lmc\Rbac\Mvc\Options\ModuleOptionsFactory;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \Lmc\Rbac\Mvc\Options\ModuleOptionsFactory
  */
-class ModuleOptionsFactoryTest extends \PHPUnit\Framework\TestCase
+class ModuleOptionsFactoryTest extends TestCase
 {
-    public function testFactory()
+    public function testFactory(): void
     {
         $config = ['lmc_rbac' => []];
 
@@ -35,12 +40,12 @@ class ModuleOptionsFactoryTest extends \PHPUnit\Framework\TestCase
         $serviceManager->setService('Config', $config);
 
         $factory = new ModuleOptionsFactory();
-        $options = $factory($serviceManager, 'Lmc\Rbac\Mvc\Options\ModuleOptions' );
+        $options = $factory($serviceManager, ModuleOptions::class);
 
-        $this->assertInstanceOf('Lmc\Rbac\Mvc\Options\ModuleOptions', $options);
+        $this->assertInstanceOf(ModuleOptions::class, $options);
     }
 
-    public function testFactoryNotCreatedException()
+    public function testFactoryNotCreatedException(): void
     {
         $config = [];
 
@@ -49,6 +54,6 @@ class ModuleOptionsFactoryTest extends \PHPUnit\Framework\TestCase
 
         $this->expectException(ServiceNotCreatedException::class);
         $factory = new ModuleOptionsFactory();
-        $options = $factory($serviceManager, 'Lmc\Rbac\Mvc\Options\ModuleOptions' );
+        $options = $factory($serviceManager, ModuleOptions::class);
     }
 }
