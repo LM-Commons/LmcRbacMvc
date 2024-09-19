@@ -43,7 +43,7 @@
     "require-dev": {
         "laminas/laminas-authentication": "^2.2",
         "laminas/laminas-coding-standard": "^2.5.0",
-        "phpunit/phpunit": "10.5.30",
+        "phpunit/phpunit": "10.5.35",
         "phpspec/prophecy-phpunit": "^2.0",
         "psalm/plugin-phpunit": "^0.19.0",
         "vimeo/psalm": "^5.25"
