@@ -20,19 +20,20 @@ namespace LmcTest\Rbac\Mvc\Guard;
 
 use Laminas\Mvc\MvcEvent;
 use Laminas\Router\RouteMatch;
+use Lmc\Rbac\Mvc\Guard\AbstractGuard;
 use Lmc\Rbac\Mvc\Guard\ControllerGuard;
 use Lmc\Rbac\Mvc\Guard\GuardInterface;
 use Lmc\Rbac\Mvc\Guard\RouteGuard;
 use Lmc\Rbac\Mvc\Guard\RoutePermissionsGuard;
 use Lmc\Rbac\Mvc\Service\RoleService;
 use Lmc\Rbac\Mvc\Role\RecursiveRoleIteratorStrategy;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Lmc\Rbac\Mvc\Guard\AbstractGuard
- * @covers \Lmc\Rbac\Mvc\Guard\RouteGuard
- */
-class RouteGuardTest extends \PHPUnit\Framework\TestCase
+#[CoversClass(AbstractGuard::class)]
+#[CoversClass(RouteGuard::class)]
+class RouteGuardTest extends TestCase
 {
     public function testAttachToRightEvent()
     {
@@ -100,9 +101,7 @@ class RouteGuardTest extends \PHPUnit\Framework\TestCase
         ];
     }
 
-    /**
-     * @dataProvider rulesConversionProvider
-     */
+    #[DataProvider('rulesConversionProvider')]
     public function testRulesConversions(array $rules, array $expected)
     {
         $roleService = $this->createMock('Lmc\Rbac\Mvc\Service\RoleService');
@@ -311,7 +310,7 @@ class RouteGuardTest extends \PHPUnit\Framework\TestCase
             [
                 'rules'            => ['route' => 'admin'],
                 'matchedRouteName' => 'route',
-                'rolesToCreate'    => [
+                'rolesConfig'    => [
                     'admin' => [
                         'children' => 'member'
                     ],
@@ -324,7 +323,7 @@ class RouteGuardTest extends \PHPUnit\Framework\TestCase
             [
                 'rules'            => ['route' => 'admin'],
                 'matchedRouteName' => 'route',
-                'rolesToCreate'    => [
+                'rolesConfig'    => [
                     'admin' => [
                         'children' => 'member'
                     ],
@@ -355,9 +354,6 @@ class RouteGuardTest extends \PHPUnit\Framework\TestCase
         ];
     }
 
-    /**
-     * @dataProvider routeDataProvider
-     */
     #[DataProvider('routeDataProvider')]
     public function testRouteGranted(
         array $rules,
@@ -365,7 +361,7 @@ class RouteGuardTest extends \PHPUnit\Framework\TestCase
         array $rolesConfig,
         $identityRole,
         $isGranted,
-        $protectionPolicy
+        $policy
     ) {
         $event      = new MvcEvent();
         $routeMatch = $this->createRouteMatch();
@@ -385,7 +381,7 @@ class RouteGuardTest extends \PHPUnit\Framework\TestCase
             new \Lmc\Rbac\Service\RoleService($roleProvider, 'guest'), new RecursiveRoleIteratorStrategy());
 
         $routeGuard = new RouteGuard($roleService, $rules);
-        $routeGuard->setProtectionPolicy($protectionPolicy);
+        $routeGuard->setProtectionPolicy($policy);
 
         $this->assertEquals($isGranted, $routeGuard->isGranted($event));
     }

@@ -20,19 +20,20 @@ namespace LmcTest\Rbac\Mvc\Guard;
 
 use Laminas\Mvc\MvcEvent;
 use Laminas\Router\RouteMatch;
+use Lmc\Rbac\Mvc\Guard\AbstractGuard;
 use Lmc\Rbac\Mvc\Guard\ControllerGuard;
 use Lmc\Rbac\Mvc\Guard\ControllerPermissionsGuard;
 use Lmc\Rbac\Mvc\Guard\GuardInterface;
-use Lmc\Rbac\Mvc\Role\InMemoryRoleProvider;
+use Lmc\Rbac\Role\InMemoryRoleProvider;
 use Lmc\Rbac\Mvc\Service\RoleService;
 use Lmc\Rbac\Mvc\Role\RecursiveRoleIteratorStrategy;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Lmc\Rbac\Mvc\Guard\AbstractGuard
- * @covers \Lmc\Rbac\Mvc\Guard\ControllerPermissionsGuard
- */
-class ControllerPermissionsGuardTest extends \PHPUnit\Framework\TestCase
+#[CoversClass(AbstractGuard::class)]
+#[CoversClass(ControllerPermissionsGuard::class)]
+class ControllerPermissionsGuardTest extends TestCase
 {
     private function getMockAuthorizationService()
     {
@@ -392,7 +393,7 @@ class ControllerPermissionsGuardTest extends \PHPUnit\Framework\TestCase
         $action,
         $identityPermissions,
         $isGranted,
-        $protectionPolicy
+        $policy
     ) {
         $routeMatch = $this->createRouteMatch([
             'controller' => $controller,
@@ -403,7 +404,7 @@ class ControllerPermissionsGuardTest extends \PHPUnit\Framework\TestCase
         $authorizationService->expects($this->any())->method('isGranted')->willReturnMap($identityPermissions);
 
         $controllerGuard = new ControllerPermissionsGuard($authorizationService, $rules);
-        $controllerGuard->setProtectionPolicy($protectionPolicy);
+        $controllerGuard->setProtectionPolicy($policy);
 
         $event = new MvcEvent();
         $event->setRouteMatch($routeMatch);
@@ -433,7 +434,7 @@ class ControllerPermissionsGuardTest extends \PHPUnit\Framework\TestCase
         $identityProvider = $this->createMock('Lmc\Rbac\Mvc\Identity\IdentityProviderInterface');
         $identityProvider->expects($this->any())->method('getIdentity')->willReturn($identity);
 
-        $roleProvider = new \Lmc\Rbac\Role\InMemoryRoleProvider([
+        $roleProvider = new InMemoryRoleProvider([
             'member'
         ]);
 
@@ -480,7 +481,7 @@ class ControllerPermissionsGuardTest extends \PHPUnit\Framework\TestCase
         $identityProvider = $this->createMock('Lmc\Rbac\Mvc\Identity\IdentityProviderInterface');
         $identityProvider->expects($this->any())->method('getIdentity')->willReturn($identity);
 
-        $roleProvider = new \Lmc\Rbac\Role\InMemoryRoleProvider([
+        $roleProvider = new InMemoryRoleProvider([
             'member'
         ]);
 
