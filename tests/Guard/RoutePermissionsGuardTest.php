@@ -19,17 +19,18 @@ namespace LmcTest\Rbac\Mvc\Guard;
 
 use Laminas\Mvc\MvcEvent;
 use Laminas\Router\RouteMatch;
+use Lmc\Rbac\Mvc\Guard\AbstractGuard;
 use Lmc\Rbac\Mvc\Guard\ControllerGuard;
 use Lmc\Rbac\Mvc\Guard\GuardInterface;
 use Lmc\Rbac\Mvc\Guard\RouteGuard;
 use Lmc\Rbac\Mvc\Guard\RoutePermissionsGuard;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Lmc\Rbac\Mvc\Guard\AbstractGuard
- * @covers \Lmc\Rbac\Mvc\Guard\RoutePermissionsGuard
- */
-class RoutePermissionsGuardTest extends \PHPUnit\Framework\TestCase
+#[CoversClass(AbstractGuard::class)]
+#[CoversClass(RoutePermissionsGuard::class)]
+class RoutePermissionsGuardTest extends TestCase
 {
     public function testAttachToRightEvent()
     {
@@ -371,7 +372,7 @@ class RoutePermissionsGuardTest extends \PHPUnit\Framework\TestCase
         $matchedRouteName,
         array $identityPermissions,
         $isGranted,
-        $protectionPolicy
+        $policy
     ) {
         $routeMatch = $this->createRouteMatch();
         $routeMatch->setMatchedRouteName($matchedRouteName);
@@ -383,7 +384,7 @@ class RoutePermissionsGuardTest extends \PHPUnit\Framework\TestCase
         $authorizationService->expects($this->any())->method('isGranted')->willReturnMap($identityPermissions);
 
         $routeGuard = new RoutePermissionsGuard($authorizationService, $rules);
-        $routeGuard->setProtectionPolicy($protectionPolicy);
+        $routeGuard->setProtectionPolicy($policy);
 
         $this->assertEquals($isGranted, $routeGuard->isGranted($event));
     }
