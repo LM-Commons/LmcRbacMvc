@@ -37,12 +37,12 @@
         "laminas/laminas-config": "^3.1",
         "laminas/laminas-eventmanager": "^3.0",
         "laminas/laminas-mvc": "^3.0",
-        "laminas/laminas-servicemanager": "^3.0",
+        "laminas/laminas-servicemanager": "^3.0 || ^4.0",
         "lm-commons/lmc-rbac": "^2.0"
     },
     "require-dev": {
         "laminas/laminas-authentication": "^2.2",
-        "laminas/laminas-coding-standard": "^2.5.0",
+        "laminas/laminas-coding-standard": "^3.0.0",
         "phpunit/phpunit": "10.5.37",
         "phpspec/prophecy-phpunit": "^2.0",
         "psalm/plugin-phpunit": "^0.19.0",
