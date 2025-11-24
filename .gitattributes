@@ -8,3 +8,4 @@
 /psalm.baseline.xml export-ignore
 /test/ export-ignore
 /autoload-dev/ export-ignore
+*.php text eol=lf

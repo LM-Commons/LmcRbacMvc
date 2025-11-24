@@ -8,7 +8,8 @@
 ![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Flm-commons%2Flmcrbacmvc%2Fproperties%2Fvalues&query=%24%5B%3A1%5D.value&label=Maintenance%20Status)
 [![Static Badge](https://img.shields.io/badge/Chat_on-Slack-blue)](https://join.slack.com/t/lm-commons/shared_invite/zt-2gankt2wj-FTS45hp1W~JEj1tWvDsUHQ)
 
-Role-based access control module to provide additional features on top of Zend\Permissions\Rbac
+Role-based access control module to provide additional features on top of
+Zend\Permissions\Rbac
 
 ## Requirements
 
@@ -17,22 +18,26 @@ Role-based access control module to provide additional features on top of Zend\P
 
 ## Optional
 
-- [DoctrineModule](https://github.com/doctrine/DoctrineModule): if you want to use some built-in role and permission providers.
-- [Laminas\DeveloperTools](https://github.com/laminas/Laminas\DeveloperTools): if you want to have useful stats added to the Laminas Developer toolbar.
+- [DoctrineModule](https://github.com/doctrine/DoctrineModule): if you want
+to use some built-in role and permission providers.
+- [Laminas\DeveloperTools](https://github.com/laminas/Laminas\DeveloperTools):
+if you want to have useful stats added to the Laminas Developer toolbar.
 
 ## Upgrade
 
 LmcRbacMvc introduces breaking changes from zfcrbac v2:
 
 - The namespace has been changed from `ZfcRbac` to `LmcRbacMvc`.
-- The key `zfc_rbac` in autoload and module config files has been replaced by the `lmc_rbac` key.
+- The key `zfc_rbac` in autoload and module config files has been replaced by
+the `lmc_rbac` key.
 
-You can find an [upgrade guide](UPGRADE.md) to quickly upgrade your application from major versions of ZfcRbac.
+You can find an [upgrade guide](UPGRADE.md) to quickly upgrade your application
+from major versions of ZfcRbac.
 
 ## Installation
 
-LmcRbacMvc only officially supports installation through Composer. For Composer documentation, please refer to
-[getcomposer.org](http://getcomposer.org/).
+LmcRbacMvc only officially supports installation through Composer. For Composer
+documentation, please refer to [getcomposer.org](http://getcomposer.org/).
 
 Install the module:
 
@@ -40,17 +45,18 @@ Install the module:
 $ php composer.phar require lm-commons/lmc-rbac-mvc
 ```
 
-Enable the module by adding `LmcRbacMvc` key to your `application.config.php` or `modules.config.php` file. Customize the module by copy-pasting
-the `lmc_rbac.global.php.dist` file to your `config/autoload` folder.
+Enable the module by adding `LmcRbacMvc` key to your `application.config.php`
+or `modules.config.php` file. Customize the module by copy-pasting the
+`lmc_rbac.global.php.dist` file to your `config/autoload` folder.
 
 ## Documentation
 
 The official documentation is available [here](https://lm-commons.github.io/LmcRbacMvc).
 
-You can also find some Doctrine entities in the [/data](/data) folder that will help you to more quickly take advantage
-of LmcRbac.
+You can also find some Doctrine entities in the [/data](/data) folder that will
+help you to more quickly take advantage of LmcRbac.
 
 ## Support
 
 - File issues at https://github.com/LM-Commons/LmcRbacMvc/issues.
-- Ask questions in the [LM-Commons Slack](https://join.slack.com/t/lm-commons/shared_invite/zt-2gankt2wj-FTS45hp1W~JEj1tWvDsUHQ) chat.
+- Ask questions in the [LM-Commons Discord](https://discord.gg/nAAu7AhR) chat.

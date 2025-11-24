@@ -21,7 +21,7 @@ declare(strict_types=1);
 
 namespace Lmc\Rbac\Mvc\Exception;
 
-use Lmc\Rbac\Exception\RuntimeException;
+use RuntimeException;
 
 /**
  * Unauthorized exception
