@@ -21,11 +21,13 @@ declare(strict_types=1);
 
 namespace Lmc\Rbac\Mvc\Exception;
 
+use RuntimeException as BaseRuntimeException;
+
 /**
  * RuntimeException
  *
  * @deprecated Use Lmc\Rbac\Exception\RuntimeException instead
  */
-class RuntimeException extends \Lmc\Rbac\Exception\RuntimeException
+class RuntimeException extends BaseRuntimeException
 {
 }

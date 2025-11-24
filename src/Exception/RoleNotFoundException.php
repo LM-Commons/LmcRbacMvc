@@ -21,12 +21,14 @@ declare(strict_types=1);
 
 namespace Lmc\Rbac\Mvc\Exception;
 
+use RuntimeException;
+
 /**
  * Exception that is thrown when a role cannot be found (for instance from a provider)
  *
  * @deprecated Use Lmc\Rbac\Exception\RoleNotFoundException instead
  */
-class RoleNotFoundException extends \Lmc\Rbac\Exception\RoleNotFoundException
+class RoleNotFoundException extends RuntimeException implements ExceptionInterface
 {
     /** @var string */
     protected $message = 'No role could be found';

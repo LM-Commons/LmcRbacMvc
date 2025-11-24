@@ -21,11 +21,13 @@ declare(strict_types=1);
 
 namespace Lmc\Rbac\Mvc\Exception;
 
+use InvalidArgumentException as BaseInvalidArgumentException;
+
 /**
  * InvalidArgumentException
  *
  * @deprecated Use Lmc\Rbac\Exception\InvalidArgumentException instead
  */
-class InvalidArgumentException extends \Lmc\Rbac\Exception\InvalidArgumentException
+class InvalidArgumentException extends BaseInvalidArgumentException
 {
 }
