@@ -5,17 +5,15 @@
       <code><![CDATA[AssertionInterface]]></code>
     </UnusedClass>
   </file>
-  <file src="src/Exception/ExceptionInterface.php">
-    <UnusedClass>
-      <code><![CDATA[ExceptionInterface]]></code>
-    </UnusedClass>
-  </file>
   <file src="src/Exception/InvalidArgumentException.php">
     <UnusedClass>
       <code><![CDATA[InvalidArgumentException]]></code>
     </UnusedClass>
   </file>
   <file src="src/Exception/RoleNotFoundException.php">
+    <DeprecatedInterface>
+      <code><![CDATA[RoleNotFoundException]]></code>
+    </DeprecatedInterface>
     <UnusedClass>
       <code><![CDATA[RoleNotFoundException]]></code>
     </UnusedClass>
@@ -200,9 +198,21 @@
     </UndefinedDocblockClass>
   </file>
   <file src="src/Options/ModuleOptions.php">
+    <InvalidExtendClass>
+      <code><![CDATA[BaseModuleOptions]]></code>
+    </InvalidExtendClass>
+    <MethodSignatureMismatch>
+      <code><![CDATA[public function __construct($options = [])]]></code>
+    </MethodSignatureMismatch>
     <MissingParamType>
       <code><![CDATA[$options]]></code>
     </MissingParamType>
+    <MissingTemplateParam>
+      <code><![CDATA[ModuleOptions]]></code>
+    </MissingTemplateParam>
+    <MixedArgument>
+      <code><![CDATA[$options]]></code>
+    </MixedArgument>
     <PossiblyInvalidArgument>
       <code><![CDATA[$redirectStrategyOptions]]></code>
       <code><![CDATA[$unauthorizedStrategyOptions]]></code>
@@ -316,6 +326,16 @@
     <RedundantCastGivenDocblockType>
       <code><![CDATA[(string) $role]]></code>
     </RedundantCastGivenDocblockType>
+  </file>
+  <file src="src/View/Helper/HasRole.php">
+    <DeprecatedClass>
+      <code><![CDATA[AbstractHelper]]></code>
+    </DeprecatedClass>
+  </file>
+  <file src="src/View/Helper/IsGranted.php">
+    <DeprecatedClass>
+      <code><![CDATA[AbstractHelper]]></code>
+    </DeprecatedClass>
   </file>
   <file src="src/View/Strategy/RedirectStrategy.php">
     <MixedAssignment>

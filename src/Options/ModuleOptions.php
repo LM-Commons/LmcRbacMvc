@@ -68,7 +68,7 @@ class ModuleOptions extends BaseModuleOptions
      *
      * {@inheritDoc}
      */
-    public function __construct($options = null)
+    public function __construct($options = [])
     {
         $this->__strictMode__ = false;
         parent::__construct($options);
