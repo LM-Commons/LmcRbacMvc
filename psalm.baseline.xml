@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.26.1@d747f6500b38ac4f7dfc5edbcae6e4b637d7add0">
+<files psalm-version="6.13.1@1e3b7f0a8ab32b23197b91107adc0a7ed8a05b51">
   <file src="src/Assertion/AssertionInterface.php">
     <UnusedClass>
       <code><![CDATA[AssertionInterface]]></code>
     </UnusedClass>
   </file>
+  <file src="src/ConfigProvider.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[ConfigProvider]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="src/Exception/InvalidArgumentException.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[InvalidArgumentException]]></code>
+    </ClassMustBeFinal>
     <UnusedClass>
       <code><![CDATA[InvalidArgumentException]]></code>
     </UnusedClass>
   </file>
   <file src="src/Exception/RoleNotFoundException.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[RoleNotFoundException]]></code>
+    </ClassMustBeFinal>
     <DeprecatedInterface>
       <code><![CDATA[RoleNotFoundException]]></code>
     </DeprecatedInterface>
@@ -19,19 +30,36 @@
     </UnusedClass>
   </file>
   <file src="src/Exception/RuntimeException.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[RuntimeException]]></code>
+    </ClassMustBeFinal>
     <UnusedClass>
       <code><![CDATA[RuntimeException]]></code>
     </UnusedClass>
   </file>
+  <file src="src/Exception/UnauthorizedException.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[UnauthorizedException]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="src/Guard/AbstractGuard.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function attach(EventManagerInterface $events, $priority = self::EVENT_PRIORITY): void]]></code>
+    </MissingOverrideAttribute>
     <MixedArgument>
       <code><![CDATA[static::EVENT_NAME]]></code>
     </MixedArgument>
   </file>
   <file src="src/Guard/ControllerGuard.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[ControllerGuard]]></code>
+    </ClassMustBeFinal>
     <InvalidClassConstantType>
       <code><![CDATA[EVENT_PRIORITY]]></code>
     </InvalidClassConstantType>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function isGranted(MvcEvent $event): bool]]></code>
+    </MissingOverrideAttribute>
     <MixedArgument>
       <code><![CDATA[$action]]></code>
       <code><![CDATA[$allowedRoles]]></code>
@@ -45,6 +73,7 @@
       <code><![CDATA[$rule['controller']]]></code>
       <code><![CDATA[$rule['roles']]]></code>
       <code><![CDATA[$this->rules[$controller][$action]]]></code>
+      <code><![CDATA[$this->rules[$controller][0]]]></code>
     </MixedArrayAccess>
     <MixedAssignment>
       <code><![CDATA[$action]]></code>
@@ -56,10 +85,24 @@
       <code><![CDATA[getParam]]></code>
     </PossiblyNullReference>
   </file>
+  <file src="src/Guard/ControllerGuardFactory.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[ControllerGuardFactory]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null): ControllerGuard]]></code>
+    </MissingOverrideAttribute>
+  </file>
   <file src="src/Guard/ControllerPermissionsGuard.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[ControllerPermissionsGuard]]></code>
+    </ClassMustBeFinal>
     <InvalidClassConstantType>
       <code><![CDATA[EVENT_PRIORITY]]></code>
     </InvalidClassConstantType>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function isGranted(MvcEvent $event): bool]]></code>
+    </MissingOverrideAttribute>
     <MixedArgument>
       <code><![CDATA[$action]]></code>
       <code><![CDATA[$allowedPermissions]]></code>
@@ -73,6 +116,7 @@
       <code><![CDATA[$rule['controller']]]></code>
       <code><![CDATA[$rule['permissions']]]></code>
       <code><![CDATA[$this->rules[$controller][$action]]]></code>
+      <code><![CDATA[$this->rules[$controller][0]]]></code>
     </MixedArrayAccess>
     <MixedAssignment>
       <code><![CDATA[$action]]></code>
@@ -85,10 +129,24 @@
       <code><![CDATA[getParam]]></code>
     </PossiblyNullReference>
   </file>
+  <file src="src/Guard/ControllerPermissionsGuardFactory.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[ControllerPermissionsGuardFactory]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function __invoke(]]></code>
+    </MissingOverrideAttribute>
+  </file>
   <file src="src/Guard/GuardPluginManager.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[GuardPluginManager]]></code>
+    </ClassMustBeFinal>
     <MethodSignatureMismatch>
       <code><![CDATA[GuardPluginManager]]></code>
     </MethodSignatureMismatch>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function validate($instance): void]]></code>
+    </MissingOverrideAttribute>
     <MissingParamType>
       <code><![CDATA[$instance]]></code>
     </MissingParamType>
@@ -100,11 +158,17 @@
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="src/Guard/GuardPluginManagerFactory.php">
-    <ArgumentTypeCoercion>
-      <code><![CDATA[$options->getGuardManager()]]></code>
-    </ArgumentTypeCoercion>
+    <ClassMustBeFinal>
+      <code><![CDATA[GuardPluginManagerFactory]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null): GuardPluginManager]]></code>
+    </MissingOverrideAttribute>
   </file>
   <file src="src/Guard/GuardsFactory.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[GuardsFactory]]></code>
+    </ClassMustBeFinal>
     <InvalidReturnStatement>
       <code><![CDATA[$guards]]></code>
       <code><![CDATA[[]]]></code>
@@ -112,6 +176,9 @@
     <InvalidReturnType>
       <code><![CDATA[object|array]]></code>
     </InvalidReturnType>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null): object|array]]></code>
+    </MissingOverrideAttribute>
     <MixedArgument>
       <code><![CDATA[$options]]></code>
     </MixedArgument>
@@ -120,6 +187,12 @@
     </MixedAssignment>
   </file>
   <file src="src/Guard/RouteGuard.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[RouteGuard]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function isGranted(MvcEvent $event): bool]]></code>
+    </MissingOverrideAttribute>
     <MixedArgument>
       <code><![CDATA[$allowedRoles]]></code>
       <code><![CDATA[$allowedRoles]]></code>
@@ -139,10 +212,24 @@
       <code><![CDATA[getMatchedRouteName]]></code>
     </PossiblyNullReference>
   </file>
+  <file src="src/Guard/RouteGuardFactory.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[RouteGuardFactory]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null): RouteGuard]]></code>
+    </MissingOverrideAttribute>
+  </file>
   <file src="src/Guard/RoutePermissionsGuard.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[RoutePermissionsGuard]]></code>
+    </ClassMustBeFinal>
     <InvalidClassConstantType>
       <code><![CDATA[EVENT_PRIORITY]]></code>
     </InvalidClassConstantType>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function isGranted(MvcEvent $event): bool]]></code>
+    </MissingOverrideAttribute>
     <MixedArgument>
       <code><![CDATA[$allowedPermissions]]></code>
       <code><![CDATA[$permission]]></code>
@@ -171,15 +258,41 @@
       <code><![CDATA[getMatchedRouteName]]></code>
     </PossiblyNullReference>
   </file>
+  <file src="src/Guard/RoutePermissionsGuardFactory.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[RoutePermissionsGuardFactory]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function __invoke(]]></code>
+    </MissingOverrideAttribute>
+  </file>
   <file src="src/Identity/AuthenticationIdentityProvider.php">
-    <MixedInferredReturnType>
-      <code><![CDATA[?IdentityInterface]]></code>
-    </MixedInferredReturnType>
+    <ClassMustBeFinal>
+      <code><![CDATA[AuthenticationIdentityProvider]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function getIdentity(): ?IdentityInterface]]></code>
+    </MissingOverrideAttribute>
     <MixedReturnStatement>
       <code><![CDATA[$this->authenticationService->getIdentity()]]></code>
     </MixedReturnStatement>
   </file>
+  <file src="src/Identity/AuthenticationIdentityProviderFactory.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[AuthenticationIdentityProviderFactory]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function __invoke(]]></code>
+    </MissingOverrideAttribute>
+  </file>
   <file src="src/Module.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Module]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function getConfig(): array]]></code>
+      <code><![CDATA[public function onBootstrap(EventInterface $e): void]]></code>
+    </MissingOverrideAttribute>
     <MixedAssignment>
       <code><![CDATA[$eventManager]]></code>
       <code><![CDATA[$guard]]></code>
@@ -197,7 +310,23 @@
       <code><![CDATA[$guards]]></code>
     </UndefinedDocblockClass>
   </file>
+  <file src="src/Mvc/Controller/Plugin/IsGranted.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[IsGranted]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="src/Mvc/Controller/Plugin/IsGrantedPluginFactory.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[IsGrantedPluginFactory]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null): IsGranted]]></code>
+    </MissingOverrideAttribute>
+  </file>
   <file src="src/Options/ModuleOptions.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[ModuleOptions]]></code>
+    </ClassMustBeFinal>
     <InvalidExtendClass>
       <code><![CDATA[BaseModuleOptions]]></code>
     </InvalidExtendClass>
@@ -226,6 +355,12 @@
     </PossiblyUnusedMethod>
   </file>
   <file src="src/Options/ModuleOptionsFactory.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[ModuleOptionsFactory]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null): ModuleOptions]]></code>
+    </MissingOverrideAttribute>
     <MixedArrayAccess>
       <code><![CDATA[$container->get('Config')['lmc_rbac']]]></code>
     </MixedArrayAccess>
@@ -234,6 +369,9 @@
     </MixedAssignment>
   </file>
   <file src="src/Options/RedirectStrategyOptions.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[RedirectStrategyOptions]]></code>
+    </ClassMustBeFinal>
     <MissingTemplateParam>
       <code><![CDATA[RedirectStrategyOptions]]></code>
     </MissingTemplateParam>
@@ -246,6 +384,9 @@
     </PossiblyUnusedMethod>
   </file>
   <file src="src/Options/UnauthorizedStrategyOptions.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[UnauthorizedStrategyOptions]]></code>
+    </ClassMustBeFinal>
     <MissingTemplateParam>
       <code><![CDATA[UnauthorizedStrategyOptions]]></code>
     </MissingTemplateParam>
@@ -259,6 +400,14 @@
     </UnusedClass>
   </file>
   <file src="src/Role/RecursiveRoleIterator.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[RecursiveRoleIterator]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function getChildren(): ?RecursiveRoleIterator]]></code>
+      <code><![CDATA[public function hasChildren(): bool]]></code>
+      <code><![CDATA[public function valid(): bool]]></code>
+    </MissingOverrideAttribute>
     <MissingTemplateParam>
       <code><![CDATA[RecursiveIterator]]></code>
       <code><![CDATA[RecursiveRoleIterator]]></code>
@@ -270,12 +419,32 @@
       <code><![CDATA[getChildren]]></code>
     </MixedMethodCall>
   </file>
+  <file src="src/Role/RecursiveRoleIteratorStrategy.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[RecursiveRoleIteratorStrategy]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function getRolesIterator(iterable $roles): Traversable]]></code>
+    </MissingOverrideAttribute>
+  </file>
   <file src="src/Role/RoleProviderInterface.php">
     <UnusedClass>
       <code><![CDATA[RoleProviderInterface]]></code>
     </UnusedClass>
   </file>
   <file src="src/Service/AuthorizationService.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[AuthorizationService]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function getAssertion(string $permission): AssertionInterface|callable|string|null]]></code>
+      <code><![CDATA[public function getAssertions(): array]]></code>
+      <code><![CDATA[public function getIdentity(): ?IdentityInterface]]></code>
+      <code><![CDATA[public function hasAssertion(string $permission): bool]]></code>
+      <code><![CDATA[public function isGranted(string $permission, mixed $context = null): bool]]></code>
+      <code><![CDATA[public function setAssertion(string $permission, AssertionInterface|callable|string $assertion): void]]></code>
+      <code><![CDATA[public function setAssertions(array $assertions, bool $merge = false): void]]></code>
+    </MissingOverrideAttribute>
     <PossiblyUnusedReturnValue>
       <code><![CDATA[AssertionInterface|callable|string|null]]></code>
       <code><![CDATA[array]]></code>
@@ -284,6 +453,12 @@
     </PossiblyUnusedReturnValue>
   </file>
   <file src="src/Service/AuthorizationServiceDelegatorFactory.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[AuthorizationServiceDelegatorFactory]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function __invoke(]]></code>
+    </MissingOverrideAttribute>
     <MissingParamType>
       <code><![CDATA[$callback]]></code>
       <code><![CDATA[$name]]></code>
@@ -304,6 +479,14 @@
       <code><![CDATA[$name]]></code>
     </PossiblyUnusedParam>
   </file>
+  <file src="src/Service/AuthorizationServiceFactory.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[AuthorizationServiceFactory]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function __invoke(]]></code>
+    </MissingOverrideAttribute>
+  </file>
   <file src="src/Service/AuthorizationServiceInterface.php">
     <PossiblyUnusedReturnValue>
       <code><![CDATA[AssertionInterface|callable|string|null]]></code>
@@ -312,6 +495,9 @@
     </PossiblyUnusedReturnValue>
   </file>
   <file src="src/Service/RoleService.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[RoleService]]></code>
+    </ClassMustBeFinal>
     <MixedAssignment>
       <code><![CDATA[$role]]></code>
       <code><![CDATA[$roleNames[]]]></code>
@@ -327,17 +513,58 @@
       <code><![CDATA[(string) $role]]></code>
     </RedundantCastGivenDocblockType>
   </file>
+  <file src="src/Service/RoleServiceFactory.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[RoleServiceFactory]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null): RoleService]]></code>
+    </MissingOverrideAttribute>
+  </file>
   <file src="src/View/Helper/HasRole.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[HasRole]]></code>
+    </ClassMustBeFinal>
     <DeprecatedClass>
       <code><![CDATA[AbstractHelper]]></code>
     </DeprecatedClass>
+  </file>
+  <file src="src/View/Helper/HasRoleViewHelperFactory.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[HasRoleViewHelperFactory]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null): HasRole]]></code>
+    </MissingOverrideAttribute>
   </file>
   <file src="src/View/Helper/IsGranted.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[IsGranted]]></code>
+    </ClassMustBeFinal>
     <DeprecatedClass>
       <code><![CDATA[AbstractHelper]]></code>
     </DeprecatedClass>
   </file>
+  <file src="src/View/Helper/IsGrantedViewHelperFactory.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[IsGrantedViewHelperFactory]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null): IsGranted]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/View/Strategy/AbstractStrategy.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function attach(EventManagerInterface $events, $priority = 1): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
   <file src="src/View/Strategy/RedirectStrategy.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[RedirectStrategy]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function onError(MvcEvent $event): void]]></code>
+    </MissingOverrideAttribute>
     <MixedAssignment>
       <code><![CDATA[$previousUri]]></code>
       <code><![CDATA[$uri]]></code>
@@ -356,11 +583,24 @@
     </UndefinedInterfaceMethod>
   </file>
   <file src="src/View/Strategy/RedirectStrategyFactory.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[RedirectStrategyFactory]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null): RedirectStrategy]]></code>
+    </MissingOverrideAttribute>
     <PossiblyNullArgument>
       <code><![CDATA[$moduleOptions->getRedirectStrategy()]]></code>
     </PossiblyNullArgument>
   </file>
   <file src="src/View/Strategy/UnauthorizedStrategy.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[UnauthorizedStrategy]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function attach(EventManagerInterface $events, $priority = 1): void]]></code>
+      <code><![CDATA[public function onError(MvcEvent $event): void]]></code>
+    </MissingOverrideAttribute>
     <RedundantConditionGivenDocblockType>
       <code><![CDATA[$event->getResponse()]]></code>
     </RedundantConditionGivenDocblockType>
@@ -369,6 +609,12 @@
     </UndefinedInterfaceMethod>
   </file>
   <file src="src/View/Strategy/UnauthorizedStrategyFactory.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[UnauthorizedStrategyFactory]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function __invoke(]]></code>
+    </MissingOverrideAttribute>
     <PossiblyNullArgument>
       <code><![CDATA[$moduleOptions->getUnauthorizedStrategy()]]></code>
     </PossiblyNullArgument>
@@ -386,24 +632,47 @@
     </UndefinedGlobalVariable>
   </file>
   <file src="tests/ConfigProviderTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[ConfigProviderTest]]></code>
+    </ClassMustBeFinal>
     <MissingReturnType>
       <code><![CDATA[testConfigProvider]]></code>
     </MissingReturnType>
   </file>
+  <file src="tests/Exception/UnauthorizedExceptionTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[UnauthorizedExceptionTest]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="tests/Guard/AbstractGuardTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[AbstractGuardTest]]></code>
+    </ClassMustBeFinal>
     <MissingReturnType>
       <code><![CDATA[testDoesNotLimitDispatchErrorEventToOnlyOneListener]]></code>
     </MissingReturnType>
+    <MixedMethodCall>
+      <code><![CDATA[willReturn]]></code>
+    </MixedMethodCall>
+    <UndefinedMagicMethod>
+      <code><![CDATA[getEventManager]]></code>
+    </UndefinedMagicMethod>
     <UnusedClosureParam>
       <code><![CDATA[$event]]></code>
     </UnusedClosureParam>
   </file>
   <file src="tests/Guard/ControllerGuardFactoryTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[ControllerGuardFactoryTest]]></code>
+    </ClassMustBeFinal>
     <MissingReturnType>
       <code><![CDATA[testFactory]]></code>
     </MissingReturnType>
   </file>
   <file src="tests/Guard/ControllerGuardTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[ControllerGuardTest]]></code>
+    </ClassMustBeFinal>
     <MissingReturnType>
       <code><![CDATA[testAttachToRightEvent]]></code>
       <code><![CDATA[testControllerGranted]]></code>
@@ -411,20 +680,26 @@
       <code><![CDATA[testProperlySetUnauthorizedAndTriggerEventOnUnauthorized]]></code>
       <code><![CDATA[testRulesConversions]]></code>
     </MissingReturnType>
-    <PossiblyUnusedMethod>
-      <code><![CDATA[controllerDataProvider]]></code>
-      <code><![CDATA[rulesConversionProvider]]></code>
-    </PossiblyUnusedMethod>
+    <MixedReturnStatement>
+      <code><![CDATA[array]]></code>
+      <code><![CDATA[array]]></code>
+    </MixedReturnStatement>
     <UnusedMethodCall>
       <code><![CDATA[setAccessible]]></code>
     </UnusedMethodCall>
   </file>
   <file src="tests/Guard/ControllerPermissionsGuardFactoryTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[ControllerPermissionsGuardFactoryTest]]></code>
+    </ClassMustBeFinal>
     <MissingReturnType>
       <code><![CDATA[testFactory]]></code>
     </MissingReturnType>
   </file>
   <file src="tests/Guard/ControllerPermissionsGuardTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[ControllerPermissionsGuardTest]]></code>
+    </ClassMustBeFinal>
     <MissingReturnType>
       <code><![CDATA[testAttachToRightEvent]]></code>
       <code><![CDATA[testControllerGranted]]></code>
@@ -436,24 +711,39 @@
       <code><![CDATA[method]]></code>
       <code><![CDATA[willReturnMap]]></code>
     </MixedMethodCall>
-    <PossiblyUnusedMethod>
-      <code><![CDATA[controllerDataProvider]]></code>
-      <code><![CDATA[rulesConversionProvider]]></code>
-    </PossiblyUnusedMethod>
+    <MixedReturnStatement>
+      <code><![CDATA[array]]></code>
+      <code><![CDATA[array]]></code>
+    </MixedReturnStatement>
     <UndefinedMethod>
       <code><![CDATA[expects]]></code>
     </UndefinedMethod>
   </file>
+  <file src="tests/Guard/DummyProtectionPolicyTestClass.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[DummyProtectionPolicyTestClass]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="tests/Guard/GuardPluginManagerFactoryTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[GuardPluginManagerFactoryTest]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="tests/Guard/GuardPluginManagerTest.php">
     <ArgumentTypeCoercion>
-      <code><![CDATA[$moduleOptions->getGuardManager()]]></code>
       <code><![CDATA[$type]]></code>
     </ArgumentTypeCoercion>
-    <PossiblyUnusedMethod>
-      <code><![CDATA[guardProvider]]></code>
-    </PossiblyUnusedMethod>
+    <ClassMustBeFinal>
+      <code><![CDATA[GuardPluginManagerTest]]></code>
+    </ClassMustBeFinal>
+    <MixedReturnStatement>
+      <code><![CDATA[array]]></code>
+    </MixedReturnStatement>
   </file>
   <file src="tests/Guard/GuardsFactoryTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[GuardsFactoryTest]]></code>
+    </ClassMustBeFinal>
     <DocblockTypeContradiction>
       <code><![CDATA[assertIsArray]]></code>
       <code><![CDATA[assertIsArray]]></code>
@@ -476,16 +766,25 @@
     </UnusedVariable>
   </file>
   <file src="tests/Guard/ProtectionPolicyTraitTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[ProtectionPolicyTraitTest]]></code>
+    </ClassMustBeFinal>
     <MissingReturnType>
       <code><![CDATA[testTrait]]></code>
     </MissingReturnType>
   </file>
   <file src="tests/Guard/RouteGuardFactoryTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[RouteGuardFactoryTest]]></code>
+    </ClassMustBeFinal>
     <MissingReturnType>
       <code><![CDATA[testFactory]]></code>
     </MissingReturnType>
   </file>
   <file src="tests/Guard/RouteGuardTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[RouteGuardTest]]></code>
+    </ClassMustBeFinal>
     <MissingReturnType>
       <code><![CDATA[testAssertRouteGuardPriority]]></code>
       <code><![CDATA[testAttachToRightEvent]]></code>
@@ -494,20 +793,26 @@
       <code><![CDATA[testRouteGranted]]></code>
       <code><![CDATA[testRulesConversions]]></code>
     </MissingReturnType>
-    <PossiblyUnusedMethod>
-      <code><![CDATA[routeDataProvider]]></code>
-      <code><![CDATA[rulesConversionProvider]]></code>
-    </PossiblyUnusedMethod>
+    <MixedReturnStatement>
+      <code><![CDATA[array]]></code>
+      <code><![CDATA[array]]></code>
+    </MixedReturnStatement>
     <UnusedMethodCall>
       <code><![CDATA[setAccessible]]></code>
     </UnusedMethodCall>
   </file>
   <file src="tests/Guard/RoutePermissionsGuardFactoryTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[RoutePermissionsGuardFactoryTest]]></code>
+    </ClassMustBeFinal>
     <MissingReturnType>
       <code><![CDATA[testFactory]]></code>
     </MissingReturnType>
   </file>
   <file src="tests/Guard/RoutePermissionsGuardTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[RoutePermissionsGuardTest]]></code>
+    </ClassMustBeFinal>
     <MissingReturnType>
       <code><![CDATA[testAssertRoutePermissionsGuardPriority]]></code>
       <code><![CDATA[testAttachToRightEvent]]></code>
@@ -518,17 +823,26 @@
     <MixedArgumentTypeCoercion>
       <code><![CDATA[$identityPermissions]]></code>
     </MixedArgumentTypeCoercion>
-    <PossiblyUnusedMethod>
-      <code><![CDATA[routeDataProvider]]></code>
-      <code><![CDATA[rulesConversionProvider]]></code>
-    </PossiblyUnusedMethod>
+    <MixedReturnStatement>
+      <code><![CDATA[array]]></code>
+      <code><![CDATA[array]]></code>
+    </MixedReturnStatement>
   </file>
   <file src="tests/Identity/AuthenticationIdentityProviderFactoryTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[AuthenticationIdentityProviderFactoryTest]]></code>
+    </ClassMustBeFinal>
     <MissingReturnType>
       <code><![CDATA[testFactory]]></code>
     </MissingReturnType>
   </file>
   <file src="tests/Identity/AuthenticationIdentityProviderTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[AuthenticationIdentityProviderTest]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setUp(): void]]></code>
+    </MissingOverrideAttribute>
     <MissingReturnType>
       <code><![CDATA[testCanReturnIdentity]]></code>
     </MissingReturnType>
@@ -541,39 +855,70 @@
     </PossiblyUndefinedMethod>
   </file>
   <file src="tests/ModuleTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[ModuleTest]]></code>
+    </ClassMustBeFinal>
     <MissingReturnType>
       <code><![CDATA[testCanRegisterGuards]]></code>
       <code><![CDATA[testConfigIsArray]]></code>
     </MissingReturnType>
   </file>
   <file src="tests/Mvc/Controller/Plugin/IsGrantedPluginFactoryTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[IsGrantedPluginFactoryTest]]></code>
+    </ClassMustBeFinal>
     <MissingReturnType>
       <code><![CDATA[testFactory]]></code>
     </MissingReturnType>
   </file>
   <file src="tests/Mvc/Controller/Plugin/IsGrantedTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[IsGrantedTest]]></code>
+    </ClassMustBeFinal>
     <MissingReturnType>
       <code><![CDATA[testCallAuthorizationService]]></code>
     </MissingReturnType>
   </file>
   <file src="tests/Options/ModuleOptionsFactoryTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[ModuleOptionsFactoryTest]]></code>
+    </ClassMustBeFinal>
     <UnusedVariable>
       <code><![CDATA[$options]]></code>
     </UnusedVariable>
   </file>
+  <file src="tests/Options/ModuleOptionsTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[ModuleOptionsTest]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="tests/Options/RedirectStrategyOptionsTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[RedirectStrategyOptionsTest]]></code>
+    </ClassMustBeFinal>
     <MissingReturnType>
       <code><![CDATA[testAssertDefaultValues]]></code>
       <code><![CDATA[testSettersAndGetters]]></code>
     </MissingReturnType>
   </file>
   <file src="tests/Options/UnauthorizedStrategyOptionsTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[UnauthorizedStrategyOptionsTest]]></code>
+    </ClassMustBeFinal>
     <MissingReturnType>
       <code><![CDATA[testAssertDefaultValues]]></code>
       <code><![CDATA[testSettersAndGetters]]></code>
     </MissingReturnType>
   </file>
+  <file src="tests/Role/RecursiveRoleIteratorStrategyTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[RecursiveRoleIteratorStrategyTest]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="tests/Role/RecursiveRoleIteratorTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[RecursiveRoleIteratorTest]]></code>
+    </ClassMustBeFinal>
     <MissingReturnType>
       <code><![CDATA[testIsValid]]></code>
       <code><![CDATA[testWithChildren]]></code>
@@ -582,6 +927,9 @@
     </MissingReturnType>
   </file>
   <file src="tests/Service/AuthorizationServiceAwareTraitTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[AuthorizationServiceAwareTraitTest]]></code>
+    </ClassMustBeFinal>
     <DeprecatedMethod>
       <code><![CDATA[getObjectForTrait]]></code>
     </DeprecatedMethod>
@@ -597,6 +945,9 @@
     </MixedMethodCall>
   </file>
   <file src="tests/Service/AuthorizationServiceDelegatorTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[AuthorizationServiceDelegatorTest]]></code>
+    </ClassMustBeFinal>
     <MissingClosureReturnType>
       <code><![CDATA[function () {]]></code>
     </MissingClosureReturnType>
@@ -615,9 +966,17 @@
       <code><![CDATA[getAuthorizationService]]></code>
       <code><![CDATA[getAuthorizationService]]></code>
       <code><![CDATA[getAuthorizationService]]></code>
+      <code><![CDATA[shouldBeCalled]]></code>
+      <code><![CDATA[willReturn]]></code>
     </MixedMethodCall>
+    <UndefinedMagicMethod>
+      <code><![CDATA[get]]></code>
+    </UndefinedMagicMethod>
   </file>
   <file src="tests/Service/AuthorizationServiceFactoryTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[AuthorizationServiceFactoryTest]]></code>
+    </ClassMustBeFinal>
     <MissingClosureParamType>
       <code><![CDATA[$className]]></code>
     </MissingClosureParamType>
@@ -634,11 +993,20 @@
     </UnusedVariable>
   </file>
   <file src="tests/Service/AuthorizationServiceTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[AuthorizationServiceTest]]></code>
+    </ClassMustBeFinal>
+    <DeprecatedInterface>
+      <code><![CDATA[$this->createMock(IdentityInterface::class)]]></code>
+    </DeprecatedInterface>
     <MissingReturnType>
       <code><![CDATA[testGetIdentity]]></code>
     </MissingReturnType>
   </file>
   <file src="tests/Service/RoleServiceFactoryTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[RoleServiceFactoryTest]]></code>
+    </ClassMustBeFinal>
     <MissingClosureParamType>
       <code><![CDATA[$name]]></code>
     </MissingClosureParamType>
@@ -650,6 +1018,9 @@
     </UnusedVariable>
   </file>
   <file src="tests/Service/RoleServiceTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[RoleServiceTest]]></code>
+    </ClassMustBeFinal>
     <MissingReturnType>
       <code><![CDATA[testMatchIdentityRoles]]></code>
       <code><![CDATA[testSetIdentityProvider]]></code>
@@ -657,11 +1028,14 @@
     <MixedArgumentTypeCoercion>
       <code><![CDATA[$rolesToCheck]]></code>
     </MixedArgumentTypeCoercion>
-    <PossiblyUnusedMethod>
-      <code><![CDATA[roleProvider]]></code>
-    </PossiblyUnusedMethod>
+    <MixedReturnStatement>
+      <code><![CDATA[array]]></code>
+    </MixedReturnStatement>
   </file>
   <file src="tests/Util/ServiceManagerFactory.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[ServiceManagerFactory]]></code>
+    </ClassMustBeFinal>
     <MixedArgument>
       <code><![CDATA[$config['service_manager'] ?? []]]></code>
     </MixedArgument>
@@ -670,6 +1044,9 @@
     </RiskyTruthyFalsyComparison>
   </file>
   <file src="tests/View/Helper/HasRoleTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[HasRoleTest]]></code>
+    </ClassMustBeFinal>
     <MissingReturnType>
       <code><![CDATA[testCallAuthorizationService]]></code>
       <code><![CDATA[testHelperIsRegistered]]></code>
@@ -689,11 +1066,17 @@
     </MixedAssignment>
   </file>
   <file src="tests/View/Helper/HasRoleViewHelperFactoryTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[HasRoleViewHelperFactoryTest]]></code>
+    </ClassMustBeFinal>
     <MissingReturnType>
       <code><![CDATA[testFactory]]></code>
     </MissingReturnType>
   </file>
   <file src="tests/View/Helper/IsGrantedTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[IsGrantedTest]]></code>
+    </ClassMustBeFinal>
     <MissingReturnType>
       <code><![CDATA[testCallAuthorizationService]]></code>
       <code><![CDATA[testHelperIsRegistered]]></code>
@@ -713,19 +1096,38 @@
     </MixedAssignment>
   </file>
   <file src="tests/View/Helper/IsGrantedViewHelperFactoryTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[IsGrantedViewHelperFactoryTest]]></code>
+    </ClassMustBeFinal>
     <MissingReturnType>
       <code><![CDATA[testFactory]]></code>
     </MissingReturnType>
   </file>
   <file src="tests/View/Strategy/RedirectStrategyFactoryTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[RedirectStrategyFactoryTest]]></code>
+    </ClassMustBeFinal>
     <DeprecatedMethod>
       <code><![CDATA[returnValue]]></code>
     </DeprecatedMethod>
     <MissingReturnType>
       <code><![CDATA[testFactory]]></code>
     </MissingReturnType>
+    <MixedMethodCall>
+      <code><![CDATA[shouldBeCalled]]></code>
+      <code><![CDATA[shouldBeCalled]]></code>
+      <code><![CDATA[willReturn]]></code>
+      <code><![CDATA[willReturn]]></code>
+    </MixedMethodCall>
+    <UndefinedMagicMethod>
+      <code><![CDATA[get]]></code>
+      <code><![CDATA[get]]></code>
+    </UndefinedMagicMethod>
   </file>
   <file src="tests/View/Strategy/RedirectStrategyTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[RedirectStrategyTest]]></code>
+    </ClassMustBeFinal>
     <DeprecatedMethod>
       <code><![CDATA[returnValue]]></code>
       <code><![CDATA[returnValue]]></code>
@@ -765,14 +1167,27 @@
     </UndefinedInterfaceMethod>
   </file>
   <file src="tests/View/Strategy/UnauthorizedStrategyFactoryTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[UnauthorizedStrategyFactoryTest]]></code>
+    </ClassMustBeFinal>
     <DeprecatedMethod>
       <code><![CDATA[returnValue]]></code>
     </DeprecatedMethod>
     <MissingReturnType>
       <code><![CDATA[testFactory]]></code>
     </MissingReturnType>
+    <MixedMethodCall>
+      <code><![CDATA[shouldBeCalled]]></code>
+      <code><![CDATA[willReturn]]></code>
+    </MixedMethodCall>
+    <UndefinedMagicMethod>
+      <code><![CDATA[get]]></code>
+    </UndefinedMagicMethod>
   </file>
   <file src="tests/View/Strategy/UnauthorizedStrategyTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[UnauthorizedStrategyTest]]></code>
+    </ClassMustBeFinal>
     <MissingReturnType>
       <code><![CDATA[testAttachToRightEvent]]></code>
       <code><![CDATA[testFillEvent]]></code>
