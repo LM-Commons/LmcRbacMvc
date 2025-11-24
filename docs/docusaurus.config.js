@@ -25,7 +25,8 @@ const config = {
   trailingSlash: false,
 
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+
+
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -33,6 +34,11 @@ const config = {
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
+  },
+  markdown: {
+      hooks: {
+          onBrokenMarkdownLinks: "warn",
+      }
   },
 
   presets: [
@@ -47,8 +53,13 @@ const config = {
           editUrl: 'https://github.com/lm-commons/lmcrbacmvc/tree/master/docs/',
           includeCurrentVersion: false,
           versions: {
+            "4.0": {
+              banner: "none",
+              label: "4.x",
+            },
             "3.4": {
               banner: 'none',
+              label: "3.x"
             }
           }
         },
@@ -57,6 +68,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl: 'https://github.com/lm-commons/lmcrbacmvc/tree/master/docs/',
+          onUntruncatedBlogPosts: 'ignore'
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -87,6 +99,10 @@ const config = {
           {
             type: "docsVersionDropdown",
             position: "right",
+            versions: {
+                "4.0": {label: "4.x"},
+                "3.4": {label: "3.x"},
+            }
           },
           {
             href: 'https://lm-commons.github.io',
@@ -120,8 +136,8 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'Slack',
-                href: 'https://join.slack.com/t/lm-commons/shared_invite/zt-2gankt2wj-FTS45hp1W~JEj1tWvDsUHQ',
+                label: 'Discord',
+                href: 'https://discord.gg/nAAu7AhR',
               },
             ],
           },
